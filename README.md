@@ -1,5 +1,12 @@
 # Readable
 
+## Prerequite
+
+```bash
+npm install -g @nrwl/cli    // nx
+npm install -g @nestjs/cli  // nest
+```
+
 ## Install
 
 ```bash
