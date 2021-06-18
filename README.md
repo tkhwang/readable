@@ -34,7 +34,14 @@ yarn dev server
 yarn dev client
 ```
 
-## How to write git commit message
+## Commit message
+
+```
+type (module) commit message
+
+🚚 (backend): Move app module to the top
+📦 (backend): Add typeorm and mysql package
+```
 
 Add gitemoji for Fun using VSCode plugin or CLI.
 
@@ -42,9 +49,11 @@ Add gitemoji for Fun using VSCode plugin or CLI.
 
 #### VSCode
 
+Search/Select emoji for indicating type of commit and write commit message.
+
 [Gitmoji - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Vtrois.gitmoji-vscode)
 
-#### CLI
+#### (Optional) CLI
 
 ```bash
 brew install gitmoji
