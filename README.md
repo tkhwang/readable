@@ -1,5 +1,12 @@
 # Readable
 
+## Design Policy
+
+#### Graphal
+
+- One model for Graphql and DB entity.
+- Code first. (Not schema first)
+
 ## Prerequite
 
 ```bash
