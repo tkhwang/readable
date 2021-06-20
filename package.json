@@ -24,7 +24,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +58,11 @@
     "@babel/preset-env": "7.12.13",
     "@babel/preset-react": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
+    "@graphql-codegen/cli": "1.21.5",
+    "@graphql-codegen/near-operation-file-preset": "^1.18.2",
+    "@graphql-codegen/typescript": "1.22.2",
+    "@graphql-codegen/typescript-operations": "^1.18.1",
+    "@graphql-codegen/typescript-react-apollo": "2.2.6",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.0",
     "@nrwl/cli": "12.4.0",
