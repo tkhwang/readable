@@ -11,7 +11,8 @@ import { UsersModule } from './users/users.module';
   // imports: [PetsModule],
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'apps/server/src/schema.gql'),
+      sortSchema: true,
     }),
     // TypeOrmModule.forRoot({
     //   type: 'mysql',
