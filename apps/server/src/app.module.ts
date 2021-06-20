@@ -4,11 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PetsModule } from './pets/pets.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  // imports: [PetsModule],
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'apps/server/src/schema.gql'),
@@ -20,7 +18,6 @@ import { UsersModule } from './users/users.module';
     //   entities: ['dist/**/*.entity{.ts,.js}'],
     //   synchronize: true,
     // }),
-    PetsModule,
     UsersModule,
   ],
   controllers: [AppController],

@@ -13,14 +13,7 @@ type Mutation {
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
-type Pet {
-  id: Int!
-  name: String!
-  type: String
-}
-
 type Query {
-  pets: [Pet!]!
   user(id: Int!): User!
   users: [User!]!
 }
