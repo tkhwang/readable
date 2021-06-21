@@ -31,6 +31,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.20",
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.0.0",
     "@nestjs/graphql": "^7.11.0",
     "@nestjs/platform-express": "^7.0.0",
@@ -38,6 +39,7 @@
     "apollo-server-express": "^2.25.1",
     "class-validator": "^0.13.1",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
     "document-register-element": "1.13.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
