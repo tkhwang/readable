@@ -37,10 +37,12 @@ yarn dev client
 ## Commit message
 
 ```
-type (module) commit message
+type (module): commit message
+      client
+      server
 
-🚚 (backend): Move app module to the top
-📦 (backend): Add typeorm and mysql package
+🚚 (client): Move app module to the top
+📦 (server): Add typeorm and mysql package
 ```
 
 Add gitemoji for Fun using VSCode plugin or CLI.
