@@ -8,23 +8,15 @@ input CreateUserInput {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
-  removeUser(id: Int!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  userCreate(createUserInput: CreateUserInput!): User!
 }
 
 type Query {
-  user(id: Int!): User!
-  users: [User!]!
-}
-
-input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  userFindAll: [User!]!
+  userFindOne(id: Int!): User!
 }
 
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+  name: String!
 }
