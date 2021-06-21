@@ -2,25 +2,24 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'prod' ? '.env.prod' : '.env.dev',
+    }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
       sortSchema: true,
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'mysql',
-    //   database: 'readable-dev',
-    //   entities: ['dist/**/*.entity{.ts,.js}'],
-    //   synchronize: true,
-    // }),
+    // TODO(Teddy): TypeORM config
+    // TypeOrmModule.forRoot(),
     UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
