@@ -8,7 +8,11 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "~graphql-types": ["apps/client/src/graphql-types.ts"],
+      "@core": ["app/client/src/core/*"]
+    }
   },
   "files": [],
   "include": [],
