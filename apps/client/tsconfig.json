@@ -10,8 +10,10 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "~graphql-types": ["apps/client/src/graphql-types.ts"],
-      "@core": ["app/client/src/core/*"]
+      "~graphql-types": ["apps/client/src/graphql-types"],
+      "@core": ["app/client/src/core"],
+      "@core/*": ["app/client/src/core/*"],
+      "src/*": ["apps/client/src/*"]
     }
   },
   "files": [],
