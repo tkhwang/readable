@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'apps/server/src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
       sortSchema: true,
     }),
     // TypeOrmModule.forRoot({
