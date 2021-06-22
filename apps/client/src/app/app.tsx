@@ -6,7 +6,7 @@ export function App() {
 
   return (
     <>
-      <img src="https://user-images.githubusercontent.com/365500/122930877-51c81b80-d3a7-11eb-8a7e-9b1de95cda77.png" alt="symbol" />
+      <img src="https://user-images.githubusercontent.com/365500/122947722-572c6280-d3b5-11eb-9b18-f8e0e2f79e3b.png" alt="symbol" />
       <GetUsersViewController viewModel={viewModel} />
     </>
   );
