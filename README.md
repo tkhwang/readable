@@ -1,5 +1,6 @@
 # Readable
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/33ff0661-c9e1-4597-aa8e-af6bfed93e93/deploy-status)](https://app.netlify.com/sites/readable-2021/deploys)
 ## Design Policy
 
 #### Graphal
