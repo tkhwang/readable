@@ -12,7 +12,9 @@ async function bootstrap() {
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 7000;
+  const port = process.env.SERVER_PORT || 1000;
+
+  console.log('TCL: bootstrap -> process.env.READABLE_RDS_DB', process.env.READABLE_RDS_DB);
 
   await app.listen(port, () => {
     // Logger.log('🚀 Listening at http://localhost:' + port + '/' + globalPrefix);
