@@ -23,7 +23,7 @@
             ],
             "styles": [],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "apps/client/webpack.config.js"
           },
           "configurations": {
             "production": {
