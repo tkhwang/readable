@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -17,19 +18,20 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      entities: ['./dist/entities/*.js'],
-      migrations: ['./src/migrations/*.ts'],
       host: process.env.READABLE_RDS_HOST,
+      port: 3306,
       database: process.env.READABLE_RDS_DB,
       username: process.env.READABLE_RDS_USERNAME,
       password: process.env.READABLE_RDS_PASSWORD,
-      port: 3306,
       charset: 'utf8mb4',
       logging: true,
-      dateStrings: ['DATE'],
-      cli: {
-        migrationsDir: './src/migrations',
-      },
+      // dateStrings: ['DATE'],
+      entities: [User],
+      // entities: ['./dist/entities/*.js'],
+      // migrations: ['./src/migrations/*.ts'],
+      // cli: {
+      //   migrationsDir: './src/migrations',
+      // },
       synchronize: true,
     }),
     UsersModule,
