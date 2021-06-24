@@ -1,5 +1,13 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "~graphql-types": ["apps/server/src/graphql-types"],
+      "src/*": ["apps/server/src/*"],
+      "@users": ["apps/server/src/users"],
+      "@users/*": ["apps/server/src/users/*"]
+    }
+  },
   "files": [],
   "include": [],
   "references": [

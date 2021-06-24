@@ -17,6 +17,6 @@ type Query {
 }
 
 type User {
-  id: Int!
+  id: Float!
   name: String!
 }
