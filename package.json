@@ -81,9 +81,13 @@
     "@nrwl/nest": "^12.4.0",
     "@nrwl/node": "12.4.0",
     "@nrwl/react": "12.4.0",
+    "@nrwl/storybook": "^12.4.0",
     "@nrwl/tao": "12.4.0",
     "@nrwl/web": "12.4.0",
     "@nrwl/workspace": "12.4.0",
+    "@storybook/addon-knobs": "^6.2.7",
+    "@storybook/react": "^6.2.7",
+    "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "11.2.6",
     "@types/jest": "26.0.8",
     "@types/node": "14.14.33",
@@ -95,6 +99,7 @@
     "@typescript-eslint/parser": "4.19.0",
     "autoprefixer": "^9",
     "babel-jest": "26.2.2",
+    "babel-loader": "8.1.0",
     "babel-plugin-styled-components": "1.10.7",
     "cypress": "^7.3.0",
     "dotenv": "8.2.0",
@@ -111,6 +116,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
-    "typescript": "~4.2.4"
+    "typescript": "~4.2.4",
+    "url-loader": "^3.0.0"
   }
 }
