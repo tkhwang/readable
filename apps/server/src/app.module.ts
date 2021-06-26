@@ -14,7 +14,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'prod' ? '.env.prod' : '.env.dev',
+      envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development',
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
