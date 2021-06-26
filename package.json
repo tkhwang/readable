@@ -8,9 +8,8 @@
   "scripts": {
     "nx": "nx",
     "dev": "nx serve",
-    "start": "nx serve",
     "build": "nx build --prod server; nx build --prod client",
-    "start:production": "node dist/apps/server/main.js",
+    "start": "node dist/apps/server/main.js",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
