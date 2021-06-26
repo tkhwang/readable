@@ -11,7 +11,7 @@
     "build": "nx build",
     "start": "nx serve",
     "build:production": "yarn build --prod server;yarn build --prod client",
-    "start:production": "node_modules/pm2/bin/pm2 start dist/apps/server/main.js",
+    "start:production": "node dist/apps/server/main.js",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
