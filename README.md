@@ -7,7 +7,7 @@
 #### Graphal
 
 - One model for Graphql and DB entity.
-- Code first. (Not schema first)
+- GraphQL: Code first. (Not schema first)
 
 ## Prerequite
 
@@ -24,6 +24,9 @@ yarn
 
 ## Run
 
+For local development, use `yarn dev server` and `yarn dev client`.<br />
+Don't use `yarn start` and `yarn build`. (Ref to below caution notice.)
+
 #### Server
 
 ```bash
@@ -34,6 +37,16 @@ yarn dev server
 
 ```bash
 yarn dev client
+```
+
+#### ⚠️⚠️⚠️ Caution !!!
+
+Don't use `yarn start`, `yarn build` for local development.<br />
+Now it's **only for heroku deployment.**
+
+```bash
+yarn build
+yarn start
 ```
 
 ## Commit message
@@ -68,8 +81,8 @@ Just connect and it will work.
 nest.js with production built static files (client)
 
 ```bash
-yarn build:production
-yarn start:production
+yarn build
+yarn start
 ```
 
 #### 2. AWS

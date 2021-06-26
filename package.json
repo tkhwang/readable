@@ -9,7 +9,7 @@
     "nx": "nx",
     "dev": "nx serve",
     "build": "nx build --prod server; nx build --prod client",
-    "start": "node dist/apps/server/main.js",
+    "start": "node_modules/pm2/bin/pm2 start dist/apps/server/main.js",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
