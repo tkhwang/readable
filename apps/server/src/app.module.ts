@@ -5,9 +5,13 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './users/entities/user.entity';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+      exclude: ['/server*'],
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'prod' ? '.env.prod' : '.env.dev',
