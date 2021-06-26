@@ -12,7 +12,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-const port = process.env.NODE_ENV === 'production' ? 80 : 7000;
+const port = process.env.PORT || 7000;
 
 const link = from([
   errorLink,
