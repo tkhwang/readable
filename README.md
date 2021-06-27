@@ -87,9 +87,9 @@ AKS using kubernete.
 
 ## Ref: Server/Port/DB
 
-| Environment | `apps`   | DB          | URL                                         | Port   |
-| ----------- | -------- | ----------- | ------------------------------------------- | ------ |
-| development | `server` | development | http://localhost                            | `7000` |
-|             | `client` |             | http://localhost                            | `4200` |
-| heroku      | `server` | development | https://readable-2021.herokuapp.com/graphql |        |
-|             | `client` |             | https://readable-2021.herokuapp.com         |        |
+| Environment | `apps`   | DB          | Port   | URL                                         |
+| ----------- | -------- | ----------- | ------ | ------------------------------------------- |
+| development | `server` | development | `7000` | http://localhost:7000/graphql               |
+|             | `client` |             | `4200` | http://localhost:4200                       |
+| heroku      | `server` | development |        | https://readable-2021.herokuapp.com/graphql |
+|             | `client` |             |        | https://readable-2021.herokuapp.com         |
