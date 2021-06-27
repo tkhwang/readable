@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "scripts": {
     "nx": "nx",
@@ -12,6 +12,7 @@
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
+    "clean": "rm -rf ./dist; rm -rf ./node_modules",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",

@@ -5,6 +5,7 @@ import App from './app/app';
 
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { graphQLServer } from './link';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -15,7 +16,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri: `http://localhost:7000/graphql`,
+    uri: `${graphQLServer.url}:7000/graphql`,
   }),
 ]);
 
