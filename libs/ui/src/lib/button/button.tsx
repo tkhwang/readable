@@ -8,7 +8,9 @@ export interface ButtonProps {}
 
 export function Button(props: ButtonProps) {
   return (
-      <h1 className="text-purple-600">Welcome to tailwind</h1>
+    <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+    Click me
+  </button>
   );
 }
 
