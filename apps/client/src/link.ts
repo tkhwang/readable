@@ -1,9 +1,11 @@
 function getGraphQLServerUrl() {
+  const env = process.env.NODE_ENV;
+  console.log('🔧 @client : NODE_ENV = ', env);
+
   const deployServer = process.env.DEPLOY_SERVER;
+  console.log('🔧 @client : deployServer = ', deployServer);
 
-  if (deployServer === 'heroku') return 'https://readable-2021.herokuapp.com';
-
-  if (deployServer === 'netlify') return 'https://readable-2021.netlify.app';
+  if (env === 'production') return 'https://readable-2021.herokuapp.com';
 
   return 'http://localhost';
 }
