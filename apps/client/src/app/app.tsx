@@ -6,7 +6,12 @@ export function App() {
 
   return (
     <>
-       <img src="https://user-images.githubusercontent.com/365500/122947722-572c6280-d3b5-11eb-9b18-f8e0e2f79e3b.png" alt="symbol" style={{ width: '100%'}} />
+      <img
+        src="https://user-images.githubusercontent.com/365500/122947722-572c6280-d3b5-11eb-9b18-f8e0e2f79e3b.png"
+        alt="symbol"
+        style={{ width: '100%' }}
+      />
+      아래가 제대로 보여야 함 (GraphQL API 동작)
       <GetUsersViewController viewModel={viewModel} />
     </>
   );

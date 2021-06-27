@@ -12,12 +12,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-const port = process.env.PORT || 7000;
-
 const link = from([
   errorLink,
   new HttpLink({
-    uri: `http://localhost:${port}/graphql`,
+    uri: `http://localhost:7000/graphql`,
   }),
 ]);
 
