@@ -21,7 +21,9 @@
               "apps/client/src/favicon.ico",
               "apps/client/src/assets"
             ],
-            "styles": [],
+            "styles": [
+              "apps/client/src/styles.css"
+            ],
             "scripts": [],
             "webpackConfig": "apps/client/webpack.config.js"
           },
