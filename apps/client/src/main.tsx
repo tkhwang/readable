@@ -16,7 +16,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = from([
   errorLink,
   new HttpLink({
-    uri: `${graphQLServer.url}:7000/graphql`,
+    uri: `${graphQLServer.url}`,
   }),
 ]);
 

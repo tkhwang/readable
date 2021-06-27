@@ -8,16 +8,14 @@ export const GetUsersViewController: ViewController<GetUsersViewModel> = React.m
   const { users, loading, error } = viewModel;
 
   const env = process.env.NODE_ENV;
-  const deployServer = process.env.DEPLOY_SERVER;
 
   return (
     <div className="m-5">
       <ul>
         <li>NODE_ENV={env}</li>
-        <li>deployServer={deployServer}</li>
         <li>graphQLServer={graphQLServer.url}</li>
         <li>
-          GraphQL API result
+          GraphQL API result=
           {users &&
             users.map((user: any) => {
               return (
