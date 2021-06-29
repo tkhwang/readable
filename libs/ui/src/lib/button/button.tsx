@@ -1,17 +1,16 @@
 import styled from 'styled-components';
+import 'tailwindcss/tailwind.css';
 
 /* eslint-disable-next-line */
 export interface ButtonProps {}
 
-const StyledButton = styled.div`
-  color: pink;
-`;
+
 
 export function Button(props: ButtonProps) {
   return (
-    <StyledButton>
-      <h1>Welcome to button!</h1>
-    </StyledButton>
+    <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+    Click me
+  </button>
   );
 }
 

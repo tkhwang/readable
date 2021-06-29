@@ -1,4 +1,5 @@
 const nrwlConfig = require("@nrwl/react/plugins/webpack.js");
+const webpackCommonConfig = require("../../webpack-common.config");
 
 module.exports = (config) => {
   nrwlConfig(config);
@@ -7,14 +8,8 @@ module.exports = (config) => {
     module: {
       rules: [
         ...config.module.rules,
-        {
-          test: /\.css$|\.scss$|\.sass$|\.less$|\.styl$/,
-          use: [
-            {
-              loader: 'postcss-loader',
-            },
-          ],
-        },
+        webpackCommonConfig.tailwindWebpackRule,
+        
       ],
     },
   };
