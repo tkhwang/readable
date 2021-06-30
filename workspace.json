@@ -100,6 +100,83 @@
         }
       }
     },
+    "client-next": {
+      "root": "apps/client-next",
+      "sourceRoot": "apps/client-next",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/client-next",
+            "outputPath": "dist/apps/client-next"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "client-next:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "client-next:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "client-next:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/client-next"],
+          "options": {
+            "jestConfig": "apps/client-next/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-next/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
+    "client-next-e2e": {
+      "root": "apps/client-next-e2e",
+      "sourceRoot": "apps/client-next-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-next-e2e/cypress.json",
+            "tsConfig": "apps/client-next-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-next:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client-next:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-next-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "server": {
       "root": "apps/server",
       "sourceRoot": "apps/server/src",
@@ -247,6 +324,12 @@
         "style": "styled-components",
         "linter": "eslint",
         "strict": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
       }
     }
   },
