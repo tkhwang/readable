@@ -1,9 +1,9 @@
-import { GetUsersViewController } from '@components/GetUsersViewController';
-import { useGetUsersViewModel } from '@components/useGetUsersViewModel.query';
-import withApollo from '@lib/withApollo';
 import React from 'react';
 import styled from 'styled-components';
 import { getDataFromTree } from '@apollo/client/react/ssr';
+import { useGetUsersViewModel } from '@readable/components/useGetUsersViewModel.query';
+import { GetUsersViewController } from '@readable/components/GetUsersViewController';
+import withApollo from '@readable/lib/withApollo';
 
 const StyledPage = styled.div`
   .page {
