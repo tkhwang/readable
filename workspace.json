@@ -114,7 +114,8 @@
           },
           "configurations": {
             "production": {}
-          }
+          },
+          "webpackConfig": "apps/client-next/webpack.config.js"
         },
         "serve": {
           "executor": "@nrwl/next:server",
