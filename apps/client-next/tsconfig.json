@@ -10,7 +10,18 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "@graphql-types": ["apps/client-next/src/graphql-types.ts"],
+      "@core": ["apps/client-next/core"],
+      "@core/*": ["apps/client-next/core/*"],
+      "@lib": ["apps/client-next/lib"],
+      "@lib/*": ["apps/client-next/lib/*"],
+      "@components": ["apps/client-next/components"],
+      "@components/*": ["apps/client-next/components/*"],
+      "@src": ["apps/client-next/src"],
+      "@src/*": ["apps/client-next/src/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
   "exclude": ["node_modules"]

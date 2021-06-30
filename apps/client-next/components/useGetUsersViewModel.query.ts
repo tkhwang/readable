@@ -1,5 +1,6 @@
-import { gql, useQuery } from '@apollo/client';
-import { ViewModel } from '../core/ViewModel';
+import { gql } from '@apollo/client';
+import { ViewModel } from '@core/ViewModel';
+import { useUserFindAllQuery } from './useGetUsersViewModel.query.generated';
 
 const LOAD_USERS = gql`
   query UserFindAll {
@@ -13,8 +14,7 @@ const LOAD_USERS = gql`
 export type GetUsersViewModel = ViewModel<typeof useGetUsersViewModel>;
 
 export function useGetUsersViewModel() {
-  // const { data, loading, error } = useUserFindAllQuery();
-  const { data, loading, error } = useQuery(LOAD_USERS);
+  const { data, loading, error } = useUserFindAllQuery();
 
   const users = data?.userFindAll ?? [];
   return {
