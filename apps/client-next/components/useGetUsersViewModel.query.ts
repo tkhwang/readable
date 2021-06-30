@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { ViewModel } from '@core/ViewModel';
+import { ViewModel } from '@readable/core/ViewModel';
 import { useUserFindAllQuery } from './useGetUsersViewModel.query.generated';
 
 const LOAD_USERS = gql`
