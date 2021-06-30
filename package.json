@@ -52,6 +52,7 @@
     "graphql-tools": "^7.0.5",
     "mysql2": "^2.2.5",
     "next": "10.2.0",
+    "next-with-apollo": "^5.2.1",
     "pm2": "^5.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
