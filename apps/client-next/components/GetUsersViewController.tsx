@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { GetUsersViewModel } from './useGetUsersViewModel.query';
 import { ViewController } from '@readable/core/ViewController';
-import { graphQLServer } from '@readable/link';
+import { links } from '@readable/link';
 
 export const GetUsersViewController: ViewController<GetUsersViewModel> = React.memo(({ viewModel }) => {
   const { users, loading, error } = viewModel;
@@ -13,7 +13,7 @@ export const GetUsersViewController: ViewController<GetUsersViewModel> = React.m
     <div className="m-5">
       <ul>
         <li>NODE_ENV={env}</li>
-        <li>graphQLServer={graphQLServer.url}</li>
+        <li>graphQLServer={links.graphqlUrl}</li>
         <li>
           GraphQL API result=
           {users &&
