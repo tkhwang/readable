@@ -1,14 +1,14 @@
 import { ApolloClient, ApolloProvider, DefaultOptions, HttpLink, InMemoryCache } from '@apollo/client';
 import { useRouter } from 'next/router';
 import nextWithApollo from 'next-with-apollo';
-import { graphQLServer } from '../src/link';
+import { links } from '@readable/link';
 
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
     return new ApolloClient({
       ssrMode: typeof window === 'undefined',
       link: new HttpLink({
-        uri: graphQLServer.url,
+        uri: links.graphqlUrl,
       }),
       headers: {
         ...(headers as Record<string, string>),

@@ -1,12 +1,13 @@
-function getGraphQLServerUrl() {
+function getServerUrl() {
   const env = process.env.NODE_ENV;
   console.log('🔧 @client : NODE_ENV = ', env);
 
-  if (env === 'production') return 'https://readable-2021.herokuapp.com/graphql';
+  if (env === 'production') return 'https://readable-2021.herokuapp.com';
 
-  return 'http://localhost:7000/graphql';
+  return 'http://localhost:7000';
 }
 
-export const graphQLServer = {
-  url: getGraphQLServerUrl(),
+export const links = {
+  restUrl: getServerUrl(),
+  graphqlUrl: `${getServerUrl()}/graphql`,
 };
