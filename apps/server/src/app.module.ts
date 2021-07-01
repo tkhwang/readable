@@ -4,8 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { User } from './users/entities/user.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { User } from '@readable/users/entities/user.entity';
 @Module({
   imports: [
     ServeStaticModule.forRoot({

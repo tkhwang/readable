@@ -2,11 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@graphql-types": ["apps/server/src/graphql-types"],
-      "@src": ["apps/server/src"],
-      "@src/*": ["apps/server/src/*"],
-      "@users": ["apps/server/src/users"],
-      "@users/*": ["apps/server/src/users/*"]
+      "@readable/graphql-types": ["apps/server/src/graphql-types"],
+      "@readable/src": ["apps/server/src"],
+      "@readable/src/*": ["apps/server/src/*"],
+      "@readable/users": ["apps/server/src/users"],
+      "@readable/users/*": ["apps/server/src/users/*"]
     }
   },
   "files": [],
