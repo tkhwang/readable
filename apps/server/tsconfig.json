@@ -6,7 +6,9 @@
       "@readable/src": ["apps/server/src"],
       "@readable/src/*": ["apps/server/src/*"],
       "@readable/users": ["apps/server/src/users"],
-      "@readable/users/*": ["apps/server/src/users/*"]
+      "@readable/users/*": ["apps/server/src/users/*"],
+      "@readable/auth": ["apps/server/src/auth"],
+      "@readable/auth/*": ["apps/server/src/auth/*"]
     }
   },
   "files": [],
