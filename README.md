@@ -1,6 +1,6 @@
 # Readable
 
-[![Heroku](https://pyheroku-badge.herokuapp.com/?app=readable-2021&style=flat)](https://dashboard.heroku.com/apps/readable-2021)
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=readable)](https://vercel.com/tkhwang/readable)
 
 ## Design Policy
 
