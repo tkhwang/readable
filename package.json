@@ -58,6 +58,7 @@
     "next": "10.2.0",
     "next-with-apollo": "^5.2.1",
     "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "pm2": "^5.1.0",
