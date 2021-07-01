@@ -6,7 +6,7 @@ import { links } from '@readable/link';
 
 export function LoginGoogle() {
   return (
-    <a href={`${links.restUrl}/rest/auth/google`} target="_blank" rel="noreferrer">
+    <a href={`${links.restUrl}/rest/auth/google`}>
       <GoogleLoginButton />
     </a>
   );
