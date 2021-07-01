@@ -41,12 +41,19 @@ yarn dev server
 yarn dev client-next
 ```
 
+#### Codegen for `client-next`
+
+```bash
+yarn codegen
+```
+
 #### ⚠️⚠️⚠️ Caution !!!
 
 Don't use `yarn start`, `yarn build` for local development.<br />
 Now it's **only for deployment.**
 
 ```bash
+# Don't use for local development. Now it's for the deployment.
 yarn build
 yarn start
 ```
