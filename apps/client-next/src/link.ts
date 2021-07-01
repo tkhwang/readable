@@ -8,6 +8,6 @@ function getServerUrl() {
 }
 
 export const links = {
-  restUrl: getServerUrl(),
+  restUrl: `${getServerUrl()}/rest`,
   graphqlUrl: `${getServerUrl()}/graphql`,
 };
