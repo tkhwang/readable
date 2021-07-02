@@ -29,7 +29,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "codegen": "graphql-codegen --config apps/client-next/codegen.yml",
+    "codegen": "graphql-codegen --config apps/client/codegen.yml",
     "postinstall": "husky install"
   },
   "private": true,

@@ -39,6 +39,6 @@ export type QueryuserFindOneArgs = {
 
 export type User = {
   readonly __typename?: 'User';
-  readonly id: Scalars['Int'];
+  readonly id: Scalars['Float'];
   readonly name: Scalars['String'];
 };

@@ -1,29 +1,28 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "types": ["node", "jest"],
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "paths": {
-      "~graphql-types": ["apps/client/src/graphql-types"],
-      "@core": ["app/client/src/core"],
-      "@core/*": ["app/client/src/core/*"],
-      "src/*": ["apps/client/src/*"]
+      "@graphql-types": ["apps/client/src/graphql-types.ts"],
+      "@readable/core": ["apps/client/core"],
+      "@readable/core/*": ["apps/client/core/*"],
+      "@readable/lib": ["apps/client/lib"],
+      "@readable/lib/*": ["apps/client/lib/*"],
+      "@readable/components": ["apps/client/components"],
+      "@readable/components/*": ["apps/client/components/*"],
+      "@readable": ["apps/client/src"],
+      "@readable/*": ["apps/client/src/*"]
     }
   },
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
+  "exclude": ["node_modules"]
 }

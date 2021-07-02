@@ -26,13 +26,6 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
-    "client-next": {
-      "tags": []
-    },
-    "client-next-e2e": {
-      "tags": [],
-      "implicitDependencies": ["client-next"]
-    },
     "server": {
       "tags": []
     },

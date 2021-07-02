@@ -2,7 +2,7 @@
 
 Read and share anything readable in **Readable** !
 
-[![Heroku](https://pyheroku-badge.herokuapp.com/?app=readable-2021&style=flat)](https://dashboard.heroku.com/apps/readable-2021) `apps/server` | [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=readable)](https://vercel.com/tkhwang/readable) `apps/client-next`
+[![Heroku](https://pyheroku-badge.herokuapp.com/?app=readable-2021&style=flat)](https://dashboard.heroku.com/apps/readable-2021) `apps/server` | [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=readable)](https://vercel.com/tkhwang/readable) `apps/client`
 
 ## Design Policy
 
@@ -38,10 +38,10 @@ yarn dev server
 #### Client: nx next.js app
 
 ```bash
-yarn dev client-next
+yarn dev client
 ```
 
-#### Codegen for `client-next`
+#### Codegen for `client`
 
 ```bash
 yarn codegen
@@ -82,7 +82,7 @@ Search/Select emoji for indicating type of commit and write commit message.
 Before the AWS configuration, use quick and dirty.
 
 - heroku for `server` nx nest.js app
-- vercel for `client-next` nx next.js app
+- vercel for `client` nx next.js app
 
 #### heroku
 
@@ -99,10 +99,10 @@ AKS using kubernete.
 
 ## Ref: Server/Port/DB
 
-| Environment      | `apps`        | `NODE_ENV`    | DB          | Port     | URL                                         |
-| ---------------- | ------------- | ------------- | ----------- | -------- | ------------------------------------------- |
-| development      | `server`      | `development` | development | `7000`   | http://localhost:7000/graphql               |
-|                  | `client-next` | `development` | development | `4200`   | http://localhost:4200                       |
-|                  | `client`      | `development` | development | `4200`   | http://localhost:4200                       |
-| (1st) production | `server`      | `production`  | development | `80/443` | https://readable-2021.herokuapp.com/graphql |
-|                  | `client-next` | `production`  | development | `80/443` | https://readable-2021.vercel.app            |
+| Environment      | `apps`   | `NODE_ENV`    | DB          | Port     | URL                                         |
+| ---------------- | -------- | ------------- | ----------- | -------- | ------------------------------------------- |
+| development      | `server` | `development` | development | `7000`   | http://localhost:7000/graphql               |
+|                  | `client` | `development` | development | `4200`   | http://localhost:4200                       |
+|                  | `client` | `development` | development | `4200`   | http://localhost:4200                       |
+| (1st) production | `server` | `production`  | development | `80/443` | https://readable-2021.herokuapp.com/graphql |
+|                  | `client` | `production`  | development | `80/443` | https://readable-2021.vercel.app            |

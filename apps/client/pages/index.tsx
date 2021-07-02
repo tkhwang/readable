@@ -16,7 +16,7 @@ export function Home() {
 
   return (
     <>
-      <div className="text-xl font-medium text-red-400">client-next: next.js app in nx with nest.js</div>
+      <div className="text-xl font-medium text-red-400">client: next.js app in nx with nest.js</div>
       아래가 제대로 보여야 함 (GraphQL API 동작)
       <LoginGoogle />
       <GetUsersViewController viewModel={viewModel} />
