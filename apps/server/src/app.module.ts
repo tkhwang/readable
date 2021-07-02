@@ -8,6 +8,7 @@ import { User } from '@readable/users/entities/user.entity';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { GoogleStrategy } from './auth/google.strategy';
+import { GithubStrategy } from './auth/github.strategy';
 
 @Module({
   imports: [
@@ -40,6 +41,6 @@ import { GoogleStrategy } from './auth/google.strategy';
     UsersModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, GoogleStrategy],
+  providers: [AuthService, GoogleStrategy, GithubStrategy],
 })
 export class AppModule {}

@@ -27,6 +27,8 @@ export function Home() {
             />
             <div className="bg-white rounded shadow px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <SocialLoginButton provider="google" />
+              <SocialLoginButton provider="facebook" />
+              <SocialLoginButton provider="github" />
             </div>
           </div>
         </main>
