@@ -19,7 +19,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   // return <Component {...pageProps} />;
   return (
     <Head>
-      <title>Welcome to client-next!</title>
+      <title>Welcome to Readable</title>
     </Head>
   );
 }
