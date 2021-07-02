@@ -3,7 +3,6 @@ import Modal from '../utils/Modal';
 
 function HeroHome() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
-  console.log('TCL: HeroHome -> videoModalOpen', videoModalOpen);
 
   return (
     <section className="relative">
