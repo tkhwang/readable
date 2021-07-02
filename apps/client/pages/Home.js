@@ -11,25 +11,21 @@ import Footer from '../partials/Footer';
 function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
-
       {/*  Site header */}
       <Header />
 
       {/*  Page content */}
       <main className="flex-grow">
-
         {/*  Page sections */}
         <HeroHome />
-        <FeaturesHome />
+        {/* <FeaturesHome />
         <FeaturesBlocks />
         <Testimonials />
-        <Newsletter />
-
+        <Newsletter /> */}
       </main>
 
       {/*  Site footer */}
       <Footer />
-
     </div>
   );
 }
