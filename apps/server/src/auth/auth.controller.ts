@@ -16,4 +16,15 @@ export class AuthController {
   googleAuthRedirect(@Req() req) {
     return this.authService.googleLogin(req);
   }
+
+  @Get('github')
+  @UseGuards(AuthGuard('github'))
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async githubAuth(@Req() req) {}
+
+  @Get('github/callback')
+  @UseGuards(AuthGuard('github'))
+  githubAuthRedirect(@Req() req) {
+    return this.authService.githubLogin(req);
+  }
 }

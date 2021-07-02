@@ -1,7 +1,5 @@
-import { ViewController } from '@readable/core/ViewController';
 import React from 'react';
-import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
-import axios from 'axios';
+import { FacebookLoginButton, GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 import { links } from '@readable/link';
 
 interface Props {
@@ -21,6 +19,14 @@ export function SocialLoginButton({ provider }: Props) {
     return (
       <a href={`${links.restUrl}/auth/facebook`}>
         <FacebookLoginButton />
+      </a>
+    );
+  }
+
+  if (provider === 'github') {
+    return (
+      <a href={`${links.restUrl}/auth/github`}>
+        <GithubLoginButton />
       </a>
     );
   }
