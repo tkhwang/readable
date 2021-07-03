@@ -7,5 +7,6 @@ import { UserModel } from '../mongooseModels/user/user.model';
 @Module({
   imports: [TypegooseModule.forFeature([UserModel])],
   providers: [UsersResolver, UsersService],
+  exports: [UsersService],
 })
 export class UsersModule {}

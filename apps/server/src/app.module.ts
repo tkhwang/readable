@@ -7,11 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from '@readable/users/entities/user.entity';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
-import { GoogleStrategy } from './auth/google.strategy';
-import { GithubStrategy } from './auth/github.strategy';
-import { FacebookStrategy } from './auth/facebook.strategy';
-import { TwitterStrategy } from './auth/twitter.strategy';
 import { TypegooseModule } from 'nestjs-typegoose';
+import { AuthModule } from './auth/auth.module';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
@@ -43,8 +41,9 @@ import { TypegooseModule } from 'nestjs-typegoose';
     }),
     TypegooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
+    AuthModule,
   ],
-  controllers: [AuthController],
-  providers: [AuthService, GoogleStrategy, GithubStrategy, FacebookStrategy, TwitterStrategy],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
