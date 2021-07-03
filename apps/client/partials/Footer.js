@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 function Footer() {
   return (
@@ -11,11 +12,7 @@ function Footer() {
             <div className="mb-2">
               {/* Logo */}
               <div className="inline-block" aria-label="Cruip">
-                <img
-                  className="block mx-auto h-8 sm:mx-0 sm:flex-shrink-0"
-                  src="https://user-images.githubusercontent.com/68647194/124295577-f579ae80-db93-11eb-8d08-ef3a9a1860c1.jpeg"
-                  alt="logo"
-                />
+                <Image src="/images/logo.jpeg" height={26} width={26} alt="logo" />
               </div>
             </div>
             <div className="text-sm text-gray-600">

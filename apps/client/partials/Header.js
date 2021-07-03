@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 function Header() {
   const [top, setTop] = useState(true);
@@ -25,11 +26,7 @@ function Header() {
           <div className="flex-shrink-0 mr-4">
             {/* Logo */}
             <div className="block" aria-label="Cruip">
-              <img
-                className="block mx-auto h-12 sm:mx-0 sm:flex-shrink-0"
-                src="https://user-images.githubusercontent.com/68647194/124295577-f579ae80-db93-11eb-8d08-ef3a9a1860c1.jpeg"
-                alt="logo"
-              />
+              <Image src="/images/logo.jpeg" height={42} width={42} alt="logo" />
             </div>
           </div>
 
