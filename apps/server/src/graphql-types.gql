@@ -3,8 +3,11 @@
 # ------------------------------------------------------
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  avatarUrl: String
+  email: String
+  name: String!
+  provider: String!
+  providerId: String!
 }
 
 type Mutation {
