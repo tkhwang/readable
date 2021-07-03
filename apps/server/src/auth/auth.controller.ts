@@ -27,4 +27,15 @@ export class AuthController {
   githubAuthRedirect(@Req() req) {
     return this.authService.githubLogin(req);
   }
+
+  @Get('facebook')
+  @UseGuards(AuthGuard('facebook'))
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async facebookAuth(@Req() req) {}
+
+  @Get('facebook/callback')
+  @UseGuards(AuthGuard('facebook'))
+  facebookAuthRedirect(@Req() req) {
+    return this.authService.facebookLogin(req);
+  }
 }
