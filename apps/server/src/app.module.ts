@@ -11,6 +11,7 @@ import { GoogleStrategy } from './auth/google.strategy';
 import { GithubStrategy } from './auth/github.strategy';
 import { FacebookStrategy } from './auth/facebook.strategy';
 import { TwitterStrategy } from './auth/twitter.strategy';
+import { TypegooseModule } from 'nestjs-typegoose';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { TwitterStrategy } from './auth/twitter.strategy';
       // },
       synchronize: true,
     }),
+    TypegooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
   ],
   controllers: [AuthController],
