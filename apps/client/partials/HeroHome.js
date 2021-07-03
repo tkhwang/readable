@@ -104,7 +104,7 @@ function HeroHome() {
                 onClick={e => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setVideoModalOpen(true);
+                  // setVideoModalOpen(true);
                 }}
                 aria-controls="modal"
               >
