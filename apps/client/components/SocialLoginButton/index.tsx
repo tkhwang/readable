@@ -1,5 +1,10 @@
 import React from 'react';
-import { FacebookLoginButton, GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
+import {
+  FacebookLoginButton,
+  GithubLoginButton,
+  GoogleLoginButton,
+  TwitterLoginButton,
+} from 'react-social-login-buttons';
 import { links } from '@readable/link';
 
 interface Props {
@@ -27,6 +32,14 @@ export function SocialLoginButton({ provider }: Props) {
     return (
       <a href={`${links.restUrl}/auth/github`}>
         <GithubLoginButton />
+      </a>
+    );
+  }
+
+  if (provider === 'twitter') {
+    return (
+      <a href={`${links.restUrl}/auth/twitter`}>
+        <TwitterLoginButton />
       </a>
     );
   }

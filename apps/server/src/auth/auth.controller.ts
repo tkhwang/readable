@@ -38,4 +38,15 @@ export class AuthController {
   facebookAuthRedirect(@Req() req) {
     return this.authService.facebookLogin(req);
   }
+
+  @Get('twitter')
+  @UseGuards(AuthGuard('twitter'))
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async twitterAuth(@Req() req) {}
+
+  @Get('twitter/callback')
+  @UseGuards(AuthGuard('twitter'))
+  twitterAuthRedirect(@Req() req) {
+    return this.authService.twitterLogin(req);
+  }
 }
