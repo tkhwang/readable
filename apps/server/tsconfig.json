@@ -7,6 +7,8 @@
       "@readable/src/*": ["apps/server/src/*"],
       "@readable/users": ["apps/server/src/users"],
       "@readable/users/*": ["apps/server/src/users/*"],
+      "@readable/mongooseModels": ["apps/server/src/mongooseModels"],
+      "@readable/mongooseModels/*": ["apps/server/src/mongooseModels/*"],
       "@readable/auth": ["apps/server/src/auth"],
       "@readable/auth/*": ["apps/server/src/auth/*"]
     }
