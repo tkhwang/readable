@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 function Header() {
   const [top, setTop] = useState(true);
@@ -32,9 +33,12 @@ function Header() {
           <nav className="flex flex-grow">
             <ul className="flex flex-grow justify-end flex-wrap items-center">
               <li>
-                <div className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out">
+                <Link
+                  href="/SignIn"
+                  className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+                >
                   Sign in
-                </div>
+                </Link>
               </li>
               <li>
                 <div className="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3">
