@@ -1,13 +1,14 @@
 // Range slider
 $range-thumb-size: 36px;
 
+@use 'sass:math';
 input[type='range'] {
   appearance: none;
   background: #ccc;
   border-radius: 3px;
   height: 6px;
-  margin-top: ($range-thumb-size - 6px) / 2;
-  margin-bottom: ($range-thumb-size - 6px) / 2;
+  margin-top: math.div($range-thumb-size - 6px, 2);
+  margin-bottom: math.div($range-thumb-size - 6px, 2);
   --thumb-size: #{$range-thumb-size};
 
   &::-webkit-slider-thumb {
