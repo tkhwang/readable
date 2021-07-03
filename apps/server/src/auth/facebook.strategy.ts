@@ -15,15 +15,16 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
       profileFields: ['id', 'displayName', 'photos', 'email'],
     });
   }
-  async validate(accessToken: string, refreshToken: string, profile: any, done: any): Promise<any> {
-    console.log('TCL: FacebookStrategy -> exportclassFacebookStrategyextendsPassportStrategy -> profile', profile);
-    // const user = {
-    //   email: emails[0].value,
-    //   firstName: name.givenName,
-    //   lastName: name.familyName,
-    //   picture: photos[0].value,
-    //   // accessToken,
-    // };
-    done(null, { ...profile });
+
+  async validate(accessToken: string, refreshToken: string, user: any, done: any): Promise<any> {
+    const { id, displayName, picture } = user;
+
+    const facebookUser = {
+      id,
+      email: '',
+      name: displayName,
+      piacture: picture?.data?.url,
+    };
+    done(null, facebookUser);
   }
 }
