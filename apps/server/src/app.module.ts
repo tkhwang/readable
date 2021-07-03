@@ -9,6 +9,7 @@ import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { GoogleStrategy } from './auth/google.strategy';
 import { GithubStrategy } from './auth/github.strategy';
+import { FacebookStrategy } from './auth/facebook.strategy';
 
 @Module({
   imports: [
@@ -41,6 +42,6 @@ import { GithubStrategy } from './auth/github.strategy';
     UsersModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, GoogleStrategy, GithubStrategy],
+  providers: [AuthService, GoogleStrategy, GithubStrategy, FacebookStrategy],
 })
 export class AppModule {}
