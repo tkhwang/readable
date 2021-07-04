@@ -12,7 +12,7 @@ export default class CustomDocument extends Document<{ styleTags: ReactElement[]
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>{this.props.styleTags}</Head>
         <body>
           <Main />
