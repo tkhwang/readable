@@ -12,8 +12,11 @@ export type Scalars = {
 };
 
 export type CreateUserInput = {
-  /** Example field (placeholder) */
-  readonly exampleField: Scalars['Int'];
+  readonly avatarUrl?: Maybe<Scalars['String']>;
+  readonly email?: Maybe<Scalars['String']>;
+  readonly name: Scalars['String'];
+  readonly provider: Scalars['String'];
+  readonly providerId: Scalars['String'];
 };
 
 export type Mutation = {
