@@ -3,14 +3,18 @@
   "compilerOptions": {
     "paths": {
       "@readable/graphql-types": ["apps/server/src/graphql-types"],
-      "@readable/src": ["apps/server/src"],
-      "@readable/src/*": ["apps/server/src/*"],
-      "@readable/users": ["apps/server/src/users"],
-      "@readable/users/*": ["apps/server/src/users/*"],
-      "@readable/mongooseModels": ["apps/server/src/mongooseModels"],
-      "@readable/mongooseModels/*": ["apps/server/src/mongooseModels/*"],
-      "@readable/auth": ["apps/server/src/auth"],
-      "@readable/auth/*": ["apps/server/src/auth/*"]
+      // "@readable/users": ["apps/server/src/users"],
+      // "@readable/users/*": ["apps/server/src/users/*"],
+      // "@readable/models": ["apps/server/src/models"],
+      // "@readable/models/*": ["apps/server/src/models/*"],
+      // "@readable/types": ["apps/server/src/types"],
+      // "@readable/types/*": ["apps/server/src/types/*"],
+      // "@readable/auth": ["apps/server/src/auth"],
+      // "@readable/auth/*": ["apps/server/src/auth/*"],
+      // "@readable/utils": ["apps/server/src/utils"],
+      // "@readable/utils/*": ["apps/server/src/utils/*"],
+      "@readable": ["apps/server/src"],
+      "@readable/*": ["apps/server/src/*"]
     }
   },
   "files": [],
