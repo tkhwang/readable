@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -25,20 +26,21 @@ function Header() {
           {/* Site branding */}
           <div className="flex-shrink-0 mr-4">
             {/* Logo */}
-            <div className="block" aria-label="Cruip">
-              <Image src="/images/logo.jpeg" height={42} width={42} alt="logo" />
-            </div>
+            <Link href={'/'}>
+              <a className="block">
+                <Image src="/images/logo.jpeg" height={42} width={42} alt="logo" />
+              </a>
+            </Link>
           </div>
 
           {/* Site navigation */}
           <nav className="flex flex-grow">
             <ul className="flex flex-grow justify-end flex-wrap items-center">
               <li>
-                <Link
-                  href="/SignIn"
-                  className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
-                >
-                  Sign in
+                <Link href="/SignIn">
+                  <a className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out">
+                    Sign in
+                  </a>
                 </Link>
               </li>
               <li>
