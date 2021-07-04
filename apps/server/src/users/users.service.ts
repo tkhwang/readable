@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { InjectModel } from 'nestjs-typegoose';
-import { UserModel } from '../mongooseModels/user/user.model';
+
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
@@ -9,8 +9,8 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel(UserModel)
-    private readonly userModel: ReturnModelType<typeof UserModel>
+    @InjectModel(User)
+    private readonly userModel: ReturnModelType<typeof User>
   ) {}
 
   async create(createUserInput: CreateUserInput) {
@@ -20,7 +20,7 @@ export class UsersService {
 
   findAll() {
     const user = new User();
-    user.id = 1;
+    // user.id = 1;
     user.name = 'readable';
 
     return [user];
@@ -28,7 +28,7 @@ export class UsersService {
 
   findOne(id: number) {
     const user = new User();
-    user.id = 1;
+    // user.id = 1;
     user.name = 'readable';
 
     return user;

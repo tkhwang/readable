@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Auth providers"""
+enum AuthProviders {
+  Facebook
+  Github
+  Google
+}
+
 input CreateUserInput {
   avatarUrl: String
   email: String
@@ -10,9 +17,17 @@ input CreateUserInput {
   providerId: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Mutation {
   userCreate(createUserInput: CreateUserInput!): User!
 }
+
+"""Mongo object id scalar type"""
+scalar ObjectId
 
 type Query {
   userFindAll: [User!]!
@@ -20,6 +35,13 @@ type Query {
 }
 
 type User {
-  id: Float!
+  _id: ObjectId!
+  avatarUrl: String
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  email: String
   name: String!
+  provider: AuthProviders!
+  providerId: String!
+  updatedAt: DateTime!
 }
