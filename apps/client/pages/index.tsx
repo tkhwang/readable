@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import Head from 'next/head';
 import styled from 'styled-components';
+import config from '../website-config';
+import AOS from 'aos';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import { GetUsersViewController } from '@readable/components/GetUser/GetUsersViewController';
 import withApollo from '@readable/lib/withApollo';
@@ -12,8 +15,6 @@ import FeaturesBlocks from '../partials/FeaturesBlocks';
 import Testimonials from '../partials/Testimonials';
 import Newsletter from '../partials/Newsletter';
 import Footer from '../partials/Footer';
-
-import AOS from 'aos';
 
 const StyledPage = styled.div`
   .page {
@@ -59,6 +60,9 @@ export function Home() {
     // </>
 
     <div className="flex flex-col min-h-screen overflow-hidden">
+      <Head>
+        <title>{config.title}</title>
+      </Head>
       {/*  Site header */}
       <Header />
       {/*  Page content */}

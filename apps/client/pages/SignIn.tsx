@@ -1,13 +1,16 @@
 import React from 'react';
-
+import Head from 'next/head';
+import config from '../website-config';
 import Header from '../partials/Header';
 
 function SignIn() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
+      <Head>
+        <title>{`Sign in | ${config.title}`}</title>
+      </Head>
       {/*  Site header */}
       <Header />
-
       {/*  Page content */}
       <main className="flex-grow">
         <section className="bg-gradient-to-b from-gray-100 to-white">
