@@ -11,7 +11,8 @@ export class AuthService {
     const { user } = req;
 
     // TODO(Teddy): WIP
-    // const newUser = await this.usersService.create(user);
+    const newUser = await this.usersService.create(user);
+    console.log('TCL: AuthService -> googleLogin -> newUser', newUser);
 
     return {
       message: 'User information from google',
