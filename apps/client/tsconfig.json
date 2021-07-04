@@ -12,13 +12,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@graphql-types": ["apps/client/src/graphql-types.ts"],
-      "@readable/core": ["apps/client/core"],
-      "@readable/core/*": ["apps/client/core/*"],
-      "@readable/lib": ["apps/client/lib"],
-      "@readable/lib/*": ["apps/client/lib/*"],
-      "@readable/components": ["apps/client/components"],
-      "@readable/components/*": ["apps/client/components/*"],
+      "@readable/graphql-types": ["apps/client/src/graphql-types.ts"],
+      // "@readable/core": ["apps/client/core"],
+      // "@readable/core/*": ["apps/client/core/*"],
+      // "@readable/lib": ["apps/client/lib"],
+      // "@readable/lib/*": ["apps/client/lib/*"],
+      // "@readable/components": ["apps/client/components"],
+      // "@readable/components/*": ["apps/client/components/*"],
       "@readable": ["apps/client/src"],
       "@readable/*": ["apps/client/src/*"]
     }
