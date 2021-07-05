@@ -21,7 +21,6 @@ function Login() {
             <SocialLoginButton provider="google" />
             <SocialLoginButton provider="facebook" />
             <SocialLoginButton provider="github" />
-            <SocialLoginButton provider="twitter" />
           </div>
         </div>
       </main>
