@@ -26,6 +26,13 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
+    "extensions": {
+      "tags": []
+    },
+    "extentions-e2e": {
+      "tags": [],
+      "implicitDependencies": ["extensions"]
+    },
     "server": {
       "tags": []
     },
