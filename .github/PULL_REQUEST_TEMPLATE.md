@@ -22,10 +22,8 @@
 
 **Test Configuration**:
 
-- Firmware version:
-- Hardware:
-- Toolchain:
-- SDK:
+- Client:
+- Server:
 
 ## Checklist:
 
