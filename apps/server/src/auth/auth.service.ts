@@ -17,8 +17,11 @@ export class AuthService {
     };
   }
 
-  githubLogin(req) {
+  async githubLogin(req) {
     if (!req.user) return 'No user from github';
+
+    const { user } = req;
+    const newUser = await this.usersService.create(user);
 
     return {
       message: 'User information from github',
@@ -26,8 +29,11 @@ export class AuthService {
     };
   }
 
-  facebookLogin(req) {
+  async facebookLogin(req) {
     if (!req.user) return 'No user from facebook';
+
+    const { user } = req;
+    const newUser = await this.usersService.create(user);
 
     return {
       message: 'User information from facebook',
