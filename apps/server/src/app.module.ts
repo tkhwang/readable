@@ -5,11 +5,8 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { User } from '@readable/users/entities/user.entity';
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
-import { TypegooseModule } from 'nestjs-typegoose';
 import { AuthModule } from './auth/auth.module';
-import { UsersService } from './users/users.service';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -39,7 +36,7 @@ import { UsersService } from './users/users.service';
       // },
       synchronize: true,
     }),
-    TypegooseModule.forRoot(process.env.READABLE_MONGODB_URL),
+    MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
   ],

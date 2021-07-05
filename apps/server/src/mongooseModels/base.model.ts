@@ -1,26 +1,29 @@
-import { modelOptions, prop, Severity } from '@typegoose/typegoose';
-import { ObjectId } from 'mongoose';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { ObjectIdScalar } from '@readable/types/ObjectIdScalar';
+import { Prop, Schema } from '@nestjs/mongoose';
+import * as mongoose from 'mongoose';
+import { ObjectId } from 'mongodb';
 
-@modelOptions({
-  options: { allowMixed: Severity.ALLOW },
-  schemaOptions: {
-    timestamps: true,
-    toJSON: {
-      virtuals: true,
-      getters: true,
-    },
-  },
-})
+@Schema()
+@ObjectType()
 export abstract class BaseModel {
-  @prop({ required: true })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    default: () => new ObjectId(),
+  })
+  @Field(type => ObjectIdScalar)
   public _id: ObjectId;
 
-  @prop({ required: true, default: () => new Date() })
+  @Prop({ required: true, default: () => new Date() })
+  @Field(type => Date)
   public createdAt: Date;
 
-  @prop({ required: true, default: () => new Date() })
+  @Prop({ required: true, default: () => new Date() })
+  @Field(type => Date)
   public updatedAt: Date;
 
-  @prop({ required: true, default: () => new Date(-1) })
+  @Prop({ required: true, default: () => new Date(-1) })
+  @Field(type => Date)
   public deletedAt: Date;
 }

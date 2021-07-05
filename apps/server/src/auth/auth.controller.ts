@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
@@ -8,7 +9,6 @@ export class AuthController {
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async googleAuth(@Req() req) {}
 
   @Get('google/callback')
@@ -19,7 +19,6 @@ export class AuthController {
 
   @Get('github')
   @UseGuards(AuthGuard('github'))
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async githubAuth(@Req() req) {}
 
   @Get('github/callback')
@@ -30,7 +29,6 @@ export class AuthController {
 
   @Get('facebook')
   @UseGuards(AuthGuard('facebook'))
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async facebookAuth(@Req() req) {}
 
   @Get('facebook/callback')
@@ -41,7 +39,6 @@ export class AuthController {
 
   @Get('twitter')
   @UseGuards(AuthGuard('twitter'))
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async twitterAuth(@Req() req) {}
 
   @Get('twitter/callback')

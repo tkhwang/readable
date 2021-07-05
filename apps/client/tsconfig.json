@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@graphql-types": ["apps/client/src/graphql-types.ts"],
+      "@readable/graphql-types": ["apps/client/src/graphql-types.ts"],
       "@readable/core": ["apps/client/core"],
       "@readable/core/*": ["apps/client/core/*"],
       "@readable/lib": ["apps/client/lib"],

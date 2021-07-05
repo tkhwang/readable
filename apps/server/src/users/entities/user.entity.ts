@@ -1,14 +1,31 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { AuthProviders } from '@readable/auth/auth.type';
+import { BaseModel } from '@readable/mongooseModels/base.model';
 
+@Schema({ collection: 'users' })
 @ObjectType()
-@Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  @Field(type => Number)
-  id: number;
+export class User extends BaseModel {
+  @Prop({ type: AuthProviders, required: true })
+  @Field(type => AuthProviders)
+  provider: AuthProviders;
 
-  @Column()
+  @Prop({ required: true })
+  @Field(type => String)
+  providerId: string;
+
+  @Prop({ required: true })
   @Field(type => String)
   name: string;
+
+  @Prop()
+  @Field(type => String, { nullable: true })
+  email?: string;
+
+  @Prop()
+  @Field(type => String, { nullable: true })
+  avatarUrl?: string;
 }
+
+export type UserDocument = User & Document;
+export const UserSchema = SchemaFactory.createForClass(User);
