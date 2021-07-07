@@ -7,12 +7,17 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from '@readable/users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { JwtModule } from './jwt/jwt.module';
+import * as Joi from 'joi';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'production' ? '.env' : '.env.local',
+      validationSchema: Joi.object({
+        TOKEN_SECRET: Joi.string().required(),
+      }),
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
@@ -39,6 +44,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
+    JwtModule,
   ],
   controllers: [],
   providers: [],
