@@ -42,9 +42,11 @@ import * as Joi from 'joi';
       synchronize: true,
     }),
     MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
+    JwtModule.forRoot({
+      privateKey: process.env.TOKEN_SECRET,
+    }),
     UsersModule,
     AuthModule,
-    JwtModule,
   ],
   controllers: [],
   providers: [],
