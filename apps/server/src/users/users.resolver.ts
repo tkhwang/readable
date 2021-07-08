@@ -3,6 +3,8 @@ import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import { ObjectId } from 'mongodb';
+import { ObjectIdScalar } from '@readable/types/ObjectIdScalar';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -19,10 +21,12 @@ export class UsersResolver {
   }
 
   @Query(() => User)
-  userFindOne(@Args('id', { type: () => Int }) id: number) {
+  userFindOne(@Args('id', { type: () => ObjectIdScalar }) id: ObjectId) {
     return this.usersService.findOne(id);
   }
 
-  // @Query(returns => User)
-  // me() {}
+  @Query(returns => User)
+  me() {
+    //
+  }
 }
