@@ -6,7 +6,7 @@ import { ObjectId } from 'mongodb';
 
 @Schema()
 @ObjectType()
-export abstract class BaseModel {
+export abstract class CoreEntity {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
     required: true,

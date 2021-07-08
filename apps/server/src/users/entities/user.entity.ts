@@ -1,11 +1,11 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { AuthProviders } from '@readable/auth/auth.type';
-import { BaseModel } from '@readable/mongooseModels/base.model';
+import { CoreEntity } from '@readable/common/entities/core.entity';
 
 @Schema({ collection: 'users' })
 @ObjectType()
-export class User extends BaseModel {
+export class User extends CoreEntity {
   @Prop({ type: AuthProviders, required: true })
   @Field(type => AuthProviders)
   provider: AuthProviders;

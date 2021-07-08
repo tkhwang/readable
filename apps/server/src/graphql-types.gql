@@ -30,8 +30,9 @@ type Mutation {
 scalar ObjectId
 
 type Query {
+  me: User!
   userFindAll: [User!]!
-  userFindOne(id: Int!): User!
+  userFindOne(id: ObjectId!): User!
 }
 
 type User {
