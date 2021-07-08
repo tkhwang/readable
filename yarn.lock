@@ -4551,6 +4551,13 @@
   dependencies:
     mongoose "*"
 
+"@types/morgan@^1.9.3":
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/@types/morgan/-/morgan-1.9.3.tgz#ae04180dff02c437312bc0cfb1e2960086b2f540"
+  integrity sha512-BiLcfVqGBZCyNCnCH3F4o2GmDLrpy0HeBVnNlyZG4fo88ZiE9SoiBe3C+2ezuwbjlEyT+PDZ17//TAlRxAn75Q==
+  dependencies:
+    "@types/node" "*"
+
 "@types/node-fetch@2.5.10", "@types/node-fetch@^2.5.7":
   version "2.5.10"
   resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.5.10.tgz#9b4d4a0425562f9fcea70b12cb3fcdd946ca8132"
@@ -6536,6 +6543,13 @@ basic-auth@^1.0.3:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-1.1.0.tgz#45221ee429f7ee1e5035be3f51533f1cdfd29884"
   integrity sha1-RSIe5Cn37h5QNb4/UVM/HN/SmIQ=
+
+basic-auth@~2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
+  integrity sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==
+  dependencies:
+    safe-buffer "5.1.2"
 
 batch-processor@1.0.0:
   version "1.0.0"
@@ -14339,6 +14353,17 @@ mongoose@5.10.18:
     sift "7.0.1"
     sliced "1.0.1"
 
+morgan@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.10.0.tgz#091778abc1fc47cd3509824653dae1faab6b17d7"
+  integrity sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==
+  dependencies:
+    basic-auth "~2.0.1"
+    debug "2.6.9"
+    depd "~2.0.0"
+    on-finished "~2.3.0"
+    on-headers "~1.0.2"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -14544,6 +14569,13 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+nest-morgan@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/nest-morgan/-/nest-morgan-2.0.0.tgz#9e16d9f32a9c2166ffa0e9c9ef1026c13a1a5cba"
+  integrity sha512-vFckClC1kAf8AgK6yxeJQxXJ+cJzy0SRuaXkjvQAIQwLFTHwrUnHkLrzymxTiWF8Brt6kIxo8ILH+0zPSv2ISw==
+  dependencies:
+    morgan "^1.10.0"
 
 nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   version "2.1.0"
