@@ -9,21 +9,13 @@ enum AuthProviders {
   Google
 }
 
-input CreateUserInput {
-  avatarUrl: String
-  email: String
-  name: String!
-  provider: String!
-  providerId: String!
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
 type Mutation {
-  userCreate(createUserInput: CreateUserInput!): User!
+  createUser(SocialSigninInput: SocialSigninInput!): User!
 }
 
 """Mongo object id scalar type"""
@@ -33,6 +25,14 @@ type Query {
   me: User!
   userFindAll: [User!]!
   userFindOne(id: ObjectId!): User!
+}
+
+input SocialSigninInput {
+  avatarUrl: String
+  email: String
+  name: String!
+  provider: AuthProviders!
+  providerId: String!
 }
 
 type User {

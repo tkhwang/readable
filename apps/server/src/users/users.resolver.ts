@@ -1,8 +1,7 @@
+import { SocialSigninInput } from '@readable/users/dto/create-user.input';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
 import { ObjectId } from 'mongodb';
 import { ObjectIdScalar } from '@readable/types/ObjectIdScalar';
 
@@ -11,8 +10,8 @@ export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
-  userCreate(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
+  createUser(@Args('SocialSigninInput') socialSigninInput: SocialSigninInput) {
+    return this.usersService.create(socialSigninInput);
   }
 
   @Query(() => [User])

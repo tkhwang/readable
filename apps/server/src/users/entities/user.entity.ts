@@ -1,8 +1,9 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, Int, ID, InputType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { AuthProviders } from '@readable/auth/auth.type';
 import { CoreEntity } from '@readable/common/entities/core.entity';
 
+@InputType({ isAbstract: true })
 @Schema({ collection: 'users' })
 @ObjectType()
 export class User extends CoreEntity {

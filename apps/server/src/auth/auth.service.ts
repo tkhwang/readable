@@ -9,12 +9,14 @@ export class AuthService {
     if (!req.user) return 'No user from google';
 
     const { user } = req;
-    const newUser = await this.usersService.create(user);
+    console.log('TCL: AuthService -> googleLogin -> user', user);
 
-    return {
-      message: 'User information from google',
-      user: req.user,
-    };
+    return this.usersService.signinOrCreateUser(user);
+
+    // return {
+    //   message: 'User information from google',
+    //   user: req.user,
+    // };
   }
 
   async githubLogin(req) {

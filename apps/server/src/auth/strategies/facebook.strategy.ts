@@ -2,7 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { config } from 'dotenv';
 import { Strategy } from 'passport-facebook';
 import { Injectable } from '@nestjs/common';
-import { CreateUserInput } from '@readable/users/dto/create-user.input';
+import { SocialSigninInput } from '@readable/users/dto/create-user.input';
 import { AuthProviders } from '@readable/auth/auth.type';
 
 config();
@@ -20,7 +20,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
   }
 
   async validate(accessToken: string, refreshToken: string, user: any, done: any): Promise<any> {
-    const facebookUser = new CreateUserInput();
+    const facebookUser = new SocialSigninInput();
     facebookUser.name = user?.displayName ?? user?.name;
     facebookUser.provider = AuthProviders.Facebook;
     facebookUser.providerId = user.id;
