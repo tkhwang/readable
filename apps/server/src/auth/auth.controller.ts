@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
+import { Request, Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -13,8 +14,12 @@ export class AuthController {
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
-    return this.authService.googleLogin(req);
+  async googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    const token = await this.authService.googleLogin(req);
+
+    if (token) {
+      res.redirect(`${process.env.CLIENT_HOST}/token?token=${token}`);
+    }
   }
 
   @Get('github')
@@ -23,8 +28,12 @@ export class AuthController {
 
   @Get('github/callback')
   @UseGuards(AuthGuard('github'))
-  githubAuthRedirect(@Req() req) {
-    return this.authService.githubLogin(req);
+  async githubAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    const token = await this.authService.githubLogin(req);
+
+    if (token) {
+      res.redirect(`${process.env.CLIENT_HOST}/token?token=${token}`);
+    }
   }
 
   @Get('facebook')
@@ -33,7 +42,12 @@ export class AuthController {
 
   @Get('facebook/callback')
   @UseGuards(AuthGuard('facebook'))
-  facebookAuthRedirect(@Req() req) {
+  async facebookAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    // const token = await this.authService.facebookLogin(req);
+
+    // if (token) {
+    //   res.redirect(`${process.env.CLIENT_HOST}/token?token=${token}`);
+    // }
     return this.authService.facebookLogin(req);
   }
 
