@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from '../utils/Modal';
+import Modal from '@readable/components/modules/Modal';
 
 function HeroHome() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
@@ -121,7 +121,7 @@ function HeroHome() {
             </div>
 
             {/* Modal */}
-            <Modal
+            {/* <Modal
               id="modal"
               ariaLabel="modal-headline"
               show={videoModalOpen}
@@ -135,7 +135,7 @@ function HeroHome() {
                   allowFullScreen
                 ></iframe>
               </div>
-            </Modal>
+            </Modal> */}
           </div>
         </div>
       </div>

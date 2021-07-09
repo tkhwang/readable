@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Header from '../partials/Header';
+import Header from '@readable/components/modules/Header';
 
 function SignIn() {
   return (

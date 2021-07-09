@@ -1,5 +1,4 @@
-import { useGetUsersViewModel } from '@readable/components/GetUser/useGetUsersViewModel.query';
-import { SocialLoginButton } from '@readable/components/SocialLoginButton';
+import { SocialLoginButton } from '@readable/components/elements/SocialLoginButton';
 import React from 'react';
 
 function Login() {
