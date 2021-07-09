@@ -26,6 +26,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
     facebookUser.providerId = user.id;
     facebookUser.email = user?.emails?.[0].value;
     facebookUser.avatarUrl = user?.photos?.[0]?.value ?? '';
-    done(null, { ...user });
+
+    done(null, facebookUser);
   }
 }

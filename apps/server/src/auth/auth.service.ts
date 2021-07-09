@@ -23,12 +23,7 @@ export class AuthService {
     if (!req.user) return 'No user from facebook';
 
     const { user } = req;
-    // return this.usersService.signinOrCreateUser(user);
-
-    return {
-      message: 'User information from facebook',
-      user: req.user,
-    };
+    return this.usersService.signinOrCreateUser(user);
   }
 
   twitterLogin(req) {
