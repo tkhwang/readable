@@ -9,33 +9,21 @@ export class AuthService {
     if (!req.user) return 'No user from google';
 
     const { user } = req;
-    console.log('TCL: AuthService -> googleLogin -> user', user);
-
     return this.usersService.signinOrCreateUser(user);
-
-    // return {
-    //   message: 'User information from google',
-    //   user: req.user,
-    // };
   }
 
   async githubLogin(req) {
     if (!req.user) return 'No user from github';
 
     const { user } = req;
-    const newUser = await this.usersService.create(user);
-
-    return {
-      message: 'User information from github',
-      user: req.user,
-    };
+    return this.usersService.signinOrCreateUser(user);
   }
 
   async facebookLogin(req) {
     if (!req.user) return 'No user from facebook';
 
     const { user } = req;
-    const newUser = await this.usersService.create(user);
+    // return this.usersService.signinOrCreateUser(user);
 
     return {
       message: 'User information from facebook',

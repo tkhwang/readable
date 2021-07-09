@@ -28,8 +28,12 @@ export class AuthController {
 
   @Get('github/callback')
   @UseGuards(AuthGuard('github'))
-  githubAuthRedirect(@Req() req) {
-    return this.authService.githubLogin(req);
+  async githubAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    const token = await this.authService.githubLogin(req);
+
+    if (token) {
+      res.redirect(`${process.env.CLIENT_HOST}/token?token=${token}`);
+    }
   }
 
   @Get('facebook')
@@ -38,7 +42,12 @@ export class AuthController {
 
   @Get('facebook/callback')
   @UseGuards(AuthGuard('facebook'))
-  facebookAuthRedirect(@Req() req) {
+  async facebookAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    // const token = await this.authService.facebookLogin(req);
+
+    // if (token) {
+    //   res.redirect(`${process.env.CLIENT_HOST}/token?token=${token}`);
+    // }
     return this.authService.facebookLogin(req);
   }
 

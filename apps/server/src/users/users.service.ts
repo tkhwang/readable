@@ -18,7 +18,7 @@ export class UsersService {
     }
 
     const { _id: id } = user;
-    return this.jwtService.sign({ id });
+    return this.jwtService.sign({ id, issuer: process.env.SERVER_HOST });
   }
 
   async create(socialSigninInput: SocialSigninInput) {
