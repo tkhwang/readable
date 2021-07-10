@@ -13,14 +13,10 @@
     "isolatedModules": true,
     "paths": {
       "@readable/graphql-types": ["apps/client/src/graphql-types.ts"],
-      "@readable/core": ["apps/client/core"],
-      "@readable/core/*": ["apps/client/core/*"],
-      "@readable/lib": ["apps/client/lib"],
-      "@readable/lib/*": ["apps/client/lib/*"],
-      "@readable/components": ["apps/client/components"],
-      "@readable/components/*": ["apps/client/components/*"],
-      "@readable": ["apps/client/src"],
-      "@readable/*": ["apps/client/src/*"]
+      "@readable": ["apps/client"],
+      "@readable/*": ["apps/client/*"],
+      "@readable/src": ["apps/client/src"],
+      "@readable/src/*": ["apps/client/src/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],

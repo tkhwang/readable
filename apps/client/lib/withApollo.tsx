@@ -1,7 +1,7 @@
-import { ApolloClient, ApolloProvider, DefaultOptions, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, DefaultOptions, HttpLink, InMemoryCache, makeVar } from '@apollo/client';
 import { useRouter } from 'next/router';
 import nextWithApollo from 'next-with-apollo';
-import { serverHost } from '@readable/link';
+import { serverHost } from '@readable/common/link';
 
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
