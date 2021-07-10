@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { GetUsersViewModel } from './useGetUsersViewModel.query';
-import { ViewController } from '@readable/core/ViewController';
+import { ViewController } from '@readable/types/ViewController';
 import { serverHost } from '@readable/common/link';
 
 export const GetUsersViewController: ViewController<GetUsersViewModel> = React.memo(({ viewModel }) => {
