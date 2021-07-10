@@ -1,4 +1,4 @@
-import { serverHost } from '@readable/link';
+import { serverHost } from '@readable/common/link';
 import React from 'react';
 import {
   FacebookLoginButton,
