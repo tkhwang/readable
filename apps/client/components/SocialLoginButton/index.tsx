@@ -1,3 +1,4 @@
+import { serverHost } from '@readable/link';
 import React from 'react';
 import {
   FacebookLoginButton,
@@ -5,7 +6,6 @@ import {
   GoogleLoginButton,
   TwitterLoginButton,
 } from 'react-social-login-buttons';
-import { links } from '@readable/link';
 
 interface Props {
   provider: string;
@@ -14,7 +14,7 @@ interface Props {
 export function SocialLoginButton({ provider }: Props) {
   if (provider === 'google') {
     return (
-      <a href={`${links.restUrl}/auth/google`}>
+      <a href={`${serverHost.restUrl}/auth/google`}>
         <GoogleLoginButton />
       </a>
     );
@@ -22,7 +22,7 @@ export function SocialLoginButton({ provider }: Props) {
 
   if (provider === 'facebook') {
     return (
-      <a href={`${links.restUrl}/auth/facebook`}>
+      <a href={`${serverHost.restUrl}/auth/facebook`}>
         <FacebookLoginButton />
       </a>
     );
@@ -30,7 +30,7 @@ export function SocialLoginButton({ provider }: Props) {
 
   if (provider === 'github') {
     return (
-      <a href={`${links.restUrl}/auth/github`}>
+      <a href={`${serverHost.restUrl}/auth/github`}>
         <GithubLoginButton />
       </a>
     );
@@ -38,7 +38,7 @@ export function SocialLoginButton({ provider }: Props) {
 
   if (provider === 'twitter') {
     return (
-      <a href={`${links.restUrl}/auth/twitter`}>
+      <a href={`${serverHost.restUrl}/auth/twitter`}>
         <TwitterLoginButton />
       </a>
     );
