@@ -8,16 +8,16 @@ documents:
   - 'apps/client/src/**/*.query.{ts,tsx}'
   - 'apps/client/src/**/*.mutation.{ts,tsx}'
 generates:
-  apps/client/src/graphql-types.ts:
+  apps/client/types/graphql-types.ts:
     hooks:
       afterOneFileWrite:
-        - git add apps/client/src/graphql-types.ts
+        - git add apps/client/types/graphql-types.ts
     plugins:
       - typescript
     config:
       immutableTypes: true
       namingConvention: keep
-  apps/client/src/:
+  apps/client/types/:
     preset: near-operation-file
     presetConfig:
       baseTypesPath: graphql-types.ts

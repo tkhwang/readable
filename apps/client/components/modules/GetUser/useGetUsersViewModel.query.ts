@@ -4,8 +4,10 @@ import { useUserFindAllQuery } from './useGetUsersViewModel.query.generated';
 
 const LOAD_USERS = gql`
   query UserFindAll {
-    userFindAll: userFindAll {
-      id
+    users: users {
+      _id
+      provider
+      providerId
       name
     }
   }
@@ -16,7 +18,7 @@ export type GetUsersViewModel = ViewModel<typeof useGetUsersViewModel>;
 export function useGetUsersViewModel() {
   const { data, loading, error } = useUserFindAllQuery();
 
-  const users = data?.userFindAll ?? [];
+  const users = data?.users ?? [];
   return {
     users,
     loading,

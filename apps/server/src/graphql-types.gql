@@ -23,8 +23,8 @@ scalar ObjectId
 
 type Query {
   me: User!
-  userFindAll: [User!]!
-  userFindOne(id: ObjectId!): User!
+  user(id: ObjectId!): User!
+  users: [User!]!
 }
 
 input SocialSigninInput {

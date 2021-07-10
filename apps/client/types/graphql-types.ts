@@ -9,36 +9,60 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
+  /** Mongo object id scalar type */
+  ObjectId: any;
 };
 
-export type CreateUserInput = {
-  /** Example field (placeholder) */
-  readonly exampleField: Scalars['Int'];
-};
+/** Auth providers */
+export enum AuthProviders {
+  Facebook = 'Facebook',
+  Github = 'Github',
+  Google = 'Google'
+}
+
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
-  readonly userCreate: User;
+  readonly createUser: User;
 };
 
 
-export type MutationuserCreateArgs = {
-  createUserInput: CreateUserInput;
+export type MutationcreateUserArgs = {
+  SocialSigninInput: SocialSigninInput;
 };
+
 
 export type Query = {
   readonly __typename?: 'Query';
-  readonly userFindAll: ReadonlyArray<User>;
-  readonly userFindOne: User;
+  readonly me: User;
+  readonly user: User;
+  readonly users: ReadonlyArray<User>;
 };
 
 
-export type QueryuserFindOneArgs = {
-  id: Scalars['Int'];
+export type QueryuserArgs = {
+  id: Scalars['ObjectId'];
+};
+
+export type SocialSigninInput = {
+  readonly avatarUrl?: Maybe<Scalars['String']>;
+  readonly email?: Maybe<Scalars['String']>;
+  readonly name: Scalars['String'];
+  readonly provider: AuthProviders;
+  readonly providerId: Scalars['String'];
 };
 
 export type User = {
   readonly __typename?: 'User';
-  readonly id: Scalars['Float'];
+  readonly _id: Scalars['ObjectId'];
+  readonly avatarUrl?: Maybe<Scalars['String']>;
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly email?: Maybe<Scalars['String']>;
   readonly name: Scalars['String'];
+  readonly provider: AuthProviders;
+  readonly providerId: Scalars['String'];
+  readonly updatedAt: Scalars['DateTime'];
 };
