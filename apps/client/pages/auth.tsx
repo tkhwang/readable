@@ -1,3 +1,4 @@
+import { loadAuthToken, setAuthToken } from '@readable/common/auth';
 import { JWT_TOKEN } from '@readable/common/constants';
 import { Router, useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -8,10 +9,8 @@ function Auth() {
   const { token } = router.query;
 
   useEffect(() => {
-    if (token) {
-      localStorage.setItem(JWT_TOKEN, token as string);
-      globalToken(token as string);
-      globalIsLoggedIn(true);
+    if (token && typeof token === 'string') {
+      setAuthToken(JWT_TOKEN, token);
     }
 
     router.push('/');
