@@ -2,6 +2,8 @@ import { ApolloClient, ApolloProvider, DefaultOptions, HttpLink, InMemoryCache, 
 import { useRouter } from 'next/router';
 import nextWithApollo from 'next-with-apollo';
 import { serverHost } from '@readable/common/link';
+import { Query } from '../types/graphql-types';
+import { globalIsLoggedIn, globalToken } from '@readable/pages/_app';
 
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
@@ -13,7 +15,24 @@ const withApollo = nextWithApollo(
       headers: {
         ...(headers as Record<string, string>),
       },
-      cache: new InMemoryCache().restore(initialState || {}),
+      cache: new InMemoryCache({
+        typePolicies: {
+          Query: {
+            fields: {
+              isLoggedIn: {
+                read() {
+                  return globalIsLoggedIn();
+                },
+              },
+              token: {
+                read() {
+                  return globalToken();
+                },
+              },
+            },
+          },
+        },
+      }).restore(initialState || {}),
     });
   },
   {
