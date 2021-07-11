@@ -6,14 +6,6 @@ import { JWT_TOKEN } from '@readable/common/constants';
 import { globalIsLoggedIn, globalToken } from '@readable/pages/_app';
 import { useRouter } from 'next/router';
 
-/*
-export function Home() {
-  return <DemoPage></DemoPage>;
-}
-
-export default withApollo(Home, { getDataFromTree });
-*/
-
 export function Home() {
   const router = useRouter();
 
