@@ -13,8 +13,10 @@
 - [ ] 🩹 Chore (non-breaking change which changes the small things)
 - [ ] 📝 This change requires a documentation update
 
-## How Has This Been Tested?
+## Do you need any help from others or have any doubt ?
 
-<!-- Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration -->
+<!-- If you have some, please shre them. -->
 
-- [ ]
+## Further to-do lists
+
+<!-- If there are something to do further, please share them. -->
