@@ -1,10 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { UsersModule } from '@readable/users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { User } from '@readable/users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
@@ -19,6 +18,7 @@ import * as Joi from 'joi';
       }),
     }),
     GraphQLModule.forRoot({
+      context: ({ req }) => ({ req }),
       autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
       sortSchema: true,
     }),

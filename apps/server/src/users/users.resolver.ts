@@ -1,31 +1,35 @@
 import { SocialSigninInput } from '@readable/users/dto/create-user.input';
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { ObjectId } from 'mongodb';
 import { ObjectIdScalar } from '@readable/types/ObjectIdScalar';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '@readable/auth/graphql-auth.guards';
+import { CurrentUser } from '@readable/middleware/current-user.decorator';
 
-@Resolver(() => User)
+@Resolver(returns => User)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation(() => User)
+  @Mutation(returns => User)
   createUser(@Args('SocialSigninInput') socialSigninInput: SocialSigninInput) {
     return this.usersService.create(socialSigninInput);
   }
 
-  @Query(() => [User])
+  @Query(returns => [User])
   users() {
     return this.usersService.findAll();
   }
 
-  @Query(() => User)
+  @Query(returns => User)
   user(@Args('id', { type: () => ObjectIdScalar }) id: ObjectId) {
     return this.usersService.findOne(id);
   }
 
   @Query(returns => User)
-  me() {
-    //
+  @UseGuards(GqlAuthGuard)
+  me(@CurrentUser() user: User) {
+    return user;
   }
 }
