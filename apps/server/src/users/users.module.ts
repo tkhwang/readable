@@ -4,7 +4,6 @@ import { UsersResolver } from './users.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 // import { UserMongoModel, UserSchema } from './schema/user.schema';
 import { User, UserSchema } from '@readable/users/entities/user.entity';
-import { JwtService } from '../jwt/jwt.service';
 import { UsersRepository } from './users.repository';
 
 @Module({

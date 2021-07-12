@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { SocialSigninInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
-import { JwtService } from '@readable/jwt/jwt.service';
 import { UsersRepository } from './users.repository';
 import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly jwtService: JwtService, private readonly usersRepository: UsersRepository) {}
+  constructor(private readonly usersRepository: UsersRepository) {}
 
   async signinOrCreateUser(signinUser: User) {
     const { provider, providerId } = signinUser;
@@ -18,7 +17,7 @@ export class UsersService {
     }
 
     const { _id: id } = user;
-    return this.jwtService.sign({ id, issuer: process.env.SERVER_HOST });
+    return { id };
   }
 
   async create(socialSigninInput: SocialSigninInput) {
