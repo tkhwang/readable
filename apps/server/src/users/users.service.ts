@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { SocialSigninInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
-import { JwtService } from '@readable/jwt/jwt.service';
 import { UsersRepository } from './users.repository';
 import { ObjectId } from 'mongodb';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly jwtService: JwtService, private readonly usersRepository: UsersRepository) {}
+  constructor(private jwtService: JwtService, private readonly usersRepository: UsersRepository) {}
 
   async signinOrCreateUser(signinUser: User) {
     const { provider, providerId } = signinUser;
