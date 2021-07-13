@@ -1,0 +1,3 @@
+export enum AuthErrorCode {
+  LOCAL_STORAGE_NOT_AVAILABLE = 'LOCAL_STORAGE_NOT_AVAILABLE',
+}
