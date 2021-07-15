@@ -13,10 +13,6 @@
 - [ ] 🩹 Chore (non-breaking change which changes the small things)
 - [ ] 📝 This change requires a documentation update
 
-## Do you need any help from others or have any doubt ?
-
-<!-- If you have some, please shre them. -->
-
 ## Further to-do lists
 
 <!-- If there are something to do further, please share them. -->
