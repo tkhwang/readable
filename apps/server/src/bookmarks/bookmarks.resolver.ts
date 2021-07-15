@@ -11,11 +11,12 @@ import { GetUrlInfoUsecase } from './usecases/get-url-info/get-url-info.usecase'
 export class BookmarksResolver {
   constructor(private readonly getUrlInfoUsecase: GetUrlInfoUsecase) {}
 
-  @Query(retruns => Bookmark)
-  @UseGuards(GqlAuthGuard)
+  @Query(retruns => Bookmark, { nullable: true, description: 'Get ogtag infrom from URL' })
+  // @UseGuards(GqlAuthGuard)
   urlInfo(
-    @CurrentUser() user: User,
-    @Args('getUrlInfoInput') getUrlInfoInput: GetUrlInfoInput) {
-    return this.getUrlInfoUsecase.execute(getUrlInfoInput, user);
+    // @CurrentUser() user: User,
+    @Args('getUrlInfoInput') getUrlInfoInput: GetUrlInfoInput
+  ) {
+    return this.getUrlInfoUsecase.execute(getUrlInfoInput);
   }
 }

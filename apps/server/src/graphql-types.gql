@@ -11,17 +11,17 @@ enum AuthProviders {
 
 type Bookmark {
   _id: ObjectId!
-  createBy: ObjectId!
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String
   generatedImage: String
   image: BookmarkImage
+  siteName: String
   title: String
   type: String
   updatedAt: DateTime!
   url: String!
-  urlHash: String!
+  urlHash: String
 }
 
 type BookmarkImage {
@@ -49,7 +49,9 @@ scalar ObjectId
 
 type Query {
   me: User!
-  urlInfo(getUrlInfoInput: GetUrlInfoInput!): Bookmark!
+
+  """Get ogtag infrom from URL"""
+  urlInfo(getUrlInfoInput: GetUrlInfoInput!): Bookmark
   user(id: ObjectId!): User!
   users: [User!]!
 }

@@ -9,13 +9,13 @@ export class BookmarkImage {
 
   @Prop()
   @Field(type => String, { nullable: true })
+  type?: string;
+
+  @Prop()
+  @Field(type => String, { nullable: true })
   width?: string;
 
   @Prop()
   @Field(type => String, { nullable: true })
   height?: string;
-
-  @Prop()
-  @Field(type => String, { nullable: true })
-  type?: string;
 }
