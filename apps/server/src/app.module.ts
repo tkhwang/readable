@@ -6,6 +6,7 @@ import { UsersModule } from '@readable/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -46,6 +47,7 @@ import * as Joi from 'joi';
     MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
+    BookmarksModule,
   ],
   controllers: [],
   providers: [],

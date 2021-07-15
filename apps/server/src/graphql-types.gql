@@ -9,10 +9,36 @@ enum AuthProviders {
   Google
 }
 
+type Bookmark {
+  _id: ObjectId!
+  createBy: ObjectId!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  description: String
+  generatedImage: String
+  image: BookmarkImage
+  title: String
+  type: String
+  updatedAt: DateTime!
+  url: String!
+  urlHash: String!
+}
+
+type BookmarkImage {
+  height: String
+  type: String
+  url: String!
+  width: String
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+input GetUrlInfoInput {
+  url: String!
+}
 
 type Mutation {
   createUser(SocialSigninInput: SocialSigninInput!): User!
@@ -23,6 +49,7 @@ scalar ObjectId
 
 type Query {
   me: User!
+  urlInfo(getUrlInfoInput: GetUrlInfoInput!): Bookmark!
   user(id: ObjectId!): User!
   users: [User!]!
 }
