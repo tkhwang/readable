@@ -2,11 +2,18 @@ import { ApolloClient, ApolloProvider, DefaultOptions, HttpLink, InMemoryCache, 
 import { useRouter } from 'next/router';
 import nextWithApollo from 'next-with-apollo';
 import { serverHost } from '@readable/common/link';
-import { Query } from '../types/graphql-types';
 import { globalIsLoggedIn, globalToken } from '@readable/pages/_app';
+import { JWT_TOKEN } from '@readable/common/constants';
 
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
+    let token = null;
+
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem(JWT_TOKEN);
+      console.log('TCL: token', token);
+    }
+
     return new ApolloClient({
       ssrMode: typeof window === 'undefined',
       link: new HttpLink({
@@ -14,6 +21,7 @@ const withApollo = nextWithApollo(
       }),
       headers: {
         ...(headers as Record<string, string>),
+        Authorization: token ? `Authorization: Bearer ${token}` : '',
       },
       cache: new InMemoryCache({
         typePolicies: {
