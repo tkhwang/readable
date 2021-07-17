@@ -18,7 +18,7 @@ export const Layout: FunctionComponent<IProps> = ({ main }) => {
 
   return (
     <div className="max-w-screen-2xl mx-auto text-white">
-      <nav className="bg-indigo-800" style={{ height: '64px' }}>
+      <nav className="bg-indigo-700" style={{ height: '64px' }}>
         <div className="px-6 flex items-center justify-between h-16">
           <Link href="/">
             <a>
@@ -47,7 +47,9 @@ export const Layout: FunctionComponent<IProps> = ({ main }) => {
           )}
         </div>
       </nav>
-      <main style={{ minHeight: 'calc(100vh - 64px)' }}>{main}</main>
+      <div className="text-black">
+        <main style={{ minHeight: 'calc(100vh - 64px)' }}>{main}</main>
+      </div>
     </div>
   );
 };
