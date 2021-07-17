@@ -19,9 +19,13 @@ import * as Joi from 'joi';
       }),
     }),
     GraphQLModule.forRoot({
-      context: ({ req }) => ({ req }),
+      context: ({ req, res }) => ({ req, res }),
       autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
       sortSchema: true,
+      cors: {
+        credentials: true,
+        origin: true,
+      },
     }),
     // TODO(Teddy): typeorm
     /*

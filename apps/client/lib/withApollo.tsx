@@ -9,6 +9,7 @@ const withApollo = nextWithApollo(
       ssrMode: typeof window === 'undefined',
       link: new HttpLink({
         uri: serverHost.graphqlUrl,
+        credentials: 'include',
       }),
       headers: {
         ...(headers as Record<string, string>),

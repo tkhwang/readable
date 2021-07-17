@@ -18,6 +18,7 @@ export class AuthController {
     const token = await this.authService.googleLogin(req);
 
     if (token) {
+      res.cookie('authToken', token);
       res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
     }
   }
@@ -32,6 +33,7 @@ export class AuthController {
     const token = await this.authService.githubLogin(req);
 
     if (token) {
+      res.cookie('authToken', token);
       res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
     }
   }
@@ -46,6 +48,7 @@ export class AuthController {
     const token = await this.authService.facebookLogin(req);
 
     if (token) {
+      res.cookie('authToken', token);
       res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
     }
   }
