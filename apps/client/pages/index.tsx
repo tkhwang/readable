@@ -7,5 +7,5 @@ function Home() {
   return <Layout main={<>Home</>} />;
 }
 
-// export default Home;
-export default withApollo(Home, { getDataFromTree });
+export default Home;
+// export default withApollo(Home, { getDataFromTree });
