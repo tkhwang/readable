@@ -1,34 +1,34 @@
 import { AuthErrorCode } from '@readable/errors/auth';
-import { globalIsLoggedIn, globalToken } from '@readable/pages/_app';
+import { JWT_TOKEN } from './constants';
 
-export function loadAuthToken(key: string) {
+export function logout() {
+  localStorage.removeItem(JWT_TOKEN);
+  console.log('🛂 clearAuthToken = ', null);
+}
+
+export function loadAuthToken(): string {
   if (!localStorage) {
     throw new Error(AuthErrorCode.LOCAL_STORAGE_NOT_AVAILABLE);
   }
 
-  const token = localStorage.getItem(key);
+  const token = localStorage.getItem(JWT_TOKEN);
   console.log('🛂 loadAuthToken = ', token);
 
-  globalToken(token);
-  globalIsLoggedIn(Boolean(token));
+  return token;
 }
 
-export function setAuthToken(key: string, token: string) {
+export function setAuthToken(token: string): string {
   if (!localStorage) return;
 
-  localStorage.setItem(key, token);
+  localStorage.setItem(JWT_TOKEN, token);
   console.log('🛂 setAuthToken = ', token);
 
-  globalToken(token);
-  globalIsLoggedIn(Boolean(token));
+  return token;
 }
 
-export function clearAuthToken(key: string) {
+export function clearAuthToken(): void {
   if (!localStorage) return;
 
-  localStorage.removeItem(key);
+  localStorage.removeItem(JWT_TOKEN);
   console.log('🛂 clearAuthToken = ', null);
-
-  globalToken('');
-  globalIsLoggedIn(false);
 }
