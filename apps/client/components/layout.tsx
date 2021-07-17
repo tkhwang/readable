@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { logout } from '@readable/common/auth';
-import { JWT_TOKEN } from '@readable/common/constants';
-import { globalIsLoggedIn } from '@readable/pages/_app';
+import { loadAuthToken, logout } from '@readable/common/auth';
 import Link from 'next/link';
 import React, { FunctionComponent, ReactNode, useEffect, useState } from 'react';
 
@@ -13,8 +11,7 @@ export const Layout: FunctionComponent<IProps> = ({ main }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem(JWT_TOKEN);
-    console.log('🛂 loadAuthToken = ', token);
+    const token = loadAuthToken();
 
     if (token) setIsLoggedIn(true);
   }, []);
