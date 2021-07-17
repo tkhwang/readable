@@ -1,20 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { loadAuthToken, logout } from '@readable/common/auth';
+import { useAuth } from '@readable/common/auth/useAuth';
 import Link from 'next/link';
-import React, { FunctionComponent, ReactNode, useEffect, useState } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 
 interface IProps {
   main: ReactNode;
 }
 
 export const Layout: FunctionComponent<IProps> = ({ main }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = loadAuthToken();
-
-    if (token) setIsLoggedIn(true);
-  }, []);
+  const { authenticated, logout } = useAuth();
 
   return (
     <div className="max-w-screen-2xl mx-auto text-white">
@@ -26,19 +20,12 @@ export const Layout: FunctionComponent<IProps> = ({ main }) => {
             </a>
           </Link>
 
-          {isLoggedIn ? (
+          {authenticated ? (
             <>
               <Link href="/bookmark/add">
                 <a>Add Bookmark</a>
               </Link>
-              <button
-                onClick={() => {
-                  logout();
-                  setIsLoggedIn(false);
-                }}
-              >
-                Logout
-              </button>
+              <button onClick={logout}>Logout</button>
             </>
           ) : (
             <Link href="/login">

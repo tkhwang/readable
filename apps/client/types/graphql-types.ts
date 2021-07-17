@@ -22,6 +22,34 @@ export enum AuthProviders {
   Google = 'Google'
 }
 
+export type Bookmark = {
+  readonly __typename?: 'Bookmark';
+  readonly _id: Scalars['ObjectId'];
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly description?: Maybe<Scalars['String']>;
+  readonly generatedImage?: Maybe<Scalars['String']>;
+  readonly image?: Maybe<BookmarkImage>;
+  readonly siteName?: Maybe<Scalars['String']>;
+  readonly title?: Maybe<Scalars['String']>;
+  readonly type?: Maybe<Scalars['String']>;
+  readonly updatedAt: Scalars['DateTime'];
+  readonly url: Scalars['String'];
+  readonly urlHash?: Maybe<Scalars['String']>;
+};
+
+export type BookmarkImage = {
+  readonly __typename?: 'BookmarkImage';
+  readonly height?: Maybe<Scalars['String']>;
+  readonly type?: Maybe<Scalars['String']>;
+  readonly url: Scalars['String'];
+  readonly width?: Maybe<Scalars['String']>;
+};
+
+
+export type GetUrlInfoInput = {
+  readonly url: Scalars['String'];
+};
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
@@ -37,8 +65,15 @@ export type MutationcreateUserArgs = {
 export type Query = {
   readonly __typename?: 'Query';
   readonly me: User;
+  /** Get ogtag infrom from URL */
+  readonly urlInfo?: Maybe<Bookmark>;
   readonly user: User;
   readonly users: ReadonlyArray<User>;
+};
+
+
+export type QueryurlInfoArgs = {
+  getUrlInfoInput: GetUrlInfoInput;
 };
 
 
