@@ -4,6 +4,7 @@ documents:
   - 'apps/client/components/**/*.fragment.{ts,tsx}'
   - 'apps/client/components/**/*.query.{ts,tsx}'
   - 'apps/client/components/**/*.mutation.{ts,tsx}'
+  - 'apps/client/common/**/*.query.{ts,tsx}'
   - 'apps/client/src/**/*.fragment.{ts,tsx}'
   - 'apps/client/src/**/*.query.{ts,tsx}'
   - 'apps/client/src/**/*.mutation.{ts,tsx}'

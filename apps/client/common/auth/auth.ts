@@ -1,5 +1,5 @@
 import { AuthErrorCode } from '@readable/errors/auth';
-import { JWT_TOKEN } from './constants';
+import { JWT_TOKEN } from '../constants';
 
 export function logout() {
   localStorage.removeItem(JWT_TOKEN);
