@@ -19,7 +19,8 @@ export class AuthController {
 
     if (token) {
       res.cookie('authToken', token);
-      res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
+      // res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
+      res.redirect(`${process.env.CLIENT_HOST}/auth`);
     }
   }
 
