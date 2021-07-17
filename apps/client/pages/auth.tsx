@@ -10,7 +10,10 @@ function Auth() {
 
   useEffect(() => {
     if (token && typeof token === 'string') {
-      setAuthToken(JWT_TOKEN, token);
+      localStorage.setItem(JWT_TOKEN, token);
+      console.log('🛂 setAuthToken = ', token);
+
+      // setAuthToken(JWT_TOKEN, token);
     }
 
     router.push('/');

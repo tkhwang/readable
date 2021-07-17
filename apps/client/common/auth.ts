@@ -1,5 +1,12 @@
 import { AuthErrorCode } from '@readable/errors/auth';
 import { globalIsLoggedIn, globalToken } from '@readable/pages/_app';
+import { JWT_TOKEN } from './constants';
+
+export function logout() {
+  localStorage.removeItem(JWT_TOKEN);
+  console.log('🛂 clearAuthToken = ', null);
+}
+
 
 export function loadAuthToken(key: string) {
   if (!localStorage) {
