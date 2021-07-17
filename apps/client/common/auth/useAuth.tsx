@@ -1,7 +1,7 @@
 import { User } from '@readable/graphql-types';
 import { useRouter } from 'next/router';
 import { createContext, FunctionComponent, useContext, useEffect, useState } from 'react';
-import { clearAuthToken, loadAuthToken } from './auth';
+import { clearAuthToken, loadAuthToken } from './token';
 import { useMeViewModel } from './useAuth.query';
 
 interface IAuthContext {
