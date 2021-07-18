@@ -5,7 +5,7 @@ import { useMeQueryQuery } from './useMeViewModel.query.generated';
 const ME_QUERY = gql`
   query MeQuery {
     me: me {
-      _id
+      id
       name
       provider
       providerId
