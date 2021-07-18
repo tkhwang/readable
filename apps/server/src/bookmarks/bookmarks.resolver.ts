@@ -2,8 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
-import { User } from '@readable/users/entities/user.entity';
-import { Bookmark } from './models/bookmark.entity';
+import { Bookmark } from './models/bookmark.model';
 import { GetUrlInfoInput } from './usecases/get-url-info/get-url-info.input';
 import { GetUrlInfoUsecase } from './usecases/get-url-info/get-url-info.usecase';
 

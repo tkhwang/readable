@@ -1,6 +1,6 @@
 import { Model, Document } from 'mongoose';
-import { CoreEntity } from '@readable/common/entities/core.entity';
 import { FilterQuery, ObjectId } from 'mongodb';
+import { CoreEntity } from '../entities';
 
 export class MongoRepository<TEntity extends CoreEntity> {
   constructor(private readonly model: Model<TEntity & Document>) {}

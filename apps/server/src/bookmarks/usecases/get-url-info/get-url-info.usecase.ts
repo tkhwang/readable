@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { BookmarksRepository } from '@readable/bookmarks/bookmarks.repository';
 import { Usecase } from '@readable/common/usecase';
-import { User } from '@readable/users/entities/user.entity';
 import { GetUrlInfoInput } from './get-url-info.input';
 import * as ogs from 'open-graph-scraper';
 import { BookmarkImageBuilder } from '@readable/bookmarks/models/bookmark-image.builder';
 import { BookmarkBuilder } from '@readable/bookmarks/models/bookmark.entity.builder';
-import { Bookmark } from '@readable/bookmarks/models/bookmark.entity';
+import { User } from '@readable/users/models/user.model';
+import { Bookmark } from '@readable/bookmarks/models/bookmark.model';
 @Injectable()
 export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, Partial<Bookmark>> {
   constructor(private readonly bookmarkRepository: BookmarksRepository) {}

@@ -1,44 +1,44 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CoreEntity } from '@readable/common/entities/core.entity';
-import { BookmarkImage } from './bookmark-image.model';
+import { BookmarkImage } from '@readable/bookmarks/models/bookmark-image.model';
+import { CoreEntity } from '@readable/common/infrastructures/mongo/entities';
 
-@InputType({ isAbstract: true })
+// @InputType({ isAbstract: true })
 @Schema({ collection: 'bookmarks' })
-@ObjectType()
+// @ObjectType()
 export class Bookmark extends CoreEntity {
   @Prop({ required: true })
-  @Field(type => String)
+  // @Field(type => String)
   url: string;
 
   @Prop()
-  @Field(type => String, { nullable: true })
+  // @Field(type => String, { nullable: true })
   siteName: string;
 
   @Prop()
-  @Field(type => String, { nullable: true })
+  // @Field(type => String, { nullable: true })
   title: string;
 
   @Prop()
-  @Field(type => String, { nullable: true })
+  // @Field(type => String, { nullable: true })
   type: string;
 
   @Prop()
-  @Field(type => String, { nullable: true })
+  // @Field(type => String, { nullable: true })
   urlHash?: string;
 
   @Prop()
-  @Field(type => String, { nullable: true })
+  // @Field(type => String, { nullable: true })
   description: string;
 
   @Prop({
     type: BookmarkImage,
   })
-  @Field(type => BookmarkImage, { nullable: true })
+  // @Field(type => BookmarkImage, { nullable: true })
   image: BookmarkImage;
 
   @Prop()
-  @Field(type => String, { nullable: true })
+  // @Field(type => String, { nullable: true })
   generatedImage?: string;
 }
 

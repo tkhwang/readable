@@ -1,4 +1,4 @@
-import { User } from '@readable/users/entities/user.entity';
+import { User } from '@readable/users/models/user.model';
 import { ObjectId } from 'mongodb';
 
 export interface Usecase<IRequest, IResponse> {

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { MongoRepository } from '@readable/common/repositories';
+import { MongoRepository } from '@readable/common/infrastructures/mongo/repositories';
 import { Model } from 'mongoose';
-import { Bookmark } from './models/bookmark.entity';
+import { Bookmark } from './infrastructures/mongo/bookmark.entity';
 
 @Injectable()
 export class BookmarksRepository extends MongoRepository<Bookmark> {

@@ -1,5 +1,5 @@
 import { BookmarkImage } from './bookmark-image.model';
-import { Bookmark } from './bookmark.entity';
+import { Bookmark } from './bookmark.model';
 
 export class BookmarkBuilder {
   bookmark: Bookmark;

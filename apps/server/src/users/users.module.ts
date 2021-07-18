@@ -3,10 +3,10 @@ import { UsersService } from './users.service';
 import { UsersResolver } from './users.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 // import { UserMongoModel, UserSchema } from './schema/user.schema';
-import { User, UserSchema } from '@readable/users/entities/user.entity';
 import { UsersRepository } from './users.repository';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { User, UserSchema } from './infrastructures/mongo/user.entity';
 
 @Module({
   imports: [

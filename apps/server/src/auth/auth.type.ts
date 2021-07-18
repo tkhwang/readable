@@ -1,5 +1,5 @@
 import { registerEnumType } from '@nestjs/graphql';
-import { User } from '@readable/users/entities/user.entity';
+import { User } from '@readable/users/models/user.model';
 
 export enum AuthProviders {
   Google = 'Google',
