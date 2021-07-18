@@ -15,7 +15,7 @@ export class AuthController {
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
+  async googleAuthRedirect(@Req() req: RequestWithInjectedUser, @Res() res: Response) {
     const token = await this.authService.googleLogin(req);
 
     if (token) {
@@ -29,7 +29,7 @@ export class AuthController {
 
   @Get('github/callback')
   @UseGuards(AuthGuard('github'))
-  async githubAuthRedirect(@Req() req: Request, @Res() res: Response) {
+  async githubAuthRedirect(@Req() req: RequestWithInjectedUser, @Res() res: Response) {
     const token = await this.authService.githubLogin(req);
 
     if (token) {
@@ -43,7 +43,7 @@ export class AuthController {
 
   @Get('facebook/callback')
   @UseGuards(AuthGuard('facebook'))
-  async facebookAuthRedirect(@Req() req: Request, @Res() res: Response) {
+  async facebookAuthRedirect(@Req() req: RequestWithInjectedUser, @Res() res: Response) {
     const token = await this.authService.facebookLogin(req);
 
     if (token) {
