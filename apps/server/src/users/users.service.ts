@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { SocialSigninInput } from './dto/create-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './infrastructures/typeorm/user.entity';
 import { Repository } from 'typeorm';
+import { UserEntity } from './infrastructures/typeorm/user.entity';
+import { User } from './models/user.model';
 
 @Injectable()
 export class UsersService {
@@ -11,7 +12,7 @@ export class UsersService {
     private jwtService: JwtService,
     // Mongo repository
     // private readonly usersRepository: UsersRepository,
-    @InjectRepository(User) private readonly usersRepository: Repository<User>
+    @InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity>
   ) {}
 
   async signinOrCreateUser(signinUser: User) {

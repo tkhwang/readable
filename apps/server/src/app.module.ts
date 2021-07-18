@@ -6,7 +6,8 @@ import { UsersModule } from '@readable/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
-import { User } from './users/infrastructures/typeorm/user.entity';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
+import { UserEntity } from './users/infrastructures/typeorm/user.entity';
 
 @Module({
   imports: [
@@ -32,7 +33,7 @@ import { User } from './users/infrastructures/typeorm/user.entity';
       charset: 'utf8mb4',
       logging: true,
       // dateStrings: ['DATE'],
-      entities: [User],
+      entities: [UserEntity],
       // entities: ['./dist/entities/*.js'],
       // migrations: ['./src/migrations/*.ts'],
       // cli: {
@@ -43,6 +44,7 @@ import { User } from './users/infrastructures/typeorm/user.entity';
     // MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
+    BookmarksModule,
     // TODO(Teddy): WIP
     // BookmarksModule,
   ],
