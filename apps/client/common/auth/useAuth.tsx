@@ -27,9 +27,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
 
   const router = useRouter();
 
-  // const viewModel = useMeViewModel();
-  // console.log('TCL: AuthProvider:FunctionComponent -> viewModel', viewModel);
-
   const logoutFn = () => {
     clearAuthToken();
     setAuthenticated(false);
@@ -37,19 +34,12 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     router.push('/');
   };
 
-  // const setAuthenticated = (value: boolean) => {
-
-  // }
-
-  // TODO(Teddy): Auth
   useEffect(() => {
     const token = loadAuthToken();
     if (token) {
       setAuthenticated(true);
       setAuthToken(token);
     }
-
-    // if (token) setIsLoggedIn(true);
   }, []);
 
   return (
