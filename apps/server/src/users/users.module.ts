@@ -4,19 +4,22 @@ import { UsersResolver } from './users.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { User, UserSchema } from './infrastructures/mongo/user.entity';
-import { UsersRepository } from './infrastructures/mongo/users.repository';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './infrastructures/typeorm/user.entity';
+// import { User, UserSchema } from './infrastructures/mongo/user.entity';
+// import { UsersRepository } from './infrastructures/mongo/users.repository';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    // MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_SECRET,
       signOptions: { expiresIn: '60s' },
     }),
   ],
-  providers: [UsersResolver, UsersService, UsersRepository],
+  providers: [UsersResolver, UsersService /*, UsersRepository */],
   exports: [UsersService, JwtModule],
 })
 export class UsersModule {}

@@ -5,7 +5,7 @@ import { useUserFindAllQuery } from './useGetUsersViewModel.query.generated';
 const LOAD_USERS = gql`
   query UserFindAll {
     users: users {
-      _id
+      id
       provider
       providerId
       name

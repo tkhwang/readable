@@ -24,8 +24,6 @@ import { User } from './users/infrastructures/typeorm/user.entity';
       autoSchemaFile: join(process.cwd(), 'apps/server/src/graphql-types.gql'),
       sortSchema: true,
     }),
-    // TODO(Teddy): typeorm
-    /*
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.READABLE_RDS_HOST,
@@ -44,11 +42,11 @@ import { User } from './users/infrastructures/typeorm/user.entity';
       // },
       synchronize: true,
     }),
-*/
-    MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
+    // MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
-    BookmarksModule,
+    // TODO(Teddy): WIP
+    // BookmarksModule,
   ],
   controllers: [],
   providers: [],

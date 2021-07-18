@@ -9,50 +9,18 @@ enum AuthProviders {
   Google
 }
 
-type Bookmark {
-  _id: ObjectId!
-  createdAt: DateTime!
-  deletedAt: DateTime!
-  description: String
-  generatedImage: String
-  image: BookmarkImage
-  siteName: String
-  title: String
-  type: String
-  updatedAt: DateTime!
-  url: String!
-  urlHash: String
-}
-
-type BookmarkImage {
-  height: String
-  type: String
-  url: String!
-  width: String
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
-input GetUrlInfoInput {
-  url: String!
-}
-
 type Mutation {
   createUser(SocialSigninInput: SocialSigninInput!): User!
 }
 
-"""Mongo object id scalar type"""
-scalar ObjectId
-
 type Query {
   me: User!
-
-  """Get ogtag infrom from URL"""
-  urlInfo(getUrlInfoInput: GetUrlInfoInput!): Bookmark
-  user(id: ObjectId!): User!
+  user(id: String!): User!
   users: [User!]!
 }
 
@@ -65,11 +33,11 @@ input SocialSigninInput {
 }
 
 type User {
-  _id: ObjectId!
   avatarUrl: String
   createdAt: DateTime!
   deletedAt: DateTime!
   email: String
+  id: ID!
   name: String!
   provider: AuthProviders!
   providerId: String!

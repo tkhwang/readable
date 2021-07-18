@@ -13,7 +13,7 @@ export type MeQuery = (
   { readonly __typename?: 'Query' }
   & { readonly me: (
     { readonly __typename?: 'User' }
-    & Pick<Types.User, '_id' | 'provider' | 'providerId' | 'name' | 'avatarUrl'>
+    & Pick<Types.User, 'id' | 'provider' | 'providerId' | 'name' | 'avatarUrl'>
   ) }
 );
 
@@ -21,7 +21,7 @@ export type MeQuery = (
 export const MeDocument = gql`
     query Me {
   me: me {
-    _id
+    id
     provider
     providerId
     name

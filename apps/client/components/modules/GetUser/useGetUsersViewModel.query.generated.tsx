@@ -13,7 +13,7 @@ export type UserFindAllQuery = (
   { readonly __typename?: 'Query' }
   & { readonly users: ReadonlyArray<(
     { readonly __typename?: 'User' }
-    & Pick<Types.User, '_id' | 'provider' | 'providerId' | 'name'>
+    & Pick<Types.User, 'id' | 'provider' | 'providerId' | 'name'>
   )> }
 );
 
@@ -21,7 +21,7 @@ export type UserFindAllQuery = (
 export const UserFindAllDocument = gql`
     query UserFindAll {
   users: users {
-    _id
+    id
     provider
     providerId
     name

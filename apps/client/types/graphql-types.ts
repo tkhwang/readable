@@ -24,11 +24,11 @@ export enum AuthProviders {
 
 export type Bookmark = {
   readonly __typename?: 'Bookmark';
-  readonly _id: Scalars['ObjectId'];
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description?: Maybe<Scalars['String']>;
   readonly generatedImage?: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
   readonly image?: Maybe<BookmarkImage>;
   readonly siteName?: Maybe<Scalars['String']>;
   readonly title?: Maybe<Scalars['String']>;
@@ -91,11 +91,11 @@ export type SocialSigninInput = {
 
 export type User = {
   readonly __typename?: 'User';
-  readonly _id: Scalars['ObjectId'];
   readonly avatarUrl?: Maybe<Scalars['String']>;
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly email?: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
   readonly name: Scalars['String'];
   readonly provider: AuthProviders;
   readonly providerId: Scalars['String'];

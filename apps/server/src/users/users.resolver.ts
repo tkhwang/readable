@@ -23,7 +23,8 @@ export class UsersResolver {
   }
 
   @Query(returns => User)
-  user(@Args('id', { type: () => ObjectIdScalar }) id: ObjectId) {
+  // user(@Args('id', { type: () => ObjectIdScalar }) id: string) {
+  user(@Args('id') id: string) {
     return this.usersService.findOne(id);
   }
 

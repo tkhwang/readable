@@ -5,7 +5,7 @@ import { useMeQuery } from './useAuth.query.generated';
 const ME_QUERY = gql`
   query Me {
     me: me {
-      _id
+      id
       provider
       providerId
       name
