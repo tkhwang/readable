@@ -1,21 +1,10 @@
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  DefaultOptions,
-  HttpLink,
-  InMemoryCache,
-  makeVar,
-} from '@apollo/client';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { useMemo } from 'react';
 import { loadAuthToken } from './auth/auth';
-import { useAuth } from './auth/useAuth';
 import { serverHost } from './link';
 
-function createApolloCLient(authToken: string | null) {
-  console.log('TCL: createApolloCLient -> authToken', authToken);
-
+function createApolloClient() {
   const httpLink = createHttpLink({
     uri: serverHost.graphqlUrl,
     credentials: 'same-origin',
@@ -25,8 +14,6 @@ function createApolloCLient(authToken: string | null) {
     const baseHeaders = { ...headers };
 
     const token = loadAuthToken();
-    console.log('TCL: authLink -> token', token);
-
     if (token) {
       baseHeaders.authorization = `Bearer ${token}`;
     }
@@ -39,7 +26,6 @@ function createApolloCLient(authToken: string | null) {
   });
 
   return new ApolloClient({
-    // link: new HttpLink({}),
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
     defaultOptions: {
@@ -51,8 +37,7 @@ function createApolloCLient(authToken: string | null) {
 }
 
 export function useApollo() {
-  const { authToken } = useAuth();
-  const client = useMemo(() => createApolloCLient(authToken), [authToken]);
+  const client = useMemo(() => createApolloClient(), []);
 
   return client;
 }

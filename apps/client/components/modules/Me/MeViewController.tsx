@@ -5,7 +5,6 @@ import React from 'react';
 
 export const MeViewController: ViewController<MeViewModel> = React.memo(({ viewModel }) => {
   const { me, loading, error } = viewModel;
-
   const { authenticated } = useAuth();
 
   if (loading) {
@@ -17,25 +16,22 @@ export const MeViewController: ViewController<MeViewModel> = React.memo(({ viewM
   }
 
   if (error) {
-    return <>{error.message}</>;
+    return <div className="h-screen flex justify-center items-center text-2xl">Please login.</div>;
   }
 
-  const { _id, provider, providerId, name, avatarUrl } = me;
+  const { provider, name, avatarUrl } = me;
 
   return (
-    <div>
+    <div className="h-screen flex justify-center items-center text-2xl">
       {authenticated ? (
-        <div className="h-screen flex justify-center items-center text-2xl">
-          <ul>
-            <li>
-              Welcome {name} from {provider}, back !!!
-            </li>
-            {/* <li>{provider}</li> */}
-            <img src={avatarUrl} alt="avatar" />
-          </ul>
-        </div>
+        <ul>
+          <li>
+            Welcome {name} from {provider}, back !!!
+          </li>
+          <img src={avatarUrl} alt="avatar" />
+        </ul>
       ) : (
-        'Plase login.'
+        'Please login.'
       )}
     </div>
   );

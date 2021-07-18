@@ -3,6 +3,10 @@ import { useRouter } from 'next/router';
 import nextWithApollo from 'next-with-apollo';
 import { serverHost } from '@readable/common/link';
 
+/**
+ * deprecate
+ */
+
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
     return new ApolloClient({
