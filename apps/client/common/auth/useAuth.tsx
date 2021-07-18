@@ -9,6 +9,7 @@ interface IAuthContext {
   logout: () => void;
   authenticated: boolean;
   setAuthenticated: (value: boolean) => void;
+  authToken: string | null;
 }
 
 const AuthContext = createContext<IAuthContext>({
@@ -16,11 +17,13 @@ const AuthContext = createContext<IAuthContext>({
   logout: () => null,
   authenticated: false,
   setAuthenticated: () => null,
+  authToken: null,
 });
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [authToken, setAuthToken] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -30,6 +33,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   const logoutFn = () => {
     clearAuthToken();
     setAuthenticated(false);
+    setAuthToken(null);
     router.push('/');
   };
 
@@ -42,6 +46,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     const token = loadAuthToken();
     if (token) {
       setAuthenticated(true);
+      setAuthToken(token);
     }
 
     // if (token) setIsLoggedIn(true);
@@ -49,7 +54,13 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: null, logout: logoutFn, authenticated: authenticated, setAuthenticated: setAuthenticated }}
+      value={{
+        user: null,
+        logout: logoutFn,
+        authenticated: authenticated,
+        setAuthenticated: setAuthenticated,
+        authToken: authToken,
+      }}
     >
       {children}
     </AuthContext.Provider>
