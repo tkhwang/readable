@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { SocialSigninInput } from './dto/create-user.input';
-import { UsersRepository } from './users.repository';
 import { ObjectId } from 'mongodb';
 import { JwtService } from '@nestjs/jwt';
 import { User } from './models/user.model';
+import { UsersRepository } from './infrastructures/mongo/users.repository';
 
 @Injectable()
 export class UsersService {
