@@ -1,5 +1,4 @@
-import { Model } from 'mongoose';
-import { Document } from 'mongoose';
+import { Model, Document } from 'mongoose';
 import { CoreEntity } from '@readable/common/entities/core.entity';
 import { FilterQuery, ObjectId } from 'mongodb';
 

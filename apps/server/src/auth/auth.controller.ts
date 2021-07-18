@@ -3,6 +3,7 @@ import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
+import { RequestWithInjectedUser } from './auth.type';
 
 @Controller('auth')
 export class AuthController {
@@ -10,11 +11,11 @@ export class AuthController {
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {}
+  async googleAuth(@Req() req: RequestWithInjectedUser) {}
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
+  async googleAuthRedirect(@Req() req: RequestWithInjectedUser, @Res() res: Response) {
     const token = await this.authService.googleLogin(req);
 
     if (token) {
@@ -24,11 +25,11 @@ export class AuthController {
 
   @Get('github')
   @UseGuards(AuthGuard('github'))
-  async githubAuth(@Req() req) {}
+  async githubAuth(@Req() req: RequestWithInjectedUser) {}
 
   @Get('github/callback')
   @UseGuards(AuthGuard('github'))
-  async githubAuthRedirect(@Req() req: Request, @Res() res: Response) {
+  async githubAuthRedirect(@Req() req: RequestWithInjectedUser, @Res() res: Response) {
     const token = await this.authService.githubLogin(req);
 
     if (token) {
@@ -38,11 +39,11 @@ export class AuthController {
 
   @Get('facebook')
   @UseGuards(AuthGuard('facebook'))
-  async facebookAuth(@Req() req) {}
+  async facebookAuth(@Req() req: RequestWithInjectedUser) {}
 
   @Get('facebook/callback')
   @UseGuards(AuthGuard('facebook'))
-  async facebookAuthRedirect(@Req() req: Request, @Res() res: Response) {
+  async facebookAuthRedirect(@Req() req: RequestWithInjectedUser, @Res() res: Response) {
     const token = await this.authService.facebookLogin(req);
 
     if (token) {
@@ -50,13 +51,13 @@ export class AuthController {
     }
   }
 
-  @Get('twitter')
-  @UseGuards(AuthGuard('twitter'))
-  async twitterAuth(@Req() req) {}
+  // @Get('twitter')
+  // @UseGuards(AuthGuard('twitter'))
+  // async twitterAuth(@Req() req: Request) {}
 
-  @Get('twitter/callback')
-  @UseGuards(AuthGuard('twitter'))
-  twitterAuthRedirect(@Req() req) {
-    return this.authService.twitterLogin(req);
-  }
+  // @Get('twitter/callback')
+  // @UseGuards(AuthGuard('twitter'))
+  // twitterAuthRedirect(@Req() req: Request) {
+  //   return this.authService.twitterLogin(req);
+  // }
 }

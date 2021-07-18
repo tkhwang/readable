@@ -16,5 +16,7 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  // exception rule
+  "strictPropertyInitialization": false
 }

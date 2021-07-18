@@ -19,5 +19,7 @@
     "paths": {
       "@readable/ui": ["libs/ui/src/index.ts"]
     }
-  }
+  },
+  // exception rule
+  "strictPropertyInitialization": false
 }

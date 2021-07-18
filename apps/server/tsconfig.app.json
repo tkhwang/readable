@@ -8,5 +8,7 @@
     "target": "es2015"
   },
   "exclude": ["**/*.spec.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
+  // exception rule
+  "strictPropertyInitialization": false
 }

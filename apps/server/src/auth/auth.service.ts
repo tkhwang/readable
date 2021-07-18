@@ -1,32 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { User } from '@readable/users/entities/user.entity';
 import { UsersService } from '@readable/users/users.service';
+import { RequestWithInjectedUser } from './auth.type';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly usersService: UsersService) {}
 
-  async googleLogin(req) {
+  async googleLogin(req: RequestWithInjectedUser) {
     if (!req.user) return 'No user from google';
 
     const { user } = req;
     return this.usersService.signinOrCreateUser(user);
   }
 
-  async githubLogin(req) {
+  async githubLogin(req: RequestWithInjectedUser) {
     if (!req.user) return 'No user from github';
 
     const { user } = req;
     return this.usersService.signinOrCreateUser(user);
   }
 
-  async facebookLogin(req) {
+  async facebookLogin(req: RequestWithInjectedUser) {
     if (!req.user) return 'No user from facebook';
 
     const { user } = req;
     return this.usersService.signinOrCreateUser(user);
   }
 
-  twitterLogin(req) {
+  twitterLogin(req: RequestWithInjectedUser) {
     if (!req.user) return 'No user from twitter';
 
     return {
