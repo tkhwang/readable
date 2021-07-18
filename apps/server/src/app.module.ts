@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
 import * as Joi from 'joi';
+import { User } from './users/infrastructures/typeorm/user.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,6 @@ import * as Joi from 'joi';
       sortSchema: true,
     }),
     // TODO(Teddy): typeorm
-    /*
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.READABLE_RDS_HOST,
@@ -43,7 +43,6 @@ import * as Joi from 'joi';
       // },
       synchronize: true,
     }),
-    */
     MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
