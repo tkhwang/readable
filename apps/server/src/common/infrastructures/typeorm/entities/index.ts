@@ -1,16 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export abstract class CoreEntity {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @Column({ type: Date, default: () => new Date() })
+  @CreateDateColumn()
   public createdAt: Date;
 
-  @Column({ type: Date, default: () => new Date() })
+  @UpdateDateColumn()
   public updatedAt: Date;
 
-  @Column({ type: Date, default: () => new Date(-1) })
+  @DeleteDateColumn()
   public deletedAt: Date;
 }

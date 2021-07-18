@@ -10,11 +10,11 @@ enum AuthProviders {
 }
 
 type Bookmark {
-  _id: ObjectId!
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String
   generatedImage: String
+  id: String!
   image: BookmarkImage
   siteName: String
   title: String
@@ -65,11 +65,11 @@ input SocialSigninInput {
 }
 
 type User {
-  _id: ObjectId!
   avatarUrl: String
   createdAt: DateTime!
   deletedAt: DateTime!
   email: String
+  id: String!
   name: String!
   provider: AuthProviders!
   providerId: String!

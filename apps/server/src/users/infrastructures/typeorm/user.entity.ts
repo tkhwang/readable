@@ -4,7 +4,11 @@ import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class User extends CoreEntity {
-  @Column('enum', { enum: AuthProviders })
+  @Column({
+    type: 'enum',
+    enum: AuthProviders,
+    default: AuthProviders.Google,
+  })
   provider: AuthProviders;
 
   @Column()
