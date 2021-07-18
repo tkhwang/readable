@@ -7,7 +7,7 @@ import { AddBookMarkInput } from './add-bookmark.input';
 import * as ogs from 'open-graph-scraper';
 import { BookmarkBuilder } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity.builder';
 
-export class AddBookmarkUsercase implements Usecase<AddBookMarkInput, Bookmark> {
+export class AddBookmarkUsecase implements Usecase<AddBookMarkInput, Bookmark> {
   constructor(@InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>) {}
 
   async execute(command: AddBookMarkInput) {
@@ -17,7 +17,7 @@ export class AddBookmarkUsercase implements Usecase<AddBookMarkInput, Bookmark> 
     const { result } = await ogs(ogsOptions);
 
     const bookmark = new BookmarkBuilder()
-      .setUrl(result['ogType'] ?? url)
+      .setUrl(result['ogUrl'] ?? url)
       .setSiteName(result['ogSiteName'] ?? '')
       .setTitle(result['ogTitle'] ?? '')
       .setType(result['ogType'] ?? '')
