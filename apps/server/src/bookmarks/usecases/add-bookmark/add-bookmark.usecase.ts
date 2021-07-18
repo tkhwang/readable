@@ -15,12 +15,14 @@ export class AddBookmarkUsecase implements Usecase<AddBookMarkInput, Bookmark> {
 
     const ogsOptions = { url };
     const { result } = await ogs(ogsOptions);
+    console.log('TCL: AddBookmarkUsecase -> execute -> result', result);
 
     const bookmark = new BookmarkBuilder()
       .setUrl(result['ogUrl'] ?? url)
       .setSiteName(result['ogSiteName'] ?? '')
       .setTitle(result['ogTitle'] ?? '')
       .setType(result['ogType'] ?? '')
+      .setImageUrl(result['ogImage']['url'] ?? '')
       .setDescription(result['ogDescription'] ?? '')
       .setTags(result['ogTags'] ?? '')
       .build();

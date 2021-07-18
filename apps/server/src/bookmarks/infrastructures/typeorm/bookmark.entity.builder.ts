@@ -33,6 +33,11 @@ export class BookmarkBuilder {
     return this;
   }
 
+  setImageUrl(imageUrl: string) {
+    this.bookmark.imageUrl = imageUrl;
+    return this;
+  }
+
   // setImage(image: BookmarkImage) {
   //   this.bookmark.image = image;
   //   return this;

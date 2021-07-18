@@ -22,6 +22,9 @@ export class BookmarkEntity extends CoreEntity {
   description: string;
 
   @Column()
+  imageUrl: string;
+
+  @Column()
   generatedImage: string;
 
   @Column('simple-array')

@@ -1,7 +1,6 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
 
-@InputType({ isAbstract: true })
 @ObjectType()
 export class Bookmark extends CoreModel {
   @Field(type => String)
@@ -21,6 +20,9 @@ export class Bookmark extends CoreModel {
 
   @Field(type => String)
   description: string;
+
+  @Field(type => String)
+  imageUrl: string;
 
   @Field(type => String)
   generatedImage: string;

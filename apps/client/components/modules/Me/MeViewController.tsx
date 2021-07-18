@@ -2,6 +2,7 @@ import { useAuth } from '@readable/common/auth/useAuth';
 import { MeViewModel } from '@readable/common/auth/useAuth.query';
 import { ViewController } from '@readable/types/ViewController';
 import React from 'react';
+import { Bookmarks } from '../Bookmarks/Bookmarks';
 
 export const MeViewController: ViewController<MeViewModel> = React.memo(({ viewModel }) => {
   const { me, loading, error } = viewModel;
@@ -22,14 +23,13 @@ export const MeViewController: ViewController<MeViewModel> = React.memo(({ viewM
   const { provider, name, avatarUrl } = me;
 
   return (
-    <div className="h-screen flex justify-center items-center text-2xl">
+    <div className="h-screen text-2xl">
       {authenticated ? (
-        <ul>
-          <li>
-            Welcome {name} from {provider}, back !!!
-          </li>
-          <img src={avatarUrl} alt="avatar" />
-        </ul>
+        <>
+          Welcome {name} from {provider}, back !!!
+          <img className="w-16" src={avatarUrl} alt="avatar" />
+          <Bookmarks />
+        </>
       ) : (
         'Please login.'
       )}

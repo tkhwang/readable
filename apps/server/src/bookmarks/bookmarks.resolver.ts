@@ -7,7 +7,7 @@ export class BookmarksResolver {
   constructor(private readonly getBookmarksUsecase: GetBookmarksUsecase) {}
 
   @Query(returns => [Bookmark], { nullable: true })
-  getBookmarks() {
+  bookmarks() {
     return this.getBookmarksUsecase.execute();
   }
 }
