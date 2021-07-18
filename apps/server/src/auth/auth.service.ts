@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '@readable/users/entities/user.entity';
 import { UsersService } from '@readable/users/users.service';
 import { RequestWithInjectedUser } from './auth.type';
 
