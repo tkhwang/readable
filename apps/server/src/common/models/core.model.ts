@@ -6,8 +6,13 @@ import { ObjectId } from 'mongodb';
 
 @ObjectType()
 export abstract class CoreModel {
-  @Field(type => String)
-  public id: string;
+  // TypeORM
+  // @Field(type => String)
+  // public id: string;
+
+  // Mongo
+  @Field(type => ObjectIdScalar)
+  public _id: ObjectId;
 
   @Field(type => Date)
   public createdAt: Date;
