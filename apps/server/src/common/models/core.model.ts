@@ -1,8 +1,4 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { ObjectIdScalar } from '@readable/types/ObjectIdScalar';
-import { Prop, Schema } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
-import { ObjectId } from 'mongodb';
 
 @ObjectType()
 export abstract class CoreModel {

@@ -1,8 +1,6 @@
 import { SocialSigninInput } from '@readable/users/dto/create-user.input';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from './users.service';
-import { ObjectId } from 'mongodb';
-import { ObjectIdScalar } from '@readable/types/ObjectIdScalar';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '@readable/auth/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';

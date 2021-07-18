@@ -1,13 +1,10 @@
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersResolver } from './users.resolver';
-import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './infrastructures/typeorm/user.entity';
-// import { User, UserSchema } from './infrastructures/mongo/user.entity';
-// import { UsersRepository } from './infrastructures/mongo/users.repository';
 
 @Module({
   imports: [

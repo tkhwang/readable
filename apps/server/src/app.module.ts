@@ -5,8 +5,6 @@ import { join } from 'path';
 import { UsersModule } from '@readable/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { MongooseModule } from '@nestjs/mongoose';
-import { BookmarksModule } from './bookmarks/bookmarks.module';
 import * as Joi from 'joi';
 import { User } from './users/infrastructures/typeorm/user.entity';
 
