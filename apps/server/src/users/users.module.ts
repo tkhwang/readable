@@ -13,7 +13,7 @@ import { UserEntity } from './infrastructures/typeorm/user.entity';
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_SECRET,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '1d' },
     }),
   ],
   providers: [UsersResolver, UsersService /*, UsersRepository */],
