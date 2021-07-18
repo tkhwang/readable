@@ -9,6 +9,22 @@ enum AuthProviders {
   Google
 }
 
+type Bookmark {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  description: String!
+  generatedImage: String!
+  id: ID!
+  imageUrl: String!
+  siteName: String!
+  tags: [String!]!
+  title: String!
+  type: String!
+  updatedAt: DateTime!
+  url: String!
+  urlHash: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -19,6 +35,7 @@ type Mutation {
 }
 
 type Query {
+  bookmarks: [Bookmark!]
   me: User!
   user(id: String!): User!
   users: [User!]!

@@ -6,7 +6,7 @@ import { GqlAuthGuard } from '@readable/auth/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from './models/user.model';
 
-@Resolver(returns => User)
+@Resolver(of => User)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 

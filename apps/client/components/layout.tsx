@@ -29,7 +29,7 @@ export const Layout: FunctionComponent<IProps> = ({ main }) => {
             </>
           ) : (
             <Link href="/login">
-              <a>Login/Singup</a>
+              <a>Login / Signup</a>
             </Link>
           )}
         </div>

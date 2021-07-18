@@ -11,8 +11,6 @@ export type Scalars = {
   Float: number;
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
-  /** Mongo object id scalar type */
-  ObjectId: any;
 };
 
 /** Auth providers */
@@ -26,30 +24,19 @@ export type Bookmark = {
   readonly __typename?: 'Bookmark';
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
-  readonly description?: Maybe<Scalars['String']>;
-  readonly generatedImage?: Maybe<Scalars['String']>;
+  readonly description: Scalars['String'];
+  readonly generatedImage: Scalars['String'];
   readonly id: Scalars['ID'];
-  readonly image?: Maybe<BookmarkImage>;
-  readonly siteName?: Maybe<Scalars['String']>;
-  readonly title?: Maybe<Scalars['String']>;
-  readonly type?: Maybe<Scalars['String']>;
+  readonly imageUrl: Scalars['String'];
+  readonly siteName: Scalars['String'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly title: Scalars['String'];
+  readonly type: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
   readonly url: Scalars['String'];
-  readonly urlHash?: Maybe<Scalars['String']>;
+  readonly urlHash: Scalars['String'];
 };
 
-export type BookmarkImage = {
-  readonly __typename?: 'BookmarkImage';
-  readonly height?: Maybe<Scalars['String']>;
-  readonly type?: Maybe<Scalars['String']>;
-  readonly url: Scalars['String'];
-  readonly width?: Maybe<Scalars['String']>;
-};
-
-
-export type GetUrlInfoInput = {
-  readonly url: Scalars['String'];
-};
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
@@ -61,24 +48,17 @@ export type MutationcreateUserArgs = {
   SocialSigninInput: SocialSigninInput;
 };
 
-
 export type Query = {
   readonly __typename?: 'Query';
+  readonly bookmarks?: Maybe<ReadonlyArray<Bookmark>>;
   readonly me: User;
-  /** Get ogtag infrom from URL */
-  readonly urlInfo?: Maybe<Bookmark>;
   readonly user: User;
   readonly users: ReadonlyArray<User>;
 };
 
 
-export type QueryurlInfoArgs = {
-  getUrlInfoInput: GetUrlInfoInput;
-};
-
-
 export type QueryuserArgs = {
-  id: Scalars['ObjectId'];
+  id: Scalars['String'];
 };
 
 export type SocialSigninInput = {
