@@ -9,6 +9,7 @@ interface IAuthContext {
   logout: () => void;
   authenticated: boolean;
   setAuthenticated: (value: boolean) => void;
+  authToken: string | null;
 }
 
 const AuthContext = createContext<IAuthContext>({
@@ -16,40 +17,40 @@ const AuthContext = createContext<IAuthContext>({
   logout: () => null,
   authenticated: false,
   setAuthenticated: () => null,
+  authToken: null,
 });
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [authToken, setAuthToken] = useState<string | null>(null);
 
   const router = useRouter();
-
-  // const viewModel = useMeViewModel();
-  // console.log('TCL: AuthProvider:FunctionComponent -> viewModel', viewModel);
 
   const logoutFn = () => {
     clearAuthToken();
     setAuthenticated(false);
+    setAuthToken(null);
     router.push('/');
   };
 
-  // const setAuthenticated = (value: boolean) => {
-
-  // }
-
-  // TODO(Teddy): Auth
   useEffect(() => {
     const token = loadAuthToken();
     if (token) {
       setAuthenticated(true);
+      setAuthToken(token);
     }
-
-    // if (token) setIsLoggedIn(true);
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user: null, logout: logoutFn, authenticated: authenticated, setAuthenticated: setAuthenticated }}
+      value={{
+        user: null,
+        logout: logoutFn,
+        authenticated: authenticated,
+        setAuthenticated: setAuthenticated,
+        authToken: authToken,
+      }}
     >
       {children}
     </AuthContext.Provider>
