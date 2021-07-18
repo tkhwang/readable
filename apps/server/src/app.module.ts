@@ -25,6 +25,7 @@ import { User } from './users/infrastructures/typeorm/user.entity';
       sortSchema: true,
     }),
     // TODO(Teddy): typeorm
+    /*
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.READABLE_RDS_HOST,
@@ -43,6 +44,7 @@ import { User } from './users/infrastructures/typeorm/user.entity';
       // },
       synchronize: true,
     }),
+*/
     MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
