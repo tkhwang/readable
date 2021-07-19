@@ -3,7 +3,7 @@ import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
 import { Column, Entity } from 'typeorm';
 
 @Entity('users')
-export class UserEntity extends CoreEntity {
+export class User extends CoreEntity {
   @Column({
     type: 'enum',
     enum: AuthProviders,

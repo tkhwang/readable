@@ -1,13 +1,13 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
-import { Bookmark } from '@readable/bookmarks/models/bookmark.model';
 import { Usecase } from '@readable/common/usecase';
 import { Repository } from 'typeorm';
 import { AddBookMarkInput } from './add-bookmark.input';
 import * as ogs from 'open-graph-scraper';
 import { BookmarkBuilder } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity.builder';
+import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
+import { Bookmark as BookmarkModel } from '@readable/bookmarks/models/bookmark.model';
 
-export class AddBookmarkUsecase implements Usecase<AddBookMarkInput, Bookmark> {
+export class AddBookmarkUsecase implements Usecase<AddBookMarkInput, BookmarkModel> {
   constructor(@InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>) {}
 
   async execute(command: AddBookMarkInput) {

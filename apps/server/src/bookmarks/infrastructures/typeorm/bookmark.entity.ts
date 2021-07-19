@@ -2,7 +2,7 @@ import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
 import { Column, Entity } from 'typeorm';
 
 @Entity('bookmarks')
-export class BookmarkEntity extends CoreEntity {
+export class Bookmark extends CoreEntity {
   @Column()
   url: string;
 

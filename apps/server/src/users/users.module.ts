@@ -4,12 +4,12 @@ import { UsersResolver } from './users.resolver';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './infrastructures/typeorm/user.entity';
+import { User } from './infrastructures/typeorm/user.entity';
 
 @Module({
   imports: [
     // MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_SECRET,

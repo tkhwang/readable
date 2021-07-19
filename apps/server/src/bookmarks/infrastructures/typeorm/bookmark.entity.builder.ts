@@ -1,10 +1,10 @@
-import { BookmarkEntity } from './bookmark.entity';
+import { Bookmark } from './bookmark.entity';
 
 export class BookmarkBuilder {
-  bookmark: BookmarkEntity;
+  bookmark: Bookmark;
 
   constructor() {
-    this.bookmark = new BookmarkEntity();
+    this.bookmark = new Bookmark();
     return this;
   }
 
