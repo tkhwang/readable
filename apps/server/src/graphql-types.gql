@@ -40,8 +40,9 @@ type Mutation {
 }
 
 type Query {
-  bookmarks: [Bookmark!]
+  anonymousBookmarks: [Bookmark!]
   me: User!
+  myBookmarks: [Bookmark!]!
   user(id: String!): User!
   users: [User!]!
 }
