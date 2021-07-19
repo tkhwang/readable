@@ -1,8 +1,9 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity } from 'typeorm';
+import { User } from '@readable/users/infrastructures/typeorm/user.entity';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('bookmarks')
-export class BookmarkEntity extends CoreEntity {
+export class Bookmark extends CoreEntity {
   @Column()
   url: string;
 
@@ -29,4 +30,7 @@ export class BookmarkEntity extends CoreEntity {
 
   @Column('simple-array')
   tags: string[];
+
+  @ManyToOne(() => User, user => user.bookmarks)
+  user: User;
 }

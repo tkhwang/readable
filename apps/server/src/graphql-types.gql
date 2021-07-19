@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddBookMarkWithAuthInput {
+  url: String!
+}
+
 """Auth providers"""
 enum AuthProviders {
   Facebook
@@ -31,12 +35,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
+  addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   createUser(SocialSigninInput: SocialSigninInput!): User!
 }
 
 type Query {
-  bookmarks: [Bookmark!]
+  anonymousBookmarks: [Bookmark!]
   me: User!
+  myBookmarks: [Bookmark!]!
   user(id: String!): User!
   users: [User!]!
 }

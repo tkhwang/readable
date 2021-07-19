@@ -3,19 +3,17 @@ import { SocialSigninInput } from './dto/create-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserEntity } from './infrastructures/typeorm/user.entity';
-import { User } from './models/user.model';
+import { User as UserModel } from './models/user.model';
+import { User as UserEntity } from './infrastructures/typeorm/user.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     private jwtService: JwtService,
-    // Mongo repository
-    // private readonly usersRepository: UsersRepository,
     @InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity>
   ) {}
 
-  async signinOrCreateUser(signinUser: User) {
+  async signinOrCreateUser(signinUser: UserModel) {
     const { provider, providerId } = signinUser;
 
     let user = await this.usersRepository.findOne({ provider, providerId });
@@ -34,20 +32,10 @@ export class UsersService {
   }
 
   async findAll() {
-    // mongo
-    // return this.usersRepository.findAll();
     return this.usersRepository.find();
-    // const user = new User();
-    // user.name = 'readable';
-
-    // return [user];
   }
 
   async findOne(id: string) {
-    // mongo
-    // return this.usersRepository.findById(id);
-    // return this.usersRepository.findOne(id);
-
     return this.usersRepository.findOne(id);
   }
 }

@@ -6,21 +6,32 @@ import * as Apollo from '@apollo/client';
 import * as ApolloReactComponents from '@apollo/client/react/components';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 const defaultOptions =  {}
-export type GetBookmarksQueryQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetMyBookmarksQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetBookmarksQueryQuery = (
+export type GetMyBookmarksQuery = (
   { readonly __typename?: 'Query' }
-  & { readonly bookmarks?: Types.Maybe<ReadonlyArray<(
+  & { readonly myBookmarks: ReadonlyArray<(
+    { readonly __typename?: 'Bookmark' }
+    & Pick<Types.Bookmark, 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'>
+  )> }
+);
+
+export type GetAnonymousBookmarksQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetAnonymousBookmarksQuery = (
+  { readonly __typename?: 'Query' }
+  & { readonly anonymousBookmarks?: Types.Maybe<ReadonlyArray<(
     { readonly __typename?: 'Bookmark' }
     & Pick<Types.Bookmark, 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'>
   )>> }
 );
 
 
-export const GetBookmarksQueryDocument = gql`
-    query GetBookmarksQuery {
-  bookmarks: bookmarks {
+export const GetMyBookmarksDocument = gql`
+    query GetMyBookmarks {
+  myBookmarks: myBookmarks {
     url
     type
     siteName
@@ -31,36 +42,82 @@ export const GetBookmarksQueryDocument = gql`
   }
 }
     `;
-export type GetBookmarksQueryComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables>, 'query'>;
+export type GetMyBookmarksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>, 'query'>;
 
-    export const GetBookmarksQueryComponent = (props: GetBookmarksQueryComponentProps) => (
-      <ApolloReactComponents.Query<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables> query={GetBookmarksQueryDocument} {...props} />
+    export const GetMyBookmarksComponent = (props: GetMyBookmarksComponentProps) => (
+      <ApolloReactComponents.Query<GetMyBookmarksQuery, GetMyBookmarksQueryVariables> query={GetMyBookmarksDocument} {...props} />
     );
     
 
 /**
- * __useGetBookmarksQueryQuery__
+ * __useGetMyBookmarksQuery__
  *
- * To run a query within a React component, call `useGetBookmarksQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBookmarksQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetMyBookmarksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMyBookmarksQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetBookmarksQueryQuery({
+ * const { data, loading, error } = useGetMyBookmarksQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetBookmarksQueryQuery(baseOptions?: Apollo.QueryHookOptions<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables>) {
+export function useGetMyBookmarksQuery(baseOptions?: Apollo.QueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables>(GetBookmarksQueryDocument, options);
+        return Apollo.useQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
       }
-export function useGetBookmarksQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables>) {
+export function useGetMyBookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables>(GetBookmarksQueryDocument, options);
+          return Apollo.useLazyQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
         }
-export type GetBookmarksQueryQueryHookResult = ReturnType<typeof useGetBookmarksQueryQuery>;
-export type GetBookmarksQueryLazyQueryHookResult = ReturnType<typeof useGetBookmarksQueryLazyQuery>;
-export type GetBookmarksQueryQueryResult = Apollo.QueryResult<GetBookmarksQueryQuery, GetBookmarksQueryQueryVariables>;
+export type GetMyBookmarksQueryHookResult = ReturnType<typeof useGetMyBookmarksQuery>;
+export type GetMyBookmarksLazyQueryHookResult = ReturnType<typeof useGetMyBookmarksLazyQuery>;
+export type GetMyBookmarksQueryResult = Apollo.QueryResult<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>;
+export const GetAnonymousBookmarksDocument = gql`
+    query GetAnonymousBookmarks {
+  anonymousBookmarks: anonymousBookmarks {
+    url
+    type
+    siteName
+    title
+    imageUrl
+    description
+    tags
+  }
+}
+    `;
+export type GetAnonymousBookmarksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>, 'query'>;
+
+    export const GetAnonymousBookmarksComponent = (props: GetAnonymousBookmarksComponentProps) => (
+      <ApolloReactComponents.Query<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables> query={GetAnonymousBookmarksDocument} {...props} />
+    );
+    
+
+/**
+ * __useGetAnonymousBookmarksQuery__
+ *
+ * To run a query within a React component, call `useGetAnonymousBookmarksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAnonymousBookmarksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAnonymousBookmarksQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAnonymousBookmarksQuery(baseOptions?: Apollo.QueryHookOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>(GetAnonymousBookmarksDocument, options);
+      }
+export function useGetAnonymousBookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>(GetAnonymousBookmarksDocument, options);
+        }
+export type GetAnonymousBookmarksQueryHookResult = ReturnType<typeof useGetAnonymousBookmarksQuery>;
+export type GetAnonymousBookmarksLazyQueryHookResult = ReturnType<typeof useGetAnonymousBookmarksLazyQuery>;
+export type GetAnonymousBookmarksQueryResult = Apollo.QueryResult<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>;

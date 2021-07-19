@@ -1,9 +1,10 @@
 import { AuthProviders } from '@readable/auth/auth.type';
+import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
-@Entity()
-export class UserEntity extends CoreEntity {
+@Entity('users')
+export class User extends CoreEntity {
   @Column({
     type: 'enum',
     enum: AuthProviders,
@@ -22,4 +23,7 @@ export class UserEntity extends CoreEntity {
 
   @Column()
   avatarUrl?: string;
+
+  @OneToMany(() => Bookmark, bookmark => bookmark.user)
+  bookmarks: Bookmark[];
 }

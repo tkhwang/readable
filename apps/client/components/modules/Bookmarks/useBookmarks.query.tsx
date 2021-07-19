@@ -1,10 +1,24 @@
 import { gql } from '@apollo/client';
 import { ViewModel } from '@readable/types/ViewModel';
-import { useGetBookmarksQueryQuery } from './useBookmarks.query.generated';
+import { useGetAnonymousBookmarksQuery, useGetMyBookmarksQuery } from './useBookmarks.query.generated';
 
-const GET_BOOKMARKS = gql`
-  query GetBookmarksQuery {
-    bookmarks: bookmarks {
+const GET_MY_BOOKMARKS = gql`
+  query GetMyBookmarks {
+    myBookmarks: myBookmarks {
+      url
+      type
+      siteName
+      title
+      imageUrl
+      description
+      tags
+    }
+  }
+`;
+
+const GET_ANONYMOUS_BOOKMARKS = gql`
+  query GetAnonymousBookmarks {
+    anonymousBookmarks: anonymousBookmarks {
       url
       type
       siteName
@@ -19,12 +33,16 @@ const GET_BOOKMARKS = gql`
 export type BookmarksViewModel = ViewModel<typeof useBookmarks>;
 
 export function useBookmarks() {
-  const { data, loading, error } = useGetBookmarksQueryQuery();
+  const { data: dataMyBookmarks } = useGetMyBookmarksQuery();
 
-  const bookmarks = data?.bookmarks ?? [];
+  const { data: dataAnonymousBookmarks, loading, error } = useGetAnonymousBookmarksQuery();
+
+  const myBookmarks = dataMyBookmarks?.myBookmarks ?? [];
+  const anonymousBookmarks = dataAnonymousBookmarks?.anonymousBookmarks ?? [];
 
   return {
-    bookmarks,
+    myBookmarks,
+    anonymousBookmarks,
     loading,
     error,
   };
