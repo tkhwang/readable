@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/models/user.model';
@@ -22,7 +22,10 @@ export class BookmarksResolver {
 
   @Mutation(returns => Bookmark)
   @UseGuards(GqlAuthGuard)
-  addBookmarkWithAuth(@CurrentUser() requestUser: User, command: AddBookMarkWithAuthInput) {
+  addBookmarkWithAuth(
+    @CurrentUser() requestUser: User,
+    @Args('addBookMarkWithAuthInput') command: AddBookMarkWithAuthInput
+  ) {
     return this.addBookmarkWithAuthUsecase.execute(command, requestUser);
   }
 }
