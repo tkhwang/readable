@@ -15,7 +15,6 @@ export class AddBookmarkUsecase implements Usecase<AddBookMarkInput, BookmarkMod
 
     const ogsOptions = { url };
     const { result } = await ogs(ogsOptions);
-    console.log('TCL: AddBookmarkUsecase -> execute -> result', result);
 
     const bookmark = new BookmarkBuilder()
       .setUrl(result['ogUrl'] ?? url)
