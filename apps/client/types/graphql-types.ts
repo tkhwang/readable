@@ -13,6 +13,10 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type AddBookMarkWithAuthInput = {
+  readonly url: Scalars['String'];
+};
+
 /** Auth providers */
 export enum AuthProviders {
   Facebook = 'Facebook',
@@ -40,7 +44,13 @@ export type Bookmark = {
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
+  readonly addBookmarkWithAuth: Bookmark;
   readonly createUser: User;
+};
+
+
+export type MutationaddBookmarkWithAuthArgs = {
+  addBookMarkWithAuthInput: AddBookMarkWithAuthInput;
 };
 
 
@@ -50,8 +60,9 @@ export type MutationcreateUserArgs = {
 
 export type Query = {
   readonly __typename?: 'Query';
-  readonly bookmarks?: Maybe<ReadonlyArray<Bookmark>>;
+  readonly anonymousBookmarks?: Maybe<ReadonlyArray<Bookmark>>;
   readonly me: User;
+  readonly myBookmarks: ReadonlyArray<Bookmark>;
   readonly user: User;
   readonly users: ReadonlyArray<User>;
 };
