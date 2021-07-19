@@ -2,7 +2,7 @@ import { AuthProviders } from '@readable/auth/auth.type';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
 import { Column, Entity } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class UserEntity extends CoreEntity {
   @Column({
     type: 'enum',
