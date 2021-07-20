@@ -11,6 +11,7 @@ import * as morgan from 'morgan';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.use(new LoggerMiddleware().use);
   app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
