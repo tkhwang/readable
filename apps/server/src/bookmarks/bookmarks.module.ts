@@ -8,11 +8,13 @@ import { AddBookmarkWithAuthUsecase } from './usecases/add-bookmark-with-auth/ad
 import { GetMyBookmarksUsecase } from './usecases/get-my-bookmarks/get-my-bookmarks.usecase';
 import { GetAnonymousBookmarksUsecase } from './usecases/get-anonymous-bookmarks/get-anonymous-bookmarks.usecase';
 import { GetUrlInfoUsecase } from './usecases/get-urlinfo/get-urlinfo.usecase';
+import { BookmarksService } from './bookmarks.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Bookmark])],
   providers: [
     BookmarksResolver,
+    BookmarksService,
     AddBookmarkUsecase,
     GetAnonymousBookmarksUsecase,
     AddBookmarkWithAuthUsecase,
