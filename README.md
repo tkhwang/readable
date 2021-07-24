@@ -8,8 +8,25 @@ Read and share anything readable in **Readable** !
 
 #### Graphal
 
-- One model for Graphql and DB entity.
 - GraphQL: Code first. (Not schema first)
+- ~~One model for Graphql and DB entity.~~
+- DDD like directory structure
+  - feature centric
+
+```
+module (bookmark)
+├── infrastructures
+│   └── typeorm
+│       └── bookmark.entity.ts
+├── models
+│   └── bookmark.model.ts
+└── usecases
+    ├── add-bookmark
+    ├── add-bookmark-with-auth
+    ├── get-anonymous-bookmarks
+    ├── get-my-bookmarks
+    └── get-urlinfo
+```
 
 ## Prerequite
 
@@ -99,10 +116,10 @@ AKS using kubernete.
 
 ## Ref: Server/Port/DB
 
-| Environment      | `apps`   | `NODE_ENV`    | DB          | Port     | URL                                         |
-| ---------------- | -------- | ------------- | ----------- | -------- | ------------------------------------------- |
-| development      | `server` | `development` | development | `7000`   | http://localhost:7000/graphql               |
-|                  | `client` | `development` | development | `4200`   | http://localhost:4200                       |
-|                  | `client` | `development` | development | `4200`   | http://localhost:4200                       |
-| (1st) production | `server` | `production`  | development | `80/443` | https://readable-2021.herokuapp.com/graphql |
-|                  | `client` | `production`  | development | `80/443` | https://readable-2021.vercel.app            |
+| Environment | `apps`   | `NODE_ENV`    | DB          | Port     | URL                                         |
+| ----------- | -------- | ------------- | ----------- | -------- | ------------------------------------------- |
+| development | `server` | `development` | development | `7000`   | http://localhost:7000/graphql               |
+|             | `client` | `development` | development | `4200`   | http://localhost:4200                       |
+|             | `client` | `development` | development | `4200`   | http://localhost:4200                       |
+| staging     | `server` | `production`  | development | `80/443` | https://readable-2021.herokuapp.com/graphql |
+|             | `client` | `production`  | development | `80/443` | https://readable-2021.vercel.app            |
