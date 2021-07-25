@@ -116,6 +116,7 @@
     "@nrwl/workspace": "12.4.0",
     "@storybook/addon-knobs": "^6.2.7",
     "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addon-viewport": "^6.3.5",
     "@storybook/react": "^6.2.7",
     "@svgr/webpack": "^5.4.0",
     "@tailwindcss/forms": "^0.3.3",
