@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import AOS from 'aos';
+import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
 
 export const WelcomeHome = () => {
   useEffect(() => {
@@ -14,7 +15,7 @@ export const WelcomeHome = () => {
 
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
-      <main className="flex-grow">
+      <main className="flex-grow bg-black">
         <section className="relative">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             {/* Hero content */}
@@ -22,14 +23,14 @@ export const WelcomeHome = () => {
               {/* Section header */}
               <div className="text-center pb-12 md:pb-16">
                 <h1
-                  className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
+                  className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 "
                   data-aos="zoom-y-out"
                 >
                   COMMING{' '}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">SOON</span>
                 </h1>
                 <div className="max-w-3xl mx-auto">
-                  <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">
+                  <p className="text-xl text-gray-50 mb-8" data-aos="zoom-y-out" data-aos-delay="150">
                     Read and share anything readable in Readable
                   </p>
                   <div
@@ -40,7 +41,8 @@ export const WelcomeHome = () => {
                     <div>
                       <Link href="/login">
                         <a className="btn text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0">
-                          Login (Only Readable member!)
+                          READABLE CREW
+                          <ChevronDoubleRightIcon className="h-5 w-5 " />
                         </a>
                       </Link>
                     </div>
