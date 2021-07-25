@@ -5,6 +5,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './infrastructures/typeorm/entities/user.entity';
+import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { User } from './infrastructures/typeorm/entities/user.entity';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [UsersResolver, UsersService /*, UsersRepository */],
+  providers: [UsersResolver, UsersService, UsersRepository],
   exports: [UsersService, JwtModule],
 })
 export class UsersModule {}

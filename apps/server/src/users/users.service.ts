@@ -5,13 +5,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User as UserModel } from './domain/user.model';
 import { User as UserEntity } from './infrastructures/typeorm/entities/user.entity';
+import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
 
 @Injectable()
 export class UsersService {
   constructor(
     private jwtService: JwtService,
     @InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity>
-  ) {}
+  ) // private readonly usersRepository: UsersRepository
+  {}
 
   async signinOrCreateUser(signinUser: UserModel) {
     const { provider, providerId } = signinUser;
