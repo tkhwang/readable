@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
 import { RequestWithInjectedUser } from './auth.type';
+import { SocialSigninInput } from '@readable/users/dto/create-user.input';
 
 @Controller('auth')
 export class AuthController {
