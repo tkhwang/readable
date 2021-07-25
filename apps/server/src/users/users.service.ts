@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User as UserModel } from './domain/user.model';
-import { User as UserEntity } from './infrastructures/typeorm/user.entity';
+import { User as UserEntity } from './infrastructures/typeorm/entities/user.entity';
 
 @Injectable()
 export class UsersService {

@@ -4,7 +4,7 @@ import { UsersResolver } from './users.resolver';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './infrastructures/typeorm/user.entity';
+import { User } from './infrastructures/typeorm/entities/user.entity';
 
 @Module({
   imports: [
