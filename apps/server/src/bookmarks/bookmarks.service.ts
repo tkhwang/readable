@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { AddBookMarkInput } from './usecases/add-bookmark/add-bookmark.input';
 import * as ogs from 'open-graph-scraper';
-import { BookmarkBuilder } from './infrastructures/typeorm/bookmark.entity.builder';
 import { Bookmark as BookmarkModel } from './models/bookmark.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/bookmark.entity';
+import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
+import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
 
 @Injectable()
 export class BookmarksService {

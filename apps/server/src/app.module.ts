@@ -7,8 +7,8 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
-import { Bookmark } from './bookmarks/infrastructures/typeorm/bookmark.entity';
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
+import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 
 @Module({
   imports: [

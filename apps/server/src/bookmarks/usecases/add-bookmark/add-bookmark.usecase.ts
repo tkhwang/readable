@@ -2,10 +2,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/usecase';
 import { Repository } from 'typeorm';
 import { AddBookMarkInput } from './add-bookmark.input';
-import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
 import { Bookmark as BookmarkModel } from '@readable/bookmarks/models/bookmark.model';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import * as sha256 from 'crypto-js/sha256';
+import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 
 export class AddBookmarkUsecase implements Usecase<AddBookMarkInput, BookmarkModel> {
   constructor(

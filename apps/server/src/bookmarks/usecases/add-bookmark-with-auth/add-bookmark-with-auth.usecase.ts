@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/usecase';
 import { Repository } from 'typeorm';
-import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
+import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { Bookmark as BookmarkModel } from '@readable/bookmarks/models/bookmark.model';
 import { AddBookMarkWithAuthInput } from './add-bookmark-with-auth.input';
 import { User as UserModel } from '@readable/users/domain/user.model';
