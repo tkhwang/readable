@@ -9,10 +9,10 @@ documents:
   - 'apps/client/src/**/*.query.{ts,tsx}'
   - 'apps/client/src/**/*.mutation.{ts,tsx}'
 generates:
-  apps/client/types/graphql-types.ts:
+  apps/client/src/types/graphql-types.ts:
     hooks:
       afterOneFileWrite:
-        - git add apps/client/types/graphql-types.ts
+        - git add apps/client/src/types/graphql-types.ts
     plugins:
       - typescript
     config:
