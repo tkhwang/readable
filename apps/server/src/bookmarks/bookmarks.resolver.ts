@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
-import { User } from '@readable/users/models/user.model';
+import { User } from '@readable/users/domain/user.model';
 import { Bookmark } from './models/bookmark.model';
 import { AddBookMarkWithAuthInput } from './usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { AddBookmarkWithAuthUsecase } from './usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
