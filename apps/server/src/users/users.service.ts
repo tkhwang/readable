@@ -3,7 +3,7 @@ import { SocialSigninInput } from './dto/create-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User as UserModel } from './models/user.model';
+import { User as UserModel } from './domain/user.model';
 import { User as UserEntity } from './infrastructures/typeorm/user.entity';
 
 @Injectable()
