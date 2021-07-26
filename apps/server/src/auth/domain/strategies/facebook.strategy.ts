@@ -15,7 +15,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
       clientSecret: process.env.OAUTH_FACEBOOK_CLIENT_PW,
       callbackURL: process.env.OAUTH_FACEBOOK_CALLBACK_URL,
       scope: 'email',
-      profileFields: ['id', 'displayName', 'photos', 'emails', 'name'],
+      profileFields: ['id', 'displayName', 'photos', 'email', 'name'],
     });
   }
 
