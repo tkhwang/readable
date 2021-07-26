@@ -19,18 +19,14 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
     });
   }
 
+  // MEMO(Teddy): Facebook sometime doesn't provide email address. If so, use the generated email instead.
   async validate(accessToken: string, refreshToken: string, user: any, done: any): Promise<any> {
     const facebookUser = new SocialSigninInput();
     facebookUser.name = user?.displayName ?? user?.name;
     facebookUser.provider = AuthProviders.Facebook;
     facebookUser.providerId = user.id;
-    facebookUser.email = user?.emails?.[0].value;
+    facebookUser.email = user?.emails?.[0].value ?? `${user.id}@readable.gen`;
     facebookUser.avatarUrl = user?.photos?.[0]?.value ?? '';
-
-    console.log(
-      'TCL: FacebookStrategy -> exportclassFacebookStrategyextendsPassportStrategy -> user',
-      JSON.stringify(user, null, 2)
-    );
 
     done(null, facebookUser);
   }
