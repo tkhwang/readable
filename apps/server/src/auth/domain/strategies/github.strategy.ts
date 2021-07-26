@@ -2,7 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-github2';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
-import { SocialSigninInput } from '@readable/users/application/usecases/signin-or-create-user/signin-or-create-user.input';
+import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
 import { AuthProviders } from '../auth.type';
 
 config();
@@ -17,7 +17,7 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
     });
   }
   async validate(accessToken: string, refreshToken: string, user: any, done: any): Promise<any> {
-    const githubUser = new SocialSigninInput();
+    const githubUser = new SigninInput();
     githubUser.name = user?.displayName ?? user?.username;
     githubUser.provider = AuthProviders.Github;
     githubUser.providerId = user.id;

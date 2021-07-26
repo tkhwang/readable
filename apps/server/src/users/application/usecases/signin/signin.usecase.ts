@@ -5,16 +5,16 @@ import { OAuthUser } from '@readable/users/infrastructures/typeorm/entities/oaut
 import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
-import { SocialSigninInput } from './signin-or-create-user.input';
+import { SigninInput } from './signin.input';
 
-export class SigninOrCreateUserUsercase implements Usecase<SocialSigninInput, any> {
+export class SigninUsercase implements Usecase<SigninInput, any> {
   constructor(
     private jwtService: JwtService,
     @InjectRepository(UserEntity) private readonly usersRepository: UsersRepository,
     @InjectRepository(OAuthUser) private readonly oAuthUsersRepository: OAuthUsersRepository
   ) {}
 
-  async execute(command: SocialSigninInput) {
+  async execute(command: SigninInput) {
     const { provider, providerId, email } = command;
 
     let oauthUser = await this.oAuthUsersRepository.findOne({ provider, providerId });

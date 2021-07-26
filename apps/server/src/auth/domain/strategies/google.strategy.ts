@@ -2,7 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
-import { SocialSigninInput } from '@readable/users/application/usecases/signin-or-create-user/signin-or-create-user.input';
+import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
 import { AuthProviders } from '../auth.type';
 
 config();
@@ -18,7 +18,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     });
   }
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback): Promise<any> {
-    const googleUser = new SocialSigninInput();
+    const googleUser = new SigninInput();
     googleUser.name = profile?.displayName ?? `${profile?.name?.givenName}${profile?.name?.familyName}`;
     googleUser.provider = AuthProviders.Google;
     googleUser.providerId = profile.id;

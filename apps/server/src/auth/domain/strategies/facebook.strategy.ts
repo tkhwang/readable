@@ -2,8 +2,8 @@ import { PassportStrategy } from '@nestjs/passport';
 import { config } from 'dotenv';
 import { Strategy } from 'passport-facebook';
 import { Injectable } from '@nestjs/common';
-import { SocialSigninInput } from '@readable/users/application/usecases/signin-or-create-user/signin-or-create-user.input';
 import { AuthProviders } from '../auth.type';
+import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
 
 config();
 
@@ -21,7 +21,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
 
   // MEMO(Teddy): Facebook sometime doesn't provide email address. If so, use the generated email instead.
   async validate(accessToken: string, refreshToken: string, user: any, done: any): Promise<any> {
-    const facebookUser = new SocialSigninInput();
+    const facebookUser = new SigninInput();
     facebookUser.name = user?.displayName ?? user?.name;
     facebookUser.provider = AuthProviders.Facebook;
     facebookUser.providerId = user.id;
