@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '@readable/components/modules/Header';
+// import Header from '@readable/components/modules/Header';
 
 function SignIn() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/*  Site header */}
-      <Header />
+      {/* <Header /> */}
 
       {/*  Page content */}
       <main className="flex-grow">

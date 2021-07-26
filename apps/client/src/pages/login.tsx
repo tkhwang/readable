@@ -1,4 +1,4 @@
-import { LoginComp, LoginTemplate } from '@readable/src/features/login-feature';
+import { LoginTemplate } from '@readable/src/features/login-feature';
 import React from 'react';
 
 const Login = () => {
