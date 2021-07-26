@@ -3,7 +3,7 @@ import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
-import { RequestWithInjectedUser } from './auth.type';
+import { RequestWithInjectedUser } from './domain/auth.type';
 
 @Controller('auth')
 export class AuthController {
@@ -50,14 +50,4 @@ export class AuthController {
       res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
     }
   }
-
-  // @Get('twitter')
-  // @UseGuards(AuthGuard('twitter'))
-  // async twitterAuth(@Req() req: Request) {}
-
-  // @Get('twitter/callback')
-  // @UseGuards(AuthGuard('twitter'))
-  // twitterAuthRedirect(@Req() req: Request) {
-  //   return this.authService.twitterLogin(req);
-  // }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { SigninOrCreateUserUsercase } from '@readable/users/application/usecases/signin-or-create-user/signin-or-create-user.usecase';
-import { RequestWithInjectedUser } from './auth.type';
+import { RequestWithInjectedUser } from './domain/auth.type';
 
 @Injectable()
 export class AuthService {

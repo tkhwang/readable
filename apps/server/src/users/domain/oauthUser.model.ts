@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int, ID, InputType } from '@nestjs/graphql';
-import { AuthProviders } from '@readable/auth/auth.type';
+import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreModel } from '@readable/common/models/core.model';
 
 @InputType({ isAbstract: true })

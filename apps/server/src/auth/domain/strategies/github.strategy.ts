@@ -2,8 +2,8 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-github2';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
-import { AuthProviders } from '@readable/auth/auth.type';
 import { SocialSigninInput } from '@readable/users/application/usecases/signin-or-create-user/signin-or-create-user.input';
+import { AuthProviders } from '../auth.type';
 
 config();
 

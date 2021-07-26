@@ -1,4 +1,4 @@
-import { AuthProviders } from '@readable/auth/auth.type';
+import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
 import { Column, Entity, OneToMany } from 'typeorm';
