@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { SocialSigninInput } from './dto/create-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User as UserModel } from './domain/user.model';
 import { User as UserEntity } from './infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
-import { SigninFromExtensionInput } from '@readable/auth/application/usecases/signin-from-extension/signin-from-extension.input';
 
 @Injectable()
 export class UsersService {
@@ -27,14 +25,6 @@ export class UsersService {
     const { id } = user;
     return this.jwtService.sign({ id, issuer: process.env.SERVER_HOST });
   }
-
-  // async create(socialSigninInput: SocialSigninInput) {
-  //   return this.usersRepository.insert(socialSigninInput);
-  // }
-
-  // async findAll() {
-  //   return this.usersRepository.find();
-  // }
 
   async findOne(id: string) {
     return this.usersRepository.findOne(id);

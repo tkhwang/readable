@@ -7,8 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
-import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.entity';
+import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.entity';
+import { User } from './users/infrastructures/typeorm/entities/user.entity';
 
 @Module({
   imports: [
@@ -34,7 +35,7 @@ import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.
       charset: 'utf8mb4',
       logging: true,
       // dateStrings: ['DATE'],
-      entities: [User, Bookmark],
+      entities: [OAuthUser, User, Bookmark],
       // entities: ['./dist/entities/*.js'],
       // migrations: ['./src/migrations/*.ts'],
       // cli: {

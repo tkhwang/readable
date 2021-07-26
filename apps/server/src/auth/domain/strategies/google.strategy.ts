@@ -2,8 +2,8 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
-import { SocialSigninInput } from '@readable/users/dto/create-user.input';
 import { AuthProviders } from '@readable/auth/auth.type';
+import { SocialSigninInput } from '@readable/users/usecases/signin-or-create-user/signin-or-create-user.input';
 
 config();
 

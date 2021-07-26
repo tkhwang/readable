@@ -6,18 +6,20 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
+import { OAuthUser } from './infrastructures/typeorm/entities/oauthUser.entity';
+import { OAuthUsersRepository } from './infrastructures/typeorm/repositories/oauthUsers.repository';
+import { SigninOrCreateUserUsercase } from './usecases/signin-or-create-user/signin-or-create-user.usecase';
 
 @Module({
   imports: [
-    // MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([OAuthUser, User]),
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [UsersResolver, UsersService, UsersRepository],
-  exports: [UsersService, JwtModule],
+  providers: [UsersResolver, UsersService, OAuthUsersRepository, UsersRepository, SigninOrCreateUserUsercase],
+  exports: [UsersService, JwtModule, SigninOrCreateUserUsercase],
 })
 export class UsersModule {}

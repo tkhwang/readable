@@ -4,7 +4,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
 import { RequestWithInjectedUser } from './auth.type';
-import { SocialSigninInput } from '@readable/users/dto/create-user.input';
 
 @Controller('auth')
 export class AuthController {
