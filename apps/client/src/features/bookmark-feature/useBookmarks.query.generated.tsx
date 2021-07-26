@@ -5,55 +5,49 @@ import * as React from 'react';
 import * as Apollo from '@apollo/client';
 import * as ApolloReactComponents from '@apollo/client/react/components';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-const defaultOptions = {};
-export type GetMyBookmarksQueryVariables = Types.Exact<{ [key: string]: never }>;
+const defaultOptions =  {}
+export type GetMyBookmarksQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type GetMyBookmarksQuery = { readonly __typename?: 'Query' } & {
-  readonly myBookmarks: ReadonlyArray<
-    { readonly __typename?: 'Bookmark' } & Pick<
-      Types.Bookmark,
-      'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'
-    >
-  >;
-};
 
-export type GetAnonymousBookmarksQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type GetMyBookmarksQuery = (
+  { readonly __typename?: 'Query' }
+  & { readonly myBookmarks: ReadonlyArray<(
+    { readonly __typename?: 'Bookmark' }
+    & Pick<Types.Bookmark, 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'>
+  )> }
+);
 
-export type GetAnonymousBookmarksQuery = { readonly __typename?: 'Query' } & {
-  readonly anonymousBookmarks?: Types.Maybe<
-    ReadonlyArray<
-      { readonly __typename?: 'Bookmark' } & Pick<
-        Types.Bookmark,
-        'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'
-      >
-    >
-  >;
-};
+export type GetAnonymousBookmarksQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetAnonymousBookmarksQuery = (
+  { readonly __typename?: 'Query' }
+  & { readonly anonymousBookmarks?: Types.Maybe<ReadonlyArray<(
+    { readonly __typename?: 'Bookmark' }
+    & Pick<Types.Bookmark, 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'>
+  )>> }
+);
+
 
 export const GetMyBookmarksDocument = gql`
-  query GetMyBookmarks {
-    myBookmarks: myBookmarks {
-      url
-      type
-      siteName
-      title
-      imageUrl
-      description
-      tags
-    }
+    query GetMyBookmarks {
+  myBookmarks: myBookmarks {
+    url
+    type
+    siteName
+    title
+    imageUrl
+    description
+    tags
   }
-`;
-export type GetMyBookmarksComponentProps = Omit<
-  ApolloReactComponents.QueryComponentOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>,
-  'query'
->;
+}
+    `;
+export type GetMyBookmarksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>, 'query'>;
 
-export const GetMyBookmarksComponent = (props: GetMyBookmarksComponentProps) => (
-  <ApolloReactComponents.Query<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>
-    query={GetMyBookmarksDocument}
-    {...props}
-  />
-);
+    export const GetMyBookmarksComponent = (props: GetMyBookmarksComponentProps) => (
+      <ApolloReactComponents.Query<GetMyBookmarksQuery, GetMyBookmarksQueryVariables> query={GetMyBookmarksDocument} {...props} />
+    );
+    
 
 /**
  * __useGetMyBookmarksQuery__
@@ -70,45 +64,36 @@ export const GetMyBookmarksComponent = (props: GetMyBookmarksComponentProps) => 
  *   },
  * });
  */
-export function useGetMyBookmarksQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
-}
-export function useGetMyBookmarksLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
-}
+export function useGetMyBookmarksQuery(baseOptions?: Apollo.QueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
+      }
+export function useGetMyBookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
+        }
 export type GetMyBookmarksQueryHookResult = ReturnType<typeof useGetMyBookmarksQuery>;
 export type GetMyBookmarksLazyQueryHookResult = ReturnType<typeof useGetMyBookmarksLazyQuery>;
 export type GetMyBookmarksQueryResult = Apollo.QueryResult<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>;
 export const GetAnonymousBookmarksDocument = gql`
-  query GetAnonymousBookmarks {
-    anonymousBookmarks: anonymousBookmarks {
-      url
-      type
-      siteName
-      title
-      imageUrl
-      description
-      tags
-    }
+    query GetAnonymousBookmarks {
+  anonymousBookmarks: anonymousBookmarks {
+    url
+    type
+    siteName
+    title
+    imageUrl
+    description
+    tags
   }
-`;
-export type GetAnonymousBookmarksComponentProps = Omit<
-  ApolloReactComponents.QueryComponentOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>,
-  'query'
->;
+}
+    `;
+export type GetAnonymousBookmarksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>, 'query'>;
 
-export const GetAnonymousBookmarksComponent = (props: GetAnonymousBookmarksComponentProps) => (
-  <ApolloReactComponents.Query<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>
-    query={GetAnonymousBookmarksDocument}
-    {...props}
-  />
-);
+    export const GetAnonymousBookmarksComponent = (props: GetAnonymousBookmarksComponentProps) => (
+      <ApolloReactComponents.Query<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables> query={GetAnonymousBookmarksDocument} {...props} />
+    );
+    
 
 /**
  * __useGetAnonymousBookmarksQuery__
@@ -125,27 +110,14 @@ export const GetAnonymousBookmarksComponent = (props: GetAnonymousBookmarksCompo
  *   },
  * });
  */
-export function useGetAnonymousBookmarksQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>(
-    GetAnonymousBookmarksDocument,
-    options
-  );
-}
-export function useGetAnonymousBookmarksLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>(
-    GetAnonymousBookmarksDocument,
-    options
-  );
-}
+export function useGetAnonymousBookmarksQuery(baseOptions?: Apollo.QueryHookOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>(GetAnonymousBookmarksDocument, options);
+      }
+export function useGetAnonymousBookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>(GetAnonymousBookmarksDocument, options);
+        }
 export type GetAnonymousBookmarksQueryHookResult = ReturnType<typeof useGetAnonymousBookmarksQuery>;
 export type GetAnonymousBookmarksLazyQueryHookResult = ReturnType<typeof useGetAnonymousBookmarksLazyQuery>;
-export type GetAnonymousBookmarksQueryResult = Apollo.QueryResult<
-  GetAnonymousBookmarksQuery,
-  GetAnonymousBookmarksQueryVariables
->;
+export type GetAnonymousBookmarksQueryResult = Apollo.QueryResult<GetAnonymousBookmarksQuery, GetAnonymousBookmarksQueryVariables>;

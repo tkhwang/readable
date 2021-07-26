@@ -1,4 +1,4 @@
-import * as Types from '../../../../types/graphql-types';
+import * as Types from '../../../types/graphql-types';
 
 import { gql } from '@apollo/client';
 import * as React from 'react';
