@@ -14,7 +14,8 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
       clientID: process.env.OAUTH_FACEBOOK_CLIENT_ID,
       clientSecret: process.env.OAUTH_FACEBOOK_CLIENT_PW,
       callbackURL: process.env.OAUTH_FACEBOOK_CALLBACK_URL,
-      scope: 'email',
+      scope: ['email'],
+      passReqToCallback: true,
       profileFields: ['id', 'displayName', 'photos', 'emails'],
     });
   }
@@ -26,6 +27,11 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
     facebookUser.providerId = user.id;
     facebookUser.email = user?.emails?.[0].value;
     facebookUser.avatarUrl = user?.photos?.[0]?.value ?? '';
+
+    console.log(
+      'TCL: FacebookStrategy -> exportclassFacebookStrategyextendsPassportStrategy -> user',
+      JSON.stringify(user, null, 2)
+    );
 
     done(null, facebookUser);
   }
