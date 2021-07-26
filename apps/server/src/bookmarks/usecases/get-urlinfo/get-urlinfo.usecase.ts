@@ -4,7 +4,7 @@ import { Bookmark } from '@readable/bookmarks/models/bookmark.model';
 import * as sha256 from 'crypto-js/sha256';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
+import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { Repository } from 'typeorm';
 
 export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, Bookmark> {

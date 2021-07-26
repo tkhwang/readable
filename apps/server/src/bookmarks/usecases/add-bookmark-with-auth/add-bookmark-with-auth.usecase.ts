@@ -1,11 +1,10 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/usecase';
 import { Repository } from 'typeorm';
-import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
+import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { Bookmark as BookmarkModel } from '@readable/bookmarks/models/bookmark.model';
 import { AddBookMarkWithAuthInput } from './add-bookmark-with-auth.input';
-import { User as UserModel } from '@readable/users/models/user.model';
-import { User as UserEntity } from '@readable/users/infrastructures/typeorm/user.entity';
+import { User as UserModel } from '@readable/users/domain/user.model';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import * as sha256 from 'crypto-js/sha256';
 

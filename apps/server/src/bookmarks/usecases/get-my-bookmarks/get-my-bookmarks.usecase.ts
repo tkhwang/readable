@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/bookmark.entity';
+import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { Usecase } from '@readable/common/usecase';
-import { User } from '@readable/users/models/user.model';
+import { User } from '@readable/users/domain/user.model';
 import { Repository } from 'typeorm';
 
 export class GetMyBookmarksUsecase implements Usecase<User, Bookmark[]> {

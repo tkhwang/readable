@@ -3,17 +3,19 @@ import { SocialSigninInput } from './dto/create-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User as UserModel } from './models/user.model';
-import { User as UserEntity } from './infrastructures/typeorm/user.entity';
+import { User as UserModel } from './domain/user.model';
+import { User as UserEntity } from './infrastructures/typeorm/entities/user.entity';
+import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
+import { SigninFromExtensionInput } from '@readable/auth/application/usecases/signin-from-extension/signin-from-extension.input';
 
 @Injectable()
 export class UsersService {
   constructor(
     private jwtService: JwtService,
-    @InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity>
+    @InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity> // private readonly usersRepository: UsersRepository
   ) {}
 
-  async signinOrCreateUser(signinUser: UserModel) {
+  async signinOrCreateUser(signinUser: UserModel | SigninFromExtensionInput) {
     const { provider, providerId } = signinUser;
 
     let user = await this.usersRepository.findOne({ provider, providerId });

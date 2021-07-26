@@ -1,5 +1,5 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { User } from '@readable/users/infrastructures/typeorm/user.entity';
+import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('bookmarks')
