@@ -2,12 +2,18 @@
 import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { RequestWithInjectedUser } from './domain/auth.type';
+import { SigninUsecase } from '@readable/users/application/usecases/signin/signin.usecase';
+import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService, private readonly signinUsecase: SigninUsecase) {}
+
+  /*
+   *  OAuth using passport
+   */
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
@@ -49,5 +55,16 @@ export class AuthController {
     if (token) {
       res.redirect(`${process.env.CLIENT_HOST}/auth?token=${token}`);
     }
+  }
+
+  /*
+   * Sign from extension
+   */
+
+  @Post('signin')
+  async signin(@Body('signinInput') command: SigninInput) {
+    const data = await this.signinUsecase.execute(command);
+
+    return data;
   }
 }

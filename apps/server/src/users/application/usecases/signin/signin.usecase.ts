@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/usecase';
@@ -7,7 +8,8 @@ import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/re
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { SigninInput } from './signin.input';
 
-export class SigninUsercase implements Usecase<SigninInput, any> {
+@Injectable()
+export class SigninUsecase implements Usecase<SigninInput, string> {
   constructor(
     private jwtService: JwtService,
     @InjectRepository(UserEntity) private readonly usersRepository: UsersRepository,

@@ -8,7 +8,7 @@ import { User } from './infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
 import { OAuthUser } from './infrastructures/typeorm/entities/oauthUser.entity';
 import { OAuthUsersRepository } from './infrastructures/typeorm/repositories/oauthUsers.repository';
-import { SigninUsercase } from './application/usecases/signin/signin.usecase';
+import { SigninUsecase } from './application/usecases/signin/signin.usecase';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { SigninUsercase } from './application/usecases/signin/signin.usecase';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [UsersResolver, UsersService, OAuthUsersRepository, UsersRepository, SigninUsercase],
-  exports: [UsersService, JwtModule, SigninUsercase],
+  providers: [UsersResolver, UsersService, OAuthUsersRepository, UsersRepository, SigninUsecase],
+  exports: [UsersService, JwtModule, SigninUsecase],
 })
 export class UsersModule {}
