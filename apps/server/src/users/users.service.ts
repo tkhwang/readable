@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { SocialSigninInput } from './dto/create-user.input';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User as UserModel } from './domain/user.model';
 import { User as UserEntity } from './infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
@@ -12,10 +11,10 @@ import { SigninFromExtensionInput } from '@readable/auth/application/usecases/si
 export class UsersService {
   constructor(
     private jwtService: JwtService,
-    @InjectRepository(UserEntity) private readonly usersRepository: Repository<UserEntity> // private readonly usersRepository: UsersRepository
+    @InjectRepository(UserEntity) private readonly usersRepository: UsersRepository
   ) {}
 
-  async signinOrCreateUser(signinUser: UserModel | SigninFromExtensionInput) {
+  async signinOrCreateUser(signinUser: UserModel) {
     const { provider, providerId } = signinUser;
 
     let user = await this.usersRepository.findOne({ provider, providerId });
@@ -29,13 +28,13 @@ export class UsersService {
     return this.jwtService.sign({ id, issuer: process.env.SERVER_HOST });
   }
 
-  async create(socialSigninInput: SocialSigninInput) {
-    return this.usersRepository.insert(socialSigninInput);
-  }
+  // async create(socialSigninInput: SocialSigninInput) {
+  //   return this.usersRepository.insert(socialSigninInput);
+  // }
 
-  async findAll() {
-    return this.usersRepository.find();
-  }
+  // async findAll() {
+  //   return this.usersRepository.find();
+  // }
 
   async findOne(id: string) {
     return this.usersRepository.findOne(id);

@@ -36,23 +36,12 @@ scalar DateTime
 
 type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
-  createUser(SocialSigninInput: SocialSigninInput!): User!
 }
 
 type Query {
   anonymousBookmarks: [Bookmark!]
   me: User!
   myBookmarks: [Bookmark!]!
-  user(id: String!): User!
-  users: [User!]!
-}
-
-input SocialSigninInput {
-  avatarUrl: String
-  email: String
-  name: String!
-  provider: AuthProviders!
-  providerId: String!
 }
 
 type User {

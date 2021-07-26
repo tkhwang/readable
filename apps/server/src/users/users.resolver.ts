@@ -10,21 +10,21 @@ import { User } from './domain/user.model';
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation(returns => User)
-  createUser(@Args('SocialSigninInput') socialSigninInput: SocialSigninInput) {
-    return this.usersService.create(socialSigninInput);
-  }
+  // @Mutation(returns => User)
+  // createUser(@Args('SocialSigninInput') socialSigninInput: SocialSigninInput) {
+  //   return this.usersService.create(socialSigninInput);
+  // }
 
-  @Query(returns => [User])
-  users() {
-    return this.usersService.findAll();
-  }
+  // @Query(returns => [User])
+  // users() {
+  //   return this.usersService.findAll();
+  // }
 
-  @Query(returns => User)
-  // user(@Args('id', { type: () => ObjectIdScalar }) id: string) {
-  user(@Args('id') id: string) {
-    return this.usersService.findOne(id);
-  }
+  // @Query(returns => User)
+  // // user(@Args('id', { type: () => ObjectIdScalar }) id: string) {
+  // user(@Args('id') id: string) {
+  //   return this.usersService.findOne(id);
+  // }
 
   @Query(returns => User)
   @UseGuards(GqlAuthGuard)

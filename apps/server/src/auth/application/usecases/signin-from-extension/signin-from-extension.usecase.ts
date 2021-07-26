@@ -13,9 +13,11 @@ export class SigninFromExtensionUsecase implements Usecase<SigninFromExtensionIn
   async execute(command: SigninFromExtensionInput) {
     // const { provider, providerId, name, email, avatarUrl } = command;
 
-    const token = await this.usersService.signinOrCreateUser(command);
-    console.log('TCL: SigninFromExtensionUsecase -> execute -> token', token);
+    // const token = await this.usersService.signinOrCreateUser(command);
+    // console.log('TCL: SigninFromExtensionUsecase -> execute -> token', token);
 
-    return token;
+    // return token;
+
+    return null;
   }
 }
