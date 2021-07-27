@@ -63,8 +63,8 @@ export class AuthController {
 
   @Post('signin')
   async signin(@Body('signinInput') command: SigninInput) {
-    const data = await this.signinUsecase.execute(command);
+    const token = await this.signinUsecase.execute(command);
 
-    return data;
+    return { token };
   }
 }
