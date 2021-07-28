@@ -3,13 +3,13 @@ import { AddBookMarkInput } from './usecases/add-bookmark/add-bookmark.input';
 import * as ogs from 'open-graph-scraper';
 import { Bookmark as BookmarkModel } from './models/bookmark.model';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
+import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
 
 @Injectable()
 export class BookmarksService {
-  constructor(@InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>) {}
+  constructor(@InjectRepository(BookmarkEntity) private readonly bookmarksRepository: BookmarksRepository) {}
 
   async generateBasicBookmarkInfo(command: AddBookMarkInput): Promise<BookmarkModel> {
     const { url } = command;

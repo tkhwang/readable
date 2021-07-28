@@ -10,6 +10,7 @@ import { BookmarksModule } from './bookmarks/bookmarks.module';
 import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.entity';
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
+import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 
 @Module({
   imports: [
@@ -35,7 +36,7 @@ import { User } from './users/infrastructures/typeorm/entities/user.entity';
       charset: 'utf8mb4',
       logging: true,
       // dateStrings: ['DATE'],
-      entities: [OAuthUser, User, Bookmark],
+      entities: [OAuthUser, User, Bookmark, BookmarkUser],
       // entities: ['./dist/entities/*.js'],
       // migrations: ['./src/migrations/*.ts'],
       // cli: {

@@ -9,6 +9,7 @@ import { GetAnonymousBookmarksUsecase } from './usecases/get-anonymous-bookmarks
 import { GetUrlInfoUsecase } from './usecases/get-urlinfo/get-urlinfo.usecase';
 import { BookmarksService } from './bookmarks.service';
 import { Bookmark } from './infrastructures/typeorm/entities/bookmark.entity';
+import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Bookmark])],
@@ -20,6 +21,7 @@ import { Bookmark } from './infrastructures/typeorm/entities/bookmark.entity';
     AddBookmarkWithAuthUsecase,
     GetMyBookmarksUsecase,
     GetUrlInfoUsecase,
+    BookmarksRepository,
   ],
   controllers: [BookmarksController],
 })
