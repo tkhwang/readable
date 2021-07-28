@@ -9,7 +9,9 @@ import { BookmarksRepository } from './infrastructures/typeorm/repositories/book
 
 @Injectable()
 export class BookmarksService {
-  constructor(@InjectRepository(BookmarkEntity) private readonly bookmarksRepository: BookmarksRepository) {}
+  constructor(
+    @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: BookmarksRepository // @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>
+  ) {}
 
   async generateBasicBookmarkInfo(command: AddBookMarkInput): Promise<BookmarkModel> {
     const { url } = command;
