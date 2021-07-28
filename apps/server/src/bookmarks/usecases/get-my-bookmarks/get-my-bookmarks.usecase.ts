@@ -8,7 +8,7 @@ export class GetMyBookmarksUsecase implements Usecase<User, Bookmark[]> {
   constructor(@InjectRepository(Bookmark) private readonly bookmarkRepository: Repository<Bookmark>) {}
 
   async execute(requestUser: User) {
-    const bookmarks = await this.bookmarkRepository.find({ where: { user: requestUser.id } });
+    const bookmarks = await this.bookmarkRepository.find();
 
     return bookmarks;
   }

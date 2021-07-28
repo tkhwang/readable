@@ -1,7 +1,6 @@
 import { AuthProviders } from '@readable/auth/domain/auth.type';
-import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
 @Entity('users')
 export class User extends CoreEntity {
@@ -23,7 +22,4 @@ export class User extends CoreEntity {
 
   @Column()
   avatarUrl?: string;
-
-  @OneToMany(() => Bookmark, bookmark => bookmark.user)
-  bookmarks: Bookmark[];
 }

@@ -7,6 +7,6 @@ export class GetAnonymousBookmarksUsecase implements Usecase<void, Bookmark[] | 
   constructor(@InjectRepository(Bookmark) private readonly bookmarkRepository: Repository<Bookmark>) {}
 
   async execute() {
-    return this.bookmarkRepository.find({ where: { user: null } });
+    return this.bookmarkRepository.find();
   }
 }
