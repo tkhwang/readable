@@ -1,4 +1,4 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
 
 @ObjectType()
@@ -29,4 +29,9 @@ export class Bookmark extends CoreModel {
 
   @Field(type => [String])
   tags: string[];
+
+  // Model only
+
+  @Field(type => Int)
+  howMany?: number;
 }

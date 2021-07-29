@@ -18,6 +18,7 @@ type Bookmark {
   deletedAt: DateTime!
   description: String!
   generatedImage: String!
+  howMany: Int!
   id: ID!
   imageUrl: String!
   siteName: String!
