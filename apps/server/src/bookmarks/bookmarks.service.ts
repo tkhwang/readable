@@ -18,6 +18,7 @@ export class BookmarksService {
 
     const ogsOptions = { url };
     const { result } = await ogs(ogsOptions);
+    const siteName = result['ogSiteName'] || '';
 
     const bookmark = new BookmarkBuilder()
       .setUrl(result['ogUrl'] ?? url)
@@ -26,7 +27,7 @@ export class BookmarksService {
       .setType(result['ogType'] ?? '')
       .setImageUrl(result['ogImage']['url'] ?? '')
       .setDescription(result['ogDescription'] ?? '')
-      .setTags(result['ogTags'] ?? '')
+      .setTags(siteName ? [siteName] : [])
       .build();
 
     return bookmark;
