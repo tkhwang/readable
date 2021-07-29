@@ -17,9 +17,10 @@ export class SigninUsecase implements Usecase<SigninInput, string> {
   ) {}
 
   async execute(command: SigninInput) {
+    console.log('TCL: SigninUsecase -> execute -> command', command);
     const { provider, providerId, email } = command;
 
-    let oauthUser = await this.oAuthUsersRepository.findOne({ provider, providerId });
+    let oauthUser = await this.oAuthUsersRepository.findOne({ where: { provider, providerId } });
 
     if (!oauthUser) {
       oauthUser = await this.oAuthUsersRepository.create(command);
