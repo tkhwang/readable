@@ -1,6 +1,7 @@
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
+import { OAuthUser } from './oauthUser.entity';
 
 @Entity('users')
 export class User extends CoreEntity {
@@ -22,4 +23,7 @@ export class User extends CoreEntity {
 
   @Column()
   avatarUrl?: string;
+
+  @OneToMany(() => OAuthUser, oauthUser => oauthUser.user)
+  oauthUsers: OAuthUser[];
 }

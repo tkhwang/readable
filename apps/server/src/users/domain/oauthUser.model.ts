@@ -1,6 +1,7 @@
 import { ObjectType, Field, Int, ID, InputType } from '@nestjs/graphql';
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreModel } from '@readable/common/models/core.model';
+import { User } from './user.model';
 
 @InputType({ isAbstract: true })
 @ObjectType()
@@ -19,4 +20,7 @@ export class OAuthUser extends CoreModel {
 
   @Field(type => String, { nullable: true })
   avatarUrl?: string;
+
+  @Field(type => User)
+  user: User;
 }
