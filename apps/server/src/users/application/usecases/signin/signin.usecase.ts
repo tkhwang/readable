@@ -20,15 +20,15 @@ export class SigninUsecase implements Usecase<SigninInput, string> {
     console.log('TCL: SigninUsecase -> execute -> command', command);
     const { provider, providerId, email } = command;
 
+    // MEMO(Teddy): OAuthUser by provider/providerId
     let oauthUser = await this.oAuthUsersRepository.findOne({ where: { provider, providerId } });
-
     if (!oauthUser) {
       oauthUser = await this.oAuthUsersRepository.create(command);
       await this.oAuthUsersRepository.save(oauthUser);
     }
 
     // MEMO(Teddy): User by email
-    let user = await this.usersRepository.findOne({ email });
+    let user = await this.usersRepository.findOne({ where: { email } });
 
     if (user) {
       // Update user info by latest oauth user info
@@ -40,7 +40,9 @@ export class SigninUsecase implements Usecase<SigninInput, string> {
       const { id, ...restOAuthUser } = oauthUser;
       user = await this.usersRepository.create(restOAuthUser);
     }
+    oauthUser.user = user;
     await this.usersRepository.save(user);
+    await this.oAuthUsersRepository.save(oauthUser);
 
     const { id } = user;
     return this.jwtService.sign({ id, issuer: process.env.SERVER_HOST });
