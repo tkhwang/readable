@@ -39,6 +39,19 @@ type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
 }
 
+type OAuthUser {
+  avatarUrl: String
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  email: String
+  id: ID!
+  name: String!
+  provider: AuthProviders!
+  providerId: String!
+  updatedAt: DateTime!
+  user: User!
+}
+
 type Query {
   anonymousBookmarks: [Bookmark!]
   me: User!
@@ -52,6 +65,7 @@ type User {
   email: String
   id: ID!
   name: String!
+  oauthUsers: [OAuthUser!]!
   provider: AuthProviders!
   providerId: String!
   updatedAt: DateTime!

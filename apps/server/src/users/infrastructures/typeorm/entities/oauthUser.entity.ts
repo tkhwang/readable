@@ -1,6 +1,7 @@
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity('oauthUsers')
 export class OAuthUser extends CoreEntity {
@@ -22,4 +23,7 @@ export class OAuthUser extends CoreEntity {
 
   @Column()
   avatarUrl?: string;
+
+  @ManyToOne(() => User, user => user.oauthUsers)
+  user: User;
 }
