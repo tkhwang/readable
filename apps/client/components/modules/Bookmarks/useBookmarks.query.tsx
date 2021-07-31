@@ -31,15 +31,20 @@ const DELETE_BOOKMARK_WITH_AUTH = gql`
 export type BookmarksViewModel = ViewModel<typeof useBookmarks>;
 
 export function useBookmarks() {
-  const { data: dataMyBookmarks, loading, error } = useGetMyBookmarksQuery();
+  const { data: dataMyBookmarks, loading, error, refetch } = useGetMyBookmarksQuery();
   const myBookmarks = dataMyBookmarks?.myBookmarks ?? [];
 
-  const [deleteBookmarkWithAuthMutation] = useDeleteBookmarkWithAuthMutation();
+  const [deleteBookmarkWithAuthMutation] = useDeleteBookmarkWithAuthMutation({
+    onCompleted: () => {
+      refetch();
+    },
+  });
 
   return {
     myBookmarks,
     loading,
     error,
+    refetch,
     deleteBookmarkWithAuthMutation,
   };
 }
