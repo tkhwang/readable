@@ -20,7 +20,7 @@ export class DeleteBookmarkWithAuthUsecse implements Usecase<DeleteBookmarkWithA
     if (!bookmarkUser) throw new UnauthorizedDeleteBookmarkWithAuthException(requestUser.id, bookmarkId);
 
     try {
-      await this.bookmarkUserssRepository.softDelete(bookmarkId);
+      await this.bookmarkUserssRepository.softRemove(bookmarkUser);
 
       return new CommonOutput(true);
     } catch (error) {

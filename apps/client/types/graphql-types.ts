@@ -45,15 +45,31 @@ export type Bookmark = {
   readonly urlHash: Scalars['String'];
 };
 
+export type CommonOutput = {
+  readonly __typename?: 'CommonOutput';
+  /** 공통 Response (output) */
+  readonly isSuccess: Scalars['Boolean'];
+};
+
+
+export type DeleteBookmarkWithAuthInput = {
+  readonly bookmarkId: Scalars['String'];
+};
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
   readonly addBookmarkWithAuth: Bookmark;
+  readonly deleteBookmarkWithAuth: CommonOutput;
 };
 
 
 export type MutationaddBookmarkWithAuthArgs = {
   addBookMarkWithAuthInput: AddBookMarkWithAuthInput;
+};
+
+
+export type MutationdeleteBookmarkWithAuthArgs = {
+  deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput;
 };
 
 export type OAuthUser = {
