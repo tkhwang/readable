@@ -26,10 +26,14 @@ export enum AuthProviders {
 
 export type Bookmark = {
   readonly __typename?: 'Bookmark';
+  readonly countEmotional: Scalars['Int'];
+  readonly countFactful: Scalars['Int'];
+  readonly countInspirational: Scalars['Int'];
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];
   readonly generatedImage: Scalars['String'];
+  readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
   readonly siteName: Scalars['String'];
@@ -45,7 +49,6 @@ export type Bookmark = {
 export type Mutation = {
   readonly __typename?: 'Mutation';
   readonly addBookmarkWithAuth: Bookmark;
-  readonly createUser: User;
 };
 
 
@@ -53,31 +56,24 @@ export type MutationaddBookmarkWithAuthArgs = {
   addBookMarkWithAuthInput: AddBookMarkWithAuthInput;
 };
 
-
-export type MutationcreateUserArgs = {
-  SocialSigninInput: SocialSigninInput;
+export type OAuthUser = {
+  readonly __typename?: 'OAuthUser';
+  readonly avatarUrl?: Maybe<Scalars['String']>;
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly email?: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly name: Scalars['String'];
+  readonly provider: AuthProviders;
+  readonly providerId: Scalars['String'];
+  readonly updatedAt: Scalars['DateTime'];
+  readonly user: User;
 };
 
 export type Query = {
   readonly __typename?: 'Query';
-  readonly anonymousBookmarks?: Maybe<ReadonlyArray<Bookmark>>;
   readonly me: User;
   readonly myBookmarks: ReadonlyArray<Bookmark>;
-  readonly user: User;
-  readonly users: ReadonlyArray<User>;
-};
-
-
-export type QueryuserArgs = {
-  id: Scalars['String'];
-};
-
-export type SocialSigninInput = {
-  readonly avatarUrl?: Maybe<Scalars['String']>;
-  readonly email?: Maybe<Scalars['String']>;
-  readonly name: Scalars['String'];
-  readonly provider: AuthProviders;
-  readonly providerId: Scalars['String'];
 };
 
 export type User = {
@@ -88,6 +84,7 @@ export type User = {
   readonly email?: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly name: Scalars['String'];
+  readonly oauthUsers: ReadonlyArray<OAuthUser>;
   readonly provider: AuthProviders;
   readonly providerId: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
