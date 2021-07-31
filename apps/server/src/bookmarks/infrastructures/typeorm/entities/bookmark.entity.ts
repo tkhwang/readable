@@ -29,4 +29,13 @@ export class Bookmark extends CoreEntity {
 
   @Column('simple-array')
   tags: string[];
+
+  @Column('int', { default: 0 })
+  countFactful: number;
+
+  @Column('int', { default: 0 })
+  countEmotional: number;
+
+  @Column('int', { default: 0 })
+  countInspirational: number;
 }
