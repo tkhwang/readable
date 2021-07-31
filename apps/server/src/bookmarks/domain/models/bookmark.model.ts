@@ -1,5 +1,17 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
+
+export enum LikeType {
+  NONE = 'none',
+  FACTFUL = 'factful',
+  EMOTIONAL = 'emotional',
+  INSPARATIONAL = 'inspirational',
+}
+
+registerEnumType(LikeType, {
+  name: 'LikeType',
+  description: 'Bookmark like type',
+});
 
 @ObjectType()
 export class Bookmark extends CoreModel {
@@ -29,6 +41,15 @@ export class Bookmark extends CoreModel {
 
   @Field(type => [String])
   tags: string[];
+
+  @Field(type => Int)
+  countFactful: number;
+
+  @Field(type => Int)
+  countEmotional: number;
+
+  @Field(type => Int)
+  countInspirational: number;
 
   // Model only
 
