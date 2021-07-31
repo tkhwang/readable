@@ -3,7 +3,7 @@ import React from 'react';
 import { BookmarksViewModel } from './useBookmarks.query';
 
 export const BookmarksViewController: ViewController<BookmarksViewModel> = React.memo(({ viewModel }) => {
-  const { myBookmarks, loading, error } = viewModel;
+  const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = viewModel;
 
   if (loading) {
     return (
@@ -18,7 +18,24 @@ export const BookmarksViewController: ViewController<BookmarksViewModel> = React
       <p className="text-2xl">My Bookmarks</p>
       {myBookmarks?.length > 0 &&
         myBookmarks.map(bookmark => {
-          const { url, imageUrl, title, description, countFactful, countEmotional, countInspirational } = bookmark;
+          const {
+            id: bookmarkId,
+            url,
+            imageUrl,
+            title,
+            description,
+            countFactful,
+            countEmotional,
+            countInspirational,
+          } = bookmark;
+
+          const handleDelete = () => {
+            deleteBookmarkWithAuthMutation({
+              variables: {
+                deleteBookmarkWithAuthInput: { bookmarkId },
+              },
+            });
+          };
 
           return (
             <div className="p-10">
@@ -50,7 +67,10 @@ export const BookmarksViewController: ViewController<BookmarksViewModel> = React
                     <li>Inspirational: {countInspirational}</li>
                   </ul>
                 </div>
-                <button className="bg-transparent hover:bg-red-500 text-red-700 text-base hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+                <button
+                  className="bg-transparent hover:bg-red-500 text-red-700 text-base hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+                  onClick={handleDelete}
+                >
                   delete
                 </button>
               </div>
