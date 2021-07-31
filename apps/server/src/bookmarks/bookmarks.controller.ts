@@ -1,8 +1,8 @@
 import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { RequestWithInjectedUser } from '@readable/auth/domain/auth.type';
 import { JwtAuthGuard } from '@readable/auth/domain/jwt-auth.guard';
-import { AddBookmarkWithAuthUsecase } from './usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
-import { GetUrlInfoUsecase } from './usecases/get-urlinfo/get-urlinfo.usecase';
+import { AddBookmarkWithAuthUsecase } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
+import { GetUrlInfoUsecase } from './applications/usecases/get-urlinfo/get-urlinfo.usecase';
 
 @Controller('bookmarks')
 export class BookmarksController {

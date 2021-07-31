@@ -4,9 +4,9 @@ import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/user.model';
 import { Bookmark } from './models/bookmark.model';
-import { AddBookMarkWithAuthInput } from './usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
-import { AddBookmarkWithAuthUsecase } from './usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
-import { GetMyBookmarksUsecase } from './usecases/get-my-bookmarks/get-my-bookmarks.usecase';
+import { AddBookMarkWithAuthInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
+import { AddBookmarkWithAuthUsecase } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
+import { GetMyBookmarksUsecase } from './applications/usecases/get-my-bookmarks/get-my-bookmarks.usecase';
 
 @Resolver(of => Bookmark)
 export class BookmarksResolver {
