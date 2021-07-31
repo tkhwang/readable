@@ -18,7 +18,7 @@ export const BookmarksViewController: ViewController<BookmarksViewModel> = React
       <p className="text-2xl">My Bookmarks</p>
       {myBookmarks?.length > 0 &&
         myBookmarks.map(bookmark => {
-          const { url, imageUrl, title, description } = bookmark;
+          const { url, imageUrl, title, description, countFactful, countEmotional, countInspirational } = bookmark;
 
           return (
             <div className="p-10">
@@ -39,17 +39,19 @@ export const BookmarksViewController: ViewController<BookmarksViewModel> = React
                     );
                   })}
                 </div>
-                <ul>
-                  <li>factual: ${}</li>
-                </ul>
+                <div className="text-base">
+                  <ul>
+                    <li>Factful : {countFactful}</li>
+                  </ul>
+                  <ul>
+                    <li>Emotional: {countEmotional}</li>
+                  </ul>
+                  <ul>
+                    <li>Inspirational: {countInspirational}</li>
+                  </ul>
+                </div>
                 <button className="bg-transparent hover:bg-red-500 text-red-700 text-base hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
                   delete
-                </button>
-                <button className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                  FACTful
-                </button>
-                <button className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                  INSIGHTful
                 </button>
               </div>
             </div>
