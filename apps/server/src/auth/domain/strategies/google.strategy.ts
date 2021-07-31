@@ -2,7 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
-import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
+import { SigninInput } from '@readable/users/applications/usecases/signin/signin.input';
 import { AuthProviders } from '../auth.type';
 
 config();

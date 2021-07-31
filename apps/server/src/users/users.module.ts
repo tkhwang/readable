@@ -8,7 +8,7 @@ import { User } from './infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
 import { OAuthUser } from './infrastructures/typeorm/entities/oauthUser.entity';
 import { OAuthUsersRepository } from './infrastructures/typeorm/repositories/oauthUsers.repository';
-import { SigninUsecase } from './application/usecases/signin/signin.usecase';
+import { SigninUsecase } from './applications/usecases/signin/signin.usecase';
 
 @Module({
   imports: [

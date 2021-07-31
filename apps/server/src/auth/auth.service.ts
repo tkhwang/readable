@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SigninUsecase } from '@readable/users/application/usecases/signin/signin.usecase';
+import { SigninUsecase } from '@readable/users/applications/usecases/signin/signin.usecase';
 import { RequestWithInjectedUser } from './domain/auth.type';
 
 @Injectable()
