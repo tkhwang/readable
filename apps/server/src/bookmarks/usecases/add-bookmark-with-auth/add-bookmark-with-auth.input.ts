@@ -1,5 +1,7 @@
-import { InputType } from '@nestjs/graphql';
-import { AddBookMarkInput } from '../add-bookmark/add-bookmark.input';
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class AddBookMarkWithAuthInput extends AddBookMarkInput {}
+export class AddBookMarkWithAuthInput {
+  @Field(type => String)
+  url: string;
+}

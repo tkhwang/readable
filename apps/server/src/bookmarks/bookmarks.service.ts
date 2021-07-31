@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { AddBookMarkInput } from './usecases/add-bookmark/add-bookmark.input';
 import * as ogs from 'open-graph-scraper';
 import { Bookmark as BookmarkModel } from './models/bookmark.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
 import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
+import { AddBookMarkWithAuthInput } from './usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 
 @Injectable()
 export class BookmarksService {
@@ -13,7 +13,7 @@ export class BookmarksService {
     @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: BookmarksRepository // @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>
   ) {}
 
-  async generateBasicBookmarkInfo(command: AddBookMarkInput): Promise<BookmarkModel> {
+  async generateBasicBookmarkInfo(command: AddBookMarkWithAuthInput): Promise<BookmarkModel> {
     const { url } = command;
 
     const ogsOptions = { url };
