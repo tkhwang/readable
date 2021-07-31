@@ -37,8 +37,14 @@ export const BookmarksViewController: ViewController<BookmarksViewModel> = React
                     );
                   })}
                 </div>
-                <button className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <button className="bg-transparent hover:bg-red-500 text-red-700 text-base hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
                   delete
+                </button>
+                <button className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                  FACTful
+                </button>
+                <button className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                  INSIGHTful
                 </button>
               </div>
             </div>
