@@ -33,13 +33,23 @@ type Bookmark {
   urlHash: String!
 }
 
+type CommonOutput {
+  """공통 Response (output)"""
+  isSuccess: Boolean!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
+input DeleteBookmarkWithAuthInput {
+  bookmarkId: String!
+}
+
 type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
+  deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
 }
 
 type OAuthUser {

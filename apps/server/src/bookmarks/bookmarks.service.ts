@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as ogs from 'open-graph-scraper';
-import { Bookmark as BookmarkModel } from './models/bookmark.model';
+import { Bookmark as BookmarkModel } from './domain/models/bookmark.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';

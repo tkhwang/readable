@@ -7,7 +7,7 @@ import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/
 import { Repository } from 'typeorm';
 import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarkUserssRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
-import { Bookmark as BookmarkModel } from '@readable/bookmarks/models/bookmark.model';
+import { Bookmark as BookmarkModel } from '@readable/bookmarks/domain/models/bookmark.model';
 
 export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkModel> {
   constructor(
