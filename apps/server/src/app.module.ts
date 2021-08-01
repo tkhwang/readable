@@ -36,22 +36,15 @@ import { PaginationModule } from './pagination/pagination.module';
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      // dateStrings: ['DATE'],
       entities: [OAuthUser, User, Bookmark, BookmarkUser],
-      // entities: ['./dist/**/entities/*.ts'],
-      // migrations: ['./src/migrations/*.ts'],
-      // cli: {
-      //   migrationsDir: './src/migrations',
-      // },
       synchronize: true,
     }),
+    // MEMO(Teddy): MongoDB
     // MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
     BookmarksModule,
     PaginationModule,
-    // TODO(Teddy): WIP
-    // BookmarksModule,
   ],
   controllers: [],
   providers: [],

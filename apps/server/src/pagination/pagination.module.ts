@@ -11,14 +11,7 @@ import { PaginationBookmarksService } from './paginationBookmarks/paginationBook
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      Bookmark,
-      BookmarksRepository,
-      BookmarkUser,
-      BookmarkUsersRepository,
-      // User,
-      // UsersRepository,
-    ]),
+    TypeOrmModule.forFeature([Bookmark, BookmarksRepository, BookmarkUser, BookmarkUsersRepository]),
     BookmarksModule,
   ],
   providers: [PaginationBookmarksResolver, PaginationBookmarksService, GetPaginationBookmarksUsecase],
