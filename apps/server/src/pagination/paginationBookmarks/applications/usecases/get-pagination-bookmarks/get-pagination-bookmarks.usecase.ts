@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { Usecase } from '@readable/common/usecase';
-import { PaginationBookmarkBRFOs } from '@readable/pagination/paginationBookmarks/domain/paginationBookmarks.type';
+import { PaginationBookmarkBRFOs } from '@readable/pagination/paginationBookmarks/domain/models/paginationBookmarks.type';
 import { User } from '@readable/users/domain/models/user.model';
 import { GetPaginationBookmarksInput } from './get-pagination-bookmarks.input';
 

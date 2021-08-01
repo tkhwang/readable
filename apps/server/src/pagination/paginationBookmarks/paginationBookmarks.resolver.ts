@@ -5,7 +5,7 @@ import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/models/user.model';
 import { GetPaginationBookmarksInput } from './applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.input';
 import { GetPaginationBookmarksUsecase } from './applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.usecase';
-import { PaginationBookmarkBRFOs, PaginationBookmarks } from './domain/paginationBookmarks.type';
+import { PaginationBookmarkBRFOs, PaginationBookmarks } from './domain/models/paginationBookmarks.type';
 
 @Resolver(of => PaginationBookmarks)
 export class PaginationBookmarksResolver {
