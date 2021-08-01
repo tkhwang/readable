@@ -25,6 +25,6 @@ import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-boo
     DeleteBookmarkWithAuthUsecse,
   ],
   controllers: [BookmarksController],
-  exports: [BookmarksService],
+  exports: [BookmarksService, BookmarksRepository],
 })
 export class BookmarksModule {}

@@ -65,6 +65,19 @@ type OAuthUser {
   user: User!
 }
 
+type PaginationBookmarkEdge {
+  cursor: PaginationCursor!
+  node: Bookmark!
+}
+
+"""Relay Style Pagination Curosr"""
+scalar PaginationCursor
+
+type PaginationPageInfo {
+  endCursor: PaginationCursor
+  hasNextPage: Boolean!
+}
+
 type Query {
   me: User!
   myBookmarks: [Bookmark!]!

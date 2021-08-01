@@ -11,6 +11,7 @@ import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.
 import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.entity';
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
+import { PaginationModule } from './pagination/pagination.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookm
     UsersModule,
     AuthModule,
     BookmarksModule,
+    PaginationModule,
     // TODO(Teddy): WIP
     // BookmarksModule,
   ],
