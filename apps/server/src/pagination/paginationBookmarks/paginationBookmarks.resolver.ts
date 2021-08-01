@@ -5,7 +5,7 @@ import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/user.model';
 import { GetPaginationBookmarksInput } from './applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.input';
 import { GetPaginationBookmarksUsecase } from './applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.usecase';
-import { PaginationBookmarks } from './domain/paginationBookmarks.type';
+import { PaginationBookmarkBRFOs, PaginationBookmarks } from './domain/paginationBookmarks.type';
 
 @Resolver(of => PaginationBookmarks)
 export class PaginationBookmarksResolver {
@@ -19,7 +19,7 @@ export class PaginationBookmarksResolver {
   async paginationBookmarks(
     @CurrentUser() requestUser: User,
     @Args('getPaginationBookmarksInput') query: GetPaginationBookmarksInput
-  ): Promise<PaginationBookmarks | null> {
+  ): Promise<PaginationBookmarkBRFOs | null> {
     return this.getPaginationBookmarksUsecase.execute(query, requestUser);
   }
 }

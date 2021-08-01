@@ -7,9 +7,9 @@ import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/
 import { Repository } from 'typeorm';
 import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarkUserssRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
-import { Bookmark as BookmarkModel } from '@readable/bookmarks/domain/models/bookmark.model';
+import { Bookmark as BookmarkModel, BookmarkBRFO } from '@readable/bookmarks/domain/models/bookmark.model';
 
-export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkModel> {
+export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO> {
   constructor(
     // TODO(Teddy): If not this repository, bookmarksService cannot be injected. Why ?
     @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>,
@@ -27,7 +27,7 @@ export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkModel
       return existingBookmark;
     }
 
-    const bookmarkInfo = await this.bookmarksService.generateBasicBookmarkInfo(query);
+    const bookmarkInfo: BookmarkBRFO = await this.bookmarksService.generateBasicBookmarkInfo(query);
     bookmarkInfo.urlHash = urlHash;
     bookmarkInfo.howMany = await this.getHowMany(urlHash);
 

@@ -4,4 +4,4 @@ import { BookmarkUser } from '../entities/bookmarkUser.entity';
 
 @Injectable()
 @EntityRepository(BookmarkUser)
-export class BookmarkUserssRepository extends Repository<BookmarkUser> {}
+export class BookmarkUsersRepository extends Repository<BookmarkUser> {}

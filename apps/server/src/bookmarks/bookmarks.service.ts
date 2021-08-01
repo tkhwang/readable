@@ -13,7 +13,7 @@ export class BookmarksService {
     @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: BookmarksRepository // @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>
   ) {}
 
-  async generateBasicBookmarkInfo(command: AddBookMarkWithAuthInput): Promise<BookmarkModel> {
+  async generateBasicBookmarkInfo(command: AddBookMarkWithAuthInput): Promise<BookmarkEntity> {
     const { url } = command;
 
     const ogsOptions = { url };

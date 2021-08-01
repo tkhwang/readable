@@ -14,6 +14,27 @@ enum AuthProviders {
 }
 
 type Bookmark {
+  author: User
+  countEmotional: Int!
+  countFactful: Int!
+  countInspirational: Int!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  description: String!
+  generatedImage: String!
+  howMany: Int!
+  id: ID!
+  imageUrl: String!
+  siteName: String!
+  tags: [String!]!
+  title: String!
+  type: String!
+  updatedAt: DateTime!
+  url: String!
+  urlHash: String!
+}
+
+type BookmarkBRFO {
   countEmotional: Int!
   countFactful: Int!
   countInspirational: Int!
@@ -74,6 +95,11 @@ type OAuthUser {
   providerId: String!
   updatedAt: DateTime!
   user: User!
+}
+
+type PaginationBookmarkBRFOEdge {
+  cursor: PaginationCursor!
+  node: BookmarkBRFO!
 }
 
 type PaginationBookmarkEdge {
