@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { Usecase } from '@readable/common/usecase';
-import { User } from '@readable/users/domain/user.model';
+import { User } from '@readable/users/domain/models/user.model';
 import { DeleteBookmarkWithAuthInput } from './delete-bookmark-with-auth.input';
 import {
   DeleteBookmarkWithAuthFailException,

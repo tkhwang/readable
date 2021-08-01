@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
 import { GetPaginationBookmarksInput } from '@readable/pagination/paginationBookmarks/applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.input';
 import { PaginationBookmarkBRFOs } from '@readable/pagination/paginationBookmarks/domain/paginationBookmarks.type';
-import { User } from '@readable/users/domain/user.model';
+import { User } from '@readable/users/domain/models/user.model';
 import { EntityRepository, Repository } from 'typeorm';
 import { Bookmark } from '../entities/bookmark.entity';
 

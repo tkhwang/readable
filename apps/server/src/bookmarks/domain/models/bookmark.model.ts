@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
-import { User } from '@readable/users/domain/user.model';
+import { User } from '@readable/users/domain/models/user.model';
 
 export enum LikeType {
   NONE = 'none',

@@ -2,8 +2,8 @@ import { Resolver, Query } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { UseGuards } from '@nestjs/common';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
-import { User } from './domain/user.model';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
+import { User } from './domain/models/user.model';
 
 @Resolver(of => User)
 export class UsersResolver {

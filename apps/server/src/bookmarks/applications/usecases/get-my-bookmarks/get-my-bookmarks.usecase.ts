@@ -3,7 +3,7 @@ import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/entities/b
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { Usecase } from '@readable/common/usecase';
-import { User } from '@readable/users/domain/user.model';
+import { User } from '@readable/users/domain/models/user.model';
 import { In } from 'typeorm';
 
 export class GetMyBookmarksUsecase implements Usecase<User, Bookmark[]> {
