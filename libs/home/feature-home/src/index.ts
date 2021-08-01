@@ -1,2 +1,1 @@
-export * from './lib/home/home';
-export * from './lib/layout/layout';
+export * from './lib/layout/home-layout';

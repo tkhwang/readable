@@ -1,1 +1,1 @@
-export * from './lib/feature-comming-soon';
+export * from './lib/coming-soon';
