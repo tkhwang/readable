@@ -14,8 +14,14 @@
     "paths": {
       "@client": ["apps/client"],
       "@client/*": ["apps/client/*"],
-      "@readable/client-data-access": ["libs/client-data-access/src/index.ts"],
-      "@readable/client-feature-home": ["libs/client-feature-home/src/index.ts"],
+      "@readable/home/feature-coming-soon": ["libs/home/feature-coming-soon/src/index.ts"],
+      "@readable/home/feature-home": ["libs/home/feature-home/src/index.ts"],
+      "@readable/shared/data-access-apollo": ["libs/shared/data-access-apollo/src/index.ts"],
+      "@readable/shared/data-access-auth": ["libs/shared/data-access-auth/src/index.ts"],
+      "@readable/shared/feature-apollo": ["libs/shared/feature-apollo/src/index.ts"],
+      "@readable/shared/feature-auth": ["libs/shared/feature-auth/src/index.ts"],
+      "@readable/shared/util-auth": ["libs/shared/util-auth/src/index.ts"],
+      "@readable/shared/util-common": ["libs/shared/util-common/src/index.ts"],
       "@readable/ui": ["libs/ui/src/index.ts"]
     }
   },

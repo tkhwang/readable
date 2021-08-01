@@ -1,6 +1,48 @@
 {
   "version": 2,
   "projects": {
+    "bookmark-data-access-bookmark": {
+      "root": "libs/bookmark/data-access-bookmark",
+      "sourceRoot": "libs/bookmark/data-access-bookmark/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/bookmark/data-access-bookmark/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/bookmark/data-access-bookmark"],
+          "options": {
+            "jestConfig": "libs/bookmark/data-access-bookmark/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "bookmark-feature-bookmark": {
+      "root": "libs/bookmark/feature-bookmark",
+      "sourceRoot": "libs/bookmark/feature-bookmark/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/bookmark/feature-bookmark/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/bookmark/feature-bookmark"],
+          "options": {
+            "jestConfig": "libs/bookmark/feature-bookmark/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "client": {
       "root": "apps/client",
       "sourceRoot": "apps/client",
@@ -49,27 +91,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
-          }
-        }
-      }
-    },
-    "client-feature-home": {
-      "root": "libs/client/feature-home",
-      "sourceRoot": "libs/client/feature-home/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/feature-home/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/feature-home"],
-          "options": {
-            "jestConfig": "libs/client/feature-home/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -125,6 +146,48 @@
         }
       }
     },
+    "home-feature-coming-soon": {
+      "root": "libs/home/feature-coming-soon",
+      "sourceRoot": "libs/home/feature-coming-soon/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/home/feature-coming-soon/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home/feature-coming-soon"],
+          "options": {
+            "jestConfig": "libs/home/feature-coming-soon/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "home-feature-home": {
+      "root": "libs/home/feature-home",
+      "sourceRoot": "libs/home/feature-home/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/home/feature-home/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home/feature-home"],
+          "options": {
+            "jestConfig": "libs/home/feature-home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "server": {
       "root": "apps/server",
       "sourceRoot": "apps/server/src",
@@ -170,6 +233,132 @@
           "outputs": ["coverage/apps/server"],
           "options": {
             "jestConfig": "apps/server/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-apollo": {
+      "root": "libs/shared/data-access-apollo",
+      "sourceRoot": "libs/shared/data-access-apollo/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-apollo/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-apollo"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-apollo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-auth": {
+      "root": "libs/shared/data-access-auth",
+      "sourceRoot": "libs/shared/data-access-auth/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-auth/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-auth"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-me": {
+      "root": "libs/shared/data-access-me",
+      "sourceRoot": "libs/shared/data-access-me/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-me/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-me"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-me/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-user": {
+      "root": "libs/shared/data-access-user",
+      "sourceRoot": "libs/shared/data-access-user/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-user/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-user"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-user/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-auth": {
+      "root": "libs/shared/util-auth",
+      "sourceRoot": "libs/shared/util-auth/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util-auth/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-auth"],
+          "options": {
+            "jestConfig": "libs/shared/util-auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-common": {
+      "root": "libs/shared/util-common",
+      "sourceRoot": "libs/shared/util-common/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util-common/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-common"],
+          "options": {
+            "jestConfig": "libs/shared/util-common/jest.config.js",
             "passWithNoTests": true
           }
         }

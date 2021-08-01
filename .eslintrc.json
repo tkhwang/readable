@@ -14,7 +14,11 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:client",
-                "onlyDependOnLibsWithTags": ["scope:ui", "scope:client"]
+                "onlyDependOnLibsWithTags": ["scope:ui", "scope:client-shared", "scope:client"]
+              },
+              {
+                "sourceTag": "scope:client-shared",
+                "onlyDependOnLibsWithTags": ["scope:client-shared"]
               }
             ]
           }

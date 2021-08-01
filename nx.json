@@ -19,17 +19,44 @@
     }
   },
   "projects": {
-    "client": {
-      "tags": ["scope:client"]
+    "bookmark-data-access-bookmark": {
+      "tags": []
     },
-    "client-feature-home": {
+    "bookmark-feature-bookmark": {
+      "tags": []
+    },
+    "client": {
       "tags": ["scope:client"]
     },
     "extensions": {
       "tags": []
     },
+    "home-feature-coming-soon": {
+      "tags": ["scope:client"]
+    },
+    "home-feature-home": {
+      "tags": ["scope:client"]
+    },
     "server": {
       "tags": []
+    },
+    "shared-data-access-apollo": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-data-access-auth": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-data-access-me": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-data-access-user": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-util-auth": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-util-common": {
+      "tags": ["scope:client-shared"]
     },
     "ui": {
       "tags": ["scope:ui"]
