@@ -5,7 +5,7 @@ import { AddBookMarkWithAuthInput } from './add-bookmark-with-auth.input';
 import { User as UserModel } from '@readable/users/domain/user.model';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import * as sha256 from 'crypto-js/sha256';
-import { BookmarkUserssRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
+import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
@@ -14,7 +14,7 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
   constructor(
     private readonly bookmarksService: BookmarksService,
     @InjectRepository(Bookmark) private readonly bookmarksRepository: BookmarksRepository,
-    @InjectRepository(BookmarkUser) private readonly bookmarkUserssRepository: BookmarkUserssRepository
+    @InjectRepository(BookmarkUser) private readonly bookmarkUsersRepository: BookmarkUsersRepository
   ) {}
 
   async execute(command: AddBookMarkWithAuthInput, requestUser: UserModel) {
@@ -40,10 +40,10 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
   private async updateBookmarkUser(urlHash: string, bookmark: Bookmark, user: User) {
     const bookmarkUserForCheck = { urlHash, bookmarkId: bookmark.id, userId: user.id };
 
-    const bookmarkUser = await this.bookmarkUserssRepository.findOne({ where: bookmarkUserForCheck });
+    const bookmarkUser = await this.bookmarkUsersRepository.findOne({ where: bookmarkUserForCheck });
 
     if (!bookmarkUser) {
-      await this.bookmarkUserssRepository.insert(bookmarkUserForCheck);
+      await this.bookmarkUsersRepository.insert(bookmarkUserForCheck);
     }
   }
 }

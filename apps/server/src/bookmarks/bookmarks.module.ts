@@ -7,7 +7,7 @@ import { GetMyBookmarksUsecase } from './applications/usecases/get-my-bookmarks/
 import { GetUrlInfoUsecase } from './applications/usecases/get-urlinfo/get-urlinfo.usecase';
 import { Bookmark } from './infrastructures/typeorm/entities/bookmark.entity';
 import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
-import { BookmarkUserssRepository } from './infrastructures/typeorm/repositories/bookmarkUsers.repository';
+import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { BookmarkUser } from './infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarksService } from './bookmarks.service';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
@@ -18,7 +18,7 @@ import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-boo
     BookmarksService,
     BookmarksResolver,
     BookmarksRepository,
-    BookmarkUserssRepository,
+    BookmarkUsersRepository,
     GetMyBookmarksUsecase,
     GetUrlInfoUsecase,
     AddBookmarkWithAuthUsecase,

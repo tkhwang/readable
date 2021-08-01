@@ -6,14 +6,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { Repository } from 'typeorm';
 import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
-import { BookmarkUserssRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
+import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { Bookmark as BookmarkModel, BookmarkBRFO } from '@readable/bookmarks/domain/models/bookmark.model';
 
 export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO> {
   constructor(
     // TODO(Teddy): If not this repository, bookmarksService cannot be injected. Why ?
     @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>,
-    @InjectRepository(BookmarkUser) private readonly bookmarkUserssRepository: BookmarkUserssRepository,
+    @InjectRepository(BookmarkUser) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
     private readonly bookmarksService: BookmarksService
   ) {}
 
@@ -38,6 +38,6 @@ export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO>
   }
 
   private async getHowMany(urlHash: string) {
-    return this.bookmarkUserssRepository.count({ where: { urlHash } });
+    return this.bookmarkUsersRepository.count({ where: { urlHash } });
   }
 }

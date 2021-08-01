@@ -28,7 +28,6 @@ export class PaginationBookmarks extends PaginationBookmarksConnection {}
 /*
  *  BRFO
  */
-
 @ObjectType()
 export class PaginationBookmarkBRFOEdge {
   @Field(type => PaginationCursorScalar)

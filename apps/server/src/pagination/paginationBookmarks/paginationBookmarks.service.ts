@@ -7,9 +7,7 @@ export class PaginationBookmarksService {
   /*
    * Field Resolver
    */
-  async getFieldAuthor(
-    @Root() bookmark: BookmarkBRFO
-  ) {
-    const { } = bookmark.
+  async getFieldAuthor(@Root() bookmark: BookmarkBRFO) {
+    const { id } = bookmark;
   }
 }
