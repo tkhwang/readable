@@ -14,7 +14,7 @@ enum AuthProviders {
 }
 
 type Bookmark {
-  collector: [String!]
+  collector: [User!]
   countEmotional: Int!
   countFactful: Int!
   countInspirational: Int!

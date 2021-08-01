@@ -57,7 +57,6 @@ export class BookmarksResolver {
    */
   @ResolveField()
   async collector(@Root() bookmark: BookmarkBRFO) {
-    console.log('TCL: BookmarksResolver -> collector -> bookmark', bookmark);
     return this.bookmarksService.getFieldCollector(bookmark);
   }
 }
