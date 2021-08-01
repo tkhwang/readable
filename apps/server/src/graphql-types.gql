@@ -47,6 +47,17 @@ input DeleteBookmarkWithAuthInput {
   bookmarkId: String!
 }
 
+input GetPaginationBookmarksInput {
+  after: PaginationCursor
+  first: Int = 10
+
+  """Pagination bookmarks order field"""
+  order: PaginationOrder = DESC
+
+  """Pagination bookmarks orderBy field"""
+  orderBy: PaginationOrderBy = LATEST
+}
+
 type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
@@ -70,8 +81,25 @@ type PaginationBookmarkEdge {
   node: Bookmark!
 }
 
+type PaginationBookmarks {
+  edges: [PaginationBookmarkEdge!]!
+  pageInfo: PaginationPageInfo!
+}
+
 """Relay Style Pagination Curosr"""
 scalar PaginationCursor
+
+"""Pagination Order (ASC or DESC)"""
+enum PaginationOrder {
+  ASC
+  DESC
+}
+
+"""Pagination OrderBy"""
+enum PaginationOrderBy {
+  LATEST
+  LIKE_COUNT
+}
 
 type PaginationPageInfo {
   endCursor: PaginationCursor
@@ -81,6 +109,7 @@ type PaginationPageInfo {
 type Query {
   me: User!
   myBookmarks: [Bookmark!]!
+  paginationBookmarks(getPaginationBookmarksInput: GetPaginationBookmarksInput!): PaginationBookmarks
 }
 
 type User {

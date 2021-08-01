@@ -1,7 +1,6 @@
-import { Query, UseGuards } from '@nestjs/common';
-import { Args, Resolver } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
-import { Bookmark } from '@readable/bookmarks/domain/models/bookmark.model';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/user.model';
 import { GetPaginationBookmarksInput } from './applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.input';

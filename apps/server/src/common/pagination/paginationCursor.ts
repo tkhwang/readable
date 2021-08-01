@@ -2,7 +2,7 @@ import { registerEnumType } from '@nestjs/graphql';
 import { PaginationFromCursorFailException } from '../error';
 
 export enum PaginationOrderBy {
-  LATEST = '_id',
+  LATEST = 'id',
   LIKE_COUNT = 'likeCount',
 }
 
@@ -26,12 +26,12 @@ export class PaginationCursor {
 
   order: PaginationOrder;
 
-  _id: string;
+  id: string;
 
-  constructor(orderBy: PaginationOrderBy, order: PaginationOrder, _id: string) {
+  constructor(orderBy: PaginationOrderBy, order: PaginationOrder, id: string) {
     this.orderBy = orderBy;
     this.order = order;
-    this._id = _id;
+    this.id = id;
   }
 }
 
@@ -49,6 +49,6 @@ export const fromCursor = (cursor: string): PaginationCursor => {
   return {
     orderBy: parsed.orderBy,
     order: parsed.order,
-    _id: parsed._id,
+    id: parsed.id,
   };
 };
