@@ -20,6 +20,7 @@ export class PaginationBookmarksResolver {
     @CurrentUser() requestUser: User,
     @Args('getPaginationBookmarksInput') query: GetPaginationBookmarksInput
   ): Promise<PaginationBookmarkBRFOs | null> {
+    console.log('TCL: PaginationBookmarksResolver -> constructor -> requestUser', requestUser);
     return this.getPaginationBookmarksUsecase.execute(query, requestUser);
   }
 }

@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
 import { GetPaginationBookmarksInput } from '@readable/pagination/paginationBookmarks/applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.input';
-import {
-  PaginationBookmarkBRFOs,
-  PaginationBookmarks,
-} from '@readable/pagination/paginationBookmarks/domain/paginationBookmarks.type';
+import { PaginationBookmarkBRFOs } from '@readable/pagination/paginationBookmarks/domain/paginationBookmarks.type';
 import { User } from '@readable/users/domain/user.model';
 import { EntityRepository, Repository } from 'typeorm';
 import { Bookmark } from '../entities/bookmark.entity';
@@ -19,6 +16,17 @@ export class BookmarksRepository extends Repository<Bookmark> {
     const { first, after, order, orderBy } = query;
 
     const criteria = {};
+
+    // if (after) {
+    //   const { id: afterId, order: orderInCursor, orderBy: orderByInCursor } = after;
+
+    //   // MEMO(Teddy): 요청한 orderBy/order와 커서 안의 정보가 서로 다른 경우 에러를 발생시킨다.
+    //   if (!(order === orderInCursor && orderBy === orderByInCursor)) {
+    //     throw paginationWrongCursor(after, orderBy, order);
+    //   }
+
+    //   criteria.id = { $lt: afterId };
+    // }
 
     let bookmarks = await this.createQueryBuilder('bookmark')
       .where(criteria)

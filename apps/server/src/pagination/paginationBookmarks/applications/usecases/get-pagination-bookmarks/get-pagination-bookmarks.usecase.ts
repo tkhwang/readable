@@ -7,12 +7,10 @@ import { GetPaginationBookmarksInput } from './get-pagination-bookmarks.input';
 
 export class GetPaginationBookmarksUsecase
   implements Usecase<GetPaginationBookmarksInput, PaginationBookmarkBRFOs | null> {
-  constructor(
-    @InjectRepository(BookmarksRepository)
-    private readonly bookmarksRepository: BookmarksRepository
-  ) {}
+  constructor(@InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository) {}
 
   async execute(query: GetPaginationBookmarksInput, requestUser: User) {
+    console.log('TCL: execute -> query', query);
     return this.bookmarksRepository.getPaginationBookmarks(query, requestUser);
   }
 }

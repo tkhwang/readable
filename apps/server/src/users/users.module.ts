@@ -12,14 +12,14 @@ import { SigninUsecase } from './applications/usecases/signin/signin.usecase';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([OAuthUser, User]),
+    TypeOrmModule.forFeature([OAuthUser, OAuthUsersRepository, User, UsersRepository]),
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [UsersResolver, UsersService, OAuthUsersRepository, UsersRepository, SigninUsecase],
+  providers: [UsersResolver, UsersService, /*OAuthUsersRepository, UsersRepository,*/ SigninUsecase],
   exports: [UsersService, JwtModule, SigninUsecase],
 })
 export class UsersModule {}

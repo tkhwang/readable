@@ -1,22 +1,24 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/user.model';
-import { Bookmark } from './domain/models/bookmark.model';
+import { Bookmark, BookmarkBRFO } from './domain/models/bookmark.model';
 import { AddBookMarkWithAuthInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { AddBookmarkWithAuthUsecase } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
 import { GetMyBookmarksUsecase } from './applications/usecases/get-my-bookmarks/get-my-bookmarks.usecase';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
 import { DeleteBookmarkWithAuthInput } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.input';
 import { CommonOutput } from '@readable/common/models/common.output';
+import { BookmarksService } from './bookmarks.service';
 
 @Resolver(of => Bookmark)
 export class BookmarksResolver {
   constructor(
     private readonly addBookmarkWithAuthUsecase: AddBookmarkWithAuthUsecase,
     private readonly getMyBookmarksUsecase: GetMyBookmarksUsecase,
-    private readonly deleteBookmarkWithAuthUsecse: DeleteBookmarkWithAuthUsecse
+    private readonly deleteBookmarkWithAuthUsecse: DeleteBookmarkWithAuthUsecse,
+    private readonly bookmarksService: BookmarksService
   ) {}
 
   /*
@@ -48,5 +50,14 @@ export class BookmarksResolver {
     @Args('deleteBookmarkWithAuthInput') command: DeleteBookmarkWithAuthInput
   ) {
     return this.deleteBookmarkWithAuthUsecse.execute(command, requestUser);
+  }
+
+  /*
+   * Field Resolver
+   */
+  @ResolveField()
+  async collector(@Root() bookmark: BookmarkBRFO) {
+    console.log('TCL: BookmarksResolver -> collector -> bookmark', bookmark);
+    return this.bookmarksService.getFieldCollector(bookmark);
   }
 }

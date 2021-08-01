@@ -38,7 +38,7 @@ import { PaginationModule } from './pagination/pagination.module';
       logging: true,
       // dateStrings: ['DATE'],
       entities: [OAuthUser, User, Bookmark, BookmarkUser],
-      // entities: ['./dist/entities/*.js'],
+      // entities: ['./dist/**/entities/*.ts'],
       // migrations: ['./src/migrations/*.ts'],
       // cli: {
       //   migrationsDir: './src/migrations',

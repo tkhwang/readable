@@ -11,20 +11,31 @@ import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/
 import { BookmarkUser } from './infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarksService } from './bookmarks.service';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
+import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
+import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Bookmark, BookmarkUser, BookmarksRepository])],
+  imports: [
+    TypeOrmModule.forFeature([
+      Bookmark,
+      BookmarksRepository,
+      BookmarkUser,
+      BookmarkUsersRepository,
+      // User,
+      // UsersRepository,
+    ]),
+  ],
   providers: [
-    BookmarksService,
     BookmarksResolver,
-    BookmarksRepository,
-    BookmarkUsersRepository,
+    BookmarksService,
+    // BookmarksRepository,
+    // BookmarkUsersRepository,
     GetMyBookmarksUsecase,
     GetUrlInfoUsecase,
     AddBookmarkWithAuthUsecase,
     DeleteBookmarkWithAuthUsecse,
   ],
   controllers: [BookmarksController],
-  exports: [BookmarksService, BookmarksRepository],
+  exports: [BookmarksService /*BookmarksRepository, BookmarkUsersRepository */],
 })
 export class BookmarksModule {}

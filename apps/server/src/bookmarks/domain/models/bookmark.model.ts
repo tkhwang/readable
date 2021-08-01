@@ -1,6 +1,5 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
-import { User } from '@readable/users/domain/user.model';
 
 export enum LikeType {
   NONE = 'none',
@@ -60,6 +59,8 @@ export class BookmarkBRFO extends CoreModel {
 
 @ObjectType()
 export class Bookmark extends BookmarkBRFO {
-  @Field(type => User, { nullable: true })
-  author: User;
+  // @Field(type => [User], { nullable: true })
+  // collector: User[];
+  @Field(type => [String], { nullable: true })
+  collector: string[];
 }
