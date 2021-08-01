@@ -10,14 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "paths": {
-      "@readable/graphql-types": ["apps/client/types/graphql-types.ts"],
-      "@readable": ["apps/client"],
-      "@readable/*": ["apps/client/*"],
-      "@readable/src": ["apps/client/src"],
-      "@readable/src/*": ["apps/client/src/*"]
-    }
+    "isolatedModules": true
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
   "exclude": ["node_modules"]

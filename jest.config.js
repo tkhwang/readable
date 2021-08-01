@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/ui',
     '<rootDir>/apps/client',
     '<rootDir>/apps/extensions',
+    '<rootDir>/libs/client-feature-home',
   ],
 };

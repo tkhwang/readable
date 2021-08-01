@@ -53,6 +53,27 @@
         }
       }
     },
+    "client-feature-home": {
+      "root": "libs/client-feature-home",
+      "sourceRoot": "libs/client-feature-home/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client-feature-home/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client-feature-home"],
+          "options": {
+            "jestConfig": "libs/client-feature-home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "extensions": {
       "root": "apps/extensions",
       "sourceRoot": "apps/extensions",
