@@ -20,7 +20,10 @@
   },
   "projects": {
     "client": {
-      "tags": []
+      "tags": ["scope:client"]
+    },
+    "client-feature-home": {
+      "tags": ["scope:client"]
     },
     "extensions": {
       "tags": []
@@ -29,7 +32,7 @@
       "tags": []
     },
     "ui": {
-      "tags": []
+      "tags": ["scope:ui"]
     }
   }
 }

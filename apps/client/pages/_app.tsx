@@ -1,11 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import 'tailwindcss/tailwind.css';
-import '@readable/styles/styles.css';
-import '@readable/styles/style.scss';
-import { AuthProvider } from '@readable/common/auth/useAuth';
-import { useApollo } from '@readable/common/apollo';
 import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '@client/common/apollo';
+import 'tailwindcss/tailwind.css';
+import '@client/styles/styles.css';
+import '@client/styles/style.scss';
+import { AuthProvider } from '@client/common/auth/useAuth';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const client = useApollo();

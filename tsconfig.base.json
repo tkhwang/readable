@@ -17,7 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@readable/client-feature-home": ["libs/client-feature-home/src/index.ts"],
+      "@readable/client/feature-home": ["libs/client/feature-home/src/index.ts"],
       "@readable/ui": ["libs/ui/src/index.ts"]
     }
   },
