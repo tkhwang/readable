@@ -6,15 +6,14 @@ import { User as UserModel } from '@readable/users/domain/user.model';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import * as sha256 from 'crypto-js/sha256';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
-import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 
 export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthInput, Bookmark> {
   constructor(
     private readonly bookmarksService: BookmarksService,
-    @InjectRepository(Bookmark) private readonly bookmarksRepository: BookmarksRepository,
-    @InjectRepository(BookmarkUser) private readonly bookmarkUsersRepository: BookmarkUsersRepository
+    @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
+    @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository
   ) {}
 
   async execute(command: AddBookMarkWithAuthInput, requestUser: UserModel) {

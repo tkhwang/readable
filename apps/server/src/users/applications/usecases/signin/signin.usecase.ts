@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/usecase';
-import { OAuthUser } from '@readable/users/infrastructures/typeorm/entities/oauthUser.entity';
-import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { SigninInput } from './signin.input';
@@ -12,8 +10,8 @@ import { SigninInput } from './signin.input';
 export class SigninUsecase implements Usecase<SigninInput, string> {
   constructor(
     private jwtService: JwtService,
-    @InjectRepository(UserEntity) private readonly usersRepository: UsersRepository,
-    @InjectRepository(OAuthUser) private readonly oAuthUsersRepository: OAuthUsersRepository
+    @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
+    @InjectRepository(OAuthUsersRepository) private readonly oAuthUsersRepository: OAuthUsersRepository
   ) {}
 
   async execute(command: SigninInput) {

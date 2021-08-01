@@ -12,7 +12,7 @@ import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/
 @Injectable()
 export class BookmarksService {
   constructor(
-    @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: BookmarksRepository,
+    @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
     @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository // TODO(Teddy): WIP // @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository
   ) {}
 

@@ -1,6 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
-import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { Usecase } from '@readable/common/usecase';
@@ -9,8 +8,8 @@ import { In } from 'typeorm';
 
 export class GetMyBookmarksUsecase implements Usecase<User, Bookmark[]> {
   constructor(
-    @InjectRepository(Bookmark) private readonly bookmarksRepository: BookmarksRepository,
-    @InjectRepository(BookmarkUser) private readonly bookmarkUsersRepository: BookmarkUsersRepository
+    @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
+    @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository
   ) {}
 
   async execute(requestUser: User) {

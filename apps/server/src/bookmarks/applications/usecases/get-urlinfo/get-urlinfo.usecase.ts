@@ -3,17 +3,12 @@ import { GetUrlInfoInput } from './get-urlinfo.input';
 import * as sha256 from 'crypto-js/sha256';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Bookmark as BookmarkEntity } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
-import { Repository } from 'typeorm';
-import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
-import { Bookmark as BookmarkModel, BookmarkBRFO } from '@readable/bookmarks/domain/models/bookmark.model';
+import { BookmarkBRFO } from '@readable/bookmarks/domain/models/bookmark.model';
 
 export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO> {
   constructor(
-    // TODO(Teddy): If not this repository, bookmarksService cannot be injected. Why ?
-    @InjectRepository(BookmarkEntity) private readonly bookmarksRepository: Repository<BookmarkEntity>,
-    @InjectRepository(BookmarkUser) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
+    @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
     private readonly bookmarksService: BookmarksService
   ) {}
 

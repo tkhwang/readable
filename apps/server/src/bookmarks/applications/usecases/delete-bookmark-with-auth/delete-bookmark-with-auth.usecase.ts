@@ -1,5 +1,4 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { Usecase } from '@readable/common/usecase';
 import { User } from '@readable/users/domain/user.model';
@@ -11,7 +10,9 @@ import {
 import { CommonOutput } from '@readable/common/models/common.output';
 
 export class DeleteBookmarkWithAuthUsecse implements Usecase<DeleteBookmarkWithAuthInput, CommonOutput> {
-  constructor(@InjectRepository(BookmarkUser) private readonly bookmarkUsersRepository: BookmarkUsersRepository) {}
+  constructor(
+    @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository
+  ) {}
 
   async execute(command: DeleteBookmarkWithAuthInput, requestUser: User): Promise<CommonOutput> {
     const { bookmarkId } = command;
