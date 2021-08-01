@@ -1,4 +1,4 @@
-import { AuthErrorCode } from '@readable/errors/auth';
+import { AuthErrorCode } from '@client/errors/auth';
 import { JWT_TOKEN } from '../constants';
 
 export function logout() {

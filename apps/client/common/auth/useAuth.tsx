@@ -1,4 +1,4 @@
-import { User } from '@readable/graphql-types';
+import { User } from '@client/types/graphql-types';
 import { useRouter } from 'next/router';
 import { createContext, FunctionComponent, useContext, useEffect, useState } from 'react';
 import { clearAuthToken, loadAuthToken } from './auth';

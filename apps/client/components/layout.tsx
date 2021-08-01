@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useAuth } from '@readable/common/auth/useAuth';
+import { useAuth } from '@client/common/auth/useAuth';
 import Link from 'next/link';
 import React, { FunctionComponent, ReactNode } from 'react';
 

@@ -1,6 +1,6 @@
-import { useAuth } from '@readable/common/auth/useAuth';
-import { MeViewModel } from '@readable/common/auth/useAuth.query';
-import { ViewController } from '@readable/types/ViewController';
+import { useAuth } from '@client/common/auth/useAuth';
+import { MeViewModel } from '@client/common/auth/useAuth.query';
+import { ViewController } from '@client/types/ViewController';
 import React from 'react';
 import { Bookmarks } from '../Bookmarks/Bookmarks';
 
