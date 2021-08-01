@@ -13,7 +13,7 @@ import { BookmarksService } from './bookmarks.service';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Bookmark, BookmarkUser])],
+  imports: [TypeOrmModule.forFeature([Bookmark, BookmarkUser, BookmarksRepository])],
   providers: [
     BookmarksService,
     BookmarksResolver,
