@@ -9,12 +9,16 @@
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
-            "enforceBuildableLibDependency": true,
             "allow": [],
+            // update depConstraints based on your tags
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "scope:client",
+                "onlyDependOnLibsWithTags": ["scope:ui", "scope:client-shared", "scope:client"]
+              },
+              {
+                "sourceTag": "scope:client-shared",
+                "onlyDependOnLibsWithTags": ["scope:client-shared"]
               }
             ]
           }

@@ -1,6 +1,48 @@
 {
   "version": 2,
   "projects": {
+    "bookmark-data-access-bookmark": {
+      "root": "libs/bookmark/data-access-bookmark",
+      "sourceRoot": "libs/bookmark/data-access-bookmark/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/bookmark/data-access-bookmark/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/bookmark/data-access-bookmark"],
+          "options": {
+            "jestConfig": "libs/bookmark/data-access-bookmark/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "bookmark-feature-bookmark": {
+      "root": "libs/bookmark/feature-bookmark",
+      "sourceRoot": "libs/bookmark/feature-bookmark/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/bookmark/feature-bookmark/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/bookmark/feature-bookmark"],
+          "options": {
+            "jestConfig": "libs/bookmark/feature-bookmark/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "client": {
       "root": "apps/client",
       "sourceRoot": "apps/client",
@@ -49,32 +91,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
-          }
-        }
-      }
-    },
-    "client-e2e": {
-      "root": "apps/client-e2e",
-      "sourceRoot": "apps/client-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/client-e2e/cypress.json",
-            "tsConfig": "apps/client-e2e/tsconfig.e2e.json",
-            "devServerTarget": "client:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "client:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -130,28 +146,86 @@
         }
       }
     },
-    "extentions-e2e": {
-      "root": "apps/extentions-e2e",
-      "sourceRoot": "apps/extentions-e2e/src",
-      "projectType": "application",
+    "home-feature-coming-soon": {
+      "root": "libs/home/feature-coming-soon",
+      "sourceRoot": "libs/home/feature-coming-soon/src",
+      "projectType": "library",
       "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/extentions-e2e/cypress.json",
-            "tsConfig": "apps/extentions-e2e/tsconfig.e2e.json",
-            "devServerTarget": "extensions:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "extensions:serve:production"
-            }
-          }
-        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/extentions-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["libs/home/feature-coming-soon/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home/feature-coming-soon"],
+          "options": {
+            "jestConfig": "libs/home/feature-coming-soon/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "home-feature-home": {
+      "root": "libs/home/feature-home",
+      "sourceRoot": "libs/home/feature-home/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/home/feature-home/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home/feature-home"],
+          "options": {
+            "jestConfig": "libs/home/feature-home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "login-data-access-login": {
+      "root": "libs/login/data-access-login",
+      "sourceRoot": "libs/login/data-access-login/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/login/data-access-login/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/login/data-access-login"],
+          "options": {
+            "jestConfig": "libs/login/data-access-login/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "login-feature-login": {
+      "root": "libs/login/feature-login",
+      "sourceRoot": "libs/login/feature-login/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/login/feature-login/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/login/feature-login"],
+          "options": {
+            "jestConfig": "libs/login/feature-login/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -206,6 +280,132 @@
         }
       }
     },
+    "shared-data-access-apollo": {
+      "root": "libs/shared/data-access-apollo",
+      "sourceRoot": "libs/shared/data-access-apollo/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-apollo/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-apollo"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-apollo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-auth": {
+      "root": "libs/shared/data-access-auth",
+      "sourceRoot": "libs/shared/data-access-auth/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-auth/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-auth"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-me": {
+      "root": "libs/shared/data-access-me",
+      "sourceRoot": "libs/shared/data-access-me/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-me/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-me"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-me/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access-user": {
+      "root": "libs/shared/data-access-user",
+      "sourceRoot": "libs/shared/data-access-user/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-user/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-user"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-user/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-auth": {
+      "root": "libs/shared/util-auth",
+      "sourceRoot": "libs/shared/util-auth/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util-auth/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-auth"],
+          "options": {
+            "jestConfig": "libs/shared/util-auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-common": {
+      "root": "libs/shared/util-common",
+      "sourceRoot": "libs/shared/util-common/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util-common/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-common"],
+          "options": {
+            "jestConfig": "libs/shared/util-common/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ui": {
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
@@ -254,32 +454,6 @@
             "ci": {
               "quiet": true
             }
-          }
-        }
-      }
-    },
-    "ui-e2e": {
-      "root": "apps/ui-e2e",
-      "sourceRoot": "apps/ui-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/ui-e2e/cypress.json",
-            "tsConfig": "apps/ui-e2e/tsconfig.e2e.json",
-            "devServerTarget": "ui:storybook"
-          },
-          "configurations": {
-            "ci": {
-              "devServerTarget": "ui:storybook:ci"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/ui-e2e/**/*.{js,ts}"]
           }
         }
       }

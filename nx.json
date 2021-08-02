@@ -19,29 +19,53 @@
     }
   },
   "projects": {
-    "client": {
-      "tags": []
+    "bookmark-data-access-bookmark": {
+      "tags": ["scope:client"]
     },
-    "client-e2e": {
-      "tags": [],
-      "implicitDependencies": ["client"]
+    "bookmark-feature-bookmark": {
+      "tags": ["scope:client"]
+    },
+    "client": {
+      "tags": ["scope:client"]
     },
     "extensions": {
       "tags": []
     },
-    "extentions-e2e": {
-      "tags": [],
-      "implicitDependencies": ["extensions"]
+    "home-feature-coming-soon": {
+      "tags": ["scope:client"]
+    },
+    "home-feature-home": {
+      "tags": ["scope:client"]
+    },
+    "login-data-access-login": {
+      "tags": []
+    },
+    "login-feature-login": {
+      "tags": []
     },
     "server": {
       "tags": []
     },
-    "ui": {
-      "tags": []
+    "shared-data-access-apollo": {
+      "tags": ["scope:client-shared"]
     },
-    "ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ui"]
+    "shared-data-access-auth": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-data-access-me": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-data-access-user": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-util-auth": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-util-common": {
+      "tags": ["scope:client-shared"]
+    },
+    "ui": {
+      "tags": ["scope:ui"]
     }
   }
 }

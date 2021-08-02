@@ -1,12 +1,13 @@
-import { setAuthToken } from '@readable/common/auth/auth';
-import { useAuth } from '@readable/common/auth/useAuth';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAuth } from '@readable/shared/data-access-auth';
+import { setAuthToken } from '@readable/shared/util-auth';
 
 function Auth() {
-  const { setAuthenticated } = useAuth();
   const router = useRouter();
   const { token } = router.query;
+
+  const { setAuthenticated } = useAuth();
 
   useEffect(() => {
     if (token && typeof token === 'string') {
@@ -16,7 +17,6 @@ function Auth() {
 
     router.push('/');
   }, [router, token, setAuthenticated]);
-
   return null;
 }
 
