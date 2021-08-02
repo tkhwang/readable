@@ -20,10 +20,10 @@
   },
   "projects": {
     "bookmark-data-access-bookmark": {
-      "tags": []
+      "tags": ["scope:client"]
     },
     "bookmark-feature-bookmark": {
-      "tags": []
+      "tags": ["scope:client"]
     },
     "client": {
       "tags": ["scope:client"]
@@ -36,6 +36,12 @@
     },
     "home-feature-home": {
       "tags": ["scope:client"]
+    },
+    "login-data-access-login": {
+      "tags": []
+    },
+    "login-feature-login": {
+      "tags": []
     },
     "server": {
       "tags": []

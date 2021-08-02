@@ -1,4 +1,5 @@
 import { DotsVerticalIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 
 /* eslint-disable-next-line */
 export type HeaderProps = {};
@@ -15,7 +16,9 @@ export function Header(props: HeaderProps) {
       </div>
 
       <div className="flex items-center">
-        <button className="bg-white rounded-sm px-4 py-2 font-bold text-indigo-900 mr-5">Sign in</button>
+        <Link href="/login">
+          <a className="bg-white rounded-sm px-4 py-2 font-bold text-indigo-900 mr-5">Sign in</a>
+        </Link>
         <DotsVerticalIcon className="h-5 w-5 text-white" />
       </div>
     </header>

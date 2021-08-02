@@ -1,1 +1,1 @@
-export * from './lib/data-access-bookmark';
+export { useBookmarks } from './lib/useBookmarks.query';

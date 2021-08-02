@@ -1,9 +1,9 @@
-import React from 'react';
-import { BookmarksViewController } from './BookmarksViewController';
-import { useBookmarks } from './useBookmarks.query';
+// import React from 'react';
+// import { BookmarksViewController } from './BookmarksViewController';
+// import { useBookmarks } from './useBookmarks.query';
 
-export function Bookmarks() {
-  const viewModel = useBookmarks();
+// export function Bookmarks() {
+//   const viewModel = useBookmarks();
 
-  return <BookmarksViewController viewModel={viewModel} />;
-}
+//   return <BookmarksViewController viewModel={viewModel} />;
+// }

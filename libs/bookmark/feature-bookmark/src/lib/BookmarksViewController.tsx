@@ -1,9 +1,8 @@
-import { ViewController } from '@readable/types/ViewController';
 import React from 'react';
-import { BookmarksViewModel } from './useBookmarks.query';
+import { useBookmarks } from '@readable/bookmark/data-access-bookmark';
 
-export const BookmarksViewController: ViewController<BookmarksViewModel> = React.memo(({ viewModel }) => {
-  const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = viewModel;
+export const BookmarksViewController = () => {
+  const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = useBookmarks();
 
   if (loading) {
     return (
@@ -79,4 +78,4 @@ export const BookmarksViewController: ViewController<BookmarksViewModel> = React
         })}
     </>
   );
-});
+};
