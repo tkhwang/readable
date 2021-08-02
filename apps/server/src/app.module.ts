@@ -11,6 +11,7 @@ import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.
 import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.entity';
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
+import { PaginationModule } from './pagination/pagination.module';
 
 @Module({
   imports: [
@@ -35,21 +36,15 @@ import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookm
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      // dateStrings: ['DATE'],
       entities: [OAuthUser, User, Bookmark, BookmarkUser],
-      // entities: ['./dist/entities/*.js'],
-      // migrations: ['./src/migrations/*.ts'],
-      // cli: {
-      //   migrationsDir: './src/migrations',
-      // },
       synchronize: true,
     }),
+    // MEMO(Teddy): MongoDB
     // MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
     BookmarksModule,
-    // TODO(Teddy): WIP
-    // BookmarksModule,
+    PaginationModule,
   ],
   controllers: [],
   providers: [],

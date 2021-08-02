@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import { Strategy } from 'passport-facebook';
 import { Injectable } from '@nestjs/common';
 import { AuthProviders } from '../auth.type';
-import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
+import { SigninInput } from '@readable/users/applications/usecases/signin/signin.input';
 
 config();
 

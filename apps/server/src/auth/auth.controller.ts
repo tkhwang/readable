@@ -4,8 +4,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 import { RequestWithInjectedUser } from './domain/auth.type';
-import { SigninUsecase } from '@readable/users/application/usecases/signin/signin.usecase';
-import { SigninInput } from '@readable/users/application/usecases/signin/signin.input';
+import { SigninUsecase } from '@readable/users/applications/usecases/signin/signin.usecase';
+import { SigninInput } from '@readable/users/applications/usecases/signin/signin.input';
 
 @Controller('auth')
 export class AuthController {

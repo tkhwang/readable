@@ -14,6 +14,27 @@ enum AuthProviders {
 }
 
 type Bookmark {
+  collector: [User!]
+  countEmotional: Int!
+  countFactful: Int!
+  countInspirational: Int!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  description: String!
+  generatedImage: String!
+  howMany: Int!
+  id: ID!
+  imageUrl: String!
+  siteName: String!
+  tags: [String!]!
+  title: String!
+  type: String!
+  updatedAt: DateTime!
+  url: String!
+  urlHash: String!
+}
+
+type BookmarkBRFO {
   countEmotional: Int!
   countFactful: Int!
   countInspirational: Int!
@@ -47,6 +68,17 @@ input DeleteBookmarkWithAuthInput {
   bookmarkId: String!
 }
 
+input GetPaginationBookmarksInput {
+  after: PaginationCursor
+  first: Int = 10
+
+  """Pagination bookmarks order field"""
+  order: PaginationOrder = DESC
+
+  """Pagination bookmarks orderBy field"""
+  orderBy: PaginationOrderBy = LATEST
+}
+
 type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
@@ -65,9 +97,45 @@ type OAuthUser {
   user: User!
 }
 
+type PaginationBookmarkBRFOEdge {
+  cursor: PaginationCursor!
+  node: BookmarkBRFO!
+}
+
+type PaginationBookmarkEdge {
+  cursor: PaginationCursor!
+  node: Bookmark!
+}
+
+type PaginationBookmarks {
+  edges: [PaginationBookmarkEdge!]!
+  pageInfo: PaginationPageInfo!
+}
+
+"""Relay Style Pagination Curosr"""
+scalar PaginationCursor
+
+"""Pagination Order (ASC or DESC)"""
+enum PaginationOrder {
+  ASC
+  DESC
+}
+
+"""Pagination OrderBy"""
+enum PaginationOrderBy {
+  LATEST
+  LIKE_COUNT
+}
+
+type PaginationPageInfo {
+  endCursor: PaginationCursor
+  hasNextPage: Boolean!
+}
+
 type Query {
   me: User!
   myBookmarks: [Bookmark!]!
+  paginationBookmarks(getPaginationBookmarksInput: GetPaginationBookmarksInput!): PaginationBookmarks
 }
 
 type User {
