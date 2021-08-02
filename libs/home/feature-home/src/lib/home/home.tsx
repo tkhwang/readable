@@ -1,9 +1,11 @@
 import React from 'react';
 import { useMeViewModel } from '@readable/shared/data-access-me';
 import { Profile } from '@readable/ui';
+import { useRouter } from 'next/router';
 
 export const Home = React.memo(() => {
   const { me, loading, error } = useMeViewModel();
+  const router = useRouter();
 
   if (loading) {
     return (
@@ -14,6 +16,7 @@ export const Home = React.memo(() => {
   }
 
   if (error) {
+    router.push('/login');
     return <div className="h-screen flex justify-center items-center text-2xl">Unauthorized. Please login.</div>;
   }
 
