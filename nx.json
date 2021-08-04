@@ -25,6 +25,9 @@
     "bookmark-feature-bookmark": {
       "tags": ["scope:client"]
     },
+    "bookmark-feature-feed": {
+      "tags": []
+    },
     "client": {
       "tags": ["scope:client"]
     },

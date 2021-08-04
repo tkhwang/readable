@@ -43,6 +43,27 @@
         }
       }
     },
+    "bookmark-feature-feed": {
+      "root": "libs/bookmark/feature-feed",
+      "sourceRoot": "libs/bookmark/feature-feed/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/bookmark/feature-feed/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/bookmark/feature-feed"],
+          "options": {
+            "jestConfig": "libs/bookmark/feature-feed/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "client": {
       "root": "apps/client",
       "sourceRoot": "apps/client",
