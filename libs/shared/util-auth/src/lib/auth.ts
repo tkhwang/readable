@@ -9,7 +9,7 @@ export function logout() {
   console.log('🛂 clearAuthToken = ', null);
 }
 
-export function loadAuthToken(): string {
+export function loadAuthToken(): string | null {
   if (!localStorage) {
     throw new Error(AuthErrorCode.LOCAL_STORAGE_NOT_AVAILABLE);
   }
@@ -20,8 +20,8 @@ export function loadAuthToken(): string {
   return token;
 }
 
-export function setAuthToken(token: string): string {
-  if (!localStorage) return;
+export function setAuthToken(token: string): string | null {
+  if (!localStorage) return null;
 
   localStorage.setItem(JWT_TOKEN, token);
   console.log('🛂 setAuthToken = ', token);

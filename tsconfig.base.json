@@ -15,6 +15,7 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@readable/bookmark/data-access-bookmark": ["libs/bookmark/data-access-bookmark/src/index.ts"],
