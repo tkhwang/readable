@@ -1,11 +1,22 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "strict": true,
     "paths": {
       "@readable/graphql-types": ["apps/server/src/graphql-types"],
       "@readable": ["apps/server/src"],
       "@readable/*": ["apps/server/src/*"]
-    }
+    },
+    // exception rule
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "removeComments": true,
+    "preserveConstEnums": true
   },
   "files": [],
   "include": [],
@@ -16,7 +27,5 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  // exception rule
-  "strictPropertyInitialization": false
+  ]
 }
