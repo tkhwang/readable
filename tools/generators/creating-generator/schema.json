@@ -1,0 +1,38 @@
+{
+  "cli": "nx",
+  "id": "creating-generator",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Library name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Provide the library type, such as 'data-access' or 'state'",
+      "x-prompt": {
+        "message": "Which type of library would you like to generate?",
+        "type": "list",
+        "items": [
+          {
+            "value": "data-access",
+            "label": "Data Access"
+          },
+          {
+            "value": "feature",
+            "label": "Feature"
+          },
+          {
+            "value": "state",
+            "label": "State Management"
+          }
+        ]
+      }
+    }
+  },
+  "required": ["name"]
+}

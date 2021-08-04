@@ -1,0 +1,31 @@
+overwrite: true
+schema: 'apps/server/src/graphql-types.gql'
+documents:
+  - 'src/lib/**/*.fragment.{ts,tsx}'
+  - 'src/lib/**/*.query.{ts,tsx}'
+  - 'src/lib/**/*.mutation.{ts,tsx}'
+generates:
+  src/types/graphql-types.ts:
+    hooks:
+      afterOneFileWrite:
+        - git add src/types/graphql-types.ts
+    plugins:
+      - typescript
+    config:
+      immutableTypes: true
+      namingConvention: keep
+  apps/client/types/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: graphql-types.ts
+      extension: .generated.tsx
+    config:
+      declarationKind: interface
+      immutableTypes: true
+      withHOC: false
+      withComponent: true
+      withHooks: true
+      namingConvention: 'keep'
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
