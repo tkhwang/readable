@@ -58,6 +58,9 @@
     "shared-data-access-me": {
       "tags": ["scope:client-shared"]
     },
+    "shared-data-access-pagination-bookmarks": {
+      "tags": []
+    },
     "shared-data-access-user": {
       "tags": ["scope:client-shared"]
     },

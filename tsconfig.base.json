@@ -28,6 +28,9 @@
       "@readable/shared/data-access-apollo": ["libs/shared/data-access-apollo/src/index.ts"],
       "@readable/shared/data-access-auth": ["libs/shared/data-access-auth/src/index.ts"],
       "@readable/shared/data-access-me": ["libs/shared/data-access-me/src/index.ts"],
+      "@readable/shared/data-access-pagination-bookmarks": [
+        "libs/shared/data-access-pagination-bookmarks/src/index.ts"
+      ],
       "@readable/shared/data-access-user": ["libs/shared/data-access-user/src/index.ts"],
       "@readable/shared/util-auth": ["libs/shared/util-auth/src/index.ts"],
       "@readable/shared/util-common": ["libs/shared/util-common/src/index.ts"],
