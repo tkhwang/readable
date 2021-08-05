@@ -1,1 +1,1 @@
-export * from './lib/shared-data-access-pagination-bookmarks';
+export { usePaginationBookmarks } from './lib/usePaginationBookmarks.query';
