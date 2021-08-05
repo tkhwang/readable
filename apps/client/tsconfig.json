@@ -16,6 +16,7 @@
       "@client/*": ["apps/client/*"],
       "@readable/bookmark/data-access-bookmark": ["libs/bookmark/data-access-bookmark/src/index.ts"],
       "@readable/bookmark/feature-bookmark": ["libs/bookmark/feature-bookmark/src/index.ts"],
+      "@readable/bookmark/feature-feed": ["libs/bookmark/feature-feed/src/index.ts"],
       "@readable/home/feature-coming-soon": ["libs/home/feature-coming-soon/src/index.ts"],
       "@readable/home/feature-home": ["libs/home/feature-home/src/index.ts"],
       "@readable/login/data-access-login": ["libs/login/data-access-login/src/index.ts"],
