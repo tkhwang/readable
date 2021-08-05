@@ -20,5 +20,6 @@ module.exports = {
     '<rootDir>/libs/login/feature-login',
     '<rootDir>/libs/login/data-access-login',
     '<rootDir>/libs/bookmark/feature-feed',
+    '<rootDir>/libs/shared/data-access-pagination-bookmarks',
   ],
 };

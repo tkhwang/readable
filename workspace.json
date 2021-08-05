@@ -364,6 +364,27 @@
         }
       }
     },
+    "shared-data-access-pagination-bookmarks": {
+      "root": "libs/shared/data-access-pagination-bookmarks",
+      "sourceRoot": "libs/shared/data-access-pagination-bookmarks/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data-access-pagination-bookmarks/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access-pagination-bookmarks"],
+          "options": {
+            "jestConfig": "libs/shared/data-access-pagination-bookmarks/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "shared-data-access-user": {
       "root": "libs/shared/data-access-user",
       "sourceRoot": "libs/shared/data-access-user/src",
