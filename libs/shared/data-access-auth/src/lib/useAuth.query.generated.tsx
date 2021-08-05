@@ -1,36 +1,40 @@
-import * as Types from '../types/graphql-types';
+import * as Types from '../../../../../apps/client/types/graphql-types';
 
 import { gql } from '@apollo/client';
 import * as React from 'react';
 import * as Apollo from '@apollo/client';
 import * as ApolloReactComponents from '@apollo/client/react/components';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-const defaultOptions = {};
-export type MeQueryVariables = Types.Exact<{ [key: string]: never }>;
+const defaultOptions =  {}
+export type MeQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type MeQuery = { readonly __typename?: 'Query' } & {
-  readonly me: { readonly __typename?: 'User' } & Pick<
-    Types.User,
-    'id' | 'provider' | 'providerId' | 'name' | 'avatarUrl'
-  >;
-};
+
+export type MeQuery = (
+  { readonly __typename?: 'Query' }
+  & { readonly me: (
+    { readonly __typename?: 'User' }
+    & Pick<Types.User, 'id' | 'provider' | 'providerId' | 'name' | 'avatarUrl'>
+  ) }
+);
+
 
 export const MeDocument = gql`
-  query Me {
-    me: me {
-      id
-      provider
-      providerId
-      name
-      avatarUrl
-    }
+    query Me {
+  me: me {
+    id
+    provider
+    providerId
+    name
+    avatarUrl
   }
-`;
+}
+    `;
 export type MeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<MeQuery, MeQueryVariables>, 'query'>;
 
-export const MeComponent = (props: MeComponentProps) => (
-  <ApolloReactComponents.Query<MeQuery, MeQueryVariables> query={MeDocument} {...props} />
-);
+    export const MeComponent = (props: MeComponentProps) => (
+      <ApolloReactComponents.Query<MeQuery, MeQueryVariables> query={MeDocument} {...props} />
+    );
+    
 
 /**
  * __useMeQuery__
@@ -48,13 +52,13 @@ export const MeComponent = (props: MeComponentProps) => (
  * });
  */
 export function useMeQuery(baseOptions?: Apollo.QueryHookOptions<MeQuery, MeQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<MeQuery, MeQueryVariables>(MeDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+      }
 export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery, MeQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+        }
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
