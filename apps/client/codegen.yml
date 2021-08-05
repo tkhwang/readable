@@ -1,13 +1,12 @@
 overwrite: true
 schema: 'apps/server/src/graphql-types.gql'
 documents:
-  - 'apps/client/components/**/*.fragment.{ts,tsx}'
-  - 'apps/client/components/**/*.query.{ts,tsx}'
-  - 'apps/client/components/**/*.mutation.{ts,tsx}'
-  - 'apps/client/common/**/*.query.{ts,tsx}'
-  - 'apps/client/src/**/*.fragment.{ts,tsx}'
-  - 'apps/client/src/**/*.query.{ts,tsx}'
-  - 'apps/client/src/**/*.mutation.{ts,tsx}'
+  - 'apps/**/*.fragment.{ts,tsx}'
+  - 'apps/**/*.query.{ts,tsx}'
+  - 'apps/**/*.mutation.{ts,tsx}'
+  - 'libs/**/*.fragment.{ts,tsx}'
+  - 'libs/**/*.query.{ts,tsx}'
+  - 'libs/**/*.mutation.{ts,tsx}'
 generates:
   apps/client/types/graphql-types.ts:
     hooks:
