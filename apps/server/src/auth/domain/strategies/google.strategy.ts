@@ -15,6 +15,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientSecret: process.env.OAUTH_GOOGLE_CLIENT_PW,
       callbackURL: process.env.OAUTH_GOOGLE_CALLBACK_URL,
       scope: ['email', 'profile'],
+      accessType: 'offline',
+      prompt: 'consent',
     });
   }
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback): Promise<any> {
@@ -24,6 +26,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     googleUser.providerId = profile.id;
     googleUser.email = profile?.emails[0]?.value;
     googleUser.avatarUrl = profile?.photos[0]?.value;
+    googleUser.accessToken = accessToken;
+    googleUser.refreshToken = refreshToken;
 
     done(null, googleUser);
   }

@@ -38,4 +38,10 @@ export class Bookmark extends CoreEntity {
 
   @Column('int', { default: 0 })
   countInspirational: number;
+
+  @Column({ type: 'datetime', nullable: true })
+  scheduledAt?: Date;
+
+  @Column({ type: 'datetime', nullable: true })
+  donedAt?: Date;
 }

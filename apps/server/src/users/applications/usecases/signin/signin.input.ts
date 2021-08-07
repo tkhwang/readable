@@ -1,5 +1,26 @@
-import { InputType, PickType } from '@nestjs/graphql';
-import { User } from '@readable/users/domain/models/user.model';
+import { Field, InputType, PickType } from '@nestjs/graphql';
+import { AuthProviders } from '@readable/auth/domain/auth.type';
 
 @InputType()
-export class SigninInput extends PickType(User, ['provider', 'providerId', 'name', 'email', 'avatarUrl']) {}
+export class SigninInput {
+  @Field(type => AuthProviders)
+  provider: AuthProviders;
+
+  @Field(type => String)
+  providerId: string;
+
+  @Field(type => String)
+  name: string;
+
+  @Field(type => String, { nullable: true })
+  email?: string;
+
+  @Field(type => String, { nullable: true })
+  avatarUrl?: string;
+
+  @Field(type => String, { nullable: true })
+  accessToken?: string;
+
+  @Field(type => String, { nullable: true })
+  refreshToken?: string;
+}

@@ -52,6 +52,12 @@ export class BookmarkBRFO extends CoreModel {
   @Field(type => Int)
   countInspirational: number;
 
+  @Field(type => Date, { nullable: true })
+  scheduledAt?: Date;
+
+  @Field(type => Date, { nullable: true })
+  donedAt?: Date;
+
   // Model only
 
   @Field(type => Int)
