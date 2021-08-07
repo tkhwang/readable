@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { ViewModel } from '../types/ViewModel';
 import { useMeQueryQuery } from './useMeViewModel.query.generated';
 
 const ME_QUERY = gql`
@@ -13,8 +12,6 @@ const ME_QUERY = gql`
     }
   }
 `;
-
-export type MeViewModel = ViewModel<typeof useMeViewModel>;
 
 export function useMeViewModel() {
   const { data, loading, error } = useMeQueryQuery();
