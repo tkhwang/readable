@@ -37,11 +37,8 @@
     "home-feature-home": {
       "tags": ["scope:client"]
     },
-    "login-data-access-login": {
-      "tags": []
-    },
     "login-feature-login": {
-      "tags": []
+      "tags": ["scope:client"]
     },
     "server": {
       "tags": []
@@ -56,6 +53,9 @@
       "tags": ["scope:client-shared"]
     },
     "shared-data-access-user": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-types": {
       "tags": ["scope:client-shared"]
     },
     "shared-util-auth": {

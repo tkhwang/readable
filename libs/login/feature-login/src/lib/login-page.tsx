@@ -1,19 +1,13 @@
-import styled from 'styled-components';
 import { SocialLoginButton } from './social-login-button';
 
 /* eslint-disable-next-line */
-export interface FeatureLoginProps {}
+export interface LoginPageProps {}
 
-export function FeatureLogin(props: FeatureLoginProps) {
+export const LoginPage = (props: LoginPageProps) => {
   return (
     <div className="w-full p-4">
       <main role="main" className="w-full flex flex-col h-screen content-center justify-center">
-        <div
-          onClick={() => {
-            console.log('hihihi');
-          }}
-          className="w-full sm:w-1/2 lg:w-1/3 bg-gray-50 rounded-xl m-auto"
-        >
+        <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-50 rounded-xl m-auto">
           <img
             src="https://user-images.githubusercontent.com/365500/122947722-572c6280-d3b5-11eb-9b18-f8e0e2f79e3b.png"
             alt="symbol"
@@ -28,4 +22,4 @@ export function FeatureLogin(props: FeatureLoginProps) {
       </main>
     </div>
   );
-}
+};

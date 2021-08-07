@@ -11,7 +11,7 @@ interface Props {
   provider: string;
 }
 
-export function SocialLoginButton({ provider }: Props) {
+export const SocialLoginButton = ({ provider }: Props) => {
   if (provider === 'google') {
     return (
       <a href={`${serverHost.restUrl}/auth/google`}>
@@ -45,4 +45,4 @@ export function SocialLoginButton({ provider }: Props) {
   }
 
   return null;
-}
+};

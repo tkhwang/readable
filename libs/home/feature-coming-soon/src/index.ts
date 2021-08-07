@@ -1,1 +1,1 @@
-export * from './lib/coming-soon';
+export { ComingSoonPage } from './lib/coming-soon-page';

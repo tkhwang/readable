@@ -1,7 +1,4 @@
-import React from 'react';
-
 import { Meta, Story } from '@storybook/react';
-
 import { Header, HeaderProps } from './header';
 
 export default {

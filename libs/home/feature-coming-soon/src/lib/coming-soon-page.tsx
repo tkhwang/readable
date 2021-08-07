@@ -1,9 +1,9 @@
 import { Header, Subscribe } from '@readable/ui';
 
 /* eslint-disable-next-line */
-export type ComingSoonProps = {};
+export type ComingSoonPageProps = {};
 
-export function ComingSoon(props: ComingSoonProps) {
+export const ComingSoonPage = (props: ComingSoonPageProps) => {
   return (
     <>
       <Header />
@@ -14,6 +14,7 @@ export function ComingSoon(props: ComingSoonProps) {
           <Subscribe />
         </div>
         <div className="flex w-96 h-80">
+          {/* TODO(zlrlo): 이미지 변경 필요 */}
           <img
             src="https://user-images.githubusercontent.com/68647194/127771019-d360b9e7-0a55-43fc-84f1-e5a76abc5d7a.png"
             alt=""
@@ -22,6 +23,4 @@ export function ComingSoon(props: ComingSoonProps) {
       </main>
     </>
   );
-}
-
-export default ComingSoon;
+};
