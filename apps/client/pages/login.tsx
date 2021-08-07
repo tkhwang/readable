@@ -1,8 +1,8 @@
 import React from 'react';
-import { FeatureLogin } from '@readable/login/feature-login';
+import { LoginPage } from '@readable/login/feature-login';
 
 function Login() {
-  return <FeatureLogin />;
+  return <LoginPage />;
 }
 
 export default Login;
