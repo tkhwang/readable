@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { ViewModel } from '../types/ViewModel';
+import { ViewModel } from '@readable/shared/types';
 import { useMeQuery } from './useAuth.query.generated';
 
 const ME_QUERY = gql`
