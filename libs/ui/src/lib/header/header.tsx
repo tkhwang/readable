@@ -8,6 +8,7 @@ export function Header(props: HeaderProps) {
   return (
     <header className="bg-indigo-700 py-4 px-6 flex justify-between items-center">
       <div className="flex items-center">
+        {/* TODO(zlrlo): 이미지 변경 필요  */}
         <img
           src="https://user-images.githubusercontent.com/68647194/127772307-cf53bb0e-e6db-481a-8808-372cca0f2b42.png"
           alt="logo"
