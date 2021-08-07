@@ -1,59 +1,68 @@
-import * as Types from '../../../../../apps/client/types/graphql-types';
+import * as Types from '../types/graphql-types';
 
 import { gql } from '@apollo/client';
 import * as React from 'react';
 import * as Apollo from '@apollo/client';
 import * as ApolloReactComponents from '@apollo/client/react/components';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-const defaultOptions =  {}
-export type GetMyBookmarksQueryVariables = Types.Exact<{ [key: string]: never; }>;
+const defaultOptions = {};
+export type GetMyBookmarksQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-
-export type GetMyBookmarksQuery = (
-  { readonly __typename?: 'Query' }
-  & { readonly myBookmarks: ReadonlyArray<(
-    { readonly __typename?: 'Bookmark' }
-    & Pick<Types.Bookmark, 'id' | 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags' | 'countFactful' | 'countEmotional' | 'countInspirational'>
-  )> }
-);
+export type GetMyBookmarksQuery = { readonly __typename?: 'Query' } & {
+  readonly myBookmarks: ReadonlyArray<
+    { readonly __typename?: 'Bookmark' } & Pick<
+      Types.Bookmark,
+      | 'id'
+      | 'url'
+      | 'type'
+      | 'siteName'
+      | 'title'
+      | 'imageUrl'
+      | 'description'
+      | 'tags'
+      | 'countFactful'
+      | 'countEmotional'
+      | 'countInspirational'
+    >
+  >;
+};
 
 export type DeleteBookmarkWithAuthMutationVariables = Types.Exact<{
   deleteBookmarkWithAuthInput: Types.DeleteBookmarkWithAuthInput;
 }>;
 
-
-export type DeleteBookmarkWithAuthMutation = (
-  { readonly __typename?: 'Mutation' }
-  & { readonly deleteBookmarkWithAuth: (
-    { readonly __typename?: 'CommonOutput' }
-    & Pick<Types.CommonOutput, 'isSuccess'>
-  ) }
-);
-
+export type DeleteBookmarkWithAuthMutation = { readonly __typename?: 'Mutation' } & {
+  readonly deleteBookmarkWithAuth: { readonly __typename?: 'CommonOutput' } & Pick<Types.CommonOutput, 'isSuccess'>;
+};
 
 export const GetMyBookmarksDocument = gql`
-    query GetMyBookmarks {
-  myBookmarks: myBookmarks {
-    id
-    url
-    type
-    siteName
-    title
-    imageUrl
-    description
-    tags
-    countFactful
-    countEmotional
-    countInspirational
+  query GetMyBookmarks {
+    myBookmarks: myBookmarks {
+      id
+      url
+      type
+      siteName
+      title
+      imageUrl
+      description
+      tags
+      countFactful
+      countEmotional
+      countInspirational
+    }
   }
-}
-    `;
-export type GetMyBookmarksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>, 'query'>;
+`;
+export type GetMyBookmarksComponentProps = Omit<
+  ApolloReactComponents.QueryComponentOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>,
+  'query'
+>;
 
-    export const GetMyBookmarksComponent = (props: GetMyBookmarksComponentProps) => (
-      <ApolloReactComponents.Query<GetMyBookmarksQuery, GetMyBookmarksQueryVariables> query={GetMyBookmarksDocument} {...props} />
-    );
-    
+export const GetMyBookmarksComponent = (props: GetMyBookmarksComponentProps) => (
+  <ApolloReactComponents.Query<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>
+    query={GetMyBookmarksDocument}
+    {...props}
+  />
+);
 
 /**
  * __useGetMyBookmarksQuery__
@@ -70,33 +79,46 @@ export type GetMyBookmarksComponentProps = Omit<ApolloReactComponents.QueryCompo
  *   },
  * });
  */
-export function useGetMyBookmarksQuery(baseOptions?: Apollo.QueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
-      }
-export function useGetMyBookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
-        }
+export function useGetMyBookmarksQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
+}
+export function useGetMyBookmarksLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>(GetMyBookmarksDocument, options);
+}
 export type GetMyBookmarksQueryHookResult = ReturnType<typeof useGetMyBookmarksQuery>;
 export type GetMyBookmarksLazyQueryHookResult = ReturnType<typeof useGetMyBookmarksLazyQuery>;
 export type GetMyBookmarksQueryResult = Apollo.QueryResult<GetMyBookmarksQuery, GetMyBookmarksQueryVariables>;
 export const DeleteBookmarkWithAuthDocument = gql`
-    mutation DeleteBookmarkWithAuth($deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!) {
-  deleteBookmarkWithAuth(
-    deleteBookmarkWithAuthInput: $deleteBookmarkWithAuthInput
-  ) {
-    isSuccess
+  mutation DeleteBookmarkWithAuth($deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!) {
+    deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: $deleteBookmarkWithAuthInput) {
+      isSuccess
+    }
   }
-}
-    `;
-export type DeleteBookmarkWithAuthMutationFn = Apollo.MutationFunction<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>;
-export type DeleteBookmarkWithAuthComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>, 'mutation'>;
+`;
+export type DeleteBookmarkWithAuthMutationFn = Apollo.MutationFunction<
+  DeleteBookmarkWithAuthMutation,
+  DeleteBookmarkWithAuthMutationVariables
+>;
+export type DeleteBookmarkWithAuthComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    DeleteBookmarkWithAuthMutation,
+    DeleteBookmarkWithAuthMutationVariables
+  >,
+  'mutation'
+>;
 
-    export const DeleteBookmarkWithAuthComponent = (props: DeleteBookmarkWithAuthComponentProps) => (
-      <ApolloReactComponents.Mutation<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables> mutation={DeleteBookmarkWithAuthDocument} {...props} />
-    );
-    
+export const DeleteBookmarkWithAuthComponent = (props: DeleteBookmarkWithAuthComponentProps) => (
+  <ApolloReactComponents.Mutation<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>
+    mutation={DeleteBookmarkWithAuthDocument}
+    {...props}
+  />
+);
 
 /**
  * __useDeleteBookmarkWithAuthMutation__
@@ -115,10 +137,18 @@ export type DeleteBookmarkWithAuthComponentProps = Omit<ApolloReactComponents.Mu
  *   },
  * });
  */
-export function useDeleteBookmarkWithAuthMutation(baseOptions?: Apollo.MutationHookOptions<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>(DeleteBookmarkWithAuthDocument, options);
-      }
+export function useDeleteBookmarkWithAuthMutation(
+  baseOptions?: Apollo.MutationHookOptions<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>(
+    DeleteBookmarkWithAuthDocument,
+    options
+  );
+}
 export type DeleteBookmarkWithAuthMutationHookResult = ReturnType<typeof useDeleteBookmarkWithAuthMutation>;
 export type DeleteBookmarkWithAuthMutationResult = Apollo.MutationResult<DeleteBookmarkWithAuthMutation>;
-export type DeleteBookmarkWithAuthMutationOptions = Apollo.BaseMutationOptions<DeleteBookmarkWithAuthMutation, DeleteBookmarkWithAuthMutationVariables>;
+export type DeleteBookmarkWithAuthMutationOptions = Apollo.BaseMutationOptions<
+  DeleteBookmarkWithAuthMutation,
+  DeleteBookmarkWithAuthMutationVariables
+>;
