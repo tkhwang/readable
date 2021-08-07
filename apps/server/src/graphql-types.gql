@@ -89,6 +89,7 @@ type Mutation {
 }
 
 type OAuthUser {
+  accessToken: String
   avatarUrl: String
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -97,6 +98,7 @@ type OAuthUser {
   name: String!
   provider: AuthProviders!
   providerId: String!
+  refreshToken: String
   updatedAt: DateTime!
   user: User!
 }

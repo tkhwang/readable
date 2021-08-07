@@ -15,6 +15,12 @@ export class OAuthUser extends CoreEntity {
   @Column()
   providerId: string;
 
+  @Column({ nullable: true })
+  accessToken?: string;
+
+  @Column({ nullable: true })
+  refreshToken?: string;
+
   @Column()
   name: string;
 

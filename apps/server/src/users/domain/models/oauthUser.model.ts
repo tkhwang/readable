@@ -12,6 +12,12 @@ export class OAuthUser extends CoreModel {
   @Field(type => String)
   providerId: string;
 
+  @Field(type => String, { nullable: true })
+  accessToken?: string;
+
+  @Field(type => String, { nullable: true })
+  refreshToken?: string;
+
   @Field(type => String)
   name: string;
 
