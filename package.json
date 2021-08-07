@@ -60,7 +60,6 @@
     "crypto-js": "^4.0.0",
     "document-register-element": "1.13.1",
     "express-session": "^1.17.2",
-    "googleapis": "^84.0.0",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
     "joi": "^17.4.0",

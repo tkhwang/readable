@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { google } from 'googleapis';
+// import { google } from 'googleapis';
+
 @Injectable()
 export class SyncService {
   syncGoogleCalendar() {
