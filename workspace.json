@@ -188,27 +188,6 @@
         }
       }
     },
-    "login-data-access-login": {
-      "root": "libs/login/data-access-login",
-      "sourceRoot": "libs/login/data-access-login/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/login/data-access-login/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/login/data-access-login"],
-          "options": {
-            "jestConfig": "libs/login/data-access-login/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "login-feature-login": {
       "root": "libs/login/feature-login",
       "sourceRoot": "libs/login/feature-login/src",
@@ -318,6 +297,17 @@
           "options": {
             "jestConfig": "libs/shared/data-access-auth/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx graphql-codegen --config libs/shared/data-access-auth/codegen.yml"
+              }
+            ]
           }
         }
       }

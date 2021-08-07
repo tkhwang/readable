@@ -37,11 +37,8 @@
     "home-feature-home": {
       "tags": ["scope:client"]
     },
-    "login-data-access-login": {
-      "tags": []
-    },
     "login-feature-login": {
-      "tags": []
+      "tags": ["scope:client"]
     },
     "server": {
       "tags": []
