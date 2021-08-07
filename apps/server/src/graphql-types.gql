@@ -21,10 +21,12 @@ type Bookmark {
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!
+  donedAt: DateTime
   generatedImage: String!
   howMany: Int!
   id: ID!
   imageUrl: String!
+  scheduledAt: DateTime
   siteName: String!
   tags: [String!]!
   title: String!
@@ -41,10 +43,12 @@ type BookmarkBRFO {
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!
+  donedAt: DateTime
   generatedImage: String!
   howMany: Int!
   id: ID!
   imageUrl: String!
+  scheduledAt: DateTime
   siteName: String!
   tags: [String!]!
   title: String!
