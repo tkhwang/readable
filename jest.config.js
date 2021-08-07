@@ -18,5 +18,6 @@ module.exports = {
     '<rootDir>/libs/bookmark/feature-bookmark',
     '<rootDir>/libs/shared/data-access-user',
     '<rootDir>/libs/login/feature-login',
+    '<rootDir>/libs/shared/type',
   ],
 };

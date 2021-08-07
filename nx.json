@@ -55,6 +55,9 @@
     "shared-data-access-user": {
       "tags": ["scope:client-shared"]
     },
+    "shared-types": {
+      "tags": ["scope:client-shared"]
+    },
     "shared-util-auth": {
       "tags": ["scope:client-shared"]
     },
