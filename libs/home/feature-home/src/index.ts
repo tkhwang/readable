@@ -1,1 +1,1 @@
-export * from './lib/layout/home-layout';
+export { HomePage } from './lib/home-page';
