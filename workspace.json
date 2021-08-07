@@ -298,17 +298,6 @@
             "jestConfig": "libs/shared/data-access-auth/jest.config.js",
             "passWithNoTests": true
           }
-        },
-
-        "generate": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              {
-                "command": "npx graphql-codegen --config libs/shared/data-access-auth/codegen.yml"
-              }
-            ]
-          }
         }
       }
     },
@@ -349,6 +338,27 @@
           "outputs": ["coverage/libs/shared/data-access-user"],
           "options": {
             "jestConfig": "libs/shared/data-access-user/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-types": {
+      "root": "libs/shared/types",
+      "sourceRoot": "libs/shared/types/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/types/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/types"],
+          "options": {
+            "jestConfig": "libs/shared/types/jest.config.js",
             "passWithNoTests": true
           }
         }
