@@ -21,6 +21,7 @@ import { SyncModule } from './sync/sync.module';
       envFilePath: process.env.NODE_ENV === 'production' ? '.env' : '.env.local',
       validationSchema: Joi.object({
         TOKEN_SECRET: Joi.string().required(),
+        GOOGLE_CALENDAR_SERVICE_CREDENTIALS: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot({
