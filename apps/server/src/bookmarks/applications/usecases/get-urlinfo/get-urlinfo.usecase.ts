@@ -28,7 +28,8 @@ export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO>
 
     const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);
     bookmarkInfo.summary = summary ?? '';
-    bookmarkInfo.keywordIds = await this.bookmarksService.mapKeywords(keywords.slice(0, 5));
+    // TODO(Teddy): WIP
+    // bookmarkInfo.keywordIds = await this.bookmarksService.mapKeywords(keywords.slice(0, 5));
 
     return bookmarkInfo;
   }

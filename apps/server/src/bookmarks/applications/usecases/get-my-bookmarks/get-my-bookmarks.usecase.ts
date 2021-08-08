@@ -17,6 +17,6 @@ export class GetMyBookmarksUsecase implements Usecase<User, Bookmark[]> {
       bookmarkUser => bookmarkUser.bookmarkId
     );
 
-    return this.bookmarksRepository.find({ where: { id: In(mybookmarkIds) } });
+    return this.bookmarksRepository.find({ where: { id: In(mybookmarkIds) }, order: { createdAt: 'DESC' } });
   }
 }
