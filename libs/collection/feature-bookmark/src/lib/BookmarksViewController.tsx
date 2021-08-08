@@ -1,9 +1,8 @@
 import React from 'react';
-import { useBookmarks } from '@readable/bookmark/data-access-bookmark';
+import { useBookmarks } from '@readable/collection/data-access-bookmark';
 
 export const BookmarksViewController = () => {
   const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = useBookmarks();
-  console.log('TCL: myBookmarks', myBookmarks);
 
   if (loading) {
     return (

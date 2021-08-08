@@ -1,4 +1,4 @@
-import { Bookmark } from '@readable/graphql-types';
+import { Bookmark } from '@readable/shared/types';
 import { FunctionComponent } from 'react';
 
 interface Props {

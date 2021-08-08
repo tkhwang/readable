@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { ViewModel } from '../types/ViewModel';
+import { ViewModel } from '@readable/shared/types';
 import { useDeleteBookmarkWithAuthMutation, useGetMyBookmarksQuery } from './useBookmarks.query.generated';
 
 const GET_MY_BOOKMARKS = gql`

@@ -1,8 +1,8 @@
 import React from 'react';
-import { BookmarksViewController } from '@readable/bookmark/feature-bookmark';
+import { CollectionPage } from '@readable/collection/feature-collection';
 
 function Collection() {
-  return <BookmarksViewController />;
+  return <CollectionPage />;
 }
 
 export default Collection;
