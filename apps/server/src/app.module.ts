@@ -21,6 +21,8 @@ import { SyncModule } from './sync/sync.module';
       envFilePath: process.env.NODE_ENV === 'production' ? '.env' : '.env.local',
       validationSchema: Joi.object({
         TOKEN_SECRET: Joi.string().required(),
+        NLP_HOST: Joi.string().required(),
+        NLP_SERVER_SECRET: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot({
