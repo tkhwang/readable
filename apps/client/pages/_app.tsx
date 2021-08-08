@@ -4,16 +4,18 @@ import { useApollo } from '@readable/shared/data-access-apollo';
 import { AuthProvider } from '@readable/shared/data-access-auth';
 
 import 'tailwindcss/tailwind.css';
+import '@client/styles/styles.css';
+import '@client/styles/style.scss';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const client = useApollo();
 
   return (
-    <AuthProvider>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <AuthProvider>
         <Component {...pageProps} />
-      </ApolloProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ApolloProvider>
   );
 }
 
