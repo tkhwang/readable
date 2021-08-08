@@ -16,10 +16,8 @@ const ME_QUERY = gql`
 export function useMeViewModel() {
   const { data, loading, error } = useMeQueryQuery();
 
-  const me = data?.me ?? null;
-
   return {
-    me,
+    me: data?.me ?? null,
     loading,
     error,
   };

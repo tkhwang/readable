@@ -19,5 +19,6 @@ module.exports = {
     '<rootDir>/libs/shared/data-access-user',
     '<rootDir>/libs/login/feature-login',
     '<rootDir>/libs/shared/type',
+    '<rootDir>/libs/collection/feature-collection',
   ],
 };
