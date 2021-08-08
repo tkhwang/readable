@@ -13,6 +13,7 @@ import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { PaginationModule } from './pagination/pagination.module';
 import { SyncModule } from './sync/sync.module';
+import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.entity';
 
 @Module({
   imports: [
@@ -39,7 +40,7 @@ import { SyncModule } from './sync/sync.module';
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      entities: [OAuthUser, User, Bookmark, BookmarkUser],
+      entities: [OAuthUser, User, Bookmark, BookmarkUser, Keyword],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB

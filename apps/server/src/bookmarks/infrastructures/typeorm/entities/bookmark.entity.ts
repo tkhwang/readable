@@ -30,6 +30,12 @@ export class Bookmark extends CoreEntity {
   @Column('simple-array')
   tags: string[];
 
+  @Column('simple-array')
+  keywordIds: string[];
+
+  @Column('varchar', { name: 'summary', length: 4096 })
+  summary?: string;
+
   @Column('int', { default: 0 })
   countFactful: number;
 
