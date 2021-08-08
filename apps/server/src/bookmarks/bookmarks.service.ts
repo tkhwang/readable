@@ -94,4 +94,11 @@ export class BookmarksService {
     const userIds = await this.bookmarkUsersRepository.findUserIdsByBookmarkId(bookmarkId);
     return this.usersRepository.findByIds(userIds);
   }
+
+  async getFieldKeywords(@Root() bookmark: BookmarkBRFO) {
+    const { keywordIds } = bookmark;
+
+    const keywords = await this.keywordsRepository.findByIds(keywordIds);
+    return keywords.map(keyword => keyword.keyword);
+  }
 }

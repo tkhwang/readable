@@ -74,4 +74,7 @@ export class BookmarkBRFO extends CoreModel {
 export class Bookmark extends BookmarkBRFO {
   @Field(type => [User], { nullable: true })
   collector: User[];
+
+  @Field(type => [String])
+  keywords: string[];
 }

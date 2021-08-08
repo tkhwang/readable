@@ -27,6 +27,7 @@ type Bookmark {
   id: ID!
   imageUrl: String!
   keywordIds: [String!]!
+  keywords: [String!]!
   scheduledAt: DateTime
   siteName: String!
   summary: String
