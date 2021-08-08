@@ -35,10 +35,12 @@ export type Bookmark = {
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];
+  readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly generatedImage: Scalars['String'];
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
+  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   readonly siteName: Scalars['String'];
   readonly tags: ReadonlyArray<Scalars['String']>;
   readonly title: Scalars['String'];
@@ -56,10 +58,12 @@ export type BookmarkBRFO = {
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];
+  readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly generatedImage: Scalars['String'];
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
+  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   readonly siteName: Scalars['String'];
   readonly tags: ReadonlyArray<Scalars['String']>;
   readonly title: Scalars['String'];
@@ -107,6 +111,7 @@ export type MutationdeleteBookmarkWithAuthArgs = {
 
 export type OAuthUser = {
   readonly __typename?: 'OAuthUser';
+  readonly accessToken?: Maybe<Scalars['String']>;
   readonly avatarUrl?: Maybe<Scalars['String']>;
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
@@ -115,6 +120,7 @@ export type OAuthUser = {
   readonly name: Scalars['String'];
   readonly provider: AuthProviders;
   readonly providerId: Scalars['String'];
+  readonly refreshToken?: Maybe<Scalars['String']>;
   readonly updatedAt: Scalars['DateTime'];
   readonly user: User;
 };

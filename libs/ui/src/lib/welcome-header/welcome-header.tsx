@@ -2,11 +2,11 @@ import { DotsVerticalIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 
 /* eslint-disable-next-line */
-export type HeaderProps = {};
+export type WelcomeHeaderProps = {};
 
-export function Header(props: HeaderProps) {
+export function WelcomeHeader(props: WelcomeHeaderProps) {
   return (
-    <header className="bg-indigo-700 py-4 px-6 flex justify-between items-center">
+    <header className="fixed w-full bg-indigo-700 py-4 px-6 flex justify-between items-center">
       <div className="flex items-center">
         {/* TODO(zlrlo): 이미지 변경 필요  */}
         <img
@@ -26,4 +26,4 @@ export function Header(props: HeaderProps) {
   );
 }
 
-export default Header;
+export default WelcomeHeader;
