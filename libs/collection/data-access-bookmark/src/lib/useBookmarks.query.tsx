@@ -16,6 +16,7 @@ const GET_MY_BOOKMARKS = gql`
       countFactful
       countEmotional
       countInspirational
+      keywords
     }
   }
 `;

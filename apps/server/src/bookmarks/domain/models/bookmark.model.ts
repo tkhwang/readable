@@ -43,6 +43,12 @@ export class BookmarkBRFO extends CoreModel {
   @Field(type => [String])
   tags: string[];
 
+  @Field(type => [String])
+  keywordIds: string[];
+
+  @Field(type => String, { nullable: true })
+  summary?: string;
+
   @Field(type => Int)
   countFactful: number;
 
@@ -68,4 +74,7 @@ export class BookmarkBRFO extends CoreModel {
 export class Bookmark extends BookmarkBRFO {
   @Field(type => [User], { nullable: true })
   collector: User[];
+
+  @Field(type => [String])
+  keywords: string[];
 }

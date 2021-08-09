@@ -10,9 +10,12 @@ import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/
 import { BookmarksService } from './bookmarks.service';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
+import { KeywordsRepository } from './infrastructures/typeorm/repositories/keywords.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([BookmarksRepository, BookmarkUsersRepository, UsersRepository])],
+  imports: [
+    TypeOrmModule.forFeature([BookmarksRepository, BookmarkUsersRepository, UsersRepository, KeywordsRepository]),
+  ],
   providers: [
     BookmarksResolver,
     BookmarksService,

@@ -40,8 +40,11 @@ export type Bookmark = {
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
+  readonly keywordIds: ReadonlyArray<Scalars['String']>;
+  readonly keywords: ReadonlyArray<Scalars['String']>;
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   readonly siteName: Scalars['String'];
+  readonly summary?: Maybe<Scalars['String']>;
   readonly tags: ReadonlyArray<Scalars['String']>;
   readonly title: Scalars['String'];
   readonly type: Scalars['String'];
@@ -63,8 +66,10 @@ export type BookmarkBRFO = {
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
+  readonly keywordIds: ReadonlyArray<Scalars['String']>;
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   readonly siteName: Scalars['String'];
+  readonly summary?: Maybe<Scalars['String']>;
   readonly tags: ReadonlyArray<Scalars['String']>;
   readonly title: Scalars['String'];
   readonly type: Scalars['String'];
