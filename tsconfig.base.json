@@ -21,6 +21,8 @@
       "@readable/collection/data-access-bookmark": ["libs/collection/data-access-bookmark/src/index.ts"],
       "@readable/collection/feature-bookmark": ["libs/collection/feature-bookmark/src/index.ts"],
       "@readable/collection/feature-collection": ["libs/collection/feature-collection/src/index.ts"],
+      "@readable/feed/data-access-pagination-bookmarks": ["libs/feed/data-access-pagination-bookmarks/src/index.ts"],
+      "@readable/feed/feature-bookmark": ["libs/feed/feature-bookmark/src/index.ts"],
       "@readable/home/feature-coming-soon": ["libs/home/feature-coming-soon/src/index.ts"],
       "@readable/home/feature-home": ["libs/home/feature-home/src/index.ts"],
       "@readable/login/feature-login": ["libs/login/feature-login/src/index.ts"],

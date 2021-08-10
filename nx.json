@@ -34,6 +34,12 @@
     "extensions": {
       "tags": []
     },
+    "feed-data-access-pagination-bookmarks": {
+      "tags": []
+    },
+    "feed-feature-bookmark": {
+      "tags": []
+    },
     "home-feature-coming-soon": {
       "tags": ["scope:client"]
     },
