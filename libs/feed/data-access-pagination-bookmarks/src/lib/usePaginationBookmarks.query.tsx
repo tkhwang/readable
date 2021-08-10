@@ -1,18 +1,38 @@
-import styled from 'styled-components';
+import { gql } from '@apollo/client';
+import { ViewModel } from '@readable/shared/types';
+import { usePaginationBookmarksQuery } from './usePaginationBookmarks.query.generated';
 
-/* eslint-disable-next-line */
-export interface FeedDataAccessPaginationBookmarksProps {}
-
-const StyledFeedDataAccessPaginationBookmarks = styled.div`
-  color: pink;
+const PAGINATION_BOOKMARKS = gql`
+  query PaginationBookmarks {
+    paginationBookmarks(getPaginationBookmarksInput: {}) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          siteName
+          collector {
+            id
+            name
+            provider
+          }
+        }
+      }
+    }
+  }
 `;
 
-export function FeedDataAccessPaginationBookmarks(props: FeedDataAccessPaginationBookmarksProps) {
-  return (
-    <StyledFeedDataAccessPaginationBookmarks>
-      <h1>Welcome to feed-data-access-pagination-bookmarks!</h1>
-    </StyledFeedDataAccessPaginationBookmarks>
-  );
-}
+export type PaginationBookmarksViewModel = ViewModel<typeof usePaginationBookmarksViewModel>;
 
-export default FeedDataAccessPaginationBookmarks;
+export function usePaginationBookmarksViewModel() {
+  const { data, loading, error } = usePaginationBookmarksQuery();
+
+  return {
+    paginationBookmarks: data?.paginationBookmarks ?? [],
+    loading,
+    error,
+  };
+}

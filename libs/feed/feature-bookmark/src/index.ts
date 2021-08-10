@@ -1,1 +1,1 @@
-export * from './lib/feed-feature-bookmark';
+export { BookmarksViewController } from './lib/BookmarksViewController';

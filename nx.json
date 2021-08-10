@@ -35,10 +35,13 @@
       "tags": []
     },
     "feed-data-access-pagination-bookmarks": {
-      "tags": []
+      "tags": ["scope:client"]
     },
     "feed-feature-bookmark": {
-      "tags": []
+      "tags": ["scope:client"]
+    },
+    "feed-feature-feed": {
+      "tags": ["scope:client"]
     },
     "home-feature-coming-soon": {
       "tags": ["scope:client"]
