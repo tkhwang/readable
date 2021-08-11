@@ -21,10 +21,10 @@ export type PaginationBookmarksQuery = (
       & Pick<Types.PaginationBookmarkEdge, 'cursor'>
       & { readonly node: (
         { readonly __typename?: 'Bookmark' }
-        & Pick<Types.Bookmark, 'id' | 'siteName'>
+        & Pick<Types.Bookmark, 'id' | 'siteName' | 'title' | 'url' | 'imageUrl' | 'keywords' | 'description'>
         & { readonly collector?: Types.Maybe<ReadonlyArray<(
           { readonly __typename?: 'User' }
-          & Pick<Types.User, 'id' | 'name' | 'provider'>
+          & Pick<Types.User, 'name' | 'avatarUrl'>
         )>> }
       ) }
     )> }
@@ -34,7 +34,7 @@ export type PaginationBookmarksQuery = (
 
 export const PaginationBookmarksDocument = gql`
     query PaginationBookmarks {
-  paginationBookmarks(getPaginationBookmarksInput: {}) {
+  paginationBookmarks(getPaginationBookmarksInput: {first: 20}) {
     pageInfo {
       hasNextPage
       endCursor
@@ -44,10 +44,14 @@ export const PaginationBookmarksDocument = gql`
       node {
         id
         siteName
+        title
+        url
+        imageUrl
+        keywords
+        description
         collector {
-          id
           name
-          provider
+          avatarUrl
         }
       }
     }

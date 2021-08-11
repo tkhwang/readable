@@ -32,7 +32,7 @@ export class BookmarksRepository extends Repository<Bookmark> {
     let bookmarks = await this.createQueryBuilder('bookmark')
       .where(criteria)
       .limit(first + 1)
-      .orderBy(orderBy, order)
+      .orderBy('createdAt', 'DESC')
       .getMany();
 
     if (!bookmarks || !bookmarks.length) return null;

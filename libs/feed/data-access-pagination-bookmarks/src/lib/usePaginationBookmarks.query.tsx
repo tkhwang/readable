@@ -4,7 +4,7 @@ import { usePaginationBookmarksQuery } from './usePaginationBookmarks.query.gene
 
 const PAGINATION_BOOKMARKS = gql`
   query PaginationBookmarks {
-    paginationBookmarks(getPaginationBookmarksInput: {}) {
+    paginationBookmarks(getPaginationBookmarksInput: { first: 20 }) {
       pageInfo {
         hasNextPage
         endCursor
@@ -14,10 +14,17 @@ const PAGINATION_BOOKMARKS = gql`
         node {
           id
           siteName
+          title
+          url
+          imageUrl
+          keywords
+          description
           collector {
             id
             name
-            provider
+            avatarUrl
+            createdAt
+            deletedAt
           }
         }
       }
@@ -31,7 +38,7 @@ export function usePaginationBookmarksViewModel() {
   const { data, loading, error } = usePaginationBookmarksQuery();
 
   return {
-    paginationBookmarks: data?.paginationBookmarks ?? [],
+    paginationBookmarks: data?.paginationBookmarks,
     loading,
     error,
   };

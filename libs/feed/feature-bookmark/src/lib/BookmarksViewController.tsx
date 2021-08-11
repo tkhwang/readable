@@ -1,24 +1,19 @@
-import {
-  PaginationBookmarksViewModel,
-  usePaginationBookmarksViewModel,
-} from '@readable/feed/data-access-pagination-bookmarks';
-import { ViewController } from '@readable/shared/types';
+import { usePaginationBookmarksViewModel } from '@readable/feed/data-access-pagination-bookmarks';
+import { BookmarkCard } from './BookmarkCard';
 
-export const BookmarksViewController: ViewController<PaginationBookmarksViewModel> = ({ viewModel }) => {
-  const { paginationBookmarks, loading, error } = viewModel;
+export const BookmarksViewController = () => {
+  const { paginationBookmarks, loading, error } = usePaginationBookmarksViewModel();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-      BookmarksViewController
-      {/* TODO(Teddy): Error */}
-      {/* {paginationBookmarks.map(paginationBookmark => {
-        return (
-          <div className="bookmark" key={paginationBookmark.id}>
-            <div className="bookmark-title">{paginationBookmark.title}</div>
-            <div className="bookmark-description">{paginationBookmark.description}</div>
-          </div>
-        );
-      })} */}
-    </>
+    <div>
+      {paginationBookmarks &&
+        paginationBookmarks.edges.map(edge => {
+          return <BookmarkCard bookmark={edge.node} />;
+        })}
+    </div>
   );
 };

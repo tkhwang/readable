@@ -92,7 +92,9 @@ export class BookmarksService {
 
     // TODO(Teddy): join query
     const userIds = await this.bookmarkUsersRepository.findUserIdsByBookmarkId(bookmarkId);
-    return this.usersRepository.findByIds(userIds);
+    const users = await this.usersRepository.findByIds(userIds);
+
+    return users ?? [];
   }
 
   async getFieldKeywords(@Root() bookmark: BookmarkBRFO) {
