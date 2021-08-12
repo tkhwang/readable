@@ -14,21 +14,21 @@ enum AuthProviders {
 }
 
 type Bookmark {
-  collector: [User!]
+  collectors: [User!]
   countEmotional: Int!
   countFactful: Int!
   countInspirational: Int!
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!
-  finisher: [User!]
+  finishers: [User!]
   generatedImage: String!
   howMany: Int!
   id: ID!
   imageUrl: String!
   keywordIds: [String!]!
   keywords: [String!]!
-  schduler: [User!]
+  schedulers: [User!]
   siteName: String!
   summary: String
   tags: [String!]!

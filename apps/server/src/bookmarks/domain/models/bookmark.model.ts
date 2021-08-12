@@ -67,13 +67,13 @@ export class BookmarkBRFO extends CoreModel {
 @ObjectType()
 export class Bookmark extends BookmarkBRFO {
   @Field(type => [User], { nullable: true })
-  collector: User[];
+  collectors: User[];
 
   @Field(type => [User], { nullable: true })
-  schduler: User[];
+  schedulers: User[];
 
   @Field(type => [User], { nullable: true })
-  finisher: User[];
+  finishers: User[];
 
   @Field(type => [String])
   keywords: string[];

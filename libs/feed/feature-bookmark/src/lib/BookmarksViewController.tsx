@@ -15,7 +15,18 @@ export const BookmarksViewController = () => {
           return <BookmarkCard bookmark={edge.node} />;
         })} */}
       {paginationBookmarks?.edges.map(edge => {
-        const { id, siteName, title, url, imageUrl, keywords, description, collector } = edge.node;
+        const {
+          id,
+          siteName,
+          title,
+          url,
+          imageUrl,
+          keywords,
+          description,
+          collectors,
+          schedulers,
+          finishers,
+        } = edge.node;
 
         return (
           <div className="p-10 ">
@@ -37,10 +48,30 @@ export const BookmarksViewController = () => {
                 })}
               </div>
             </div>
-            <div className="h-10 flex flex-wrap content-start">
-              {collector?.length &&
-                collector.map(collector => {
+            <div className="h-16 flex flex-wrap content-start">
+              Collector:
+              {collectors &&
+                collectors.length > 0 &&
+                collectors.map(collector => {
                   const { name, avatarUrl } = collector;
+                  return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
+                })}
+            </div>
+            <div className="h-16 flex flex-wrap content-start">
+              Schedulers:
+              {schedulers &&
+                schedulers.length > 0 &&
+                schedulers.map(scheduler => {
+                  const { name, avatarUrl } = scheduler;
+                  return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
+                })}
+            </div>
+            <div className="h-16 flex flex-wrap content-start">
+              Finishers:
+              {finishers &&
+                finishers.length > 0 &&
+                finishers.map(finisher => {
+                  const { name, avatarUrl } = finisher;
                   return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
                 })}
             </div>

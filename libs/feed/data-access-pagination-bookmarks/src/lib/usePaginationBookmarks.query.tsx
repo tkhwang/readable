@@ -19,12 +19,17 @@ const PAGINATION_BOOKMARKS = gql`
           imageUrl
           keywords
           description
-          collector {
-            id
+          collectors {
             name
             avatarUrl
-            createdAt
-            deletedAt
+          }
+          schedulers {
+            name
+            avatarUrl
+          }
+          finishers {
+            name
+            avatarUrl
           }
         }
       }

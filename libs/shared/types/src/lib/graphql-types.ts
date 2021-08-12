@@ -28,21 +28,21 @@ export enum AuthProviders {
 
 export type Bookmark = {
   readonly __typename?: 'Bookmark';
-  readonly collector?: Maybe<ReadonlyArray<User>>;
+  readonly collectors?: Maybe<ReadonlyArray<User>>;
   readonly countEmotional: Scalars['Int'];
   readonly countFactful: Scalars['Int'];
   readonly countInspirational: Scalars['Int'];
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];
-  readonly donedAt?: Maybe<Scalars['DateTime']>;
+  readonly finishers?: Maybe<ReadonlyArray<User>>;
   readonly generatedImage: Scalars['String'];
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
   readonly keywordIds: ReadonlyArray<Scalars['String']>;
   readonly keywords: ReadonlyArray<Scalars['String']>;
-  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
+  readonly schedulers?: Maybe<ReadonlyArray<User>>;
   readonly siteName: Scalars['String'];
   readonly summary?: Maybe<Scalars['String']>;
   readonly tags: ReadonlyArray<Scalars['String']>;
@@ -61,13 +61,11 @@ export type BookmarkBRFO = {
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];
-  readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly generatedImage: Scalars['String'];
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
   readonly keywordIds: ReadonlyArray<Scalars['String']>;
-  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   readonly siteName: Scalars['String'];
   readonly summary?: Maybe<Scalars['String']>;
   readonly tags: ReadonlyArray<Scalars['String']>;

@@ -56,8 +56,18 @@ export class BookmarksResolver {
    * Field Resolver
    */
   @ResolveField()
-  async collector(@Root() bookmark: BookmarkBRFO) {
-    return this.bookmarksService.getFieldCollector(bookmark);
+  async collectors(@Root() bookmark: BookmarkBRFO) {
+    return this.bookmarksService.getFieldCollectors(bookmark);
+  }
+
+  @ResolveField()
+  async schedulers(@Root() bookmark: BookmarkBRFO) {
+    return this.bookmarksService.getFieldSchedulers(bookmark);
+  }
+
+  @ResolveField()
+  async finishers(@Root() bookmark: BookmarkBRFO) {
+    return this.bookmarksService.getFieldFinishers(bookmark);
   }
 
   @ResolveField()
