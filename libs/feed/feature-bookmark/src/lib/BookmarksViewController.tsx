@@ -49,7 +49,7 @@ export const BookmarksViewController = () => {
               </div>
             </div>
             <div className="h-16 flex flex-wrap content-start">
-              Collector:
+              Collectors:
               {collectors &&
                 collectors.length > 0 &&
                 collectors.map(collector => {
