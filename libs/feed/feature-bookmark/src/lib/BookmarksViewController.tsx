@@ -37,11 +37,13 @@ export const BookmarksViewController = () => {
                 })}
               </div>
             </div>
-            {collector?.length &&
-              collector.map(collector => {
-                const { name, avatarUrl } = collector;
-                return <img className="w-12 rounded-full" src={avatarUrl ?? ''} alt={name} />;
-              })}
+            <div className="h-10 flex flex-wrap content-start">
+              {collector?.length &&
+                collector.map(collector => {
+                  const { name, avatarUrl } = collector;
+                  return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
+                })}
+            </div>
           </div>
         );
       })}
