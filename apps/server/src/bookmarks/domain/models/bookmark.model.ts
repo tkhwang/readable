@@ -58,12 +58,6 @@ export class BookmarkBRFO extends CoreModel {
   @Field(type => Int)
   countInspirational: number;
 
-  @Field(type => Date, { nullable: true })
-  scheduledAt?: Date;
-
-  @Field(type => Date, { nullable: true })
-  donedAt?: Date;
-
   // Model only
 
   @Field(type => Int)
@@ -74,6 +68,12 @@ export class BookmarkBRFO extends CoreModel {
 export class Bookmark extends BookmarkBRFO {
   @Field(type => [User], { nullable: true })
   collector: User[];
+
+  @Field(type => [User], { nullable: true })
+  schduler: User[];
+
+  @Field(type => [User], { nullable: true })
+  finisher: User[];
 
   @Field(type => [String])
   keywords: string[];

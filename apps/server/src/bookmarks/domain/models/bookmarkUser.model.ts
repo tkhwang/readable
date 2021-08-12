@@ -11,4 +11,10 @@ export class BookmarkUser extends CoreModel {
 
   @Field(type => String)
   userId: string;
+
+  @Field(type => Date, { nullable: true })
+  scheduledAt?: Date;
+
+  @Field(type => Date, { nullable: true })
+  donedAt?: Date;
 }
