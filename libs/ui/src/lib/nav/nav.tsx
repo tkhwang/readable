@@ -21,6 +21,14 @@ export function Nav(props: NavProps) {
             </a>
           </li>
         </Link>
+        <Link href="/feed">
+          <li className="py-2 hover:bg-indigo-300 rounded">
+            <a className="truncate">
+              <img src="//cdn.jsdelivr.net/npm/heroicons@1.0.1/outline/gift.svg" className="w-7 sm:mx-2 mx-4 inline" />
+              <span className="hidden sm:inline">Feed</span>
+            </a>
+          </li>
+        </Link>
         <li className="py-2 hover:bg-indigo-300 rounded">
           <a className="truncate">
             <img src="//cdn.jsdelivr.net/npm/heroicons@1.0.1/outline/cog.svg" className="w-7 sm:mx-2 mx-4 inline" />
