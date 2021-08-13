@@ -22,7 +22,13 @@ export type PaginationBookmarksQuery = (
       & { readonly node: (
         { readonly __typename?: 'Bookmark' }
         & Pick<Types.Bookmark, 'id' | 'siteName' | 'title' | 'url' | 'imageUrl' | 'keywords' | 'description'>
-        & { readonly collector?: Types.Maybe<ReadonlyArray<(
+        & { readonly collectors?: Types.Maybe<ReadonlyArray<(
+          { readonly __typename?: 'User' }
+          & Pick<Types.User, 'name' | 'avatarUrl'>
+        )>>, readonly schedulers?: Types.Maybe<ReadonlyArray<(
+          { readonly __typename?: 'User' }
+          & Pick<Types.User, 'name' | 'avatarUrl'>
+        )>>, readonly finishers?: Types.Maybe<ReadonlyArray<(
           { readonly __typename?: 'User' }
           & Pick<Types.User, 'name' | 'avatarUrl'>
         )>> }
@@ -49,7 +55,15 @@ export const PaginationBookmarksDocument = gql`
         imageUrl
         keywords
         description
-        collector {
+        collectors {
+          name
+          avatarUrl
+        }
+        schedulers {
+          name
+          avatarUrl
+        }
+        finishers {
           name
           avatarUrl
         }

@@ -11,4 +11,10 @@ export class BookmarkUser extends CoreEntity {
 
   @Column()
   userId: string;
+
+  @Column({ type: 'datetime', nullable: true })
+  scheduledAt?: Date;
+
+  @Column({ type: 'datetime', nullable: true })
+  donedAt?: Date;
 }

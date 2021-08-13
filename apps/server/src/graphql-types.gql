@@ -14,21 +14,21 @@ enum AuthProviders {
 }
 
 type Bookmark {
-  collector: [User!]
+  collectors: [User!]
   countEmotional: Int!
   countFactful: Int!
   countInspirational: Int!
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!
-  donedAt: DateTime
+  finishers: [User!]
   generatedImage: String!
   howMany: Int!
   id: ID!
   imageUrl: String!
   keywordIds: [String!]!
   keywords: [String!]!
-  scheduledAt: DateTime
+  schedulers: [User!]
   siteName: String!
   summary: String
   tags: [String!]!
@@ -46,13 +46,11 @@ type BookmarkBRFO {
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!
-  donedAt: DateTime
   generatedImage: String!
   howMany: Int!
   id: ID!
   imageUrl: String!
   keywordIds: [String!]!
-  scheduledAt: DateTime
   siteName: String!
   summary: String
   tags: [String!]!

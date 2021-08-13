@@ -87,14 +87,43 @@ export class BookmarksService {
   /*
    * Field Resolver
    */
-  async getFieldCollector(@Root() bookmark: BookmarkBRFO) {
+  async getFieldCollectors(@Root() bookmark: BookmarkBRFO) {
     const { id: bookmarkId } = bookmark;
 
-    // TODO(Teddy): join query
-    const userIds = await this.bookmarkUsersRepository.findUserIdsByBookmarkId(bookmarkId);
-    const users = await this.usersRepository.findByIds(userIds);
+    const bookmarkUsers = await this.bookmarkUsersRepository.find({ where: { bookmarkId } });
 
-    return users ?? [];
+    const collectorUserIds = bookmarkUsers
+      .filter(bookmarkUser => !bookmarkUser.scheduledAt && !bookmarkUser.donedAt)
+      .map(bookmarkUser => bookmarkUser.userId);
+
+    const collectors = await this.usersRepository.findByIds(collectorUserIds);
+    return collectors ?? [];
+  }
+
+  async getFieldSchedulers(@Root() bookmark: BookmarkBRFO) {
+    const { id: bookmarkId } = bookmark;
+
+    const bookmarkUsers = await this.bookmarkUsersRepository.find({ where: { bookmarkId } });
+
+    const schdulerUserIds = bookmarkUsers
+      .filter(bookmarkUser => bookmarkUser.scheduledAt && !bookmarkUser.donedAt)
+      .map(bookmarkUser => bookmarkUser.userId);
+
+    const schdulers = await this.usersRepository.findByIds(schdulerUserIds);
+    return schdulers ?? [];
+  }
+
+  async getFieldFinishers(@Root() bookmark: BookmarkBRFO) {
+    const { id: bookmarkId } = bookmark;
+
+    const bookmarkUsers = await this.bookmarkUsersRepository.find({ where: { bookmarkId } });
+
+    const finisherUserIds = bookmarkUsers
+      .filter(bookmarkUser => bookmarkUser.donedAt)
+      .map(bookmarkUser => bookmarkUser.userId);
+
+    const finishers = await this.usersRepository.findByIds(finisherUserIds);
+    return finishers ?? [];
   }
 
   async getFieldKeywords(@Root() bookmark: BookmarkBRFO) {
