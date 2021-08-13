@@ -49,15 +49,6 @@ export class BookmarkBRFO extends CoreModel {
   @Field(type => String, { nullable: true })
   summary?: string;
 
-  @Field(type => Int)
-  countFactful: number;
-
-  @Field(type => Int)
-  countEmotional: number;
-
-  @Field(type => Int)
-  countInspirational: number;
-
   // Model only
 
   @Field(type => Int)

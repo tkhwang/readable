@@ -17,16 +17,7 @@ export const BookmarksViewController = () => {
       <p className="text-2xl">My Bookmarks</p>
       {myBookmarks?.length > 0 &&
         myBookmarks.map(bookmark => {
-          const {
-            id: bookmarkId,
-            url,
-            imageUrl,
-            title,
-            description,
-            countFactful,
-            countEmotional,
-            countInspirational,
-          } = bookmark;
+          const { id: bookmarkId, url, imageUrl, title, description } = bookmark;
 
           const handleDelete = () => {
             deleteBookmarkWithAuthMutation({
@@ -54,17 +45,6 @@ export const BookmarksViewController = () => {
                       </span>
                     );
                   })}
-                </div>
-                <div className="text-base">
-                  <ul>
-                    <li>Factful : {countFactful}</li>
-                  </ul>
-                  <ul>
-                    <li>Emotional: {countEmotional}</li>
-                  </ul>
-                  <ul>
-                    <li>Inspirational: {countInspirational}</li>
-                  </ul>
                 </div>
                 <button
                   className="bg-transparent hover:bg-red-500 text-red-700 text-base hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
