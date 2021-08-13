@@ -29,9 +29,6 @@ export enum AuthProviders {
 export type Bookmark = {
   readonly __typename?: 'Bookmark';
   readonly collectors?: Maybe<ReadonlyArray<User>>;
-  readonly countEmotional: Scalars['Int'];
-  readonly countFactful: Scalars['Int'];
-  readonly countInspirational: Scalars['Int'];
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];
@@ -55,9 +52,6 @@ export type Bookmark = {
 
 export type BookmarkBRFO = {
   readonly __typename?: 'BookmarkBRFO';
-  readonly countEmotional: Scalars['Int'];
-  readonly countFactful: Scalars['Int'];
-  readonly countInspirational: Scalars['Int'];
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description: Scalars['String'];

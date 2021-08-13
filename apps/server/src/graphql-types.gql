@@ -15,9 +15,6 @@ enum AuthProviders {
 
 type Bookmark {
   collectors: [User!]
-  countEmotional: Int!
-  countFactful: Int!
-  countInspirational: Int!
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!
@@ -40,9 +37,6 @@ type Bookmark {
 }
 
 type BookmarkBRFO {
-  countEmotional: Int!
-  countFactful: Int!
-  countInspirational: Int!
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String!

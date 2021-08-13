@@ -35,13 +35,4 @@ export class Bookmark extends CoreEntity {
 
   @Column('varchar', { name: 'summary', length: 4096 })
   summary?: string;
-
-  @Column('int', { default: 0 })
-  countFactful: number;
-
-  @Column('int', { default: 0 })
-  countEmotional: number;
-
-  @Column('int', { default: 0 })
-  countInspirational: number;
 }
