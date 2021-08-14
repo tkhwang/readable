@@ -14,8 +14,8 @@ export type AddBookmarkInGoogleEventsMutationVariables = Types.Exact<{
 export type AddBookmarkInGoogleEventsMutation = (
   { readonly __typename?: 'Mutation' }
   & { readonly addBookmarkInGoogleEventsWithAuth: (
-    { readonly __typename?: 'Bookmark' }
-    & Pick<Types.Bookmark, 'id' | 'title'>
+    { readonly __typename?: 'CommonOutput' }
+    & Pick<Types.CommonOutput, 'isSuccess'>
   ) }
 );
 
@@ -25,8 +25,7 @@ export const AddBookmarkInGoogleEventsDocument = gql`
   addBookmarkInGoogleEventsWithAuth(
     addInGoogleEventsInput: $addInGoogleEventsInput
   ) {
-    id
-    title
+    isSuccess
   }
 }
     `;

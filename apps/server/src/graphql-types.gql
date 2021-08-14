@@ -61,7 +61,7 @@ type BookmarkBRFO {
 }
 
 input BookmarkInput {
-  scheduledAt: DateTime
+  scheduledAt: DateTime!
   title: String!
   url: String!
 }
@@ -92,7 +92,7 @@ input GetPaginationBookmarksInput {
 }
 
 type Mutation {
-  addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): Bookmark!
+  addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): CommonOutput!
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
 }

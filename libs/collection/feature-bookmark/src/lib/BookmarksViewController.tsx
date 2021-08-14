@@ -1,10 +1,11 @@
 import React from 'react';
 import { useBookmarks } from '@readable/collection/data-access-bookmark';
 import { useSyncBookmarks } from '@readable/collection/data-access-sync';
+import { AddInGoogleEventsInput, Bookmark } from '@readable/shared/types';
 
 export const BookmarksViewController = () => {
   const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = useBookmarks();
-  // const {} = useSyncBookmarks();
+  const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
 
   if (loading) {
     return (
@@ -13,6 +14,21 @@ export const BookmarksViewController = () => {
       </div>
     );
   }
+
+  const handleSyncBookmark = async () => {
+    console.log('TCL: handleSyncBookmark -> handleSyncBookmark');
+
+    const addInGoogleEventsInput: AddInGoogleEventsInput = {
+      bookmarks: [
+        {
+          url: 'url',
+          title: 'title',
+          scheduledAt: new Date(),
+        },
+      ],
+    };
+    await addBookmarkInGoogleEventsMutation({ variables: { addInGoogleEventsInput } });
+  };
 
   return (
     <>
@@ -56,7 +72,7 @@ export const BookmarksViewController = () => {
                 </button>
                 <button
                   className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  onClick={handleDelete}
+                  onClick={() => handleSyncBookmark()}
                 >
                   sync
                 </button>

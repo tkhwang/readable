@@ -76,7 +76,7 @@ export type BookmarkBRFO = {
 };
 
 export type BookmarkInput = {
-  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
+  readonly scheduledAt: Scalars['DateTime'];
   readonly title: Scalars['String'];
   readonly url: Scalars['String'];
 };
@@ -103,7 +103,7 @@ export type GetPaginationBookmarksInput = {
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
-  readonly addBookmarkInGoogleEventsWithAuth: Bookmark;
+  readonly addBookmarkInGoogleEventsWithAuth: CommonOutput;
   readonly addBookmarkWithAuth: Bookmark;
   readonly deleteBookmarkWithAuth: CommonOutput;
 };

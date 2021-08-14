@@ -55,7 +55,7 @@ export class BookmarksResolver {
     return this.deleteBookmarkWithAuthUsecse.execute(command, requestUser);
   }
 
-  @Mutation(returns => Bookmark)
+  @Mutation(returns => CommonOutput)
   @UseGuards(GqlAuthGuard)
   addBookmarkInGoogleEventsWithAuth(
     @CurrentUser() requestUser: User,

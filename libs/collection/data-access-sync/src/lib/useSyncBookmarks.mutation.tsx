@@ -5,8 +5,7 @@ import { ViewModel } from '@readable/shared/types';
 const ADD_BOOKMARK_IN_GOOGLE_EVENTS = gql`
   mutation AddBookmarkInGoogleEvents($addInGoogleEventsInput: AddInGoogleEventsInput!) {
     addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: $addInGoogleEventsInput) {
-      id
-      title
+      isSuccess
     }
   }
 `;

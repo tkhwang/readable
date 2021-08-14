@@ -1,11 +1,11 @@
 import { Usecase } from '@readable/common/usecase';
 import { AddInGoogleEventsInput } from './add-in-google-events.input';
 import { google } from 'googleapis';
-import { calendar } from 'googleapis/build/src/apis/calendar';
 import { User } from '@readable/users/domain/models/user.model';
 import { googleCalendarServiceCredentials } from '@readable/common/constants';
+import { CommonOutput } from '@readable/common/models/common.output';
 
-export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEventsInput, any> {
+export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEventsInput, CommonOutput> {
   async execute(command: AddInGoogleEventsInput, requestUser: User) {
     const { bookmarks } = command;
 
@@ -39,18 +39,25 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
       description: `Readable`,
     }));
 
-    for (const resource of resources) {
-      calendar.events.insert(
-        {
-          auth,
-          calendarId: 'primary',
-          requestBody: resource,
-        },
-        (err, event) => {
-          if (err) console.log('[-] Error: ', err);
-          console.log(event.data);
-        }
-      );
+    try {
+      for (const resource of resources) {
+        calendar.events.insert(
+          {
+            auth,
+            // TODO(Teddy): access primary calendar
+            calendarId: 'primary',
+            requestBody: resource,
+          },
+          (err, event) => {
+            if (err) console.log('[-] Error: ', err);
+            console.log(event.data);
+          }
+        );
+      }
+
+      return new CommonOutput(true);
+    } catch (error) {
+      return new CommonOutput(false);
     }
   }
 }

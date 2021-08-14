@@ -1,5 +1,4 @@
 import { Field, InputType, PickType } from '@nestjs/graphql';
-import { Bookmark } from './bookmark.model';
 
 @InputType()
 export class BookmarkInput {
@@ -9,6 +8,6 @@ export class BookmarkInput {
   @Field(type => String)
   title: string;
 
-  @Field(type => Date, { nullable: true })
+  @Field(type => Date)
   scheduledAt?: Date;
 }
