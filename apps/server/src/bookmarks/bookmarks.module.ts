@@ -11,6 +11,7 @@ import { BookmarksService } from './bookmarks.service';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { KeywordsRepository } from './infrastructures/typeorm/repositories/keywords.repository';
+import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { KeywordsRepository } from './infrastructures/typeorm/repositories/keywo
     GetUrlInfoUsecase,
     AddBookmarkWithAuthUsecase,
     DeleteBookmarkWithAuthUsecse,
+    AddBookmarkInGoogleEventsUsecase,
   ],
   controllers: [BookmarksController],
   exports: [BookmarksService],

@@ -25,6 +25,9 @@
     "collection-data-access-bookmark": {
       "tags": ["scope:client"]
     },
+    "collection-data-access-sync": {
+      "tags": ["scope:client"]
+    },
     "collection-feature-bookmark": {
       "tags": ["scope:client"]
     },

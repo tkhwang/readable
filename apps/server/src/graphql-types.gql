@@ -6,6 +6,11 @@ input AddBookMarkWithAuthInput {
   url: String!
 }
 
+input AddInGoogleEventsInput {
+  """Bookmarks for adding in Google calendar events"""
+  bookmarks: [BookmarkInput!]!
+}
+
 """Auth providers"""
 enum AuthProviders {
   Facebook
@@ -55,6 +60,12 @@ type BookmarkBRFO {
   urlHash: String!
 }
 
+input BookmarkInput {
+  scheduledAt: DateTime
+  title: String!
+  url: String!
+}
+
 type CommonOutput {
   """공통 Response (output)"""
   isSuccess: Boolean!
@@ -81,6 +92,7 @@ input GetPaginationBookmarksInput {
 }
 
 type Mutation {
+  addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): Bookmark!
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
 }
