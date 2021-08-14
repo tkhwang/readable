@@ -14,11 +14,20 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientID: process.env.OAUTH_GOOGLE_CLIENT_ID,
       clientSecret: process.env.OAUTH_GOOGLE_CLIENT_PW,
       callbackURL: process.env.OAUTH_GOOGLE_CALLBACK_URL,
-      scope: ['email', 'profile'],
-      accessType: 'offline',
-      prompt: 'consent',
+      scope: [
+        'email',
+        'profile',
+        // 'https://www.googleapis.com/auth/calendar',
+      ],
     });
   }
+
+  // MEMO(Teddy): for getting refresh token
+  // https://stackoverflow.com/a/64217203/2453632
+  authorizationParams(): { [key: string]: string } {
+    return { access_type: 'offline', prompt: 'consent' };
+  }
+
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback): Promise<any> {
     const googleUser = new SigninInput();
     googleUser.name = profile?.displayName ?? `${profile?.name?.givenName}${profile?.name?.familyName}`;
