@@ -9,7 +9,6 @@ input AddBookMarkWithAuthInput {
 input AddInGoogleEventsInput {
   """Bookmarks for adding in Google calendar events"""
   bookmarks: [BookmarkInput!]!
-  calendarId: String!
 }
 
 """Auth providers"""

@@ -12,10 +12,17 @@ import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-boo
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { KeywordsRepository } from './infrastructures/typeorm/repositories/keywords.repository';
 import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
+import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([BookmarksRepository, BookmarkUsersRepository, UsersRepository, KeywordsRepository]),
+    TypeOrmModule.forFeature([
+      BookmarksRepository,
+      BookmarkUsersRepository,
+      UsersRepository,
+      KeywordsRepository,
+      OAuthUsersRepository,
+    ]),
   ],
   providers: [
     BookmarksResolver,

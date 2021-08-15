@@ -23,7 +23,6 @@ import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.e
         TOKEN_SECRET: Joi.string().required(),
         NLP_HOST: Joi.string().required(),
         NLP_SERVER_SECRET: Joi.string().required(),
-        GOOGLE_CALENDAR_SERVICE_CREDENTIALS: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot({

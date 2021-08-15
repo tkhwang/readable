@@ -5,4 +5,4 @@ export const endpoints = {
   },
 };
 
-export const googleCalendarServiceCredentials = JSON.parse(process.env.GOOGLE_CALENDAR_SERVICE_CREDENTIALS ?? '');
+export const oauthGoogleCredentials = JSON.parse(process.env.OAUTH_GOOGLE_CREDENTIALS ?? '');

@@ -7,8 +7,6 @@ export const BookmarksViewController = () => {
   const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = useBookmarks();
   const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
 
-  const [calendarId, setCalendarId] = React.useState('');
-
   if (loading) {
     return (
       <div className="h-screen flex justify-center items-center">
@@ -17,17 +15,12 @@ export const BookmarksViewController = () => {
     );
   }
 
-  const handleChangeCalendarId = (event: any) => {
-    setCalendarId(event.target.value);
-  };
-
   // TODO(Teddy): WIP
   const handleSyncBookmark = async (bookmark?: any) => {
     if (!bookmark) return;
 
     const { url, title } = bookmark;
     const addInGoogleEventsInput: AddInGoogleEventsInput = {
-      calendarId,
       bookmarks: [
         {
           url,
@@ -41,18 +34,6 @@ export const BookmarksViewController = () => {
 
   return (
     <>
-      <p className="text-2xl">Google calendary sync setting</p>
-      <div className="m-5">
-        <ul>
-          <li>Sync 하고자 하는 Google calendarId (새로 생성 혹은 기존 칼렌더 선택)</li>
-          <input type="text" width="800" placeholder="paste google calendar id" onChange={handleChangeCalendarId} />
-          <li>
-            Readable 연동을 위한 계정{' '}
-            <span>readable-dev-for-google-api@readable-dev-318520.iam.gserviceaccount.com</span>을 권한 추가 (변경 및
-            공유 관리)
-          </li>
-        </ul>
-      </div>
       <p className="text-2xl">My Bookmarks</p>
       {myBookmarks?.length > 0 &&
         myBookmarks.map(bookmark => {
