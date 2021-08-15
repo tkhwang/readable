@@ -74,6 +74,27 @@
         }
       }
     },
+    "collection-data-access-sync": {
+      "root": "libs/collection/data-access-sync",
+      "sourceRoot": "libs/collection/data-access-sync/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/collection/data-access-sync/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/collection/data-access-sync"],
+          "options": {
+            "jestConfig": "libs/collection/data-access-sync/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "collection-feature-bookmark": {
       "root": "libs/collection/feature-bookmark",
       "sourceRoot": "libs/collection/feature-bookmark/src",

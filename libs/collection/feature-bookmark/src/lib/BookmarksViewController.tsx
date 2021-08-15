@@ -1,8 +1,11 @@
 import React from 'react';
 import { useBookmarks } from '@readable/collection/data-access-bookmark';
+import { useSyncBookmarks } from '@readable/collection/data-access-sync';
+import { AddInGoogleEventsInput, Bookmark, BookmarkBRFO, BookmarkInput } from '@readable/shared/types';
 
 export const BookmarksViewController = () => {
   const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = useBookmarks();
+  const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
 
   if (loading) {
     return (
@@ -11,6 +14,23 @@ export const BookmarksViewController = () => {
       </div>
     );
   }
+
+  // TODO(Teddy): WIP
+  const handleSyncBookmark = async (bookmark?: any) => {
+    if (!bookmark) return;
+
+    const { url, title } = bookmark;
+    const addInGoogleEventsInput: AddInGoogleEventsInput = {
+      bookmarks: [
+        {
+          url,
+          title,
+          scheduledAt: new Date(),
+        },
+      ],
+    };
+    await addBookmarkInGoogleEventsMutation({ variables: { addInGoogleEventsInput } });
+  };
 
   return (
     <>
@@ -29,7 +49,7 @@ export const BookmarksViewController = () => {
 
           return (
             <div className="p-10">
-              <div className="max-w-sm rounded overflow-hidden shadow-lg">
+              <div className="max-w-2xl rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
                 <a href={url}>
                   <img className="w-full" src={imageUrl} alt={title} />
                   <div className="px-6 py-4">
@@ -51,6 +71,12 @@ export const BookmarksViewController = () => {
                   onClick={handleDelete}
                 >
                   delete
+                </button>
+                <button
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                  onClick={async () => handleSyncBookmark(bookmark)}
+                >
+                  sync
                 </button>
               </div>
             </div>

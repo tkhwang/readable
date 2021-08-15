@@ -5,7 +5,10 @@ export class CommonOutput {
   @Field(type => Boolean, { description: '공통 Response (output)' })
   isSuccess: boolean;
 
-  constructor(isSuccess = true) {
+  message?: string;
+
+  constructor(isSuccess = true, message = '') {
     this.isSuccess = isSuccess;
+    this.message = message;
   }
 }

@@ -11,14 +11,17 @@ import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-boo
 import { DeleteBookmarkWithAuthInput } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.input';
 import { CommonOutput } from '@readable/common/models/common.output';
 import { BookmarksService } from './bookmarks.service';
+import { AddInGoogleEventsInput } from './applications/usecases/add-in-google-events/add-in-google-events.input';
+import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
 
 @Resolver(of => Bookmark)
 export class BookmarksResolver {
   constructor(
+    private readonly bookmarksService: BookmarksService,
     private readonly addBookmarkWithAuthUsecase: AddBookmarkWithAuthUsecase,
     private readonly getMyBookmarksUsecase: GetMyBookmarksUsecase,
     private readonly deleteBookmarkWithAuthUsecse: DeleteBookmarkWithAuthUsecse,
-    private readonly bookmarksService: BookmarksService
+    private readonly addBookmarkInGoogleEventsUsecase: AddBookmarkInGoogleEventsUsecase
   ) {}
 
   /*
@@ -50,6 +53,15 @@ export class BookmarksResolver {
     @Args('deleteBookmarkWithAuthInput') command: DeleteBookmarkWithAuthInput
   ) {
     return this.deleteBookmarkWithAuthUsecse.execute(command, requestUser);
+  }
+
+  @Mutation(returns => CommonOutput)
+  @UseGuards(GqlAuthGuard)
+  addBookmarkInGoogleEventsWithAuth(
+    @CurrentUser() requestUser: User,
+    @Args('addInGoogleEventsInput') command: AddInGoogleEventsInput
+  ) {
+    return this.addBookmarkInGoogleEventsUsecase.execute(command, requestUser);
   }
 
   /*

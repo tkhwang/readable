@@ -19,6 +19,11 @@ export type AddBookMarkWithAuthInput = {
   readonly url: Scalars['String'];
 };
 
+export type AddInGoogleEventsInput = {
+  /** Bookmarks for adding in Google calendar events */
+  readonly bookmarks: ReadonlyArray<BookmarkInput>;
+};
+
 /** Auth providers */
 export enum AuthProviders {
   Facebook = 'Facebook',
@@ -70,6 +75,12 @@ export type BookmarkBRFO = {
   readonly urlHash: Scalars['String'];
 };
 
+export type BookmarkInput = {
+  readonly scheduledAt: Scalars['DateTime'];
+  readonly title: Scalars['String'];
+  readonly url: Scalars['String'];
+};
+
 export type CommonOutput = {
   readonly __typename?: 'CommonOutput';
   /** 공통 Response (output) */
@@ -92,8 +103,14 @@ export type GetPaginationBookmarksInput = {
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
+  readonly addBookmarkInGoogleEventsWithAuth: CommonOutput;
   readonly addBookmarkWithAuth: Bookmark;
   readonly deleteBookmarkWithAuth: CommonOutput;
+};
+
+
+export type MutationaddBookmarkInGoogleEventsWithAuthArgs = {
+  addInGoogleEventsInput: AddInGoogleEventsInput;
 };
 
 

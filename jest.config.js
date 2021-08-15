@@ -23,5 +23,6 @@ module.exports = {
     '<rootDir>/libs/feed/data-access-pagination-bookmarks',
     '<rootDir>/libs/feed/feature-feed',
     '<rootDir>/libs/feed/feature-bookmark',
+    '<rootDir>/libs/collection/data-access-sync',
   ],
 };

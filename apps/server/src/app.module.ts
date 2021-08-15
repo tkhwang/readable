@@ -12,7 +12,6 @@ import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.en
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { PaginationModule } from './pagination/pagination.module';
-import { SyncModule } from './sync/sync.module';
 import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.entity';
 
 @Module({
@@ -49,7 +48,6 @@ import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.e
     AuthModule,
     BookmarksModule,
     PaginationModule,
-    SyncModule,
   ],
   controllers: [],
   providers: [],
