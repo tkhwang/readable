@@ -33,11 +33,11 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
     const resources = scheduledBookamrks.map(bookmark => ({
       start: {
         date: format(new Date(), 'yyyy-MM-dd'),
-        timeZone: 'UTC',
+        timeZone: 'Asia/Seoul',
       },
       end: {
         date: format(new Date(), 'yyyy-MM-dd'),
-        timeZone: 'UTC',
+        timeZone: 'Asia/Seoul',
       },
       summary: `[readable] ${bookmark.title}`,
       status: 'confirmed',
