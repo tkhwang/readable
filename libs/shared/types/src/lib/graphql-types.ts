@@ -22,6 +22,7 @@ export type AddBookMarkWithAuthInput = {
 export type AddInGoogleEventsInput = {
   /** Bookmarks for adding in Google calendar events */
   readonly bookmarks: ReadonlyArray<BookmarkInput>;
+  readonly calendarId: Scalars['String'];
 };
 
 /** Auth providers */

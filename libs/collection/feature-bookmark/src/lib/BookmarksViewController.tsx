@@ -1,11 +1,13 @@
 import React from 'react';
 import { useBookmarks } from '@readable/collection/data-access-bookmark';
 import { useSyncBookmarks } from '@readable/collection/data-access-sync';
-import { AddInGoogleEventsInput, Bookmark } from '@readable/shared/types';
+import { AddInGoogleEventsInput, Bookmark, BookmarkBRFO, BookmarkInput } from '@readable/shared/types';
 
 export const BookmarksViewController = () => {
   const { myBookmarks, loading, error, deleteBookmarkWithAuthMutation } = useBookmarks();
   const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
+
+  const [calendarId, setCalendarId] = React.useState('');
 
   if (loading) {
     return (
@@ -15,14 +17,21 @@ export const BookmarksViewController = () => {
     );
   }
 
-  const handleSyncBookmark = async () => {
-    console.log('TCL: handleSyncBookmark -> handleSyncBookmark');
+  const handleChangeCalendarId = (event: any) => {
+    setCalendarId(event.target.value);
+  };
 
+  // TODO(Teddy): WIP
+  const handleSyncBookmark = async (bookmark?: any) => {
+    if (!bookmark) return;
+
+    const { url, title } = bookmark;
     const addInGoogleEventsInput: AddInGoogleEventsInput = {
+      calendarId,
       bookmarks: [
         {
-          url: 'url',
-          title: 'title',
+          url,
+          title,
           scheduledAt: new Date(),
         },
       ],
@@ -32,6 +41,18 @@ export const BookmarksViewController = () => {
 
   return (
     <>
+      <p className="text-2xl">Google calendary sync setting</p>
+      <div className="m-5">
+        <ul>
+          <li>Sync 하고자 하는 Google calendarId (새로 생성 혹은 기존 칼렌더 선택)</li>
+          <input type="text" width="800" placeholder="paste google calendar id" onChange={handleChangeCalendarId} />
+          <li>
+            Readable 연동을 위한 계정{' '}
+            <span>readable-dev-for-google-api@readable-dev-318520.iam.gserviceaccount.com</span>을 권한 추가 (변경 및
+            공유 관리)
+          </li>
+        </ul>
+      </div>
       <p className="text-2xl">My Bookmarks</p>
       {myBookmarks?.length > 0 &&
         myBookmarks.map(bookmark => {
@@ -72,7 +93,7 @@ export const BookmarksViewController = () => {
                 </button>
                 <button
                   className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  onClick={() => handleSyncBookmark()}
+                  onClick={async () => handleSyncBookmark(bookmark)}
                 >
                   sync
                 </button>

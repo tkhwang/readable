@@ -4,10 +4,10 @@ import { google } from 'googleapis';
 import { User } from '@readable/users/domain/models/user.model';
 import { googleCalendarServiceCredentials } from '@readable/common/constants';
 import { CommonOutput } from '@readable/common/models/common.output';
-
+import { format } from 'date-fns';
 export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEventsInput, CommonOutput> {
   async execute(command: AddInGoogleEventsInput, requestUser: User) {
-    const { bookmarks } = command;
+    const { calendarId, bookmarks } = command;
 
     const client = new google.auth.GoogleAuth({
       keyFile: googleCalendarServiceCredentials,
@@ -27,16 +27,16 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
 
     const resources = scheduledBookamrks.map(bookmark => ({
       start: {
-        dateTime: bookmark.scheduledAt!.toISOString(),
+        date: format(new Date(), 'yyyy-MM-dd'),
         timeZone: 'UTC',
       },
       end: {
-        dateTime: bookmark.scheduledAt!.toISOString(),
+        date: format(new Date(), 'yyyy-MM-dd'),
         timeZone: 'UTC',
       },
-      summary: `Readable`,
+      summary: `[readable] ${bookmark.title}`,
       status: 'confirmed',
-      description: `Readable`,
+      description: bookmark.url,
     }));
 
     try {
@@ -44,8 +44,7 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
         calendar.events.insert(
           {
             auth,
-            // TODO(Teddy): access primary calendar
-            calendarId: 'primary',
+            calendarId,
             requestBody: resource,
           },
           (err, event) => {
