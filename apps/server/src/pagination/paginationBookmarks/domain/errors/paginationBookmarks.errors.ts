@@ -3,7 +3,7 @@ import { PaginationCursor, PaginationOrder, PaginationOrderBy } from '@readable/
 
 export class PaginationWrongCursorExceptoin extends HttpException {
   constructor(cursor: PaginationCursor, orderBy: PaginationOrderBy, order: PaginationOrder) {
-    const { id, orderBy: orderByInCursor, order: orderInCursor } = cursor;
+    const { orderBy: orderByInCursor, order: orderInCursor } = cursor;
 
     const isOrderByMatched = orderBy === orderByInCursor;
     const isOrderMatched = order === orderInCursor;
