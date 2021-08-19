@@ -7,12 +7,14 @@ import { CommonOutput } from '@readable/common/models/common.output';
 import { format } from 'date-fns';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
+import * as moment from 'moment-timezone';
 
 export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEventsInput, CommonOutput> {
   constructor(@InjectRepository(OAuthUsersRepository) private readonly oAuthUsersRepository: OAuthUsersRepository) {}
 
   async execute(command: AddInGoogleEventsInput, requestUser: User) {
     const { bookmarks } = command;
+    const { timezone = 'Asia/Seoul' } = requestUser;
 
     const oauthUser = await this.oAuthUsersRepository.findOne({ where: { user: requestUser } });
     if (!oauthUser) return new CommonOutput(false, `OAuthUser of User (${requestUser.id}) not found`);
@@ -32,12 +34,12 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
 
     const resources = scheduledBookamrks.map(bookmark => ({
       start: {
-        date: format(new Date(), 'yyyy-MM-dd'),
-        timeZone: 'Asia/Seoul',
+        date: format(moment().tz(timezone).toDate(), 'yyyy-MM-dd'),
+        timeZone: timezone,
       },
       end: {
-        date: format(new Date(), 'yyyy-MM-dd'),
-        timeZone: 'Asia/Seoul',
+        date: format(moment().tz(timezone).toDate(), 'yyyy-MM-dd'),
+        timeZone: timezone,
       },
       summary: `[readable] ${bookmark.title}`,
       status: 'confirmed',

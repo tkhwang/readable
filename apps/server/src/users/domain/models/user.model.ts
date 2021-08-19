@@ -23,4 +23,7 @@ export class User extends CoreModel {
 
   @Field(type => [OAuthUser])
   oauthUsers: OAuthUser[];
+
+  @Field(type => String)
+  timezone: string;
 }
