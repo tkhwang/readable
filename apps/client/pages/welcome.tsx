@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComingSoonPage } from '@readable/home/feature-coming-soon';
+import { FeatureComingSoon } from '@readable/home/feature-coming-soon';
 
 function Index() {
-  return <ComingSoonPage />;
+  return <FeatureComingSoon />;
 }
 
 export default Index;

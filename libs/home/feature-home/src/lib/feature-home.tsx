@@ -1,8 +1,8 @@
 import { HomeSidebar } from './home-sidebar';
-import { Card } from '@readable/ui';
 import { HomeHeader } from './home-header';
+import { HomeFeed } from './home-feed';
 
-export const HomePage = () => {
+export const FeatureHome = () => {
   return (
     <>
       <HomeHeader />
@@ -12,14 +12,7 @@ export const HomePage = () => {
           <h1 className="text-xl md:text-2xl mb-4 font-bold" id="home">
             All activity
           </h1>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          <HomeFeed />
         </main>
       </div>
       <div className="w-full h-48 bg-gray-300"></div>

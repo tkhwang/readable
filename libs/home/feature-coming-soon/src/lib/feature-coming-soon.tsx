@@ -3,7 +3,7 @@ import { Subscribe, WelcomeHeader } from '@readable/ui';
 /* eslint-disable-next-line */
 export type ComingSoonPageProps = {};
 
-export const ComingSoonPage = (props: ComingSoonPageProps) => {
+export const FeatureComingSoon = (props: ComingSoonPageProps) => {
   return (
     <>
       <div className="h-screen">

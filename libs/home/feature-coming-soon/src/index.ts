@@ -1,1 +1,1 @@
-export { ComingSoonPage } from './lib/coming-soon-page';
+export { FeatureComingSoon } from './lib/feature-coming-soon';
