@@ -251,6 +251,27 @@
         }
       }
     },
+    "home-data-access-home": {
+      "root": "libs/home/data-access-home",
+      "sourceRoot": "libs/home/data-access-home/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/home/data-access-home/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home/data-access-home"],
+          "options": {
+            "jestConfig": "libs/home/data-access-home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "home-feature-coming-soon": {
       "root": "libs/home/feature-coming-soon",
       "sourceRoot": "libs/home/feature-coming-soon/src",
