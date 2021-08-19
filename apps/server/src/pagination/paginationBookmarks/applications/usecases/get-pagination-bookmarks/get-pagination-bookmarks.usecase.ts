@@ -10,7 +10,6 @@ export class GetPaginationBookmarksUsecase
   constructor(@InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository) {}
 
   async execute(query: GetPaginationBookmarksInput, requestUser: User) {
-    console.log('TCL: execute -> query', query);
     return this.bookmarksRepository.getPaginationBookmarks(query, requestUser);
   }
 }
