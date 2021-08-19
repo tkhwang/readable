@@ -5,6 +5,7 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "plugins": ["react", "react-hooks"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
@@ -22,7 +23,9 @@
               }
             ]
           }
-        ]
+        ],
+        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+        "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
       }
     },
     {
