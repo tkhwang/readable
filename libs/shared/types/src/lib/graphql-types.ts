@@ -92,15 +92,6 @@ export type DeleteBookmarkWithAuthInput = {
   readonly bookmarkId: Scalars['String'];
 };
 
-export type GetPaginationBookmarksInput = {
-  readonly after?: Maybe<Scalars['PaginationCursor']>;
-  readonly first?: Maybe<Scalars['Int']>;
-  /** Pagination bookmarks order field */
-  readonly order?: Maybe<PaginationOrder>;
-  /** Pagination bookmarks orderBy field */
-  readonly orderBy?: Maybe<PaginationOrderBy>;
-};
-
 export type Mutation = {
   readonly __typename?: 'Mutation';
   readonly addBookmarkInGoogleEventsWithAuth: CommonOutput;
@@ -185,7 +176,10 @@ export type Query = {
 
 
 export type QuerypaginationBookmarksArgs = {
-  getPaginationBookmarksInput: GetPaginationBookmarksInput;
+  after?: Maybe<Scalars['PaginationCursor']>;
+  first?: Maybe<Scalars['Int']>;
+  order?: Maybe<PaginationOrder>;
+  orderBy?: Maybe<PaginationOrderBy>;
 };
 
 export type User = {

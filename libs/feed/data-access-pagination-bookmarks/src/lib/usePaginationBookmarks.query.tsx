@@ -4,7 +4,7 @@ import { usePaginationBookmarksQuery } from './usePaginationBookmarks.query.gene
 
 const PAGINATION_BOOKMARKS = gql`
   query PaginationBookmarks {
-    paginationBookmarks(getPaginationBookmarksInput: { first: 10 }) {
+    paginationBookmarks(first: 10) {
       pageInfo {
         hasNextPage
         endCursor
