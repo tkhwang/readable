@@ -1,5 +1,6 @@
-import { ObjectType, InputType, registerEnumType } from '@nestjs/graphql';
+import { ObjectType, registerEnumType } from '@nestjs/graphql';
 import { PaginationFromCursorFailException } from '../error';
+import * as moment from 'moment';
 
 export enum PaginationOrderBy {
   LATEST = 'createdAt',
@@ -32,7 +33,7 @@ export class PaginationCursor {
   constructor(orderBy: PaginationOrderBy, order: PaginationOrder, createdAt: Date) {
     this.orderBy = orderBy;
     this.order = order;
-    this.createdAt = createdAt;
+    this.createdAt = moment.utc(createdAt).toDate();
   }
 }
 
@@ -50,6 +51,6 @@ export const fromCursor = (cursor: string): PaginationCursor => {
   return {
     orderBy: parsed.orderBy,
     order: parsed.order,
-    createdAt: parsed.createdAt,
+    createdAt: moment.utc(parsed.createdAt).toDate(),
   };
 };
