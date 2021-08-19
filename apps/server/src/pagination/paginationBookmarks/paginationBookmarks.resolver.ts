@@ -1,7 +1,9 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
-import { PaginationCursor, PaginationOrder, PaginationOrderBy } from '@readable/common/pagination/paginationCursor';
+import { PaginationOrder, PaginationOrderBy } from '@readable/common/pagination/paginationCursor';
+import { PaginationCursorInput } from '@readable/common/pagination/paginationCursor.input';
+import { PaginationCursorScalar } from '@readable/common/pagination/paginationCursorScalar';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/models/user.model';
 import { GetPaginationBookmarksInput } from './applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.input';
@@ -25,8 +27,8 @@ export class PaginationBookmarksResolver {
     order?: PaginationOrder,
     @Args('first', { type: () => Int, defaultValue: 10 })
     first?: number,
-    @Args('after', { type: () => PaginationCursor, nullable: true })
-    after?: PaginationCursor
+    @Args('after', { type: () => PaginationCursorScalar, nullable: true })
+    after?: PaginationCursorInput
   ): Promise<PaginationBookmarkBRFOs | null> {
     const query = new GetPaginationBookmarksInput();
     if (orderBy) query.orderBy = orderBy;

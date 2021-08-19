@@ -1,4 +1,4 @@
-import { registerEnumType } from '@nestjs/graphql';
+import { ObjectType, InputType, registerEnumType } from '@nestjs/graphql';
 import { PaginationFromCursorFailException } from '../error';
 
 export enum PaginationOrderBy {
@@ -21,6 +21,7 @@ registerEnumType(PaginationOrder, {
   description: 'Pagination Order (ASC or DESC)',
 });
 
+@ObjectType()
 export class PaginationCursor {
   orderBy: PaginationOrderBy;
 

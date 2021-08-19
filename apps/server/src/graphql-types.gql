@@ -80,17 +80,6 @@ input DeleteBookmarkWithAuthInput {
   bookmarkId: String!
 }
 
-input GetPaginationBookmarksInput {
-  after: PaginationCursor
-  first: Int = 10
-
-  """Pagination bookmarks order field"""
-  order: PaginationOrder = DESC
-
-  """Pagination bookmarks orderBy field"""
-  orderBy: PaginationOrderBy = LATEST
-}
-
 type Mutation {
   addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): CommonOutput!
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
@@ -150,7 +139,7 @@ type PaginationPageInfo {
 type Query {
   me: User!
   myBookmarks: [Bookmark!]!
-  paginationBookmarks(getPaginationBookmarksInput: GetPaginationBookmarksInput!): PaginationBookmarks
+  paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
 }
 
 type User {
