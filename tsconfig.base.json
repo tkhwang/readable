@@ -25,6 +25,7 @@
       "@readable/feed/data-access-pagination-bookmarks": ["libs/feed/data-access-pagination-bookmarks/src/index.ts"],
       "@readable/feed/feature-bookmark": ["libs/feed/feature-bookmark/src/index.ts"],
       "@readable/feed/feature-feed": ["libs/feed/feature-feed/src/index.ts"],
+      "@readable/home/data-access-home": ["libs/home/data-access-home/src/index.ts"],
       "@readable/home/feature-coming-soon": ["libs/home/feature-coming-soon/src/index.ts"],
       "@readable/home/feature-home": ["libs/home/feature-home/src/index.ts"],
       "@readable/login/feature-login": ["libs/login/feature-login/src/index.ts"],

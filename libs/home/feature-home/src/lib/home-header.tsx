@@ -1,7 +1,7 @@
 import router from 'next/router';
 import { useAuth } from '@readable/shared/data-access-auth';
 import { useMeViewModel } from '@readable/shared/data-access-me';
-import { FeedHeader } from '@readable/ui';
+import { HeaderFeed } from '@readable/ui';
 
 export const HomeHeader = () => {
   const { me, loading, error } = useMeViewModel();
@@ -14,11 +14,11 @@ export const HomeHeader = () => {
   };
 
   return (
-    <FeedHeader
+    <HeaderFeed
       goToLoginPage={gotToLoginPage}
       logout={logout}
       loading={loading}
       isAuthenticated={isAuthenticated}
-    ></FeedHeader>
+    ></HeaderFeed>
   );
 };

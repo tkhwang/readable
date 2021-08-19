@@ -1,11 +1,11 @@
-export type FeedHeaderProps = {
+export type HeaderFeedProps = {
   goToLoginPage: () => void;
   logout: () => void;
   loading: boolean;
   isAuthenticated: boolean;
 };
 
-export function FeedHeader({ goToLoginPage, logout, isAuthenticated, loading }: FeedHeaderProps) {
+export function HeaderFeed({ goToLoginPage, logout, isAuthenticated, loading }: HeaderFeedProps) {
   const siteNavigation = () => {
     return (
       <nav className="flex flex-grow">
@@ -59,4 +59,4 @@ export function FeedHeader({ goToLoginPage, logout, isAuthenticated, loading }: 
   );
 }
 
-export default FeedHeader;
+export default HeaderFeed;

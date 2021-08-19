@@ -46,6 +46,9 @@
     "feed-feature-feed": {
       "tags": ["scope:client"]
     },
+    "home-data-access-home": {
+      "tags": ["scope:client"]
+    },
     "home-feature-coming-soon": {
       "tags": ["scope:client"]
     },

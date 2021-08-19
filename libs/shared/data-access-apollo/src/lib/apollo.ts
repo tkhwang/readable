@@ -3,6 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 import { useMemo } from 'react';
 import { loadAuthToken } from '@readable/shared/util-auth';
 import { serverHost } from '@readable/shared/util-common';
+import { relayStylePagination } from '@apollo/client/utilities';
 
 function createApolloClient() {
   const httpLink = createHttpLink({
@@ -27,7 +28,15 @@ function createApolloClient() {
 
   return new ApolloClient({
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            paginationBookmarks: relayStylePagination(),
+          },
+        },
+      },
+    }),
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',

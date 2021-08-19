@@ -24,5 +24,6 @@ module.exports = {
     '<rootDir>/libs/feed/feature-feed',
     '<rootDir>/libs/feed/feature-bookmark',
     '<rootDir>/libs/collection/data-access-sync',
+    '<rootDir>/libs/home/data-access-feed',
   ],
 };
