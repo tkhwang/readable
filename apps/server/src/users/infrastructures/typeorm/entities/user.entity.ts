@@ -26,4 +26,7 @@ export class User extends CoreEntity {
 
   @OneToMany(() => OAuthUser, oauthUser => oauthUser.user)
   oauthUsers: OAuthUser[];
+
+  @Column({ default: 'Asia/Seoul' })
+  timezone: string;
 }

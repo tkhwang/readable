@@ -152,5 +152,6 @@ type User {
   oauthUsers: [OAuthUser!]!
   provider: AuthProviders!
   providerId: String!
+  timezone: String!
   updatedAt: DateTime!
 }
