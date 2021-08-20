@@ -5,7 +5,7 @@ import { Meta, Story } from '@storybook/react';
 import { Profile, ProfileProps } from './profile';
 
 export default {
-  title: 'Components/Profile',
+  title: 'Profile',
   component: Profile,
 } as Meta;
 

@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type FormUnderlineProps = {};
+export type UnderlineFormProps = {};
 
-export function FormUnderline() {
+export function UnderlineForm() {
   return (
     <form className="w-full max-w-sm">
       <div className="flex items-center border-b border-teal-500 py-2">
@@ -28,4 +28,4 @@ export function FormUnderline() {
   );
 }
 
-export default FormUnderline;
+export default UnderlineFormProps;

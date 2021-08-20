@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { Ad, AdProps } from './ad';
 
 export default {
-  title: 'Components/Ad',
+  title: 'Ad',
   component: Ad,
 } as Meta;
 

@@ -9,9 +9,9 @@ import {
 } from '@heroicons/react/solid';
 
 /* eslint-disable-next-line */
-export type HeaderCollectionProps = {};
+export type ProfileHeaderProps = {};
 
-export function HeaderCollection(props: HeaderCollectionProps) {
+export function ProfileHeader(props: ProfileHeaderProps) {
   return (
     <>
       <img
@@ -77,4 +77,4 @@ export function HeaderCollection(props: HeaderCollectionProps) {
   );
 }
 
-export default HeaderCollection;
+export default ProfileHeader;

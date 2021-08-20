@@ -1,11 +1,11 @@
-export type HeaderFeedProps = {
+export type ShadowHeaderProps = {
   goToLoginPage: () => void;
   logout: () => void;
   loading: boolean;
   isAuthenticated: boolean;
 };
 
-export function HeaderFeed({ goToLoginPage, logout, isAuthenticated, loading }: HeaderFeedProps) {
+export function ShadowHeader({ goToLoginPage, logout, isAuthenticated, loading }: ShadowHeaderProps) {
   const siteNavigation = () => {
     return (
       <nav className="flex flex-grow">
@@ -59,4 +59,4 @@ export function HeaderFeed({ goToLoginPage, logout, isAuthenticated, loading }: 
   );
 }
 
-export default HeaderFeed;
+export default ShadowHeader;
