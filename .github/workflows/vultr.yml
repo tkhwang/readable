@@ -1,0 +1,9 @@
+name: GitHub Action for Vultr - vultr-cli
+  # You may pin to the exact commit or the version.
+  # uses: techknowlogick/action-vultr@f1b02e5a91ec591da59bd973aa8c385457b7d05e
+  uses: techknowlogick/action-vultr@v2.3.0
+  with:
+    # Version of vultr-cli to install
+    version: # optional, default is latest
+    # Vultr API Key
+    token: 6IFRCDWKELNJ3TXZXC3ELW7QF4WZSEZHTBNA
