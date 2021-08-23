@@ -8,6 +8,7 @@ Read and share anything readable in **Readable** !
 
 #### Graphal
 
+- NX based monorepo
 - GraphQL: Code first. (Not schema first)
 - ~~One model for Graphql and DB entity.~~
 - DDD like directory structure
