@@ -9,6 +9,8 @@
     "nx": "nx",
     "dev": "cross-env NODE_ENV=development nx serve",
     "build": "nx build --prod server; nx build --prod client",
+    "server-build": "nx build --prod server",
+    "client-build": "nx build --prod client",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
