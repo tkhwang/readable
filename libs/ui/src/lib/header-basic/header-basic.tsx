@@ -2,9 +2,9 @@ import { DotsVerticalIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 
 /* eslint-disable-next-line */
-export type HeaderWelcomeProps = {};
+export type BasicHeaderProps = {};
 
-export function HeaderWelcome(props: HeaderWelcomeProps) {
+export function BasicHeader(props: BasicHeaderProps) {
   return (
     <header className="fixed w-full bg-indigo-700 py-4 px-6 flex justify-between items-center">
       <div className="flex items-center">
@@ -26,4 +26,4 @@ export function HeaderWelcome(props: HeaderWelcomeProps) {
   );
 }
 
-export default HeaderWelcome;
+export default BasicHeader;

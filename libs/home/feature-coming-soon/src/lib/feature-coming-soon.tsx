@@ -1,4 +1,4 @@
-import { HeaderWelcome, Subscribe } from '@readable/ui';
+import { BasicHeader, Subscribe } from '@readable/ui';
 
 /* eslint-disable-next-line */
 export type ComingSoonPageProps = {};
@@ -7,7 +7,7 @@ export const FeatureComingSoon = (props: ComingSoonPageProps) => {
   return (
     <>
       <div className="h-screen">
-        <HeaderWelcome />
+        <BasicHeader />
         <main className="bg-indigo-600 flex flex-col items-center justify-center h-full">
           <div className="flex-shrink h-80 p-12 flex flex-col items-center justify-center">
             <h1 className="text-5xl font-extrabold text-white mb-1">Coming Soon</h1>

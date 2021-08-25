@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react';
-import { FormUnderline, FormUnderlineProps } from './form-underline';
+import { UnderlineForm, UnderlineFormProps } from './form-underline';
 
 export default {
-  title: 'Form/FormUnderline',
-  component: FormUnderline,
+  title: 'Form/UnderlineForm',
+  component: UnderlineForm,
 } as Meta;
 
-const Template: Story<FormUnderlineProps> = args => <FormUnderline {...args} />;
+const Template: Story<UnderlineFormProps> = args => <UnderlineForm {...args} />;
 export const Default = Template.bind({});

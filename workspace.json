@@ -558,7 +558,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/ui/.storybook"
-            }
+            },
+            "staticDir": ["libs/ui/assets"]
           },
           "configurations": {
             "ci": {

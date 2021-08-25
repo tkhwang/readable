@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, ButtonProps } from './button';
 
 export default {
+  title: 'Elements/Button',
   component: Button,
-  title: 'Button',
 };
 
 export const primary = () => {
