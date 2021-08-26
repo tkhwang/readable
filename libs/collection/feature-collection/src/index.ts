@@ -1,1 +1,1 @@
-export { CollectionPage } from './lib/collection-page';
+export { FeatureCollection } from './lib/feature-collection';

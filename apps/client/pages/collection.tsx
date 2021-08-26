@@ -1,8 +1,8 @@
 import React from 'react';
-import { CollectionPage } from '@readable/collection/feature-collection';
+import { FeatureCollection } from '@readable/collection/feature-collection';
 
 function Collection() {
-  return <CollectionPage />;
+  return <FeatureCollection />;
 }
 
 export default Collection;
