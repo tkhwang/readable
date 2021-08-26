@@ -1,10 +1,15 @@
-import profileImage from '../.././../assets/Fernando_Pidrilio.svg';
+import Image from 'next/image';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AvatarProps {}
+export interface AvatarProps {
+  profileImage: any;
+}
 
-export function Avatar(props: AvatarProps) {
-  return <img src={profileImage} alt="profile" className="rounded-full w-10 h-10" />;
+export function Avatar({ profileImage }: AvatarProps) {
+  return (
+    <div className="rounded-full w-10 h-10 relative overflow-hidden">
+      <Image src={profileImage} alt="profile" layout="fill" />
+    </div>
+  );
 }
 
 export default Avatar;

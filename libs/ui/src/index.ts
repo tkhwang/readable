@@ -8,3 +8,5 @@ export * from './lib/profile/profile';
 export * from './lib/header-shadow/header-shadow';
 export * from './lib/header-basic/header-basic';
 export * from './lib/header-profile/header-profile';
+export * from './lib/dropdown/dropdown-menu';
+export * from './lib/avatar/avatar';
