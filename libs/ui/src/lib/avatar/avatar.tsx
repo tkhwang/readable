@@ -1,13 +1,13 @@
-import guestImage from '../.././../assets/Fernando_Pidrilio.svg';
+import Image from 'next/image';
 
 export interface AvatarProps {
-  profileImage?: any;
+  profileImage: any;
 }
 
 export function Avatar({ profileImage }: AvatarProps) {
   return (
-    <div className="rounded-full overflow-hidden">
-      <img src={profileImage ?? guestImage} alt="profile" className="w-10 h-10" />
+    <div className="rounded-full w-10 h-10 relative overflow-hidden">
+      <Image src={profileImage} alt="profile" layout="fill" />
     </div>
   );
 }
