@@ -1,3 +1,3 @@
-yarn
-yarn server-build
-yarn start
+npm install
+npm run server-build
+npm run start
