@@ -5,4 +5,4 @@ export NVM_DIR="$HOME/.nvm"
 cd /srv/app
 /usr/bin/npm install
 /usr/bin/npm run server-build
-/usr/bin/npm run start
+/usr/bin/pm2-runtime start ecosystem.config.js --env production
