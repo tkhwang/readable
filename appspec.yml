@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /srv/app
+
+hooks:
+  AfterInstall:
+    - location: scripts/after_deploy.sh
+      runas: root
