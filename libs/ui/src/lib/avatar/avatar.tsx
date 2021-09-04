@@ -7,7 +7,7 @@ export interface AvatarProps {
 export function Avatar({ profileImage }: AvatarProps) {
   return (
     <div className="rounded-full w-10 h-10 relative overflow-hidden">
-      <Image src={profileImage} alt="profile" layout="fill" />
+      <Image src={profileImage} alt="profile image" layout="fill" />
     </div>
   );
 }

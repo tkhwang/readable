@@ -3,14 +3,14 @@ import { Menu, Transition } from '@headlessui/react';
 import { AvatarProps } from '../avatar/avatar';
 
 export interface DropdownMenuProps {
-  renderMenuButton: (props: AvatarProps) => JSX.Element;
+  renderMenuButton: () => JSX.Element;
   children: React.ReactChild | React.ReactChild[];
 }
 
 export function DropdownMenu({ renderMenuButton, children }: DropdownMenuProps) {
   return (
     <Menu as="div" className="relative">
-      <Menu.Button>{renderMenuButton({})}</Menu.Button>
+      <Menu.Button>{renderMenuButton()}</Menu.Button>
 
       <Transition
         as={React.Fragment}

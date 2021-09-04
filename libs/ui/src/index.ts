@@ -10,3 +10,5 @@ export * from './lib/header-basic/header-basic';
 export * from './lib/header-profile/header-profile';
 export * from './lib/dropdown/dropdown-menu';
 export * from './lib/avatar/avatar';
+export * from './lib/gallery/gallery';
+export * from './lib/step/step';
