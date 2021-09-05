@@ -57,7 +57,7 @@ export function useDataAccessFeed() {
   const fetchMoreFeed = () => {
     if (pageInfo?.hasNextPage) {
       fetchMore({
-        variables: { first: 5, after: pageInfo.endCursor },
+        variables: { first: 10, after: pageInfo.endCursor },
       });
     }
   };

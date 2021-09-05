@@ -5,13 +5,11 @@ import { useEffect, useRef } from 'react';
 export const HomeFeed = () => {
   const { entries, pageInfo, fetchMoreFeed } = useDataAccessFeed();
 
-  const viewport = useRef<HTMLDivElement>(null);
   const target = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const options: IntersectionObserverInit = {
-      root: viewport.current,
-      threshold: 0,
+      threshold: 0.5,
     };
 
     const handleIntersection = ([entry]: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -37,16 +35,14 @@ export const HomeFeed = () => {
   }, [fetchMoreFeed]);
 
   return (
-    <>
-      <div ref={viewport} className="border-8 h-96 overflow-scroll">
-        {entries?.map(({ id, cursor, imageUrl }) => {
-          return (
-            <div key={id} ref={cursor === pageInfo?.endCursor ? target : null}>
-              <Card imageUrl={imageUrl || ''}></Card>
-            </div>
-          );
-        })}
-      </div>
-    </>
+    <div>
+      {entries?.map(({ id, cursor, imageUrl }) => {
+        return (
+          <div key={id} ref={cursor === pageInfo?.endCursor ? target : null}>
+            <Card imageUrl={imageUrl}></Card>
+          </div>
+        );
+      })}
+    </div>
   );
 };
