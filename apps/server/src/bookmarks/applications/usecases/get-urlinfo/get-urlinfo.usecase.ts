@@ -1,4 +1,4 @@
-import { Usecase } from '@readable/common/usecase';
+import { Usecase } from '@readable/common/applications/usecase';
 import { GetUrlInfoInput } from './get-urlinfo.input';
 import * as sha256 from 'crypto-js/sha256';
 import { BookmarksService } from '@readable/bookmarks/bookmarks.service';

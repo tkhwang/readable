@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Usecase } from '@readable/common/usecase';
+import { Usecase } from '@readable/common/applications/usecase';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { SigninInput } from './signin.input';

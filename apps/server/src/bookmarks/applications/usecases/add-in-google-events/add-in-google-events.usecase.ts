@@ -1,4 +1,4 @@
-import { Usecase } from '@readable/common/usecase';
+import { Usecase } from '@readable/common/applications/usecase';
 import { AddInGoogleEventsInput } from './add-in-google-events.input';
 import { google } from 'googleapis';
 import { User } from '@readable/users/domain/models/user.model';
