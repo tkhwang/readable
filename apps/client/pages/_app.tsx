@@ -9,11 +9,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
   const client = useApollo();
 
   return (
-    <AuthProvider>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <AuthProvider>
         <Component {...pageProps} />
-      </ApolloProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ApolloProvider>
   );
 }
 

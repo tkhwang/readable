@@ -9,7 +9,6 @@ interface IAuthContext {
   authenticated: boolean;
   setAuthenticated: (value: boolean) => void;
   authToken: string | null;
-  loading: boolean;
 }
 
 const AuthContext = createContext<IAuthContext>({
@@ -18,14 +17,12 @@ const AuthContext = createContext<IAuthContext>({
   authenticated: false,
   setAuthenticated: () => null,
   authToken: null,
-  loading: true,
 });
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [authToken, setAuthToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
 
   const router = useRouter();
 
@@ -42,8 +39,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
       setAuthenticated(true);
       setAuthToken(token);
     }
-
-    setLoading(false);
   }, []);
 
   return (
@@ -54,7 +49,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         authenticated: authenticated,
         setAuthenticated: setAuthenticated,
         authToken: authToken,
-        loading: loading,
       }}
     >
       {children}
