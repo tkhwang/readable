@@ -13,6 +13,8 @@ import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { PaginationModule } from './pagination/pagination.module';
 import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.entity';
+import { InterestsModule } from './interests/interests.module';
+import { Interest } from './interests/infrastructures/mongo/entities/interest.entity';
 
 @Module({
   imports: [
@@ -39,7 +41,7 @@ import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.e
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      entities: [OAuthUser, User, Bookmark, BookmarkUser, Keyword],
+      entities: [OAuthUser, User, Bookmark, BookmarkUser, Keyword, Interest],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB
@@ -48,6 +50,7 @@ import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.e
     AuthModule,
     BookmarksModule,
     PaginationModule,
+    InterestsModule,
   ],
   controllers: [],
   providers: [],
