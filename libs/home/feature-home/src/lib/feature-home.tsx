@@ -5,17 +5,29 @@ import { HomeFeed } from './home-feed';
 export const FeatureHome = () => {
   return (
     <>
-      <HomeHeader />
-      <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
-        <HomeSidebar></HomeSidebar>
-        <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
-          <h1 className="text-xl md:text-2xl mb-4 font-bold" id="home">
-            All activity
-          </h1>
-          <HomeFeed />
-        </main>
-      </div>
-      <div className="w-full h-48 bg-gray-300"></div>
+      <header className="p-4">
+        <HomeHeader />
+      </header>
+      <main className="min-h-screen bg-indigo-50 flex">
+        <aside className="max-w-sm max-h-screen bg-indigo-100 p-8">
+          {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
+          <div className="w-60  border-2">헤더가 사라지면 fix되는 영역입니다. (아직 미구현)</div>
+        </aside>
+        <section className="flex">
+          <article className="px-6 bg-indigo-200">
+            {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
+            <HomeFeed />
+          </article>
+          <aside className="bg-indigo-100 p-8 hidden lg:flex lg:max-w-xs ">
+            {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
+            <div className="w-60 border-2">데탑 이상 사이즈가 아니라면 사라지는 영역입니다.</div>
+          </aside>
+        </section>
+      </main>
+      <footer className="p-6 bg-gray-300">
+        {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
+        <div className="h-20">footer 영역</div>
+      </footer>
     </>
   );
 };
