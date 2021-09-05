@@ -12,3 +12,5 @@ export * from './lib/dropdown/dropdown-menu';
 export * from './lib/avatar/avatar';
 export * from './lib/gallery/gallery';
 export * from './lib/step/step';
+export * from './lib/logo/logo';
+export * from './lib/menu-item-button/menu-item-button';
