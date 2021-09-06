@@ -40,7 +40,7 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
         date: format(moment().tz(timezone).toDate(), 'yyyy-MM-dd'),
         timeZone: timezone,
       },
-      summary: `[readable] ${bookmark.title}`,
+      summary: `[🙉 readable] ${bookmark.title}`,
       status: 'confirmed',
       description: bookmark.url,
     }));

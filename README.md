@@ -119,7 +119,7 @@ AKS using kubernete.
 
 | Environment | `apps`   | `NODE_ENV`    | DB          | Port     | URL                                         |
 | ----------- | -------- | ------------- | ----------- | -------- | ------------------------------------------- |
-| development | `server` | `development` | development | `7000`   | http://localhost:7000/graphql               |
+| development | `server` | `development` | development | `7000`   | http://localhost:8000/graphql               |
 |             | `client` | `development` | development | `4200`   | http://localhost:4200                       |
 |             | `client` | `development` | development | `4200`   | http://localhost:4200                       |
 | staging     | `server` | `production`  | development | `80/443` | https://readable-2021.herokuapp.com/graphql |

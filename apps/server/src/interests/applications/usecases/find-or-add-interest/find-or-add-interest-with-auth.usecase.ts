@@ -1,5 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
+import { FindOrAddInterestWithAuthFailException } from '@readable/interests/domain/interest.error';
 import { Interest } from '@readable/interests/infrastructures/mongo/entities/interest.entity';
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 import { User } from '@readable/users/domain/models/user.model';
@@ -11,15 +12,19 @@ export class FindOrAddInterestWithAuthUseCase implements Usecase<FindOrAddIntere
   async execute(command: FindOrAddInterestWithAuthInput, requestUser: User) {
     const { interest: interestText } = command;
 
-    let interest = await this.interestsRepository.findOne({
-      where: { userId: requestUser.id, interest: interestText },
-    });
+    try {
+      let interest = await this.interestsRepository.findOne({
+        where: { userId: requestUser.id, interest: interestText },
+      });
 
-    if (!interest) {
-      interest = this.interestsRepository.create({ userId: requestUser.id, interest: interestText });
-      await this.interestsRepository.save(interest);
+      if (!interest) {
+        interest = this.interestsRepository.create({ userId: requestUser.id, interest: interestText });
+        await this.interestsRepository.save(interest);
+      }
+
+      return interest;
+    } catch (error) {
+      throw new FindOrAddInterestWithAuthFailException(requestUser.id, interestText);
     }
-
-    return interest;
   }
 }
