@@ -8,8 +8,6 @@ import { format } from 'date-fns';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import * as moment from 'moment-timezone';
-import { AddInGoogleEventsOutput } from './add-in-google-events.output';
-
 export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEventsInput, CommonOutput> {
   constructor(@InjectRepository(OAuthUsersRepository) private readonly oAuthUsersRepository: OAuthUsersRepository) {}
 
@@ -62,9 +60,11 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
         );
       }
 
-      return new AddInGoogleEventsOutput(true);
+      // return new AddInGoogleEventsOutput(true);
+      return new CommonOutput(true);
     } catch (error) {
-      return new AddInGoogleEventsOutput(false);
+      // return new AddInGoogleEventsOutput(false);
+      return new CommonOutput(false);
     }
   }
 }

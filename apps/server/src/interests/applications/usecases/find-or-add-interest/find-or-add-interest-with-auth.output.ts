@@ -13,14 +13,22 @@ export class FindOrAddInterestWithAuthOutputData {
 }
 
 @ObjectType()
-export class FindOrAddInterestWithAuthOutput extends CommonOutput {
+// export class FindOrAddInterestWithAuthOutput implements CommonOutput<FindOrAddInterestWithAuthOutputData> {
+export class FindOrAddInterestWithAuthOutput {
+  @Field(type => Boolean, { description: 'Commont output : Success indicator' })
+  isSuccess: boolean;
+
+  @Field(type => Error, { description: 'Common output: error if available', nullable: true })
+  error?: Error;
+
   @Field(type => FindOrAddInterestWithAuthOutputData, {
     description: 'FindOrAddInterestWithAuth output data : interest',
   })
   data: FindOrAddInterestWithAuthOutputData;
 
   constructor(isSuccess: boolean, data: FindOrAddInterestWithAuthOutputData, error?: Error) {
-    super(isSuccess, error);
+    this.isSuccess = isSuccess;
     this.data = data;
+    this.error = error;
   }
 }

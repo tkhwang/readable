@@ -91,6 +91,7 @@ type Interest {
   id: ID!
   interest: String!
   updatedAt: DateTime!
+  userId: String!
 }
 
 type Mutation {
