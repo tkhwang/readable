@@ -80,10 +80,25 @@ input DeleteBookmarkWithAuthInput {
   bookmarkId: String!
 }
 
+input FindOrAddInterestWithAuthInput {
+  """Interest text"""
+  interest: String!
+}
+
+type Interest {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  id: ID!
+  interest: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
 type Mutation {
   addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): CommonOutput!
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
+  findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
 }
 
 type OAuthUser {

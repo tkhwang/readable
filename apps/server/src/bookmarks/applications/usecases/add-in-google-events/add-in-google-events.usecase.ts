@@ -1,4 +1,4 @@
-import { Usecase } from '@readable/common/usecase';
+import { Usecase } from '@readable/common/applications/usecase';
 import { AddInGoogleEventsInput } from './add-in-google-events.input';
 import { google } from 'googleapis';
 import { User } from '@readable/users/domain/models/user.model';
@@ -8,7 +8,6 @@ import { format } from 'date-fns';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import * as moment from 'moment-timezone';
-
 export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEventsInput, CommonOutput> {
   constructor(@InjectRepository(OAuthUsersRepository) private readonly oAuthUsersRepository: OAuthUsersRepository) {}
 
@@ -41,7 +40,7 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
         date: format(moment().tz(timezone).toDate(), 'yyyy-MM-dd'),
         timeZone: timezone,
       },
-      summary: `[readable] ${bookmark.title}`,
+      summary: `[🙉 readable] ${bookmark.title}`,
       status: 'confirmed',
       description: bookmark.url,
     }));
@@ -61,8 +60,10 @@ export class AddBookmarkInGoogleEventsUsecase implements Usecase<AddInGoogleEven
         );
       }
 
+      // return new AddInGoogleEventsOutput(true);
       return new CommonOutput(true);
     } catch (error) {
+      // return new AddInGoogleEventsOutput(false);
       return new CommonOutput(false);
     }
   }

@@ -1,5 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { Usecase } from '@readable/common/usecase';
+import { Usecase } from '@readable/common/applications/usecase';
 import { Bookmark } from '@readable/bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { AddBookMarkWithAuthInput } from './add-bookmark-with-auth.input';
 import { User as UserModel } from '@readable/users/domain/models/user.model';
