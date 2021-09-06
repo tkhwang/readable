@@ -154,6 +154,7 @@ type PaginationPageInfo {
 type Query {
   me: User!
   myBookmarks: [Bookmark!]!
+  myInterests: [Interest!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
 }
 
