@@ -8,7 +8,7 @@ export class InterestsController {
   constructor(private readonly getMyInterestsWithAuthUsecase: GetMyInterestsWithAuthUsecase) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get('myInterests')
+  @Get('my')
   async myInterests(@Request() req: RequestWithInjectedUser) {
     const requestUser = req.user;
     return this.getMyInterestsWithAuthUsecase.execute(requestUser);
