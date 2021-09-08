@@ -90,6 +90,14 @@ input FollowUserWithAuthInput {
   followingUserId: String!
 }
 
+type FollowUserWithAuthOutput {
+  """Follower User"""
+  followerUser: User!
+
+  """Following User"""
+  followingUser: User!
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -104,7 +112,7 @@ type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
-  followerUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): User!
+  followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
 }
 
 type OAuthUser {
@@ -169,6 +177,12 @@ type User {
   createdAt: DateTime!
   deletedAt: DateTime!
   email: String
+
+  """Followers of User"""
+  followers: [User!]!
+
+  """Followings of User"""
+  followings: [User!]!
   id: ID!
   name: String!
   oauthUsers: [OAuthUser!]!
