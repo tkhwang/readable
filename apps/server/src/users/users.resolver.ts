@@ -44,8 +44,8 @@ export class UsersResolver {
   /*
    * Field Resolver
    */
-  @ResolveField('followings', returns => [User])
-  async followings(@Parent() user: User) {
+  @ResolveField('followingUsers', returns => [User])
+  async followingUsers(@Parent() user: User) {
     const userFollows = await this.userFollowsRepository.find({ where: { followingUserId: user.id } });
 
     return Promise.all(
@@ -55,8 +55,8 @@ export class UsersResolver {
     );
   }
 
-  @ResolveField('followers', returns => [User])
-  async followers(@Parent() user: User) {
+  @ResolveField('followerUsers', returns => [User])
+  async followerUsers(@Parent() user: User) {
     const userFollows = await this.userFollowsRepository.find({ where: { followerUserId: user.id } });
 
     return Promise.all(

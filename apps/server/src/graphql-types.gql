@@ -179,10 +179,10 @@ type User {
   email: String
 
   """Followers of User"""
-  followers: [User!]!
+  followerUsers: [User!]!
 
   """Followings of User"""
-  followings: [User!]!
+  followingUsers: [User!]!
   id: ID!
   name: String!
   oauthUsers: [OAuthUser!]!

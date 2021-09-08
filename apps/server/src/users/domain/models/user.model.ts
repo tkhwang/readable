@@ -31,8 +31,8 @@ export class UserBRFO extends CoreModel {
 @ObjectType()
 export class User extends UserBRFO {
   @Field(type => [User], { description: 'Followers of User' })
-  followers: User[];
+  followerUsers: User[];
 
   @Field(type => [User], { description: 'Followings of User' })
-  followings: User[];
+  followingUsers: User[];
 }
