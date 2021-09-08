@@ -85,6 +85,11 @@ input FindOrAddInterestWithAuthInput {
   interest: String!
 }
 
+input FollowUserWithAuthInput {
+  """Following User id"""
+  followingUserId: String!
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -99,6 +104,7 @@ type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
+  followerUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): User!
 }
 
 type OAuthUser {

@@ -4,8 +4,8 @@ import { Column, Entity } from 'typeorm';
 @Entity('userFollows')
 export class UserFollow extends CoreEntity {
   @Column()
-  followingUserFirestoreId: string;
+  followingUserId: string;
 
   @Column()
-  followerUserFirestoreId: string;
+  followerUserId: string;
 }
