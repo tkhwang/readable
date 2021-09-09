@@ -113,6 +113,7 @@ type Mutation {
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
+  unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!
 }
 
 type OAuthUser {
@@ -170,6 +171,19 @@ type Query {
   myBookmarks: [Bookmark!]!
   myInterests: [Interest!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
+}
+
+input UnfollowUserWithAuthInput {
+  """Unfollowing User id"""
+  followingUserId: String!
+}
+
+type UnfollowUserWithAuthOutput {
+  """Follower User"""
+  followerUser: User!
+
+  """Following User"""
+  followingUser: User!
 }
 
 type User {

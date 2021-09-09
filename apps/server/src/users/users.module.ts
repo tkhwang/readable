@@ -9,6 +9,7 @@ import { OAuthUsersRepository } from './infrastructures/typeorm/repositories/oau
 import { SigninUsecase } from './applications/usecases/signin/signin.usecase';
 import { UserFollowsRepository } from './infrastructures/typeorm/repositories/userFollow.repository';
 import { FollowUserWithAuthUsecase } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.usecase';
+import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { FollowUserWithAuthUsecase } from './applications/usecases/follow-user-w
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [UsersResolver, UsersService, SigninUsecase, FollowUserWithAuthUsecase],
+  providers: [UsersResolver, UsersService, SigninUsecase, FollowUserWithAuthUsecase, UnfollowUserWithAuthUsecase],
   exports: [UsersService, JwtModule, SigninUsecase],
 })
 export class UsersModule {}

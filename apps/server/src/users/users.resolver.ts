@@ -10,12 +10,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserFollowsRepository } from './infrastructures/typeorm/repositories/userFollow.repository';
 import { UsersRepository } from './infrastructures/typeorm/repositories/users.repository';
 import { FollowUserWithAuthOutput } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.output';
+import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
+import { UnfollowUserWithAuthOutput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.output';
+import { UnfollowUserWithAuthInput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.input';
 
 @Resolver(of => User)
 export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private readonly followUserWithAuthUsecase: FollowUserWithAuthUsecase,
+    private readonly unfollowUserWithAuthUsecase: UnfollowUserWithAuthUsecase,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
@@ -39,6 +43,15 @@ export class UsersResolver {
     @Args('followUserWithAuthInput') command: FollowUserWithAuthInput
   ) {
     return this.followUserWithAuthUsecase.execute(command, requestUser);
+  }
+
+  @Mutation(returns => UnfollowUserWithAuthOutput)
+  @UseGuards(GqlAuthGuard)
+  async unfollowUserWithAuth(
+    @CurrentUser() requestUser: User,
+    @Args('unfollowUserWithAuthInput') command: UnfollowUserWithAuthInput
+  ) {
+    return this.unfollowUserWithAuthUsecase.execute(command, requestUser);
   }
 
   /*
