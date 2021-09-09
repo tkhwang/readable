@@ -10,6 +10,12 @@ export class GetMyInterestsWithAuthUsecase implements Usecase<User, Interest[]> 
   async execute(requestUser: User) {
     const myInterests = await this.interestsRepository.find({ where: { userId: requestUser.id } });
 
-    return myInterests ?? [];
+    if (myInterests?.length > 0) return myInterests;
+
+    const newInterest = await this.interestsRepository.save(
+      this.interestsRepository.create({ interest: 'Readable', userId: requestUser.id })
+    );
+
+    return [newInterest];
   }
 }

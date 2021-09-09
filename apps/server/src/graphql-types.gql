@@ -3,6 +3,11 @@
 # ------------------------------------------------------
 
 input AddBookMarkWithAuthInput {
+  """User interest which includes bookmarks."""
+  interestId: [String!]!
+
+  """Tag ids"""
+  tagIds: [String!]
   url: String!
 }
 
@@ -28,9 +33,10 @@ type Bookmark {
   howMany: Int!
   id: ID!
   imageUrl: String!
+  interest: Interest!
 
-  """Your interest which includes bookmarks."""
-  interestIds: [String!]!
+  """User interest which includes bookmarks."""
+  interestId: [String!]!
   schedulers: [User!]
   siteName: String!
   summary: String
@@ -54,8 +60,8 @@ type BookmarkBRFO {
   id: ID!
   imageUrl: String!
 
-  """Your interest which includes bookmarks."""
-  interestIds: [String!]!
+  """User interest which includes bookmarks."""
+  interestId: [String!]!
   siteName: String!
   summary: String
 

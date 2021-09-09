@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
 import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
-import { AddBookMarkWithAuthInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
+import { BasicBookInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { Root } from '@nestjs/graphql';
 import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
@@ -13,6 +13,7 @@ import axios from 'axios';
 import { endpoints } from '@readable/common/constants';
 import * as FormData from 'form-data';
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
+import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 
 @Injectable()
 export class BookmarksService {
@@ -20,15 +21,16 @@ export class BookmarksService {
     @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
     @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
+    @InjectRepository(InterestsRepository) private readonly interestsRepository: InterestsRepository,
     @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository
   ) {}
 
-  async generateBasicBookmarkInfo(command: AddBookMarkWithAuthInput): Promise<BookmarkEntity> {
+  async generateBasicBookmarkInfo(command: BasicBookInput): Promise<BookmarkEntity> {
     const { url } = command;
 
     const ogsOptions = { url };
     const { result } = await ogs(ogsOptions);
-    // const siteName = result['ogSiteName'] || '';
+    const siteName = result['ogSiteName'] || '';
 
     const bookmark = new BookmarkBuilder()
       .setUrl(result['ogUrl'] ?? url)
@@ -37,7 +39,8 @@ export class BookmarksService {
       .setType(result['ogType'] ?? '')
       .setImageUrl(result['ogImage']['url'] ?? '')
       .setDescription(result['ogDescription'] ?? '')
-      // .setTags(siteName ? [siteName] : [])
+      // .setTags([siteName, ...tagIds])
+      // .setInterestIds(interestIds)
       .build();
 
     return bookmark;
@@ -124,6 +127,12 @@ export class BookmarksService {
 
     const finishers = await this.usersRepository.findByIds(finisherUserIds);
     return finishers ?? [];
+  }
+
+  async getFieldInterest(@Root() bookmark: BookmarkBRFO) {
+    const { interestId } = bookmark;
+
+    return this.interestsRepository.findOne({ where: { id: interestId } });
   }
 
   async getFieldTags(@Root() bookmark: BookmarkBRFO) {

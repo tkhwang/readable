@@ -13,6 +13,7 @@ import { UsersRepository } from '@readable/users/infrastructures/typeorm/reposit
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
 import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
+import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/re
       UsersRepository,
       TagsRepository,
       OAuthUsersRepository,
+      InterestsRepository,
     ]),
   ],
   providers: [

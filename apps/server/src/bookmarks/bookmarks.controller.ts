@@ -18,8 +18,13 @@ export class BookmarksController {
 
   @UseGuards(JwtAuthGuard)
   @Post('add')
-  async addBookmarkWithAuth(@Body('url') url: string, @Request() req: RequestWithInjectedUser) {
+  async addBookmarkWithAuth(
+    @Body('url') url: string,
+    @Body('interestId') interestId: string,
+    @Body('tagIds') tagIds: string[] = [],
+    @Request() req: RequestWithInjectedUser
+  ) {
     const requestUser = req.user;
-    return this.addBookmarkWithAuthUsecase.execute({ url }, requestUser);
+    return this.addBookmarkWithAuthUsecase.execute({ url, interestId, tagIds }, requestUser);
   }
 }
