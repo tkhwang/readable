@@ -43,10 +43,10 @@ export class BookmarkBuilder {
   //   return this;
   // }
 
-  setTags(tags: string[]) {
-    this.bookmark.tags = [...tags];
-    return this;
-  }
+  // setTags(tags: string[]) {
+  //   this.bookmark.tags = [...tags];
+  //   return this;
+  // }
 
   build() {
     return this.bookmark;

@@ -83,7 +83,7 @@ export class BookmarksResolver {
   }
 
   @ResolveField()
-  async keywords(@Root() bookmark: BookmarkBRFO) {
-    return this.bookmarksService.getFieldKeywords(bookmark);
+  async tags(@Root() bookmark: BookmarkBRFO) {
+    return this.bookmarksService.getFieldTags(bookmark);
   }
 }

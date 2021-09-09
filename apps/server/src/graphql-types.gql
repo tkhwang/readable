@@ -28,11 +28,10 @@ type Bookmark {
   howMany: Int!
   id: ID!
   imageUrl: String!
-  keywordIds: [String!]!
-  keywords: [String!]!
   schedulers: [User!]
   siteName: String!
   summary: String
+  tagIds: [String!]!
   tags: [String!]!
   title: String!
   type: String!
@@ -49,10 +48,9 @@ type BookmarkBRFO {
   howMany: Int!
   id: ID!
   imageUrl: String!
-  keywordIds: [String!]!
   siteName: String!
   summary: String
-  tags: [String!]!
+  tagIds: [String!]!
   title: String!
   type: String!
   updatedAt: DateTime!

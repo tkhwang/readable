@@ -12,7 +12,7 @@ import { UsersRepository } from '@readable/users/infrastructures/typeorm/reposit
 import axios from 'axios';
 import { endpoints } from '@readable/common/constants';
 import * as FormData from 'form-data';
-import { KeywordsRepository } from './infrastructures/typeorm/repositories/keywords.repository';
+import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
 
 @Injectable()
 export class BookmarksService {
@@ -20,7 +20,7 @@ export class BookmarksService {
     @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
     @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
-    @InjectRepository(KeywordsRepository) private readonly keywordsRepository: KeywordsRepository
+    @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository
   ) {}
 
   async generateBasicBookmarkInfo(command: AddBookMarkWithAuthInput): Promise<BookmarkEntity> {
@@ -28,7 +28,7 @@ export class BookmarksService {
 
     const ogsOptions = { url };
     const { result } = await ogs(ogsOptions);
-    const siteName = result['ogSiteName'] || '';
+    // const siteName = result['ogSiteName'] || '';
 
     const bookmark = new BookmarkBuilder()
       .setUrl(result['ogUrl'] ?? url)
@@ -37,7 +37,7 @@ export class BookmarksService {
       .setType(result['ogType'] ?? '')
       .setImageUrl(result['ogImage']['url'] ?? '')
       .setDescription(result['ogDescription'] ?? '')
-      .setTags(siteName ? [siteName] : [])
+      // .setTags(siteName ? [siteName] : [])
       .build();
 
     return bookmark;
@@ -72,14 +72,14 @@ export class BookmarksService {
     }
   }
 
-  async mapKeywords(keywords: string[]) {
+  async mapKeywords(tags: string[]) {
     return Promise.all(
-      keywords.map(async keyword => {
-        let keywordEntity = await this.keywordsRepository.findOne({ where: { keyword } });
-        if (!keywordEntity) {
-          keywordEntity = await this.keywordsRepository.save(this.keywordsRepository.create({ keyword }));
+      tags.map(async tag => {
+        let tagEntity = await this.tagsRepository.findOne({ where: { tag } });
+        if (!tagEntity) {
+          tagEntity = await this.tagsRepository.save(this.tagsRepository.create({ tag }));
         }
-        return keywordEntity.id;
+        return tagEntity.id;
       })
     );
   }
@@ -126,10 +126,10 @@ export class BookmarksService {
     return finishers ?? [];
   }
 
-  async getFieldKeywords(@Root() bookmark: BookmarkBRFO) {
-    const { keywordIds } = bookmark;
+  async getFieldTags(@Root() bookmark: BookmarkBRFO) {
+    const { tagIds } = bookmark;
 
-    const keywords = await this.keywordsRepository.findByIds(keywordIds);
-    return keywords.map(keyword => keyword.keyword);
+    const tags = await this.tagsRepository.findByIds(tagIds);
+    return tags.map(tag => tag.tag);
   }
 }

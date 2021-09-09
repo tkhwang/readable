@@ -28,7 +28,7 @@ export class Bookmark extends CoreEntity {
   generatedImage: string;
 
   @Column('simple-array')
-  tags: string[];
+  tagIds: string[];
 
   @Column('simple-array')
   keywordIds: string[];

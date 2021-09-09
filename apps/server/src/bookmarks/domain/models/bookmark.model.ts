@@ -40,11 +40,11 @@ export class BookmarkBRFO extends CoreModel {
   @Field(type => String)
   generatedImage: string;
 
-  @Field(type => [String])
-  tags: string[];
+  // @Field(type => [String])
+  // tags: string[];
 
   @Field(type => [String])
-  keywordIds: string[];
+  tagIds: string[];
 
   @Field(type => String, { nullable: true })
   summary?: string;
@@ -67,5 +67,5 @@ export class Bookmark extends BookmarkBRFO {
   finishers: User[];
 
   @Field(type => [String])
-  keywords: string[];
+  tags: string[];
 }
