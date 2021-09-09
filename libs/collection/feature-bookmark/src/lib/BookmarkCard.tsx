@@ -21,10 +21,10 @@ export const BookmarkCard: FunctionComponent<Props> = ({ title, bookmarks }) => 
                   <p className="text-gray-700 text-base">{bookmark.description}</p>
                 </div>
                 <div className="px-6 pt-4 pb-2">
-                  {bookmark?.keywords?.map((keyword: string) => {
+                  {bookmark?.tags?.map(tag => {
                     return (
                       <span className="inline-block bg-gray-200 rounded-full px-3  py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                        {keyword}
+                        {tag.tag}
                       </span>
                     );
                   })}

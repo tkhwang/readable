@@ -43,7 +43,7 @@ type Bookmark {
 
   """tag ids"""
   tagIds: [String!]
-  tags: [String!]!
+  tags: [Tag!]!
   title: String!
   type: String!
   updatedAt: DateTime!
@@ -185,6 +185,14 @@ type Query {
   myBookmarks: [Bookmark!]!
   myInterests: [Interest!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
+}
+
+type Tag {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  id: ID!
+  tag: String!
+  updatedAt: DateTime!
 }
 
 input UnfollowUserWithAuthInput {

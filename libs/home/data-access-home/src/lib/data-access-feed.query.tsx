@@ -16,7 +16,10 @@ const graphql = gql`
           title
           url
           imageUrl
-          tags
+          tags {
+            id
+            tag
+          }
           description
           collectors {
             name

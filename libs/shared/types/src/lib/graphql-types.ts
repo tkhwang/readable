@@ -16,6 +16,10 @@ export type Scalars = {
 };
 
 export type AddBookMarkWithAuthInput = {
+  /** User interest which includes bookmarks. */
+  readonly interestId: ReadonlyArray<Scalars['String']>;
+  /** Tag ids */
+  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly url: Scalars['String'];
 };
 
@@ -42,11 +46,15 @@ export type Bookmark = {
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
+  readonly interest: Interest;
+  /** User interest which includes bookmarks. */
+  readonly interestId: ReadonlyArray<Scalars['String']>;
   readonly schedulers?: Maybe<ReadonlyArray<User>>;
   readonly siteName: Scalars['String'];
   readonly summary?: Maybe<Scalars['String']>;
-  readonly tagIds: ReadonlyArray<Scalars['String']>;
-  readonly tags: ReadonlyArray<Scalars['String']>;
+  /** tag ids */
+  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly tags: ReadonlyArray<Tag>;
   readonly title: Scalars['String'];
   readonly type: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
@@ -63,9 +71,12 @@ export type BookmarkBRFO = {
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
+  /** User interest which includes bookmarks. */
+  readonly interestId: ReadonlyArray<Scalars['String']>;
   readonly siteName: Scalars['String'];
   readonly summary?: Maybe<Scalars['String']>;
-  readonly tagIds: ReadonlyArray<Scalars['String']>;
+  /** tag ids */
+  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly title: Scalars['String'];
   readonly type: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
@@ -225,6 +236,15 @@ export type QuerypaginationBookmarksArgs = {
   first?: Maybe<Scalars['Int']>;
   order?: Maybe<PaginationOrder>;
   orderBy?: Maybe<PaginationOrderBy>;
+};
+
+export type Tag = {
+  readonly __typename?: 'Tag';
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly id: Scalars['ID'];
+  readonly tag: Scalars['String'];
+  readonly updatedAt: Scalars['DateTime'];
 };
 
 export type UnfollowUserWithAuthInput = {

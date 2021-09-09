@@ -140,7 +140,9 @@ export class BookmarksService {
 
     if (!tagIds || tagIds?.length === 0) return [];
 
-    const tags = await this.tagsRepository.findByIds(tagIds);
-    return tags.map(tag => tag.tag);
+    return this.tagsRepository.findByIds(tagIds);
+
+    // const tags = await this.tagsRepository.findByIds(tagIds);
+    // return tags.map(tag => tag.tag);
   }
 }

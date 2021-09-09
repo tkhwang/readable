@@ -13,7 +13,11 @@ export type GetMyBookmarksQuery = (
   { readonly __typename?: 'Query' }
   & { readonly myBookmarks: ReadonlyArray<(
     { readonly __typename?: 'Bookmark' }
-    & Pick<Types.Bookmark, 'id' | 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description' | 'tags'>
+    & Pick<Types.Bookmark, 'id' | 'url' | 'type' | 'siteName' | 'title' | 'imageUrl' | 'description'>
+    & { readonly tags: ReadonlyArray<(
+      { readonly __typename?: 'Tag' }
+      & Pick<Types.Tag, 'id' | 'tag'>
+    )> }
   )> }
 );
 
@@ -41,7 +45,10 @@ export const GetMyBookmarksDocument = gql`
     title
     imageUrl
     description
-    tags
+    tags {
+      id
+      tag
+    }
   }
 }
     `;
