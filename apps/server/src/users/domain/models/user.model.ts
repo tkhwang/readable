@@ -5,7 +5,7 @@ import { OAuthUser } from './oauthUser.model';
 
 @InputType({ isAbstract: true })
 @ObjectType()
-export class User extends CoreModel {
+export class UserBRFO extends CoreModel {
   @Field(type => AuthProviders)
   provider: AuthProviders;
 
@@ -26,4 +26,13 @@ export class User extends CoreModel {
 
   @Field(type => String)
   timezone: string;
+}
+
+@ObjectType()
+export class User extends UserBRFO {
+  @Field(type => [User], { description: 'Followers of User' })
+  followerUsers: User[];
+
+  @Field(type => [User], { description: 'Followings of User' })
+  followingUsers: User[];
 }

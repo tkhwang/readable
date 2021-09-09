@@ -15,6 +15,7 @@ import { PaginationModule } from './pagination/pagination.module';
 import { Keyword } from './bookmarks/infrastructures/typeorm/entities/keywords.entity';
 import { InterestsModule } from './interests/interests.module';
 import { Interest } from './interests/infrastructures/mongo/entities/interest.entity';
+import { UserFollow } from './users/infrastructures/typeorm/entities/userFollow.entity';
 
 @Module({
   imports: [
@@ -41,7 +42,7 @@ import { Interest } from './interests/infrastructures/mongo/entities/interest.en
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      entities: [OAuthUser, User, Bookmark, BookmarkUser, Keyword, Interest],
+      entities: [OAuthUser, User, Bookmark, BookmarkUser, Keyword, Interest, UserFollow],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB

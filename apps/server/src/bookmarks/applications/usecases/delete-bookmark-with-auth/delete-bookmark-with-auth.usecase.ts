@@ -6,7 +6,7 @@ import { DeleteBookmarkWithAuthInput } from './delete-bookmark-with-auth.input';
 import {
   DeleteBookmarkWithAuthFailException,
   UnauthorizedDeleteBookmarkWithAuthException,
-} from '@readable/bookmarks/domain/erros/bookmarks.error';
+} from '@readable/bookmarks/domain/errors/bookmarks.error';
 import { CommonOutput } from '@readable/common/models/common.output';
 
 export class DeleteBookmarkWithAuthUsecse implements Usecase<DeleteBookmarkWithAuthInput, CommonOutput> {

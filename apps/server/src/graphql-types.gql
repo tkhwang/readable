@@ -85,6 +85,19 @@ input FindOrAddInterestWithAuthInput {
   interest: String!
 }
 
+input FollowUserWithAuthInput {
+  """Following User id"""
+  followingUserId: String!
+}
+
+type FollowUserWithAuthOutput {
+  """Follower User"""
+  followerUser: User!
+
+  """Following User"""
+  followingUser: User!
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -99,6 +112,8 @@ type Mutation {
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
+  followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
+  unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!
 }
 
 type OAuthUser {
@@ -158,11 +173,30 @@ type Query {
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
 }
 
+input UnfollowUserWithAuthInput {
+  """Unfollowing User id"""
+  followingUserId: String!
+}
+
+type UnfollowUserWithAuthOutput {
+  """Follower User"""
+  followerUser: User!
+
+  """Following User"""
+  followingUser: User!
+}
+
 type User {
   avatarUrl: String
   createdAt: DateTime!
   deletedAt: DateTime!
   email: String
+
+  """Followers of User"""
+  followerUsers: [User!]!
+
+  """Followings of User"""
+  followingUsers: [User!]!
   id: ID!
   name: String!
   oauthUsers: [OAuthUser!]!
