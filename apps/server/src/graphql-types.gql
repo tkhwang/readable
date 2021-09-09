@@ -28,10 +28,15 @@ type Bookmark {
   howMany: Int!
   id: ID!
   imageUrl: String!
+
+  """Your interest which includes bookmarks."""
+  interestIds: [String!]!
   schedulers: [User!]
   siteName: String!
   summary: String
-  tagIds: [String!]!
+
+  """tag ids"""
+  tagIds: [String!]
   tags: [String!]!
   title: String!
   type: String!
@@ -48,9 +53,14 @@ type BookmarkBRFO {
   howMany: Int!
   id: ID!
   imageUrl: String!
+
+  """Your interest which includes bookmarks."""
+  interestIds: [String!]!
   siteName: String!
   summary: String
-  tagIds: [String!]!
+
+  """tag ids"""
+  tagIds: [String!]
   title: String!
   type: String!
   updatedAt: DateTime!

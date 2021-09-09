@@ -72,7 +72,7 @@ export class BookmarksService {
     }
   }
 
-  async mapKeywords(tags: string[]) {
+  async mapTags(tags: string[]) {
     return Promise.all(
       tags.map(async tag => {
         let tagEntity = await this.tagsRepository.findOne({ where: { tag } });
@@ -128,6 +128,8 @@ export class BookmarksService {
 
   async getFieldTags(@Root() bookmark: BookmarkBRFO) {
     const { tagIds } = bookmark;
+
+    if (!tagIds || tagIds?.length === 0) return [];
 
     const tags = await this.tagsRepository.findByIds(tagIds);
     return tags.map(tag => tag.tag);

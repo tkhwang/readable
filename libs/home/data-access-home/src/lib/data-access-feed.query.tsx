@@ -16,7 +16,7 @@ const graphql = gql`
           title
           url
           imageUrl
-          keywords
+          tags
           description
           collectors {
             name

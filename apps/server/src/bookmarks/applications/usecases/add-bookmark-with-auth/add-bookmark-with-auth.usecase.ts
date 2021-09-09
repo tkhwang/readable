@@ -30,7 +30,7 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
     bookmarkInfo.urlHash = urlHash;
 
     const bookmarkForAdding = this.bookmarksRepository.create(bookmarkInfo);
-    bookmarkForAdding.keywordIds = await this.bookmarksService.mapKeywords([bookmarkInfo.siteName]);
+    bookmarkForAdding.tagIds = await this.bookmarksService.mapTags([bookmarkInfo.siteName]);
 
     // TODO(Teddy): WIP
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);

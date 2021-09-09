@@ -13,7 +13,6 @@ const GET_MY_BOOKMARKS = gql`
       imageUrl
       description
       tags
-      keywords
     }
   }
 `;

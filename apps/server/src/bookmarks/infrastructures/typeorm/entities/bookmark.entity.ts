@@ -28,10 +28,13 @@ export class Bookmark extends CoreEntity {
   generatedImage: string;
 
   @Column('simple-array')
-  tagIds: string[];
+  interestIds: string[];
 
-  @Column('simple-array')
-  keywordIds: string[];
+  @Column('simple-array', { nullable: true })
+  tagIds?: string[];
+
+  // @Column('simple-array')
+  // keywordIds: string[];
 
   @Column('varchar', { name: 'summary', length: 4096 })
   summary?: string;

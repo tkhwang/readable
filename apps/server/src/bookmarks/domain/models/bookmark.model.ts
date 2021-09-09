@@ -43,8 +43,11 @@ export class BookmarkBRFO extends CoreModel {
   // @Field(type => [String])
   // tags: string[];
 
-  @Field(type => [String])
-  tagIds: string[];
+  @Field(type => [String], { description: 'Your interest which includes bookmarks.' })
+  interestIds: string[];
+
+  @Field(type => [String], { nullable: true, description: 'tag ids' })
+  tagIds?: string[];
 
   @Field(type => String, { nullable: true })
   summary?: string;

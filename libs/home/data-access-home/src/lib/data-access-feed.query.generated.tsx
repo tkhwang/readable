@@ -24,7 +24,7 @@ export type PaginationBookmarksOnFeedQuery = (
       & Pick<Types.PaginationBookmarkEdge, 'cursor'>
       & { readonly node: (
         { readonly __typename?: 'Bookmark' }
-        & Pick<Types.Bookmark, 'id' | 'siteName' | 'title' | 'url' | 'imageUrl' | 'keywords' | 'description'>
+        & Pick<Types.Bookmark, 'id' | 'siteName' | 'title' | 'url' | 'imageUrl' | 'tags' | 'description'>
         & { readonly collectors?: Types.Maybe<ReadonlyArray<(
           { readonly __typename?: 'User' }
           & Pick<Types.User, 'name' | 'avatarUrl'>
@@ -56,7 +56,7 @@ export const PaginationBookmarksOnFeedDocument = gql`
         title
         url
         imageUrl
-        keywords
+        tags
         description
         collectors {
           name
