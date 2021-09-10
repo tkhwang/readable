@@ -14,6 +14,7 @@ import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repo
 import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
+import { GetMyInterestsWithAuthUsecase } from '@readable/interests/applications/usecases/get-my-interests-with-auth/get-my-interests-with-auth.usecase';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { InterestsRepository } from '@readable/interests/infrastructures/mongo/r
     AddBookmarkWithAuthUsecase,
     DeleteBookmarkWithAuthUsecse,
     AddBookmarkInGoogleEventsUsecase,
+    GetMyInterestsWithAuthUsecase,
   ],
   controllers: [BookmarksController],
   exports: [BookmarksService],

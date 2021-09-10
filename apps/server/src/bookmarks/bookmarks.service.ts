@@ -50,9 +50,7 @@ export class BookmarksService {
     return this.bookmarksRepository.findOne({ urlHash });
   }
 
-  async getNlpAnalysis(bookmarkInfo: BookmarkBRFO) {
-    const { url } = bookmarkInfo;
-
+  async getNlpAnalysis(url: string) {
     try {
       const bodyFormData = new FormData();
       bodyFormData.append('ratio', '0.2');
@@ -69,9 +67,9 @@ export class BookmarksService {
       });
 
       const { summary, keywords } = data;
-      return { summary, keywords };
+      return { summary, tags: keywords };
     } catch (error) {
-      return { summary: '', keywords: [] };
+      return { summary: '', tags: [] };
     }
   }
 
