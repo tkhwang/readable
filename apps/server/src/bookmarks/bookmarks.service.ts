@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
 import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
-import { BasicBookInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { Root } from '@nestjs/graphql';
 import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
@@ -29,7 +28,7 @@ export class BookmarksService {
     try {
       return await this.extractSiteInformationByLibraryOgs(url);
     } catch (error) {
-      return this.extractSiteInformationByManual(url);
+      return await this.extractSiteInformationByManual(url);
     }
   }
 
@@ -150,7 +149,13 @@ export class BookmarksService {
   }
 
   private async extractSiteInformationByManual(url: string) {
-    const bookmark = new BookmarkBuilder().setUrl(url).build();
+    const parsedUrl = new URL(url);
+    const siteName = parsedUrl.hostname.split('.')[0];
+
+    const bookmark = new BookmarkBuilder()
+      .setUrl(url)
+      .setSiteName(siteName ?? '')
+      .build();
 
     return bookmark;
   }
