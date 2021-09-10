@@ -25,6 +25,7 @@ export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO>
     const bookmarkInfo: BookmarkBRFO = await this.bookmarksService.extractSiteInformation(url);
     bookmarkInfo.urlHash = urlHash;
     bookmarkInfo.howMany = await this.getHowMany(urlHash);
+    console.log('TCL: GetUrlInfoUsecase -> execute -> bookmarkInfo', bookmarkInfo);
 
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);
     // bookmarkInfo.summary = summary ?? '';

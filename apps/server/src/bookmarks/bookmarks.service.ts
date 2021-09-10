@@ -32,9 +32,14 @@ export class BookmarksService {
         this.extractSiteInformationByManual(url),
       ]);
 
+      // console.log('TCL: BookmarksService -> bookmarkParseByManaul', bookmarkParseByManaul);
+      // console.log('TCL: BookmarksService -> bookmarkParsedByLibrary', bookmarkParsedByLibrary);
+
       return {
         ...bookmarkParseByManaul,
         ...bookmarkParsedByLibrary,
+        type: bookmarkParsedByLibrary.type || bookmarkParseByManaul.type || '',
+        siteName: bookmarkParsedByLibrary.siteName || bookmarkParseByManaul.siteName || '',
       };
     } catch (error) {
       return await this.extractSiteInformationByManual(url);
