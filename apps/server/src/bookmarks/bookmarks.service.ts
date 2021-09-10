@@ -13,6 +13,7 @@ import { endpoints } from '@readable/common/constants';
 import * as FormData from 'form-data';
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
+import cheerio from 'cheerio';
 
 @Injectable()
 export class BookmarksService {
@@ -26,7 +27,15 @@ export class BookmarksService {
 
   async extractSiteInformation(url: string): Promise<BookmarkEntity> {
     try {
-      return await this.extractSiteInformationByLibraryOgs(url);
+      const [bookmarkParsedByLibrary, bookmarkParseByManaul] = await Promise.all([
+        this.extractSiteInformationByLibraryOgs(url),
+        this.extractSiteInformationByManual(url),
+      ]);
+
+      return {
+        ...bookmarkParsedByLibrary,
+        ...bookmarkParseByManaul,
+      };
     } catch (error) {
       return await this.extractSiteInformationByManual(url);
     }
@@ -150,13 +159,25 @@ export class BookmarksService {
 
   private async extractSiteInformationByManual(url: string) {
     const parsedUrl = new URL(url);
-    const siteName = parsedUrl.hostname.split('.')[0];
+    const siteName = parsedUrl.hostname;
+
+    const html = await this.getHtml(url);
+    const $ = cheerio.load(html.data as any);
+    const title = $('title') ?? $('h1') ?? $('h1.tittle');
 
     const bookmark = new BookmarkBuilder()
       .setUrl(url)
       .setSiteName(siteName ?? '')
+      .setTitle(title?.text() ?? '')
       .build();
 
     return bookmark;
+  }
+
+  private async getHtml(url: string) {
+    return axios({
+      method: 'get',
+      url,
+    });
   }
 }
