@@ -5,14 +5,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
 import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
-import { AddBookMarkWithAuthInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
+import { BasicBookInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { Root } from '@nestjs/graphql';
 import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import axios from 'axios';
 import { endpoints } from '@readable/common/constants';
 import * as FormData from 'form-data';
-import { KeywordsRepository } from './infrastructures/typeorm/repositories/keywords.repository';
+import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
+import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 
 @Injectable()
 export class BookmarksService {
@@ -20,10 +21,11 @@ export class BookmarksService {
     @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
     @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
-    @InjectRepository(KeywordsRepository) private readonly keywordsRepository: KeywordsRepository
+    @InjectRepository(InterestsRepository) private readonly interestsRepository: InterestsRepository,
+    @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository
   ) {}
 
-  async generateBasicBookmarkInfo(command: AddBookMarkWithAuthInput): Promise<BookmarkEntity> {
+  async generateBasicBookmarkInfo(command: BasicBookInput): Promise<BookmarkEntity> {
     const { url } = command;
 
     const ogsOptions = { url };
@@ -37,7 +39,8 @@ export class BookmarksService {
       .setType(result['ogType'] ?? '')
       .setImageUrl(result['ogImage']['url'] ?? '')
       .setDescription(result['ogDescription'] ?? '')
-      .setTags(siteName ? [siteName] : [])
+      // .setTags([siteName, ...tagIds])
+      // .setInterestIds(interestIds)
       .build();
 
     return bookmark;
@@ -72,14 +75,14 @@ export class BookmarksService {
     }
   }
 
-  async mapKeywords(keywords: string[]) {
+  async mapTags(tags: string[]) {
     return Promise.all(
-      keywords.map(async keyword => {
-        let keywordEntity = await this.keywordsRepository.findOne({ where: { keyword } });
-        if (!keywordEntity) {
-          keywordEntity = await this.keywordsRepository.save(this.keywordsRepository.create({ keyword }));
+      tags.map(async tag => {
+        let tagEntity = await this.tagsRepository.findOne({ where: { tag } });
+        if (!tagEntity) {
+          tagEntity = await this.tagsRepository.save(this.tagsRepository.create({ tag }));
         }
-        return keywordEntity.id;
+        return tagEntity.id;
       })
     );
   }
@@ -126,10 +129,20 @@ export class BookmarksService {
     return finishers ?? [];
   }
 
-  async getFieldKeywords(@Root() bookmark: BookmarkBRFO) {
-    const { keywordIds } = bookmark;
+  async getFieldInterest(@Root() bookmark: BookmarkBRFO) {
+    const { interestId } = bookmark;
 
-    const keywords = await this.keywordsRepository.findByIds(keywordIds);
-    return keywords.map(keyword => keyword.keyword);
+    return this.interestsRepository.findOne({ where: { id: interestId } });
+  }
+
+  async getFieldTags(@Root() bookmark: BookmarkBRFO) {
+    const { tagIds } = bookmark;
+
+    if (!tagIds || tagIds?.length === 0) return [];
+
+    return this.tagsRepository.findByIds(tagIds);
+
+    // const tags = await this.tagsRepository.findByIds(tagIds);
+    // return tags.map(tag => tag.tag);
   }
 }

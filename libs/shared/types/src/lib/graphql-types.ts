@@ -16,6 +16,10 @@ export type Scalars = {
 };
 
 export type AddBookMarkWithAuthInput = {
+  /** User interest which includes bookmarks. */
+  readonly interestId: ReadonlyArray<Scalars['String']>;
+  /** Tag ids */
+  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly url: Scalars['String'];
 };
 
@@ -42,12 +46,15 @@ export type Bookmark = {
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
-  readonly keywordIds: ReadonlyArray<Scalars['String']>;
-  readonly keywords: ReadonlyArray<Scalars['String']>;
+  readonly interest: Interest;
+  /** User interest which includes bookmarks. */
+  readonly interestId: ReadonlyArray<Scalars['String']>;
   readonly schedulers?: Maybe<ReadonlyArray<User>>;
   readonly siteName: Scalars['String'];
   readonly summary?: Maybe<Scalars['String']>;
-  readonly tags: ReadonlyArray<Scalars['String']>;
+  /** tag ids */
+  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly tags: ReadonlyArray<Tag>;
   readonly title: Scalars['String'];
   readonly type: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
@@ -64,10 +71,12 @@ export type BookmarkBRFO = {
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   readonly imageUrl: Scalars['String'];
-  readonly keywordIds: ReadonlyArray<Scalars['String']>;
+  /** User interest which includes bookmarks. */
+  readonly interestId: ReadonlyArray<Scalars['String']>;
   readonly siteName: Scalars['String'];
   readonly summary?: Maybe<Scalars['String']>;
-  readonly tags: ReadonlyArray<Scalars['String']>;
+  /** tag ids */
+  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly title: Scalars['String'];
   readonly type: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
@@ -92,11 +101,42 @@ export type DeleteBookmarkWithAuthInput = {
   readonly bookmarkId: Scalars['String'];
 };
 
+export type FindOrAddInterestWithAuthInput = {
+  /** Interest text */
+  readonly interest: Scalars['String'];
+};
+
+export type FollowUserWithAuthInput = {
+  /** Following User id */
+  readonly followingUserId: Scalars['String'];
+};
+
+export type FollowUserWithAuthOutput = {
+  readonly __typename?: 'FollowUserWithAuthOutput';
+  /** Follower User */
+  readonly followerUser: User;
+  /** Following User */
+  readonly followingUser: User;
+};
+
+export type Interest = {
+  readonly __typename?: 'Interest';
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly id: Scalars['ID'];
+  readonly interest: Scalars['String'];
+  readonly updatedAt: Scalars['DateTime'];
+  readonly userId: Scalars['String'];
+};
+
 export type Mutation = {
   readonly __typename?: 'Mutation';
   readonly addBookmarkInGoogleEventsWithAuth: CommonOutput;
   readonly addBookmarkWithAuth: Bookmark;
   readonly deleteBookmarkWithAuth: CommonOutput;
+  readonly findOrAddInterestWithAuth: Interest;
+  readonly followUserWithAuth: FollowUserWithAuthOutput;
+  readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
 };
 
 
@@ -112,6 +152,21 @@ export type MutationaddBookmarkWithAuthArgs = {
 
 export type MutationdeleteBookmarkWithAuthArgs = {
   deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput;
+};
+
+
+export type MutationfindOrAddInterestWithAuthArgs = {
+  findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput;
+};
+
+
+export type MutationfollowUserWithAuthArgs = {
+  followUserWithAuthInput: FollowUserWithAuthInput;
+};
+
+
+export type MutationunfollowUserWithAuthArgs = {
+  unfollowUserWithAuthInput: UnfollowUserWithAuthInput;
 };
 
 export type OAuthUser = {
@@ -171,6 +226,7 @@ export type Query = {
   readonly __typename?: 'Query';
   readonly me: User;
   readonly myBookmarks: ReadonlyArray<Bookmark>;
+  readonly myInterests: ReadonlyArray<Interest>;
   readonly paginationBookmarks?: Maybe<PaginationBookmarks>;
 };
 
@@ -182,16 +238,43 @@ export type QuerypaginationBookmarksArgs = {
   orderBy?: Maybe<PaginationOrderBy>;
 };
 
+export type Tag = {
+  readonly __typename?: 'Tag';
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly id: Scalars['ID'];
+  readonly tag: Scalars['String'];
+  readonly updatedAt: Scalars['DateTime'];
+};
+
+export type UnfollowUserWithAuthInput = {
+  /** Unfollowing User id */
+  readonly followingUserId: Scalars['String'];
+};
+
+export type UnfollowUserWithAuthOutput = {
+  readonly __typename?: 'UnfollowUserWithAuthOutput';
+  /** Follower User */
+  readonly followerUser: User;
+  /** Following User */
+  readonly followingUser: User;
+};
+
 export type User = {
   readonly __typename?: 'User';
   readonly avatarUrl?: Maybe<Scalars['String']>;
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly email?: Maybe<Scalars['String']>;
+  /** Followers of User */
+  readonly followerUsers: ReadonlyArray<User>;
+  /** Followings of User */
+  readonly followingUsers: ReadonlyArray<User>;
   readonly id: Scalars['ID'];
   readonly name: Scalars['String'];
   readonly oauthUsers: ReadonlyArray<OAuthUser>;
   readonly provider: AuthProviders;
   readonly providerId: Scalars['String'];
+  readonly timezone: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
 };

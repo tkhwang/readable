@@ -3,6 +3,11 @@
 # ------------------------------------------------------
 
 input AddBookMarkWithAuthInput {
+  """User interest which includes bookmarks."""
+  interestId: [String!]!
+
+  """Tag ids"""
+  tagIds: [String!]
   url: String!
 }
 
@@ -28,12 +33,17 @@ type Bookmark {
   howMany: Int!
   id: ID!
   imageUrl: String!
-  keywordIds: [String!]!
-  keywords: [String!]!
+  interest: Interest!
+
+  """User interest which includes bookmarks."""
+  interestId: [String!]!
   schedulers: [User!]
   siteName: String!
   summary: String
-  tags: [String!]!
+
+  """tag ids"""
+  tagIds: [String!]
+  tags: [Tag!]!
   title: String!
   type: String!
   updatedAt: DateTime!
@@ -49,10 +59,14 @@ type BookmarkBRFO {
   howMany: Int!
   id: ID!
   imageUrl: String!
-  keywordIds: [String!]!
+
+  """User interest which includes bookmarks."""
+  interestId: [String!]!
   siteName: String!
   summary: String
-  tags: [String!]!
+
+  """tag ids"""
+  tagIds: [String!]
   title: String!
   type: String!
   updatedAt: DateTime!
@@ -171,6 +185,14 @@ type Query {
   myBookmarks: [Bookmark!]!
   myInterests: [Interest!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
+}
+
+type Tag {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  id: ID!
+  tag: String!
+  updatedAt: DateTime!
 }
 
 input UnfollowUserWithAuthInput {

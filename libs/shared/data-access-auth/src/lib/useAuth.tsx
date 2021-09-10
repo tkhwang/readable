@@ -37,7 +37,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log('TCL: AuthProvider:FunctionComponent -> useEffect');
     const token = loadAuthToken();
     if (token) {
       setAuthenticated(true);

@@ -12,8 +12,10 @@ const GET_MY_BOOKMARKS = gql`
       title
       imageUrl
       description
-      tags
-      keywords
+      tags {
+        id
+        tag
+      }
     }
   }
 `;

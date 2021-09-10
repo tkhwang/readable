@@ -1,6 +1,8 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
+import { Interest } from '@readable/interests/domain/interest.model';
 import { User } from '@readable/users/domain/models/user.model';
+import { Tag } from './tag.model';
 
 export enum LikeType {
   NONE = 'none',
@@ -40,11 +42,11 @@ export class BookmarkBRFO extends CoreModel {
   @Field(type => String)
   generatedImage: string;
 
-  @Field(type => [String])
-  tags: string[];
+  @Field(type => [String], { description: 'User interest which includes bookmarks.' })
+  interestId: string;
 
-  @Field(type => [String])
-  keywordIds: string[];
+  @Field(type => [String], { nullable: true, description: 'tag ids' })
+  tagIds?: string[];
 
   @Field(type => String, { nullable: true })
   summary?: string;
@@ -66,6 +68,9 @@ export class Bookmark extends BookmarkBRFO {
   @Field(type => [User], { nullable: true })
   finishers: User[];
 
-  @Field(type => [String])
-  keywords: string[];
+  @Field(type => Interest)
+  interest: Interest;
+
+  @Field(type => [Tag])
+  tags: Tag[];
 }

@@ -38,16 +38,6 @@ export class BookmarkBuilder {
     return this;
   }
 
-  // setImage(image: BookmarkImage) {
-  //   this.bookmark.image = image;
-  //   return this;
-  // }
-
-  setTags(tags: string[]) {
-    this.bookmark.tags = [...tags];
-    return this;
-  }
-
   build() {
     return this.bookmark;
   }

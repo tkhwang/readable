@@ -17,7 +17,10 @@ const PAGINATION_BOOKMARKS = gql`
           title
           url
           imageUrl
-          keywords
+          tags {
+            id
+            tag
+          }
           description
           collectors {
             name

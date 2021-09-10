@@ -14,18 +14,7 @@ export const BookmarksViewController = () => {
           return <BookmarkCard bookmark={edge.node} />;
         })} */}
       {paginationBookmarks?.edges.map(edge => {
-        const {
-          id,
-          siteName,
-          title,
-          url,
-          imageUrl,
-          keywords,
-          description,
-          collectors,
-          schedulers,
-          finishers,
-        } = edge.node;
+        const { id, siteName, title, url, imageUrl, tags, description, collectors, schedulers, finishers } = edge.node;
 
         return (
           <div className="p-10 ">
@@ -38,10 +27,10 @@ export const BookmarksViewController = () => {
                 </div>
               </a>
               <div className="px-6 pt-4 pb-2">
-                {keywords?.map((keyword: string) => {
+                {tags?.map(tag => {
                   return (
                     <span className="inline-block bg-gray-200 rounded-full px-3  py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                      {keyword}
+                      {tag.tag}
                     </span>
                   );
                 })}

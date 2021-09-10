@@ -1,5 +1,16 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { BookmarkInput } from '@readable/bookmarks/domain/models/bookmark.input';
+
+@InputType()
+class BookmarkInput {
+  @Field(type => String)
+  url: string;
+
+  @Field(type => String)
+  title: string;
+
+  @Field(type => Date)
+  scheduledAt?: Date;
+}
 
 @InputType()
 export class AddInGoogleEventsInput {
