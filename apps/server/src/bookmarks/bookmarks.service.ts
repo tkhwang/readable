@@ -33,8 +33,8 @@ export class BookmarksService {
       ]);
 
       return {
-        ...bookmarkParsedByLibrary,
         ...bookmarkParseByManaul,
+        ...bookmarkParsedByLibrary,
       };
     } catch (error) {
       return await this.extractSiteInformationByManual(url);
@@ -160,6 +160,7 @@ export class BookmarksService {
   private async extractSiteInformationByManual(url: string) {
     const parsedUrl = new URL(url);
     const siteName = parsedUrl.hostname;
+    const pathName = parsedUrl.pathname;
 
     const html = await this.getHtml(url);
     const $ = cheerio.load(html.data as any);
@@ -169,6 +170,7 @@ export class BookmarksService {
       .setUrl(url)
       .setSiteName(siteName ?? '')
       .setTitle(title?.text() ?? '')
+      .setType(pathName ? 'article' : 'website')
       .build();
 
     return bookmark;
