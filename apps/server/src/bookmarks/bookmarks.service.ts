@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkBuilder } from './infrastructures/typeorm/entities/bookmark.entity.builder';
 import { Bookmark as BookmarkEntity } from './infrastructures/typeorm/entities/bookmark.entity';
 import { BookmarksRepository } from './infrastructures/typeorm/repositories/bookmarks.repository';
-import { BasicBookInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { Root } from '@nestjs/graphql';
 import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
@@ -25,25 +24,12 @@ export class BookmarksService {
     @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository
   ) {}
 
-  async generateBasicBookmarkInfo(command: BasicBookInput): Promise<BookmarkEntity> {
-    const { url } = command;
-
-    const ogsOptions = { url };
-    const { result } = await ogs(ogsOptions);
-    const siteName = result['ogSiteName'] || '';
-
-    const bookmark = new BookmarkBuilder()
-      .setUrl(result['ogUrl'] ?? url)
-      .setSiteName(result['ogSiteName'] ?? '')
-      .setTitle(result['ogTitle'] ?? '')
-      .setType(result['ogType'] ?? '')
-      .setImageUrl(result['ogImage']['url'] ?? '')
-      .setDescription(result['ogDescription'] ?? '')
-      // .setTags([siteName, ...tagIds])
-      // .setInterestIds(interestIds)
-      .build();
-
-    return bookmark;
+  async extractSiteInformation(url: string): Promise<BookmarkEntity> {
+    try {
+      return await this.extractSiteInformationByLibraryOgs(url);
+    } catch (error) {
+      return await this.extractSiteInformationByManual(url);
+    }
   }
 
   async getBookmarkByUrlHash(urlHash: string) {
@@ -142,5 +128,35 @@ export class BookmarksService {
 
     // const tags = await this.tagsRepository.findByIds(tagIds);
     // return tags.map(tag => tag.tag);
+  }
+
+  /*
+   *  private
+   */
+  private async extractSiteInformationByLibraryOgs(url: string) {
+    const { result } = await ogs({ url });
+
+    const bookmark = new BookmarkBuilder()
+      .setUrl(result['ogUrl'] ?? url)
+      .setSiteName(result['ogSiteName'] ?? '')
+      .setTitle(result['ogTitle'] ?? '')
+      .setType(result['ogType'] ?? '')
+      .setImageUrl(result['ogImage']['url'] ?? '')
+      .setDescription(result['ogDescription'] ?? '')
+      .build();
+
+    return bookmark;
+  }
+
+  private async extractSiteInformationByManual(url: string) {
+    const parsedUrl = new URL(url);
+    const siteName = parsedUrl.hostname.split('.')[0];
+
+    const bookmark = new BookmarkBuilder()
+      .setUrl(url)
+      .setSiteName(siteName ?? '')
+      .build();
+
+    return bookmark;
   }
 }

@@ -22,7 +22,7 @@ export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO>
       return existingBookmark;
     }
 
-    const bookmarkInfo: BookmarkBRFO = await this.bookmarksService.generateBasicBookmarkInfo(query);
+    const bookmarkInfo: BookmarkBRFO = await this.bookmarksService.extractSiteInformation(url);
     bookmarkInfo.urlHash = urlHash;
     bookmarkInfo.howMany = await this.getHowMany(urlHash);
 
