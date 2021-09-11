@@ -16,6 +16,7 @@ import { Tag } from './bookmarks/infrastructures/typeorm/entities/tags.entity';
 import { InterestsModule } from './interests/interests.module';
 import { Interest } from './interests/infrastructures/mongo/entities/interest.entity';
 import { UserFollow } from './users/infrastructures/typeorm/entities/userFollow.entity';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { UserFollow } from './users/infrastructures/typeorm/entities/userFollow.
     BookmarksModule,
     PaginationModule,
     InterestsModule,
+    ImageModule,
   ],
   controllers: [],
   providers: [],
