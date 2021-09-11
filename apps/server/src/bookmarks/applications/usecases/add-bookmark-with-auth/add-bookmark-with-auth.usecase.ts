@@ -10,11 +10,13 @@ import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm
 import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { FindOrAddInterestWithAuthUseCase } from '@readable/interests/applications/usecases/find-or-add-interest/find-or-add-interest-with-auth.usecase';
 import { FindOrAddInterestWithAuthInput } from '@readable/interests/applications/usecases/find-or-add-interest/find-or-add-interest-with-auth.input';
+import { ImageService } from '@readable/image/image.service';
 
 export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthInput, Bookmark> {
   constructor(
     private readonly bookmarksService: BookmarksService,
     private readonly findOrAddInterestWithAuthUseCase: FindOrAddInterestWithAuthUseCase,
+    private readonly imageService: ImageService,
     @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
     @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository
   ) {}
@@ -43,6 +45,9 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
 
     newBookmark.tagIds = await this.bookmarksService.mapTags([siteInfo.siteName, ...tags]);
 
+    if (!newBookmark.imageUrl) {
+      newBookmark.imageUrl = await this.imageService.getImageUrl(url);
+    }
     // TODO(Teddy): WIP
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);
     // bookmarkForAdding.summary = summary ?? '';
