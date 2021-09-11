@@ -7,7 +7,7 @@ input AddBookMarkWithAuthInput {
   interest: [String!]!
 
   """Tag ids"""
-  tagIds: [String!]
+  tags: [String!]
   url: String!
 }
 

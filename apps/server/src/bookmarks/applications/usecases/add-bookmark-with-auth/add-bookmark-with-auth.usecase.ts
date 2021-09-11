@@ -20,7 +20,7 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
   ) {}
 
   async execute(command: AddBookMarkWithAuthInput, requestUser: UserModel) {
-    const { url, interest, tagIds = [] } = command;
+    const { url, interest, tags = [] } = command;
     const urlHash = sha256(url).toString();
 
     const existingBookmark = await this.bookmarksService.getBookmarkByUrlHash(urlHash);
@@ -41,7 +41,7 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
     );
     newBookmark.interestId = mappedInterest.id;
 
-    newBookmark.tagIds = await this.bookmarksService.mapTags([siteInfo.siteName, ...tagIds]);
+    newBookmark.tagIds = await this.bookmarksService.mapTags([siteInfo.siteName, ...tags]);
 
     // TODO(Teddy): WIP
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);

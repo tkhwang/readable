@@ -2,6 +2,7 @@ import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { RequestWithInjectedUser } from '@readable/auth/domain/auth.type';
 import { JwtAuthGuard } from '@readable/auth/domain/jwt-auth.guard';
 import { GetMyInterestsWithAuthUsecase } from '@readable/interests/applications/usecases/get-my-interests-with-auth/get-my-interests-with-auth.usecase';
+import { AddBookMarkWithAuthInput } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.input';
 import { AddBookmarkWithAuthUsecase } from './applications/usecases/add-bookmark-with-auth/add-bookmark-with-auth.usecase';
 import { GetUrlInfoUsecase } from './applications/usecases/get-urlinfo/get-urlinfo.usecase';
 import { BookmarksService } from './bookmarks.service';
@@ -41,11 +42,12 @@ export class BookmarksController {
   @Post('add')
   async addBookmarkWithAuth(
     @Body('url') url: string,
-    @Body('interestId') interestId: string,
-    @Body('tagIds') tagIds: string[] = [],
+    @Body('interest') interest: string,
+    @Body('tags') tags: string[] = [],
     @Request() req: RequestWithInjectedUser
   ) {
     const requestUser = req.user;
-    return this.addBookmarkWithAuthUsecase.execute({ url, interestId, tagIds }, requestUser);
+    const addBookMarkWithAuthInput = new AddBookMarkWithAuthInput(url, interest, tags);
+    return this.addBookmarkWithAuthUsecase.execute(addBookMarkWithAuthInput, requestUser);
   }
 }
