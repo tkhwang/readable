@@ -9,7 +9,7 @@ export class BasicBookInput {
 @InputType()
 export class AddBookMarkWithAuthInput extends BasicBookInput {
   @Field(type => [String], { description: 'User interest which includes bookmarks.' })
-  interestId: string;
+  interest: string;
 
   @Field(type => [String], { nullable: true, description: 'Tag ids' })
   tagIds?: string[];

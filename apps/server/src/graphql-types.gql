@@ -4,7 +4,7 @@
 
 input AddBookMarkWithAuthInput {
   """User interest which includes bookmarks."""
-  interestId: [String!]!
+  interest: [String!]!
 
   """Tag ids"""
   tagIds: [String!]
