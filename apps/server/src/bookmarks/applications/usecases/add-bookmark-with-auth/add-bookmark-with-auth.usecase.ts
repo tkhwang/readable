@@ -8,16 +8,19 @@ import * as sha256 from 'crypto-js/sha256';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
+import { FindOrAddInterestWithAuthUseCase } from '@readable/interests/applications/usecases/find-or-add-interest/find-or-add-interest-with-auth.usecase';
+import { FindOrAddInterestWithAuthInput } from '@readable/interests/applications/usecases/find-or-add-interest/find-or-add-interest-with-auth.input';
 
 export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthInput, Bookmark> {
   constructor(
     private readonly bookmarksService: BookmarksService,
+    private readonly findOrAddInterestWithAuthUseCase: FindOrAddInterestWithAuthUseCase,
     @InjectRepository(BookmarksRepository) private readonly bookmarksRepository: BookmarksRepository,
     @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository
   ) {}
 
   async execute(command: AddBookMarkWithAuthInput, requestUser: UserModel) {
-    const { url, interestId, tagIds = [] } = command;
+    const { url, interest, tags = [] } = command;
     const urlHash = sha256(url).toString();
 
     const existingBookmark = await this.bookmarksService.getBookmarkByUrlHash(urlHash);
@@ -30,8 +33,15 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
     siteInfo.urlHash = urlHash;
 
     const newBookmark = this.bookmarksRepository.create(siteInfo);
-    newBookmark.interestId = interestId;
-    newBookmark.tagIds = await this.bookmarksService.mapTags([siteInfo.siteName, ...tagIds]);
+
+    const findOrAddInterestWithAuthInput = new FindOrAddInterestWithAuthInput(interest);
+    const mappedInterest = await this.findOrAddInterestWithAuthUseCase.execute(
+      findOrAddInterestWithAuthInput,
+      requestUser
+    );
+    newBookmark.interestId = mappedInterest.id;
+
+    newBookmark.tagIds = await this.bookmarksService.mapTags([siteInfo.siteName, ...tags]);
 
     // TODO(Teddy): WIP
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);

@@ -15,6 +15,7 @@ import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 import { GetMyInterestsWithAuthUsecase } from '@readable/interests/applications/usecases/get-my-interests-with-auth/get-my-interests-with-auth.usecase';
+import { InterestsModule } from '@readable/interests/interests.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { GetMyInterestsWithAuthUsecase } from '@readable/interests/applications/
       OAuthUsersRepository,
       InterestsRepository,
     ]),
+    InterestsModule,
   ],
   providers: [
     BookmarksResolver,

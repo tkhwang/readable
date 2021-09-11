@@ -17,9 +17,9 @@ export type Scalars = {
 
 export type AddBookMarkWithAuthInput = {
   /** User interest which includes bookmarks. */
-  readonly interestId: ReadonlyArray<Scalars['String']>;
+  readonly interest: ReadonlyArray<Scalars['String']>;
   /** Tag ids */
-  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly tags?: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly url: Scalars['String'];
 };
 
