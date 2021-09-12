@@ -7,7 +7,7 @@ import { promisify } from 'util';
 
 @Injectable()
 export class ImageService {
-  async generateImage(bookmark: Bookmark) {
+  async getImageUrl(bookmark: Bookmark) {
     const { urlHash } = bookmark;
 
     try {

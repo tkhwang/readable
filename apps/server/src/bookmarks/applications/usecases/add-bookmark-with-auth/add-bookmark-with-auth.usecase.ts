@@ -46,7 +46,7 @@ export class AddBookmarkWithAuthUsecase implements Usecase<AddBookMarkWithAuthIn
     newBookmark.tagIds = await this.bookmarksService.mapTags([siteInfo.siteName, ...tags]);
 
     if (!newBookmark.imageUrl) {
-      newBookmark.imageUrl = await this.imageService.getImageUrl(url);
+      newBookmark.imageUrl = await this.imageService.getImageUrl(newBookmark);
     }
     // TODO(Teddy): WIP
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);

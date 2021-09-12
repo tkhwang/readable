@@ -5,11 +5,13 @@ import { BookmarksService } from '@readable/bookmarks/bookmarks.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { BookmarkBRFO } from '@readable/bookmarks/domain/models/bookmark.model';
+import { ImageService } from '@readable/image/image.service';
 
 export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO> {
   constructor(
-    @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository,
-    private readonly bookmarksService: BookmarksService
+    private readonly bookmarksService: BookmarksService,
+    private readonly imageService: ImageService,
+    @InjectRepository(BookmarkUsersRepository) private readonly bookmarkUsersRepository: BookmarkUsersRepository
   ) {}
 
   async execute(query: GetUrlInfoInput) {
@@ -25,6 +27,9 @@ export class GetUrlInfoUsecase implements Usecase<GetUrlInfoInput, BookmarkBRFO>
     const bookmarkInfo: BookmarkBRFO = await this.bookmarksService.extractSiteInformation(url);
     bookmarkInfo.urlHash = urlHash;
     bookmarkInfo.howMany = await this.getHowMany(urlHash);
+    if (!bookmarkInfo.imageUrl) {
+      bookmarkInfo.imageUrl = await this.imageService.getImageUrl(bookmarkInfo);
+    }
     console.log('TCL: GetUrlInfoUsecase -> execute -> bookmarkInfo', bookmarkInfo);
 
     // const { summary, keywords } = await this.bookmarksService.getNlpAnalysis(bookmarkInfo);
