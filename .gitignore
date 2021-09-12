@@ -48,3 +48,5 @@ Thumbs.db
 .env.local
 
 .vercel
+
+temp-generated-screenshot.png
