@@ -1,4 +1,4 @@
-import { Card } from '@readable/ui';
+import { ShadowCard } from '@readable/ui';
 import { useDataAccessFeed } from '@readable/home/data-access-home';
 import { useEffect, useRef } from 'react';
 
@@ -35,14 +35,39 @@ export const HomeFeed = () => {
   }, [fetchMoreFeed]);
 
   return (
-    <div>
-      {entries?.map(({ id, cursor, imageUrl }) => {
+    <div className="grid grid-cols-1 grid-flow-row sm:grid-cols-2 -my-4 sm:-mx-2">
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+      <div className="mx-2 my-4">
+        <ShadowCard />
+      </div>
+
+      {/* {entries?.map(({ id, cursor, imageUrl }) => {
         return (
           <div key={id} ref={cursor === pageInfo?.endCursor ? target : null}>
             <Card imageUrl={imageUrl}></Card>
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };

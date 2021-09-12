@@ -51,7 +51,7 @@ module.exports = {
         inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.04)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
         none: 'none',
-        'offset-black': '3px 3px black',
+        'offset-black': '4px 4px black',
         'offset-lime': '2px 2px lime',
       },
       spacing: {
