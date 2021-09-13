@@ -17,6 +17,8 @@ import { InterestsModule } from './interests/interests.module';
 import { Interest } from './interests/infrastructures/mongo/entities/interest.entity';
 import { UserFollow } from './users/infrastructures/typeorm/entities/userFollow.entity';
 import { ImageModule } from './image/image.module';
+import { UrlInfoModule } from './url-info/url-info.module';
+import { UserBookmarkModule } from './user-bookmark/user-bookmark.module';
 
 @Module({
   imports: [
@@ -66,6 +68,8 @@ import { ImageModule } from './image/image.module';
     PaginationModule,
     InterestsModule,
     ImageModule,
+    UrlInfoModule,
+    UserBookmarkModule,
   ],
   controllers: [],
   providers: [],
