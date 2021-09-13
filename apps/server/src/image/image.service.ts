@@ -4,10 +4,11 @@ import { S3 } from '@readable/lib/S3';
 import * as Jimp from 'jimp';
 import { IMAGE } from './domain/models/image.models';
 import { promisify } from 'util';
+import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
 
 @Injectable()
 export class ImageService {
-  async getImageUrl(bookmark: Bookmark) {
+  async getImageUrl(bookmark: Bookmark | UrlInfo) {
     const { urlHash } = bookmark;
 
     try {

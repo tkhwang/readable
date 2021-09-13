@@ -5,16 +5,38 @@ import cheerio from 'cheerio';
 import axios from 'axios';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UrlInfoRepository } from './infrastructures/typeorm/repositories/url-info.repository';
+import { UrlInfo } from './infrastructures/typeorm/entities/url-info.entity';
+import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { User } from '@readable/users/domain/models/user.model';
 
 @Injectable()
 export class UrlInfoService {
-  constructor(@InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository) {}
+  constructor(
+    @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository,
+    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository
+  ) {}
+
+  async getHowMany(urlHash: string) {
+    return this.userBookmarkRepository.count({ where: { urlHash } });
+  }
+
+  async getUserBookmarkByHashAndUser(urlInfo: UrlInfo, string, user: User) {
+    return this.userBookmarkRepository
+      .createQueryBuilder('userBookmark')
+      .leftJoinAndSelect('userBookmark.user', 'user')
+      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .leftJoinAndSelect('userBookmark.interest', 'interest')
+      .leftJoinAndSelect('userBookmark.tags', 'tags')
+      .where('userBookmark.urlHash = :urlHash', { urlHash: urlInfo.urlHash })
+      .andWhere('user.id = :userId', { userId: user.id })
+      .getOne();
+  }
 
   async findUrlInfoByUrlHash(urlHash: string) {
     return this.urlInfoRepository.findOne({ urlHash });
   }
 
-  async extractSiteInformation(url: string) {
+  async extractSiteInformation(url: string): Promise<UrlInfo> {
     const [urlInfoByLibrary, urlInfoByManual] = await Promise.all([
       this.extractSiteInformationByLibraryOgs(url),
       this.extractSiteInformationByManual(url),

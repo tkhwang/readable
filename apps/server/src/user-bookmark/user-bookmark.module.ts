@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ImageModule } from '@readable/image/image.module';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { InterestsModule } from '@readable/interests/interests.module';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
@@ -17,9 +18,11 @@ import { UserBookmarkService } from './user-bookmark.service';
     TypeOrmModule.forFeature([UrlInfoRepository, UserBookmarkRepository, InterestsRepository, TagsRepository]),
     InterestsModule,
     TagsModule,
+    ImageModule,
     UrlInfoModule,
   ],
   controllers: [UserBookmarkController],
   providers: [UserBookmarkResolver, UserBookmarkService, AddUserBookmarkWithAuthUsecase],
+  exports: [UserBookmarkService],
 })
 export class UserBookmarkModule {}

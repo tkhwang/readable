@@ -1,5 +1,6 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity, Unique } from 'typeorm';
+import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
+import { Column, Entity, OneToMany, Unique } from 'typeorm';
 
 @Entity('interests')
 @Unique('userid-interest', ['userId', 'interest'])
@@ -9,4 +10,7 @@ export class Interest extends CoreEntity {
 
   @Column()
   userId: string;
+
+  // @OneToMany(() => UserBookmark, userBookmark => userBookmark.interest)
+  // userBookmarks: UserBookmark[];
 }

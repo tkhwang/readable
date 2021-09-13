@@ -5,16 +5,17 @@ import { User } from '@readable/users/domain/models/user.model';
 import { AddUserBookmarkWithAuthInput } from './add-user-bookmark-with-auth.input';
 import * as sha256 from 'crypto-js/sha256';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
-import { InterestsService } from '@readable/interests/interests.service';
-import { TagsService } from '@readable/tags/tags.service';
+import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { ImageService } from '@readable/image/image.service';
+import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
+    private readonly userBookmarkService: UserBookmarkService,
     private readonly urlInfoService: UrlInfoService,
-    private readonly interestsService: InterestsService,
-    private readonly tagsService: TagsService,
-
-    @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
+    private readonly imageService: ImageService,
+    @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository,
+    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository
   ) {}
 
   async execute(command: AddUserBookmarkWithAuthInput, requestUser: User) {
@@ -22,16 +23,17 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     const urlHash = sha256(url).toString();
 
     const existingUrlInfo = await this.urlInfoService.findUrlInfoByUrlHash(urlHash);
-    console.log('TCL: AddUserBookmarkWithAuthUsecase -> execute -> existingUrlInfo', existingUrlInfo);
+    if (existingUrlInfo) {
+      return this.userBookmarkService.upsertUserBookmark(requestUser, existingUrlInfo, txtInterest, txtTags);
+    }
 
-    const [interest, tags] = await Promise.all([
-      this.interestsService.mapInterest(txtInterest),
-      this.tagsService.mapTags(txtTags),
-    ]);
+    const urlInfo = await this.urlInfoService.extractSiteInformation(url);
+    if (!urlInfo.imageUrl) {
+      urlInfo.imageUrl = await this.imageService.getImageUrl(urlInfo);
+    }
+    urlInfo.urlHash = urlHash;
 
-    console.log('TCL: AddUserBookmarkWithAuthUsecase -> execute -> interest', interest);
-    console.log('TCL: AddUserBookmarkWithAuthUsecase -> execute -> tags', tags);
-
-    return existingUrlInfo;
+    const newUrlInfo = await this.urlInfoRepository.save(this.urlInfoRepository.create(urlInfo));
+    return this.userBookmarkService.upsertUserBookmark(requestUser, newUrlInfo, txtInterest, txtTags);
   }
 }

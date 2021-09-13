@@ -16,10 +16,30 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
   async execute(url: string, requestUser: User) {
     const urlHash = sha256(url).toString();
 
-    const existingUrlInfo = await this.urlInfoService.findUrlInfoByUrlHash(urlHash);
-    console.log('TCL: ExtractUrlInfoUsecase -> execute -> existingUrlInfo', existingUrlInfo);
+    const [existingUrlInfo, howMany] = await Promise.all([
+      this.urlInfoService.findUrlInfoByUrlHash(urlHash),
+      this.urlInfoService.getHowMany(urlHash),
+    ]);
+
+    if (existingUrlInfo) {
+      existingUrlInfo['howMany'] = howMany;
+      const userBookmark = await this.urlInfoService.getUserBookmarkByHashAndUser(
+        existingUrlInfo,
+        urlHash,
+        requestUser
+      );
+      return {
+        urlInfo: existingUrlInfo,
+        userBookmark,
+      };
+    }
 
     const urlInfo = await this.urlInfoService.extractSiteInformation(url);
-    return urlInfo;
+    urlInfo.urlHash = urlHash;
+    urlInfo['howMany'] = howMany;
+
+    return {
+      urlInfo,
+    };
   }
 }
