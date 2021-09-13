@@ -3,9 +3,17 @@ import * as ogs from 'open-graph-scraper';
 import { UrlInfoBuilder } from './infrastructures/typeorm/entities/url-info.entity.builder';
 import cheerio from 'cheerio';
 import axios from 'axios';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UrlInfoRepository } from './infrastructures/typeorm/repositories/url-info.repository';
 
 @Injectable()
 export class UrlInfoService {
+  constructor(@InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository) {}
+
+  async findUrlInfoByUrlHash(urlHash: string) {
+    return this.urlInfoRepository.findOne({ urlHash });
+  }
+
   async extractSiteInformation(url: string) {
     const [urlInfoByLibrary, urlInfoByManual] = await Promise.all([
       this.extractSiteInformationByLibraryOgs(url),
