@@ -13,7 +13,7 @@ import { UsersRepository } from '@readable/users/infrastructures/typeorm/reposit
 import { TagsRepository } from '../tags/infrastructures/typeorm/repositories/tags.repository';
 import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
-import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
+import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { GetMyInterestsWithAuthUsecase } from '@readable/interests/applications/usecases/get-my-interests-with-auth/get-my-interests-with-auth.usecase';
 import { InterestsModule } from '@readable/interests/interests.module';
 import { ImageModule } from '@readable/image/image.module';

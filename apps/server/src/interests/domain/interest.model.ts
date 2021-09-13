@@ -4,8 +4,8 @@ import { CoreModel } from '@readable/common/models/core.model';
 @ObjectType()
 export class Interest extends CoreModel {
   @Field(type => String)
-  userId: string;
+  interest: string;
 
   @Field(type => String)
-  interest: string;
+  userId: string;
 }

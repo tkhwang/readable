@@ -14,7 +14,7 @@ import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookm
 import { PaginationModule } from './pagination/pagination.module';
 import { Tag } from './tags/infrastructures/typeorm/entities/tags.entity';
 import { InterestsModule } from './interests/interests.module';
-import { Interest } from './interests/infrastructures/mongo/entities/interest.entity';
+import { Interest } from './interests/infrastructures/typeorm/entities/interest.entity';
 import { UserFollow } from './users/infrastructures/typeorm/entities/userFollow.entity';
 import { ImageModule } from './image/image.module';
 import { UrlInfoModule } from './url-info/url-info.module';

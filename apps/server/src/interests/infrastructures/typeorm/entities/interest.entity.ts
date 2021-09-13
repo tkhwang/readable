@@ -5,8 +5,8 @@ import { Column, Entity, Unique } from 'typeorm';
 @Unique('userid-interest', ['userId', 'interest'])
 export class Interest extends CoreEntity {
   @Column()
-  userId: string;
+  interest: string;
 
   @Column()
-  interest: string;
+  userId: string;
 }
