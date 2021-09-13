@@ -21,15 +21,17 @@ export class UrlInfoService {
   }
 
   async getUserBookmarkByHashAndUser(urlInfo: UrlInfo, string, user: User) {
-    return this.userBookmarkRepository
-      .createQueryBuilder('userBookmark')
-      .leftJoinAndSelect('userBookmark.user', 'user')
-      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .leftJoinAndSelect('userBookmark.interest', 'interest')
-      .leftJoinAndSelect('userBookmark.tags', 'tags')
-      .where('userBookmark.urlHash = :urlHash', { urlHash: urlInfo.urlHash })
-      .andWhere('user.id = :userId', { userId: user.id })
-      .getOne();
+    return (
+      this.userBookmarkRepository
+        .createQueryBuilder('userBookmark')
+        // .leftJoinAndSelect('userBookmark.user', 'user')
+        .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+        .leftJoinAndSelect('userBookmark.interest', 'interest')
+        .leftJoinAndSelect('userBookmark.tags', 'tags')
+        .where('userBookmark.urlHash = :urlHash', { urlHash: urlInfo.urlHash })
+        .andWhere('userBookmark.userId = :userId', { userId: user.id })
+        .getOne()
+    );
   }
 
   async findUrlInfoByUrlHash(urlHash: string) {

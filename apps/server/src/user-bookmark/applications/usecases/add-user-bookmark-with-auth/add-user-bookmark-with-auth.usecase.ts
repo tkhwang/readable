@@ -5,7 +5,6 @@ import { User } from '@readable/users/domain/models/user.model';
 import { AddUserBookmarkWithAuthInput } from './add-user-bookmark-with-auth.input';
 import * as sha256 from 'crypto-js/sha256';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { ImageService } from '@readable/image/image.service';
 import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
 
@@ -14,8 +13,7 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     private readonly userBookmarkService: UserBookmarkService,
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
-    @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository,
-    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository
+    @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
   ) {}
 
   async execute(command: AddUserBookmarkWithAuthInput, requestUser: User) {

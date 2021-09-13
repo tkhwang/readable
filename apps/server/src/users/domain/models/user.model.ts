@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, ID, InputType } from '@nestjs/graphql';
+import { ObjectType, Field, InputType } from '@nestjs/graphql';
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreModel } from '@readable/common/models/core.model';
 import { OAuthUser } from './oauthUser.model';

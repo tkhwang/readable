@@ -11,6 +11,6 @@ export class Interest extends CoreEntity {
   @Column()
   userId: string;
 
-  // @OneToMany(() => UserBookmark, userBookmark => userBookmark.interest)
-  // userBookmarks: UserBookmark[];
+  @OneToMany(() => UserBookmark, userBookmark => userBookmark.interest)
+  userBookmarks: UserBookmark[];
 }

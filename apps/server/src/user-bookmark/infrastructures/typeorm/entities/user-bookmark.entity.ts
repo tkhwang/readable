@@ -2,8 +2,7 @@ import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
-import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity('userBookmarks')
 export class UserBookmark extends CoreEntity {
@@ -13,13 +12,10 @@ export class UserBookmark extends CoreEntity {
   @ManyToOne(() => UrlInfo, urlInfo => urlInfo.userBookmarks)
   urlInfo: UrlInfo;
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  user: User;
+  @Column()
+  userId: string;
 
-  // @ManyToOne(() => Interest, interest => interest.userBookmarks)
-  @OneToOne(() => Interest)
-  @JoinColumn()
+  @ManyToOne(() => Interest, interest => interest.userBookmarks)
   interest: Interest;
 
   @ManyToMany(() => Tag)
