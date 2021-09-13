@@ -20,6 +20,7 @@ import { ImageModule } from './image/image.module';
 import { UrlInfoModule } from './url-info/url-info.module';
 import { UserBookmarkModule } from './user-bookmark/user-bookmark.module';
 import { UrlInfo } from './url-info/infrastructures/typeorm/entities/url-info.entity';
+import { UserBookmark } from './user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 
 @Module({
   imports: [
@@ -58,7 +59,7 @@ import { UrlInfo } from './url-info/infrastructures/typeorm/entities/url-info.en
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      entities: [OAuthUser, User, Bookmark, BookmarkUser, Tag, Interest, UserFollow, UrlInfo],
+      entities: [OAuthUser, User, Bookmark, BookmarkUser, Tag, Interest, UserFollow, UrlInfo, UserBookmark],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB

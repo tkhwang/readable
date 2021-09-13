@@ -1,5 +1,6 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity } from 'typeorm';
+import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('urlInfos')
 export class UrlInfo extends CoreEntity {
@@ -26,4 +27,7 @@ export class UrlInfo extends CoreEntity {
 
   @Column('varchar', { nullable: true, name: 'summary', length: 4096 })
   summary?: string;
+
+  @OneToMany(() => UserBookmark, userBookmark => userBookmark.urlInfo)
+  userBookmarks: UserBookmark[];
 }
