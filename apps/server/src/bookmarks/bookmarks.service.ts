@@ -32,8 +32,8 @@ export class BookmarksService {
         this.extractSiteInformationByManual(url),
       ]);
 
-      // console.log('TCL: BookmarksService -> bookmarkParseByManaul', bookmarkParseByManaul);
-      // console.log('TCL: BookmarksService -> bookmarkParsedByLibrary', bookmarkParsedByLibrary);
+      console.log('TCL: BookmarksService -> bookmarkParseByManaul', bookmarkParseByManaul);
+      console.log('TCL: BookmarksService -> bookmarkParsedByLibrary', bookmarkParsedByLibrary);
 
       return {
         ...bookmarkParseByManaul,

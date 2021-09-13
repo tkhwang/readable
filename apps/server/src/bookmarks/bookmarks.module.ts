@@ -16,6 +16,7 @@ import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/re
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 import { GetMyInterestsWithAuthUsecase } from '@readable/interests/applications/usecases/get-my-interests-with-auth/get-my-interests-with-auth.usecase';
 import { InterestsModule } from '@readable/interests/interests.module';
+import { ImageModule } from '@readable/image/image.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { InterestsModule } from '@readable/interests/interests.module';
       InterestsRepository,
     ]),
     InterestsModule,
+    ImageModule,
   ],
   providers: [
     BookmarksResolver,
