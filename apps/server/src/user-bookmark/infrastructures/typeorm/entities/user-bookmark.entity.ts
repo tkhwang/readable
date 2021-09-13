@@ -1,7 +1,8 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
+import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne } from 'typeorm';
 
 @Entity('userBookmarks')
 export class UserBookmark extends CoreEntity {
@@ -14,6 +15,10 @@ export class UserBookmark extends CoreEntity {
   @OneToOne(() => Interest)
   @JoinColumn()
   interest: Interest;
+
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags: Tag[];
 
   @Column({ type: 'datetime', nullable: true })
   scheduledAt?: Date;

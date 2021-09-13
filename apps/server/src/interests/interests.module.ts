@@ -11,6 +11,6 @@ import { InterestsController } from './interests.controller';
   imports: [TypeOrmModule.forFeature([InterestsRepository])],
   providers: [InterestsResolver, InterestsService, GetMyInterestsWithAuthUsecase, FindOrAddInterestWithAuthUseCase],
   controllers: [InterestsController],
-  exports: [FindOrAddInterestWithAuthUseCase],
+  exports: [FindOrAddInterestWithAuthUseCase, InterestsService],
 })
 export class InterestsModule {}
