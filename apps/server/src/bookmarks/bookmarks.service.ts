@@ -11,7 +11,7 @@ import { UsersRepository } from '@readable/users/infrastructures/typeorm/reposit
 import axios from 'axios';
 import { endpoints } from '@readable/common/constants';
 import * as FormData from 'form-data';
-import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
+import { TagsRepository } from '../tags/infrastructures/typeorm/repositories/tags.repository';
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
 import cheerio from 'cheerio';
 

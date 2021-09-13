@@ -10,7 +10,7 @@ import { BookmarkUsersRepository } from './infrastructures/typeorm/repositories/
 import { BookmarksService } from './bookmarks.service';
 import { DeleteBookmarkWithAuthUsecse } from './applications/usecases/delete-bookmark-with-auth/delete-bookmark-with-auth.usecase';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
-import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
+import { TagsRepository } from '../tags/infrastructures/typeorm/repositories/tags.repository';
 import { AddBookmarkInGoogleEventsUsecase } from './applications/usecases/add-in-google-events/add-in-google-events.usecase';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
