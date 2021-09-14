@@ -52,7 +52,7 @@ export const BookmarksViewController = () => {
             <div className="p-10">
               <div className="max-w-2xl rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
                 <a href={url}>
-                  <img className="w-full" src={imageUrl} alt={title} />
+                  <img className="w-full" src={imageUrl || ''} alt={title || ''} />
                   <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{title}</div>
                     <p className="text-gray-700 text-base">{description}</p>
