@@ -184,6 +184,7 @@ type Query {
   me: User!
   myBookmarks: [Bookmark!]!
   myInterests: [Interest!]!
+  myUserBookmarks: [UserBookmark!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
 }
 
@@ -208,6 +209,38 @@ type UnfollowUserWithAuthOutput {
   followingUser: User!
 }
 
+type UrlInfo {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+
+  """Description"""
+  description: String
+  howMany: Int!
+  id: ID!
+
+  """Image url"""
+  imageUrl: String
+
+  """Site name"""
+  siteName: String
+
+  """Summary"""
+  summary: String
+
+  """Title"""
+  title: String
+
+  """Type : website, article, ..."""
+  type: String
+  updatedAt: DateTime!
+
+  """URL"""
+  url: String!
+
+  """URL Hash"""
+  urlHash: String!
+}
+
 type User {
   avatarUrl: String
   createdAt: DateTime!
@@ -220,10 +253,29 @@ type User {
   """Followings of User"""
   followingUsers: [User!]!
   id: ID!
+  latestInterestId: String
   name: String!
   oauthUsers: [OAuthUser!]!
   provider: AuthProviders!
   providerId: String!
   timezone: String!
   updatedAt: DateTime!
+}
+
+type UserBookmark {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  donedAt: DateTime
+  id: ID!
+  interest: Interest!
+  scheduledAt: DateTime
+
+  """Tags"""
+  tags: [Tag!]!
+  updatedAt: DateTime!
+
+  """URL hash"""
+  urlHash: String!
+  urlInfo: UrlInfo!
+  userId: String!
 }

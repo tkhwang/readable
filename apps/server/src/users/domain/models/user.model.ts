@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, ID, InputType } from '@nestjs/graphql';
+import { ObjectType, Field, InputType } from '@nestjs/graphql';
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreModel } from '@readable/common/models/core.model';
 import { OAuthUser } from './oauthUser.model';
@@ -26,6 +26,9 @@ export class UserBRFO extends CoreModel {
 
   @Field(type => String)
   timezone: string;
+
+  @Field(type => String, { nullable: true })
+  latestInterestId?: string;
 }
 
 @ObjectType()

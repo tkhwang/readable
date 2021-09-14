@@ -29,4 +29,7 @@ export class User extends CoreEntity {
 
   @Column({ default: 'Asia/Seoul' })
   timezone: string;
+
+  @Column({ nullable: true })
+  latestInterestId?: string;
 }

@@ -227,6 +227,7 @@ export type Query = {
   readonly me: User;
   readonly myBookmarks: ReadonlyArray<Bookmark>;
   readonly myInterests: ReadonlyArray<Interest>;
+  readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
   readonly paginationBookmarks?: Maybe<PaginationBookmarks>;
 };
 
@@ -260,6 +261,31 @@ export type UnfollowUserWithAuthOutput = {
   readonly followingUser: User;
 };
 
+export type UrlInfo = {
+  readonly __typename?: 'UrlInfo';
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  /** Description */
+  readonly description?: Maybe<Scalars['String']>;
+  readonly howMany: Scalars['Int'];
+  readonly id: Scalars['ID'];
+  /** Image url */
+  readonly imageUrl?: Maybe<Scalars['String']>;
+  /** Site name */
+  readonly siteName?: Maybe<Scalars['String']>;
+  /** Summary */
+  readonly summary?: Maybe<Scalars['String']>;
+  /** Title */
+  readonly title?: Maybe<Scalars['String']>;
+  /** Type : website, article, ... */
+  readonly type?: Maybe<Scalars['String']>;
+  readonly updatedAt: Scalars['DateTime'];
+  /** URL */
+  readonly url: Scalars['String'];
+  /** URL Hash */
+  readonly urlHash: Scalars['String'];
+};
+
 export type User = {
   readonly __typename?: 'User';
   readonly avatarUrl?: Maybe<Scalars['String']>;
@@ -277,4 +303,21 @@ export type User = {
   readonly providerId: Scalars['String'];
   readonly timezone: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
+};
+
+export type UserBookmark = {
+  readonly __typename?: 'UserBookmark';
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly donedAt?: Maybe<Scalars['DateTime']>;
+  readonly id: Scalars['ID'];
+  readonly interest: Interest;
+  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
+  /** Tags */
+  readonly tags: ReadonlyArray<Tag>;
+  readonly updatedAt: Scalars['DateTime'];
+  /** URL hash */
+  readonly urlHash: Scalars['String'];
+  readonly urlInfo: UrlInfo;
+  readonly userId: Scalars['String'];
 };

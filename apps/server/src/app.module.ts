@@ -12,11 +12,16 @@ import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.en
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
 import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { PaginationModule } from './pagination/pagination.module';
-import { Tag } from './bookmarks/infrastructures/typeorm/entities/tags.entity';
+import { Tag } from './tags/infrastructures/typeorm/entities/tags.entity';
 import { InterestsModule } from './interests/interests.module';
-import { Interest } from './interests/infrastructures/mongo/entities/interest.entity';
+import { Interest } from './interests/infrastructures/typeorm/entities/interest.entity';
 import { UserFollow } from './users/infrastructures/typeorm/entities/userFollow.entity';
 import { ImageModule } from './image/image.module';
+import { UrlInfoModule } from './url-info/url-info.module';
+import { UserBookmarkModule } from './user-bookmark/user-bookmark.module';
+import { UrlInfo } from './url-info/infrastructures/typeorm/entities/url-info.entity';
+import { UserBookmark } from './user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -55,7 +60,7 @@ import { ImageModule } from './image/image.module';
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      entities: [OAuthUser, User, Bookmark, BookmarkUser, Tag, Interest, UserFollow],
+      entities: [OAuthUser, User, Bookmark, BookmarkUser, Tag, Interest, UserFollow, UrlInfo, UserBookmark],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB
@@ -66,6 +71,9 @@ import { ImageModule } from './image/image.module';
     PaginationModule,
     InterestsModule,
     ImageModule,
+    UserBookmarkModule,
+    TagsModule,
+    UrlInfoModule,
   ],
   controllers: [],
   providers: [],

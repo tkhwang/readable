@@ -1,8 +1,8 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { FindOrAddInterestWithAuthFailException } from '@readable/interests/domain/interest.error';
-import { Interest } from '@readable/interests/infrastructures/mongo/entities/interest.entity';
-import { InterestsRepository } from '@readable/interests/infrastructures/mongo/repositories/interest.repository';
+import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
+import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { FindOrAddInterestWithAuthInput } from './find-or-add-interest-with-auth.input';
 
