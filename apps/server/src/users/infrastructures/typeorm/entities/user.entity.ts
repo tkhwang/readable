@@ -1,6 +1,5 @@
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { OAuthUser } from './oauthUser.entity';
 
@@ -31,6 +30,6 @@ export class User extends CoreEntity {
   @Column({ default: 'Asia/Seoul' })
   timezone: string;
 
-  // @OneToMany(() => UserBookmark, userBookmark => userBookmark.user)
-  // userBookmarks: UserBookmark[];
+  @Column({ nullable: true })
+  latestInterestId?: string;
 }

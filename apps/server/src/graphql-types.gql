@@ -253,6 +253,7 @@ type User {
   """Followings of User"""
   followingUsers: [User!]!
   id: ID!
+  latestInterestId: String
   name: String!
   oauthUsers: [OAuthUser!]!
   provider: AuthProviders!

@@ -26,6 +26,9 @@ export class UserBRFO extends CoreModel {
 
   @Field(type => String)
   timezone: string;
+
+  @Field(type => String, { nullable: true })
+  latestInterestId?: string;
 }
 
 @ObjectType()

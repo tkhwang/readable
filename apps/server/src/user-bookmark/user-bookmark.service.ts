@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { InterestsService } from '@readable/interests/interests.service';
 import { TagsService } from '@readable/tags/tags.service';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
+import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
 import { User } from '@readable/users/domain/models/user.model';
+import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
 
 @Injectable()
@@ -11,7 +14,8 @@ export class UserBookmarkService {
   constructor(
     private readonly interestsService: InterestsService,
     private readonly tagsService: TagsService,
-    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository // @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository, // @InjectRepository(InterestsRepository) private readonly interestsRepository: InterestsRepository, // @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository
+    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository,
+    @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository
   ) {}
 
   async getHowMany(urlHash: string) {
@@ -47,7 +51,13 @@ export class UserBookmarkService {
         interest,
         tags,
       };
-      return this.userBookmarkRepository.save(updatedUserBookmark);
+
+      const [userbookmark] = await Promise.all([
+        this.userBookmarkRepository.save(updatedUserBookmark),
+        this.updateLatestInterest(user, interest),
+      ]);
+
+      return userbookmark;
     }
 
     const newUserBookmark = this.userBookmarkRepository.create({
@@ -58,6 +68,20 @@ export class UserBookmarkService {
       userId: user.id,
     });
 
-    return this.userBookmarkRepository.save(newUserBookmark);
+    const [newlyAddedUserBookmark] = await Promise.all([
+      this.userBookmarkRepository.save(newUserBookmark),
+      this.updateLatestInterest(user, interest),
+    ]);
+
+    return newlyAddedUserBookmark;
+  }
+
+  // MEMO(Teddy): It should be in userModule, but there is here due to DI issue.
+  private async updateLatestInterest(requestUser: User, interest: Interest) {
+    const user = await this.usersRepository.findOne(requestUser.id);
+    if (!user) throw new UserNotFoundExcepiton(requestUser.id);
+
+    user.latestInterestId = interest.id;
+    return this.usersRepository.save(user);
   }
 }

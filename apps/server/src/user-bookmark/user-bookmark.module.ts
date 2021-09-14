@@ -7,6 +7,7 @@ import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositor
 import { TagsModule } from '@readable/tags/tags.module';
 import { UrlInfoRepository } from '@readable/url-info/infrastructures/typeorm/repositories/url-info.repository';
 import { UrlInfoModule } from '@readable/url-info/url-info.module';
+import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { AddUserBookmarkWithAuthUsecase } from './applications/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.usecase';
 import { GetMyUserBookmarksWithAuth } from './applications/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
@@ -16,7 +17,13 @@ import { UserBookmarkService } from './user-bookmark.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UrlInfoRepository, UserBookmarkRepository, InterestsRepository, TagsRepository]),
+    TypeOrmModule.forFeature([
+      UrlInfoRepository,
+      UserBookmarkRepository,
+      InterestsRepository,
+      TagsRepository,
+      UsersRepository,
+    ]),
     InterestsModule,
     TagsModule,
     ImageModule,
