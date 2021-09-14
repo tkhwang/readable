@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { ImageService } from '@readable/image/image.service';
+import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { InterestsService } from '@readable/interests/interests.service';
-import { UrlInfoRepository } from '@readable/url-info/infrastructures/typeorm/repositories/url-info.repository';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
 import { User } from '@readable/users/domain/models/user.model';
 import * as sha256 from 'crypto-js/sha256';
@@ -14,16 +14,17 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
     private readonly interestsService: InterestsService,
-    @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
+    @InjectRepository(InterestsRepository) private readonly interestsRepository: InterestsRepository
   ) {}
 
   async execute(url: string, requestUser: User) {
     const urlHash = sha256(url).toString();
 
-    const [existingUrlInfo, howMany, myInterests] = await Promise.all([
+    const [existingUrlInfo, howMany, myInterests, latestInterest] = await Promise.all([
       this.urlInfoService.findUrlInfoByUrlHash(urlHash),
       this.urlInfoService.getHowMany(urlHash),
       this.interestsService.getInterestsByUser(requestUser),
+      this.interestsRepository.findOne(requestUser.latestInterestId),
     ]);
 
     if (existingUrlInfo) {
@@ -37,6 +38,7 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
         urlInfo: existingUrlInfo,
         userBookmark,
         interests: myInterests,
+        latestInterest,
       };
     }
 
@@ -50,6 +52,7 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
     return {
       urlInfo,
       interests: myInterests,
+      latestInterest,
     };
   }
 }
