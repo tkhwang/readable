@@ -180,12 +180,28 @@ type PaginationPageInfo {
   hasNextPage: Boolean!
 }
 
+type PaginationUserBookmarkBRFOEdge {
+  cursor: PaginationCursor!
+  node: UserBookmarkBRFO!
+}
+
+type PaginationUserBookmarkEdge {
+  cursor: PaginationCursor!
+  node: UserBookmark!
+}
+
+type PaginationUserBookmarks {
+  edges: [PaginationUserBookmarkEdge!]!
+  pageInfo: PaginationPageInfo!
+}
+
 type Query {
   me: User!
   myBookmarks: [Bookmark!]!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
+  paginationUserBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationUserBookmarks
 }
 
 type Tag {
@@ -263,6 +279,24 @@ type User {
 }
 
 type UserBookmark {
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  donedAt: DateTime
+  id: ID!
+  interest: Interest!
+  scheduledAt: DateTime
+
+  """Tags"""
+  tags: [Tag!]!
+  updatedAt: DateTime!
+
+  """URL hash"""
+  urlHash: String!
+  urlInfo: UrlInfo!
+  userId: String!
+}
+
+type UserBookmarkBRFO {
   createdAt: DateTime!
   deletedAt: DateTime!
   donedAt: DateTime
