@@ -14,30 +14,27 @@ export type PaginationBookmarksOnFeedQueryVariables = Types.Exact<{
 
 export type PaginationBookmarksOnFeedQuery = (
   { readonly __typename?: 'Query' }
-  & { readonly paginationBookmarks?: Types.Maybe<(
-    { readonly __typename?: 'PaginationBookmarks' }
+  & { readonly paginationUserBookmarks?: Types.Maybe<(
+    { readonly __typename?: 'PaginationUserBookmarks' }
     & { readonly pageInfo: (
       { readonly __typename?: 'PaginationPageInfo' }
       & Pick<Types.PaginationPageInfo, 'hasNextPage' | 'endCursor'>
     ), readonly edges: ReadonlyArray<(
-      { readonly __typename?: 'PaginationBookmarkEdge' }
-      & Pick<Types.PaginationBookmarkEdge, 'cursor'>
+      { readonly __typename?: 'PaginationUserBookmarkEdge' }
+      & Pick<Types.PaginationUserBookmarkEdge, 'cursor'>
       & { readonly node: (
-        { readonly __typename?: 'Bookmark' }
-        & Pick<Types.Bookmark, 'id' | 'siteName' | 'title' | 'url' | 'imageUrl' | 'description'>
-        & { readonly tags: ReadonlyArray<(
+        { readonly __typename?: 'UserBookmark' }
+        & Pick<Types.UserBookmark, 'id' | 'urlHash'>
+        & { readonly urlInfo: (
+          { readonly __typename?: 'UrlInfo' }
+          & Pick<Types.UrlInfo, 'id' | 'url' | 'urlHash' | 'title' | 'siteName' | 'imageUrl' | 'description'>
+        ), readonly interest: (
+          { readonly __typename?: 'Interest' }
+          & Pick<Types.Interest, 'id' | 'interest'>
+        ), readonly tags: ReadonlyArray<(
           { readonly __typename?: 'Tag' }
           & Pick<Types.Tag, 'id' | 'tag'>
-        )>, readonly collectors?: Types.Maybe<ReadonlyArray<(
-          { readonly __typename?: 'User' }
-          & Pick<Types.User, 'name' | 'avatarUrl'>
-        )>>, readonly schedulers?: Types.Maybe<ReadonlyArray<(
-          { readonly __typename?: 'User' }
-          & Pick<Types.User, 'name' | 'avatarUrl'>
-        )>>, readonly finishers?: Types.Maybe<ReadonlyArray<(
-          { readonly __typename?: 'User' }
-          & Pick<Types.User, 'name' | 'avatarUrl'>
-        )>> }
+        )> }
       ) }
     )> }
   )> }
@@ -46,7 +43,7 @@ export type PaginationBookmarksOnFeedQuery = (
 
 export const PaginationBookmarksOnFeedDocument = gql`
     query PaginationBookmarksOnFeed($first: Int, $after: PaginationCursor) {
-  paginationBookmarks(first: $first, after: $after) {
+  paginationUserBookmarks(first: $first, after: $after) {
     pageInfo {
       hasNextPage
       endCursor
@@ -55,26 +52,23 @@ export const PaginationBookmarksOnFeedDocument = gql`
       cursor
       node {
         id
-        siteName
-        title
-        url
-        imageUrl
+        urlHash
+        urlInfo {
+          id
+          url
+          urlHash
+          title
+          siteName
+          imageUrl
+          description
+        }
+        interest {
+          id
+          interest
+        }
         tags {
           id
           tag
-        }
-        description
-        collectors {
-          name
-          avatarUrl
-        }
-        schedulers {
-          name
-          avatarUrl
-        }
-        finishers {
-          name
-          avatarUrl
         }
       }
     }

@@ -3,7 +3,7 @@ import { usePaginationBookmarksOnFeedQuery } from './data-access-feed.query.gene
 
 const graphql = gql`
   query PaginationBookmarksOnFeed($first: Int, $after: PaginationCursor) {
-    paginationBookmarks(first: $first, after: $after) {
+    paginationUserBookmarks(first: $first, after: $after) {
       pageInfo {
         hasNextPage
         endCursor
@@ -12,26 +12,23 @@ const graphql = gql`
         cursor
         node {
           id
-          siteName
-          title
-          url
-          imageUrl
+          urlHash
+          urlInfo {
+            id
+            url
+            urlHash
+            title
+            siteName
+            imageUrl
+            description
+          }
+          interest {
+            id
+            interest
+          }
           tags {
             id
             tag
-          }
-          description
-          collectors {
-            name
-            avatarUrl
-          }
-          schedulers {
-            name
-            avatarUrl
-          }
-          finishers {
-            name
-            avatarUrl
           }
         }
       }
@@ -46,10 +43,13 @@ export function useDataAccessFeed() {
     },
   });
 
-  const pageInfo = data?.paginationBookmarks?.pageInfo;
+  const pageInfo = data?.paginationUserBookmarks?.pageInfo;
 
-  const entries = data?.paginationBookmarks?.edges.map(edge => {
-    return { id: edge.node.id, cursor: edge.cursor, imageUrl: edge.node.imageUrl };
+  const entries = data?.paginationUserBookmarks?.edges.map(edge => {
+    const { urlInfo } = edge.node;
+    const { id, imageUrl } = urlInfo;
+
+    return { id, cursor: edge.cursor, imageUrl };
   });
 
   const fetchMoreFeed = () => {
