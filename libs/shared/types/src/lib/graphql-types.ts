@@ -222,6 +222,24 @@ export type PaginationPageInfo = {
   readonly hasNextPage: Scalars['Boolean'];
 };
 
+export type PaginationUserBookmarkBRFOEdge = {
+  readonly __typename?: 'PaginationUserBookmarkBRFOEdge';
+  readonly cursor: Scalars['PaginationCursor'];
+  readonly node: UserBookmarkBRFO;
+};
+
+export type PaginationUserBookmarkEdge = {
+  readonly __typename?: 'PaginationUserBookmarkEdge';
+  readonly cursor: Scalars['PaginationCursor'];
+  readonly node: UserBookmark;
+};
+
+export type PaginationUserBookmarks = {
+  readonly __typename?: 'PaginationUserBookmarks';
+  readonly edges: ReadonlyArray<PaginationUserBookmarkEdge>;
+  readonly pageInfo: PaginationPageInfo;
+};
+
 export type Query = {
   readonly __typename?: 'Query';
   readonly me: User;
@@ -229,10 +247,19 @@ export type Query = {
   readonly myInterests: ReadonlyArray<Interest>;
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
   readonly paginationBookmarks?: Maybe<PaginationBookmarks>;
+  readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
 };
 
 
 export type QuerypaginationBookmarksArgs = {
+  after?: Maybe<Scalars['PaginationCursor']>;
+  first?: Maybe<Scalars['Int']>;
+  order?: Maybe<PaginationOrder>;
+  orderBy?: Maybe<PaginationOrderBy>;
+};
+
+
+export type QuerypaginationUserBookmarksArgs = {
   after?: Maybe<Scalars['PaginationCursor']>;
   first?: Maybe<Scalars['Int']>;
   order?: Maybe<PaginationOrder>;
@@ -297,6 +324,7 @@ export type User = {
   /** Followings of User */
   readonly followingUsers: ReadonlyArray<User>;
   readonly id: Scalars['ID'];
+  readonly latestInterestId?: Maybe<Scalars['String']>;
   readonly name: Scalars['String'];
   readonly oauthUsers: ReadonlyArray<OAuthUser>;
   readonly provider: AuthProviders;
@@ -307,6 +335,23 @@ export type User = {
 
 export type UserBookmark = {
   readonly __typename?: 'UserBookmark';
+  readonly createdAt: Scalars['DateTime'];
+  readonly deletedAt: Scalars['DateTime'];
+  readonly donedAt?: Maybe<Scalars['DateTime']>;
+  readonly id: Scalars['ID'];
+  readonly interest: Interest;
+  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
+  /** Tags */
+  readonly tags: ReadonlyArray<Tag>;
+  readonly updatedAt: Scalars['DateTime'];
+  /** URL hash */
+  readonly urlHash: Scalars['String'];
+  readonly urlInfo: UrlInfo;
+  readonly userId: Scalars['String'];
+};
+
+export type UserBookmarkBRFO = {
+  readonly __typename?: 'UserBookmarkBRFO';
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly donedAt?: Maybe<Scalars['DateTime']>;

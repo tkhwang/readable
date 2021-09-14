@@ -1,7 +1,7 @@
-import { usePaginationBookmarksViewModel } from '@readable/feed/data-access-pagination-bookmarks';
+import { usePaginationUserBookmarksViewModel } from '@readable/feed/data-access-pagination-bookmarks';
 
 export const BookmarksViewController = () => {
-  const { paginationBookmarks, loading, error } = usePaginationBookmarksViewModel();
+  const { paginationUserBookmarks, loading, error } = usePaginationUserBookmarksViewModel();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -13,14 +13,15 @@ export const BookmarksViewController = () => {
         paginationBookmarks.edges.map(edge => {
           return <BookmarkCard bookmark={edge.node} />;
         })} */}
-      {paginationBookmarks?.edges.map(edge => {
-        const { id, siteName, title, url, imageUrl, tags, description, collectors, schedulers, finishers } = edge.node;
+      {paginationUserBookmarks?.edges.map(edge => {
+        const { urlInfo, interest, tags } = edge.node;
+        const { id, siteName, title, url, imageUrl, description /*, collectors, schedulers, finishers*/ } = urlInfo;
 
         return (
           <div className="p-10 ">
             <div className="max-w-2xl rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
               <a href={url}>
-                <img className="w-max" src={imageUrl} alt={title} />
+                <img className="w-max" src={imageUrl || ''} alt={title || ''} />
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{title}</div>
                   <p className="text-gray-700 text-base">{description}</p>
@@ -36,7 +37,7 @@ export const BookmarksViewController = () => {
                 })}
               </div>
             </div>
-            <div className="h-16 flex flex-wrap content-start">
+            {/* <div className="h-16 flex flex-wrap content-start">
               Collectors:
               {collectors &&
                 collectors.length > 0 &&
@@ -62,7 +63,7 @@ export const BookmarksViewController = () => {
                   const { name, avatarUrl } = finisher;
                   return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
                 })}
-            </div>
+            </div> */}
           </div>
         );
       })}
