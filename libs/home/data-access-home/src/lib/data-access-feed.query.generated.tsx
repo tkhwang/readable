@@ -6,13 +6,13 @@ import * as Apollo from '@apollo/client';
 import * as ApolloReactComponents from '@apollo/client/react/components';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 const defaultOptions =  {}
-export type PaginationBookmarksOnFeedQueryVariables = Types.Exact<{
+export type PaginationUserBookmarksOnFeedQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   after?: Types.Maybe<Types.Scalars['PaginationCursor']>;
 }>;
 
 
-export type PaginationBookmarksOnFeedQuery = (
+export type PaginationUserBookmarksOnFeedQuery = (
   { readonly __typename?: 'Query' }
   & { readonly paginationUserBookmarks?: Types.Maybe<(
     { readonly __typename?: 'PaginationUserBookmarks' }
@@ -41,8 +41,8 @@ export type PaginationBookmarksOnFeedQuery = (
 );
 
 
-export const PaginationBookmarksOnFeedDocument = gql`
-    query PaginationBookmarksOnFeed($first: Int, $after: PaginationCursor) {
+export const PaginationUserBookmarksOnFeedDocument = gql`
+    query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor) {
   paginationUserBookmarks(first: $first, after: $after) {
     pageInfo {
       hasNextPage
@@ -75,38 +75,38 @@ export const PaginationBookmarksOnFeedDocument = gql`
   }
 }
     `;
-export type PaginationBookmarksOnFeedComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables>, 'query'>;
+export type PaginationUserBookmarksOnFeedComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables>, 'query'>;
 
-    export const PaginationBookmarksOnFeedComponent = (props: PaginationBookmarksOnFeedComponentProps) => (
-      <ApolloReactComponents.Query<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables> query={PaginationBookmarksOnFeedDocument} {...props} />
+    export const PaginationUserBookmarksOnFeedComponent = (props: PaginationUserBookmarksOnFeedComponentProps) => (
+      <ApolloReactComponents.Query<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables> query={PaginationUserBookmarksOnFeedDocument} {...props} />
     );
     
 
 /**
- * __usePaginationBookmarksOnFeedQuery__
+ * __usePaginationUserBookmarksOnFeedQuery__
  *
- * To run a query within a React component, call `usePaginationBookmarksOnFeedQuery` and pass it any options that fit your needs.
- * When your component renders, `usePaginationBookmarksOnFeedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePaginationUserBookmarksOnFeedQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePaginationUserBookmarksOnFeedQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePaginationBookmarksOnFeedQuery({
+ * const { data, loading, error } = usePaginationUserBookmarksOnFeedQuery({
  *   variables: {
  *      first: // value for 'first'
  *      after: // value for 'after'
  *   },
  * });
  */
-export function usePaginationBookmarksOnFeedQuery(baseOptions?: Apollo.QueryHookOptions<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables>) {
+export function usePaginationUserBookmarksOnFeedQuery(baseOptions?: Apollo.QueryHookOptions<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables>(PaginationBookmarksOnFeedDocument, options);
+        return Apollo.useQuery<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables>(PaginationUserBookmarksOnFeedDocument, options);
       }
-export function usePaginationBookmarksOnFeedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables>) {
+export function usePaginationUserBookmarksOnFeedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables>(PaginationBookmarksOnFeedDocument, options);
+          return Apollo.useLazyQuery<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables>(PaginationUserBookmarksOnFeedDocument, options);
         }
-export type PaginationBookmarksOnFeedQueryHookResult = ReturnType<typeof usePaginationBookmarksOnFeedQuery>;
-export type PaginationBookmarksOnFeedLazyQueryHookResult = ReturnType<typeof usePaginationBookmarksOnFeedLazyQuery>;
-export type PaginationBookmarksOnFeedQueryResult = Apollo.QueryResult<PaginationBookmarksOnFeedQuery, PaginationBookmarksOnFeedQueryVariables>;
+export type PaginationUserBookmarksOnFeedQueryHookResult = ReturnType<typeof usePaginationUserBookmarksOnFeedQuery>;
+export type PaginationUserBookmarksOnFeedLazyQueryHookResult = ReturnType<typeof usePaginationUserBookmarksOnFeedLazyQuery>;
+export type PaginationUserBookmarksOnFeedQueryResult = Apollo.QueryResult<PaginationUserBookmarksOnFeedQuery, PaginationUserBookmarksOnFeedQueryVariables>;

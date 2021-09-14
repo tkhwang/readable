@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
-import { usePaginationBookmarksOnFeedQuery } from './data-access-feed.query.generated';
+import { usePaginationUserBookmarksOnFeedQuery } from './data-access-feed.query.generated';
 
 const graphql = gql`
-  query PaginationBookmarksOnFeed($first: Int, $after: PaginationCursor) {
+  query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor) {
     paginationUserBookmarks(first: $first, after: $after) {
       pageInfo {
         hasNextPage
@@ -37,9 +37,11 @@ const graphql = gql`
 `;
 
 export function useDataAccessFeed() {
-  const { data, fetchMore } = usePaginationBookmarksOnFeedQuery({
+  const { data, fetchMore } = usePaginationUserBookmarksOnFeedQuery({
     variables: {
-      first: 5,
+      // TODO(Teddy): Fetch more issue...
+      // first: 5,
+      first: 30,
     },
   });
 
@@ -49,7 +51,7 @@ export function useDataAccessFeed() {
     const { urlInfo } = edge.node;
     const { id, imageUrl } = urlInfo;
 
-    return { id, cursor: edge.cursor, imageUrl };
+    return { id, cursor: edge.cursor, imageUrl: imageUrl || '' };
   });
 
   const fetchMoreFeed = () => {
