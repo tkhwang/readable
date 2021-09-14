@@ -10,10 +10,10 @@ export class UrlInfoBRFO extends CoreModel {
   urlHash: string;
 
   @Field(type => String, { nullable: true, description: 'Site name' })
-  siteName: string;
+  siteName?: string;
 
   @Field(type => String, { nullable: true, description: 'Title' })
-  title: string;
+  title?: string;
 
   @Field(type => String, { nullable: true, description: 'Type : website, article, ...' })
   type?: string;
@@ -22,7 +22,7 @@ export class UrlInfoBRFO extends CoreModel {
   description?: string;
 
   @Field(type => String, { nullable: true, description: 'Image url' })
-  imageUrl: string;
+  imageUrl?: string;
 
   @Field(type => String, { nullable: true, description: 'Summary' })
   summary?: string;

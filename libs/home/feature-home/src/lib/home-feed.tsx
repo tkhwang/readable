@@ -42,7 +42,7 @@ export const HomeFeed = () => {
         {entries?.map(({ id, cursor, imageUrl }) => {
           return (
             <div key={id} ref={cursor === pageInfo?.endCursor ? target : null}>
-              <Card imageUrl={imageUrl}></Card>
+              <Card imageUrl={imageUrl || ''}></Card>
             </div>
           );
         })}
