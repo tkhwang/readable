@@ -27,6 +27,7 @@ export class UserBookmarkService {
         .leftJoinAndSelect('userBookmark.interest', 'interest')
         .leftJoinAndSelect('userBookmark.tags', 'tags')
         .where('userBookmark.userId = :userId', { userId: user.id })
+        .orderBy('userBookmark.createdAt', 'DESC')
         .getMany()
     );
   }

@@ -1,1 +1,1 @@
-export { useBookmarks } from './lib/useBookmarks.query';
+export { useUserBookmarks } from './lib/useUserBookmarks.query';
