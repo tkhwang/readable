@@ -18,6 +18,19 @@ export class UserBookmarkService {
     return this.userBookmarkRepository.count({ where: { urlHash } });
   }
 
+  async getUserBookmarksByUser(user: User) {
+    return (
+      this.userBookmarkRepository
+        .createQueryBuilder('userBookmark')
+        // .leftJoinAndSelect('userBookmark.user', 'user')
+        .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+        .leftJoinAndSelect('userBookmark.interest', 'interest')
+        .leftJoinAndSelect('userBookmark.tags', 'tags')
+        .where('userBookmark.userId = :userId', { userId: user.id })
+        .getMany()
+    );
+  }
+
   async upsertUserBookmark(user: User, urlInfo: UrlInfo, txtInterest: string, txtTags: string[]) {
     const [existingUserBookmark, interest, tags] = await Promise.all([
       this.userBookmarkRepository.findOne({
