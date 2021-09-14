@@ -39,17 +39,26 @@ export class UrlInfoService {
   }
 
   async extractSiteInformation(url: string): Promise<UrlInfo> {
-    const [urlInfoByLibrary, urlInfoByManual] = await Promise.all([
-      this.extractSiteInformationByLibraryOgs(url),
-      this.extractSiteInformationByManual(url),
-    ]);
+    try {
+      const [urlInfoByLibrary, urlInfoByManual] = await Promise.all([
+        this.extractSiteInformationByLibraryOgs(url),
+        this.extractSiteInformationByManual(url),
+      ]);
 
-    return {
-      ...urlInfoByManual,
-      ...urlInfoByLibrary,
-      type: urlInfoByLibrary.type || urlInfoByManual.type || '',
-      siteName: urlInfoByLibrary.siteName || urlInfoByManual.siteName || '',
-    };
+      console.log('TCL: UrlInfoService -> urlInfoByManual', urlInfoByManual);
+      console.log('TCL: UrlInfoService -> urlInfoByLibrary', urlInfoByLibrary);
+
+      return {
+        ...urlInfoByManual,
+        ...urlInfoByLibrary,
+        type: urlInfoByLibrary.type || urlInfoByManual.type || '',
+        siteName: urlInfoByLibrary.siteName || urlInfoByManual.siteName || '',
+      };
+    } catch (error) {
+      const urlInfoByManual = await this.extractSiteInformationByManual(url);
+      console.log('TCL: UrlInfoService -> urlInfoByManual', urlInfoByManual);
+      return urlInfoByManual;
+    }
   }
 
   async extractSiteInformationByLibraryOgs(url: string) {
