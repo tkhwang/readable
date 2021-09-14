@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { ImageService } from '@readable/image/image.service';
+import { InterestsService } from '@readable/interests/interests.service';
 import { UrlInfoRepository } from '@readable/url-info/infrastructures/typeorm/repositories/url-info.repository';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
 import { User } from '@readable/users/domain/models/user.model';
@@ -12,15 +13,17 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
   constructor(
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
+    private readonly interestsService: InterestsService,
     @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
   ) {}
 
   async execute(url: string, requestUser: User) {
     const urlHash = sha256(url).toString();
 
-    const [existingUrlInfo, howMany] = await Promise.all([
+    const [existingUrlInfo, howMany, myInterests] = await Promise.all([
       this.urlInfoService.findUrlInfoByUrlHash(urlHash),
       this.urlInfoService.getHowMany(urlHash),
+      this.interestsService.getInterestsByUser(requestUser),
     ]);
 
     if (existingUrlInfo) {
@@ -33,6 +36,7 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
       return {
         urlInfo: existingUrlInfo,
         userBookmark,
+        interests: myInterests,
       };
     }
 
@@ -45,6 +49,7 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
 
     return {
       urlInfo,
+      interests: myInterests,
     };
   }
 }
