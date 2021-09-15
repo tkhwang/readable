@@ -10,7 +10,7 @@ import { User } from '@readable/users/domain/models/user.model';
 import { UserFollowsRepository } from '@readable/users/infrastructures/typeorm/repositories/userFollow.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { FollowUserWithAuthInput } from './follow-user-with-auth.input';
-import { FollowUserWithAuthOutput } from './follow-user-with-auth.output';
+import { FollowUserWithAuthOutput, FollowUserWithAuthOutputData } from './follow-user-with-auth.output';
 
 @Injectable()
 export class FollowUserWithAuthUsecase implements Usecase<FollowUserWithAuthInput, FollowUserWithAuthOutput> {
@@ -40,15 +40,10 @@ export class FollowUserWithAuthUsecase implements Usecase<FollowUserWithAuthInpu
 
       await this.userFollowsRepository.save(userFollow);
 
-      const [followerUserModel, followingUserModel] = await Promise.all([
-        this.usersRepository.findOne({ where: { id: followerUser.id } }),
-        this.usersRepository.findOne({ where: { id: followingUserId } }),
-      ]);
-
-      if (!followerUserModel) throw new UserNotFoundExcepiton(followerUser.id);
+      const followingUserModel = await this.usersRepository.findOne({ where: { id: followingUserId } });
       if (!followingUserModel) throw new UserNotFoundExcepiton(followingUserId);
 
-      return new FollowUserWithAuthOutput(followerUserModel, followingUserModel);
+      return new FollowUserWithAuthOutput(true, new FollowUserWithAuthOutputData(followingUserModel));
     } catch (error) {
       throw new FollowUserFailedException(followerUser.id, followingUserId, error as Error);
     }

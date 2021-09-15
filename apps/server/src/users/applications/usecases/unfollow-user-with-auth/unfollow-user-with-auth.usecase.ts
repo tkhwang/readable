@@ -10,7 +10,7 @@ import { User } from '@readable/users/domain/models/user.model';
 import { UserFollowsRepository } from '@readable/users/infrastructures/typeorm/repositories/userFollow.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { UnfollowUserWithAuthInput } from './unfollow-user-with-auth.input';
-import { UnfollowUserWithAuthOutput } from './unfollow-user-with-auth.output';
+import { UnfollowUserWithAuthOutput, UnfollowUserWithAuthOutputData } from './unfollow-user-with-auth.output';
 
 @Injectable()
 export class UnfollowUserWithAuthUsecase implements Usecase<UnfollowUserWithAuthInput, UnfollowUserWithAuthOutput> {
@@ -31,15 +31,10 @@ export class UnfollowUserWithAuthUsecase implements Usecase<UnfollowUserWithAuth
 
       await this.userFollowsRepository.delete(userFollow.id);
 
-      const [followerUserModel, followingUserModel] = await Promise.all([
-        this.usersRepository.findOne({ where: { id: followerUser.id } }),
-        this.usersRepository.findOne({ where: { id: followingUserId } }),
-      ]);
-
-      if (!followerUserModel) throw new UserNotFoundExcepiton(followerUser.id);
+      const followingUserModel = await this.usersRepository.findOne({ where: { id: followingUserId } });
       if (!followingUserModel) throw new UserNotFoundExcepiton(followingUserId);
 
-      return new UnfollowUserWithAuthOutput(followerUserModel, followingUserModel);
+      return new UnfollowUserWithAuthOutput(true, new UnfollowUserWithAuthOutputData(followingUserModel));
     } catch (error) {
       throw new UnfollowUserFailedException(followerUser.id, followingUserId, error as Error);
     }

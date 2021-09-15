@@ -105,9 +105,14 @@ input FollowUserWithAuthInput {
 }
 
 type FollowUserWithAuthOutput {
-  """Follower User"""
-  followerUser: User!
+  """Follow response data"""
+  data: FollowUserWithAuthOutputData!
 
+  """Common output"""
+  isSuccess: Boolean!
+}
+
+type FollowUserWithAuthOutputData {
   """Following User"""
   followingUser: User!
 }
@@ -218,9 +223,13 @@ input UnfollowUserWithAuthInput {
 }
 
 type UnfollowUserWithAuthOutput {
-  """Follower User"""
-  followerUser: User!
+  data: UnfollowUserWithAuthOutputData!
 
+  """Common output"""
+  isSuccess: Boolean!
+}
+
+type UnfollowUserWithAuthOutputData {
   """Following User"""
   followingUser: User!
 }
@@ -262,12 +271,10 @@ type User {
   createdAt: DateTime!
   deletedAt: DateTime!
   email: String
+  followersCount: Float!
 
-  """Followers of User"""
-  followerUsers: [User!]!
-
-  """Followings of User"""
-  followingUsers: [User!]!
+  """Followings User count"""
+  followingsCount: Float!
   id: ID!
   latestInterestId: String
   name: String!
