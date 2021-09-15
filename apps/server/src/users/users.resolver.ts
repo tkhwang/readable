@@ -57,25 +57,13 @@ export class UsersResolver {
   /*
    * Field Resolver
    */
-  @ResolveField('followingUsers', returns => [User])
-  async followingUsers(@Parent() user: User) {
-    const userFollows = await this.userFollowsRepository.find({ where: { followingUserId: user.id } });
-
-    return Promise.all(
-      (userFollows ?? []).map(async userFollow => {
-        return await this.usersRepository.findOne({ where: { id: userFollow.followerUserId } });
-      })
-    );
+  @ResolveField('followingsCount', returns => Number)
+  async followingsCount(@Parent() user: User) {
+    return this.userFollowsRepository.count({ where: { followerUserId: user.id } });
   }
 
-  @ResolveField('followerUsers', returns => [User])
+  @ResolveField('followersCount', returns => Number)
   async followerUsers(@Parent() user: User) {
-    const userFollows = await this.userFollowsRepository.find({ where: { followerUserId: user.id } });
-
-    return Promise.all(
-      (userFollows ?? []).map(async userFollow => {
-        return await this.usersRepository.findOne({ where: { id: userFollow.followingUserId } });
-      })
-    );
+    return this.userFollowsRepository.count({ where: { followingUserId: user.id } });
   }
 }
