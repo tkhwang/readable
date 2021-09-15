@@ -31,16 +31,16 @@ export function ShadowCard(props: ShadowCardProps) {
       </div>
       {/* Contents */}
       <div className="p-4 bg-red-400 opacity-90">
-        <div className="flex justify-between -mx-2 ">
-          <div className="mx-2">
+        <div className="flex justify-between -mx-2">
+          <div className="mx-2 flex-1">
             <div className="text-white font-light text-xs">UX Design</div>
             <div className="text-white font-bold break-words overflow-hidden line-clamp-3">
               Announcing Coinbase’s successful transition to React Native test test test
             </div>
             <div className="text-white text-xs mt-2">#design</div>
           </div>
-          <div className="w-44 h-44 relative flex-shrink-0 mx-2 overflow-hidden rounded-sm ">
-            <Image src={CardImage} alt="" layout="fill"></Image>
+          <div className="flex-1 mx-2 overflow-hidden rounded-sm ">
+            <img src={CardImage} alt="" className="object-cover w-full h-full"></img>
           </div>
         </div>
       </div>

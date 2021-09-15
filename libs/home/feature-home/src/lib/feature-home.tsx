@@ -1,34 +1,48 @@
 import { HomeSidebar } from './home-sidebar';
 import { HomeHeader } from './home-header';
 import { HomeFeed } from './home-feed';
+import { useEffect, useState } from 'react';
 
 export const FeatureHome = () => {
+  const [top, setTop] = useState(true);
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      window.pageYOffset > 62 ? setTop(false) : setTop(true);
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
+  }, [top]);
+
   return (
     <>
       <header className="p-4">
-        <HomeHeader />
+        <div className="border-2 h-8"></div>
       </header>
-      <main className="min-h-screen bg-indigo-50 flex">
-        <aside className="max-h-screen bg-indigo-100 p-8 hidden sm:flex sm:max-w-sm">
-          {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
-          <div className="w-60  border-2">헤더가 사라지면 fix되는 영역입니다. (아직 미구현)</div>
+      <main className="min-h-screen flex bg-gray-800">
+        <aside className="max-w-sm p-8 w-1/6 hidden sm:block">
+          <div className="w-full h-full min-w-max text-white font-semibold">
+            <HomeSidebar />
+          </div>
         </aside>
-        <section className="flex">
-          <article className="px-6 bg-gray-700">
-            {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
-            <div className="max-w-screen-xl lg:w-full">
-              <HomeFeed />
-            </div>
+
+        <section className="p-8 flex w-full">
+          <article className="w-full max-w-screen-md">
+            <HomeFeed />
           </article>
-          <aside className="bg-indigo-100 p-8 hidden lg:flex lg:max-w-xs">
-            {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
-            <div className="w-60 border-2">데탑 이상 사이즈가 아니라면 사라지는 영역입니다.</div>
+
+          <aside className="pl-6 w-2/3 hidden lg:block max-w-sm">
+            <div className="w-full h-full">
+              <div className="w-full h-52 bg-black"></div>
+              <div className="w-full h-96 mt-3 bg-black"></div>
+            </div>
           </aside>
         </section>
       </main>
       <footer className="p-6 bg-gray-300">
         {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
-        <div className="h-20">footer 영역</div>
+        <div className="border-2 border-red-300 h-20"></div>
       </footer>
     </>
   );
