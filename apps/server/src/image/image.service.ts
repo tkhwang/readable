@@ -15,7 +15,7 @@ export class ImageService {
       const image = await Jimp.read(IMAGE.GENERATED_SCREENSHOT.BACKGROUND_FILE);
       const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
 
-      image.print(font, 50, 90, bookmark.title ?? '');
+      image.print(font, 50, 90, bookmark.title || bookmark.url || '');
       image.print(font, 50, 450, bookmark.type ?? '');
       image.print(font, 50, 500, bookmark.siteName ?? '');
 
