@@ -154,6 +154,7 @@ type Mutation {
   deleteUserBookmarkWithAuth(deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
+  syncGoogleCalendarWithAuth(syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput!): CommonOutput!
   unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!
 }
 
@@ -229,6 +230,17 @@ type Query {
   myUserBookmarks: [UserBookmark!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
   paginationUserBookmarks(getPaginationUserBookmarksInput: GetPaginationUserBookmarksInput!): PaginationUserBookmarks
+}
+
+input SyncGoogleCalendarWithAuthInput {
+  """Sync userBookmark with Google calendar"""
+  urlInfo: SyncGoogleCalendarWithAuthUrlInfo!
+}
+
+input SyncGoogleCalendarWithAuthUrlInfo {
+  scheduledAt: DateTime
+  title: String!
+  url: String!
 }
 
 type Tag {

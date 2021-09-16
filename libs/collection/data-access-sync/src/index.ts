@@ -1,1 +1,1 @@
-export { useSyncBookmarks } from './lib/useSyncBookmarks.mutation';
+export { useSyncUserBookmark } from './lib/useSyncUserBookmark.mutation';

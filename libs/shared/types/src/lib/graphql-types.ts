@@ -160,6 +160,7 @@ export type Mutation = {
   readonly deleteUserBookmarkWithAuth: CommonOutput;
   readonly findOrAddInterestWithAuth: Interest;
   readonly followUserWithAuth: FollowUserWithAuthOutput;
+  readonly syncGoogleCalendarWithAuth: CommonOutput;
   readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
 };
 
@@ -191,6 +192,11 @@ export type MutationfindOrAddInterestWithAuthArgs = {
 
 export type MutationfollowUserWithAuthArgs = {
   followUserWithAuthInput: FollowUserWithAuthInput;
+};
+
+
+export type MutationsyncGoogleCalendarWithAuthArgs = {
+  syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput;
 };
 
 
@@ -290,6 +296,17 @@ export type QuerypaginationBookmarksArgs = {
 
 export type QuerypaginationUserBookmarksArgs = {
   getPaginationUserBookmarksInput: GetPaginationUserBookmarksInput;
+};
+
+export type SyncGoogleCalendarWithAuthInput = {
+  /** Sync userBookmark with Google calendar */
+  readonly urlInfo: SyncGoogleCalendarWithAuthUrlInfo;
+};
+
+export type SyncGoogleCalendarWithAuthUrlInfo = {
+  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
+  readonly title: Scalars['String'];
+  readonly url: Scalars['String'];
 };
 
 export type Tag = {
