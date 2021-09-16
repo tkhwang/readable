@@ -94,6 +94,10 @@ input DeleteBookmarkWithAuthInput {
   bookmarkId: String!
 }
 
+input DeleteUserBookmarkWithAuthInput {
+  userBookmarkId: String!
+}
+
 input FindOrAddInterestWithAuthInput {
   """Interest text"""
   interest: String!
@@ -147,6 +151,7 @@ type Mutation {
   addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): CommonOutput!
   addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
   deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
+  deleteUserBookmarkWithAuth(deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
   unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!

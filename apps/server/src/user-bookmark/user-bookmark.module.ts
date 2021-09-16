@@ -9,7 +9,8 @@ import { UrlInfoRepository } from '@readable/url-info/infrastructures/typeorm/re
 import { UrlInfoModule } from '@readable/url-info/url-info.module';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { AddUserBookmarkWithAuthUsecase } from './applications/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.usecase';
-import { GetMyUserBookmarksWithAuth } from './applications/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
+import { DeleteUserBookmarkWithAuthUsecase } from './applications/usecases/delete-user-bookmark-with-auth/delete-user-bookmark-with-auth.usecase';
+import { GetMyUserBookmarksWithAuthUsecase } from './applications/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
 import { UserBookmarkController } from './user-bookmark.controller';
 import { UserBookmarkResolver } from './user-bookmark.resolver';
@@ -30,7 +31,13 @@ import { UserBookmarkService } from './user-bookmark.service';
     UrlInfoModule,
   ],
   controllers: [UserBookmarkController],
-  providers: [UserBookmarkResolver, UserBookmarkService, AddUserBookmarkWithAuthUsecase, GetMyUserBookmarksWithAuth],
+  providers: [
+    UserBookmarkResolver,
+    UserBookmarkService,
+    GetMyUserBookmarksWithAuthUsecase,
+    AddUserBookmarkWithAuthUsecase,
+    DeleteUserBookmarkWithAuthUsecase,
+  ],
   exports: [UserBookmarkService],
 })
 export class UserBookmarkModule {}

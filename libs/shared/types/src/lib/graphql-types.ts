@@ -101,6 +101,10 @@ export type DeleteBookmarkWithAuthInput = {
   readonly bookmarkId: Scalars['String'];
 };
 
+export type DeleteUserBookmarkWithAuthInput = {
+  readonly userBookmarkId: Scalars['String'];
+};
+
 export type FindOrAddInterestWithAuthInput = {
   /** Interest text */
   readonly interest: Scalars['String'];
@@ -153,6 +157,7 @@ export type Mutation = {
   readonly addBookmarkInGoogleEventsWithAuth: CommonOutput;
   readonly addBookmarkWithAuth: Bookmark;
   readonly deleteBookmarkWithAuth: CommonOutput;
+  readonly deleteUserBookmarkWithAuth: CommonOutput;
   readonly findOrAddInterestWithAuth: Interest;
   readonly followUserWithAuth: FollowUserWithAuthOutput;
   readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
@@ -171,6 +176,11 @@ export type MutationaddBookmarkWithAuthArgs = {
 
 export type MutationdeleteBookmarkWithAuthArgs = {
   deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput;
+};
+
+
+export type MutationdeleteUserBookmarkWithAuthArgs = {
+  deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput;
 };
 
 

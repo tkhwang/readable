@@ -4,7 +4,7 @@ import { useSyncBookmarks } from '@readable/collection/data-access-sync';
 import { AddInGoogleEventsInput, Bookmark, BookmarkBRFO, BookmarkInput } from '@readable/shared/types';
 
 export const BookmarksViewController = () => {
-  const { myUserBookmarks, loading, error } = useUserBookmarks();
+  const { myUserBookmarks, loading, error, deleteUserBookmarkWithAuthMutation } = useUserBookmarks();
   const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
 
   if (loading) {
@@ -37,16 +37,16 @@ export const BookmarksViewController = () => {
       <p className="text-2xl">My Bookmarks</p>
       {myUserBookmarks?.length > 0 &&
         myUserBookmarks.map(userBookmark => {
-          const { urlInfo, interest, tags } = userBookmark;
+          const { id: userBookmarkId, urlInfo, interest, tags } = userBookmark;
           const { id: bookmarkId, url, imageUrl, title, description } = urlInfo;
 
-          // const handleDelete = () => {
-          //   deleteBookmarkWithAuthMutation({
-          //     variables: {
-          //       deleteBookmarkWithAuthInput: { bookmarkId },
-          //     },
-          //   });
-          // };
+          const handleDeleteUserBookmark = () => {
+            deleteUserBookmarkWithAuthMutation({
+              variables: {
+                deleteUserBookmarkWithAuthInput: { userBookmarkId },
+              },
+            });
+          };
 
           return (
             <div className="p-10">
@@ -74,7 +74,7 @@ export const BookmarksViewController = () => {
                 </div>
                 <button
                   className="bg-transparent hover:bg-red-500 text-red-700 text-base hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-                  onClick={() => {}}
+                  onClick={handleDeleteUserBookmark}
                 >
                   delete
                 </button>

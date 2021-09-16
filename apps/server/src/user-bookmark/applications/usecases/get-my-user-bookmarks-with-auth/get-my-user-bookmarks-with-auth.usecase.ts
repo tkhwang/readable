@@ -5,7 +5,7 @@ import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/
 import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
 import { User } from '@readable/users/domain/models/user.model';
 
-export class GetMyUserBookmarksWithAuth implements Usecase<User, UserBookmark[]> {
+export class GetMyUserBookmarksWithAuthUsecase implements Usecase<User, UserBookmark[]> {
   constructor(
     private readonly userBookmarkService: UserBookmarkService,
     @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository
