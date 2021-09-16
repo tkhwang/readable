@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import { ViewModel } from '@readable/shared/types';
-import { useGetMyUserBookmarksQuery } from './useUserBookmarks.query.generated';
+import { useDeleteUserBookmarkWithAuthMutation, useGetMyUserBookmarksQuery } from './useUserBookmarks.query.generated';
 
 const GET_MY_USERBOOKMARKS = gql`
   query GetMyUserBookmarks {
@@ -30,16 +30,31 @@ const GET_MY_USERBOOKMARKS = gql`
   }
 `;
 
+const DELETE_USER_BOOKMARK_WITH_AUTH = gql`
+  mutation DeleteUserBookmarkWithAuth($deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput!) {
+    deleteUserBookmarkWithAuth(deleteUserBookmarkWithAuthInput: $deleteUserBookmarkWithAuthInput) {
+      isSuccess
+    }
+  }
+`;
+
 export type BookmarksViewModel = ViewModel<typeof useUserBookmarks>;
 
 export function useUserBookmarks() {
   const { data: dataMyBookmarks, loading, error, refetch } = useGetMyUserBookmarksQuery();
   const myUserBookmarks = dataMyBookmarks?.myUserBookmarks ?? [];
 
+  const [deleteUserBookmarkWithAuthMutation] = useDeleteUserBookmarkWithAuthMutation({
+    onCompleted: () => {
+      refetch();
+    },
+  });
+
   return {
     myUserBookmarks,
     loading,
     error,
     refetch,
+    deleteUserBookmarkWithAuthMutation,
   };
 }

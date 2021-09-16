@@ -27,6 +27,19 @@ export type GetMyUserBookmarksQuery = (
   )> }
 );
 
+export type DeleteUserBookmarkWithAuthMutationVariables = Types.Exact<{
+  deleteUserBookmarkWithAuthInput: Types.DeleteUserBookmarkWithAuthInput;
+}>;
+
+
+export type DeleteUserBookmarkWithAuthMutation = (
+  { readonly __typename?: 'Mutation' }
+  & { readonly deleteUserBookmarkWithAuth: (
+    { readonly __typename?: 'CommonOutput' }
+    & Pick<Types.CommonOutput, 'isSuccess'>
+  ) }
+);
+
 
 export const GetMyUserBookmarksDocument = gql`
     query GetMyUserBookmarks {
@@ -88,3 +101,44 @@ export function useGetMyUserBookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetMyUserBookmarksQueryHookResult = ReturnType<typeof useGetMyUserBookmarksQuery>;
 export type GetMyUserBookmarksLazyQueryHookResult = ReturnType<typeof useGetMyUserBookmarksLazyQuery>;
 export type GetMyUserBookmarksQueryResult = Apollo.QueryResult<GetMyUserBookmarksQuery, GetMyUserBookmarksQueryVariables>;
+export const DeleteUserBookmarkWithAuthDocument = gql`
+    mutation DeleteUserBookmarkWithAuth($deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput!) {
+  deleteUserBookmarkWithAuth(
+    deleteUserBookmarkWithAuthInput: $deleteUserBookmarkWithAuthInput
+  ) {
+    isSuccess
+  }
+}
+    `;
+export type DeleteUserBookmarkWithAuthMutationFn = Apollo.MutationFunction<DeleteUserBookmarkWithAuthMutation, DeleteUserBookmarkWithAuthMutationVariables>;
+export type DeleteUserBookmarkWithAuthComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<DeleteUserBookmarkWithAuthMutation, DeleteUserBookmarkWithAuthMutationVariables>, 'mutation'>;
+
+    export const DeleteUserBookmarkWithAuthComponent = (props: DeleteUserBookmarkWithAuthComponentProps) => (
+      <ApolloReactComponents.Mutation<DeleteUserBookmarkWithAuthMutation, DeleteUserBookmarkWithAuthMutationVariables> mutation={DeleteUserBookmarkWithAuthDocument} {...props} />
+    );
+    
+
+/**
+ * __useDeleteUserBookmarkWithAuthMutation__
+ *
+ * To run a mutation, you first call `useDeleteUserBookmarkWithAuthMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteUserBookmarkWithAuthMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteUserBookmarkWithAuthMutation, { data, loading, error }] = useDeleteUserBookmarkWithAuthMutation({
+ *   variables: {
+ *      deleteUserBookmarkWithAuthInput: // value for 'deleteUserBookmarkWithAuthInput'
+ *   },
+ * });
+ */
+export function useDeleteUserBookmarkWithAuthMutation(baseOptions?: Apollo.MutationHookOptions<DeleteUserBookmarkWithAuthMutation, DeleteUserBookmarkWithAuthMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteUserBookmarkWithAuthMutation, DeleteUserBookmarkWithAuthMutationVariables>(DeleteUserBookmarkWithAuthDocument, options);
+      }
+export type DeleteUserBookmarkWithAuthMutationHookResult = ReturnType<typeof useDeleteUserBookmarkWithAuthMutation>;
+export type DeleteUserBookmarkWithAuthMutationResult = Apollo.MutationResult<DeleteUserBookmarkWithAuthMutation>;
+export type DeleteUserBookmarkWithAuthMutationOptions = Apollo.BaseMutationOptions<DeleteUserBookmarkWithAuthMutation, DeleteUserBookmarkWithAuthMutationVariables>;
