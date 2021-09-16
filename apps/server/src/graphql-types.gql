@@ -117,6 +117,20 @@ type FollowUserWithAuthOutputData {
   followingUser: User!
 }
 
+input GetPaginationUserBookmarksInput {
+  after: PaginationCursor
+  first: Int = 10
+
+  """Pagination bookmarks order field"""
+  order: PaginationOrder = DESC
+
+  """Pagination bookmarks orderBy field"""
+  orderBy: PaginationOrderBy = LATEST
+
+  """Pagination userBookmark filter: tag"""
+  tagId: String
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -206,7 +220,7 @@ type Query {
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
-  paginationUserBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationUserBookmarks
+  paginationUserBookmarks(getPaginationUserBookmarksInput: GetPaginationUserBookmarksInput!): PaginationUserBookmarks
 }
 
 type Tag {
