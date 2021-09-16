@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { InterestsService } from '@readable/interests/interests.service';
+import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { TagsService } from '@readable/tags/tags.service';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
 import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
@@ -9,6 +10,7 @@ import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { IsNull, Not } from 'typeorm';
 import { UserBookmarkBRFO } from './domain/model/user-bookmark.model';
+import { UserBookmark } from './infrastructures/typeorm/entities/user-bookmark.entity';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
 
 @Injectable()
@@ -24,28 +26,29 @@ export class UserBookmarkService {
     return this.userBookmarkRepository.count({ where: { urlHash } });
   }
 
-  async getUserBookmarksByUser(user: User) {
-    return (
-      this.userBookmarkRepository
-        .createQueryBuilder('userBookmark')
-        // .leftJoinAndSelect('userBookmark.user', 'user')
-        .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-        .leftJoinAndSelect('userBookmark.interest', 'interest')
-        .leftJoinAndSelect('userBookmark.tags', 'tags')
-        .where('userBookmark.userId = :userId', { userId: user.id })
-        .orderBy('userBookmark.createdAt', 'DESC')
-        .getMany()
-    );
+  // TODO(Teddy): WIP - userBookmark recommendation using DB only
+  async recommendUserBookmarks(urlHash: string, tags: Tag[], user: User) {
+    return tags.reduce(async (acc, cur) => {
+      const recommendedUserBookmarks = await this.getRecommendationsByTag(urlHash, cur, user);
+      return { ...(await acc), [cur.tag]: recommendedUserBookmarks };
+    }, {});
   }
 
-  async upsertUserBookmark(user: User, urlInfo: UrlInfo, txtInterest: string, txtTags: string[]) {
-    const [existingUserBookmark, interest, tags] = await Promise.all([
-      this.userBookmarkRepository.findOne({
-        where: { urlHash: urlInfo.urlHash, userId: user.id },
-      }),
-      this.interestsService.mapInterest(txtInterest, user),
-      this.tagsService.mapTags(txtTags),
-    ]);
+  async getUserBookmarksByUser(user: User) {
+    return this.userBookmarkRepository
+      .createQueryBuilder('userBookmark')
+      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .leftJoinAndSelect('userBookmark.interest', 'interest')
+      .leftJoinAndSelect('userBookmark.tags', 'tags')
+      .where('userBookmark.userId = :userId', { userId: user.id })
+      .orderBy('userBookmark.createdAt', 'DESC')
+      .getMany();
+  }
+
+  async upsertUserBookmark(user: User, urlInfo: UrlInfo, interest: Interest, tags: Tag[]) {
+    const existingUserBookmark = await this.userBookmarkRepository.findOne({
+      where: { urlHash: urlInfo.urlHash, userId: user.id },
+    });
 
     if (existingUserBookmark) {
       const updatedUserBookmark = {
@@ -97,6 +100,18 @@ export class UserBookmarkService {
 
     const users = await this.usersRepository.findByIds(userIds);
     return users ?? [];
+  }
+
+  private async getRecommendationsByTag(urlHash: string, tag: Tag, user: User) {
+    return this.userBookmarkRepository
+      .createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id = (:tagId)', { tagId: tag.id })
+      .where('userBookmark.urlHash != :urlHash', { urlHash })
+      .andWhere('userBookmark.userId != :userId', { userId: user.id })
+      .groupBy('userBookmark.urlHash')
+      .limit(2)
+      .getMany();
   }
 
   // MEMO(Teddy): It should be in userModule, but there is here due to DI issue.

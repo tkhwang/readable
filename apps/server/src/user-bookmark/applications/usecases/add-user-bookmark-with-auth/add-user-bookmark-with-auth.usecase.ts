@@ -7,12 +7,16 @@ import * as sha256 from 'crypto-js/sha256';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
 import { ImageService } from '@readable/image/image.service';
 import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
+import { InterestsService } from '@readable/interests/interests.service';
+import { TagsService } from '@readable/tags/tags.service';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
     private readonly userBookmarkService: UserBookmarkService,
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
+    private readonly interestsService: InterestsService,
+    private readonly tagsService: TagsService,
     @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
   ) {}
 
@@ -20,9 +24,27 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     const { url, interest: txtInterest, tags: txtTags = [] } = command;
     const urlHash = sha256(url).toString();
 
-    const existingUrlInfo = await this.urlInfoService.findUrlInfoByUrlHash(urlHash);
+    const [interest, tags] = await Promise.all([
+      this.interestsService.mapInterest(txtInterest, requestUser),
+      this.tagsService.mapTags(txtTags),
+    ]);
+
+    const [existingUrlInfo, recommendations] = await Promise.all([
+      this.urlInfoService.findUrlInfoByUrlHash(urlHash),
+      this.userBookmarkService.recommendUserBookmarks(urlHash, tags, requestUser),
+    ]);
     if (existingUrlInfo) {
-      return this.userBookmarkService.upsertUserBookmark(requestUser, existingUrlInfo, txtInterest, txtTags);
+      const userBookmark = await this.userBookmarkService.upsertUserBookmark(
+        requestUser,
+        existingUrlInfo,
+        interest,
+        tags
+      );
+
+      return {
+        userBookmark,
+        recommendations,
+      };
     }
 
     const urlInfo = await this.urlInfoService.extractSiteInformation(url);
@@ -32,6 +54,11 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     urlInfo.urlHash = urlHash;
 
     const newUrlInfo = await this.urlInfoRepository.save(this.urlInfoRepository.create(urlInfo));
-    return this.userBookmarkService.upsertUserBookmark(requestUser, newUrlInfo, txtInterest, txtTags);
+    const userBookmark = await this.userBookmarkService.upsertUserBookmark(requestUser, newUrlInfo, interest, tags);
+
+    return {
+      userBookmark,
+      recommendations,
+    };
   }
 }
