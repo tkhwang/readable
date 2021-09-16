@@ -16,8 +16,6 @@ export class GetPaginationUserBookmarksUsecase
 
   async execute(query: GetPaginationUserBookmarksInput, requestUser: User) {
     const filter = await this.generateFilter(query);
-    console.log('TCL: execute -> filter', filter);
-
     return this.userBookmarkRepository.getPaginationUserBookmarks(query, filter);
   }
 
@@ -27,9 +25,6 @@ export class GetPaginationUserBookmarksUsecase
     const filter: PaginationUserBookmarksFilter = {};
 
     if (tagId) {
-      // const tag = await this.tagsRepository.findOne({ where: { id: tagId } });
-      // filter.tag = tag;
-
       filter.tagId = tagId;
     }
 
