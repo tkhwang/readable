@@ -3,15 +3,20 @@ import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
 import { PaginationWrongCursorExceptoin } from '@readable/pagination/paginationBookmarks/domain/errors/paginationBookmarks.errors';
 import { GetPaginationUserBookmarksInput } from '@readable/pagination/paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
 import { PaginationUserBookmarksFilter } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.filter';
+import { User } from '@readable/users/domain/models/user.model';
 import { EntityRepository, Repository } from 'typeorm';
 import { UserBookmark } from '../entities/user-bookmark.entity';
 
 @Injectable()
 @EntityRepository(UserBookmark)
 export class UserBookmarkRepository extends Repository<UserBookmark> {
-  async getPaginationUserBookmarks(query: GetPaginationUserBookmarksInput, filter: PaginationUserBookmarksFilter) {
+  async getPaginationUserBookmarks(
+    query: GetPaginationUserBookmarksInput,
+    filter: PaginationUserBookmarksFilter,
+    requestUser: User
+  ) {
     const { first, after, order, orderBy } = query;
-    const { tagId } = filter;
+    const { tagId, interestId } = filter;
 
     const criteria = {
       createdAt: new Date(),
@@ -30,7 +35,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .innerJoinAndSelect('userBookmark.interest', 'interest');
+      .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
 
     if (tagId) {
       queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagId)', { tagId: [tagId] });
@@ -38,10 +43,16 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
       queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tags');
     }
 
-    queryBuilder
-      .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] })
-      .limit(first + 1)
-      .orderBy('userBookmark.createdAt', 'DESC');
+    if (interestId) {
+      queryBuilder.innerJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
+        interestId,
+      });
+      queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
+    } else {
+      queryBuilder.innerJoinAndSelect('userBookmark.interest', 'interest');
+    }
+
+    queryBuilder.limit(first + 1).orderBy('userBookmark.createdAt', 'DESC');
 
     let userBookmarks = await queryBuilder.getMany();
 

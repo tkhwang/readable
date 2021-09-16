@@ -16,16 +16,20 @@ export class GetPaginationUserBookmarksUsecase
 
   async execute(query: GetPaginationUserBookmarksInput, requestUser: User) {
     const filter = await this.generateFilter(query);
-    return this.userBookmarkRepository.getPaginationUserBookmarks(query, filter);
+    return this.userBookmarkRepository.getPaginationUserBookmarks(query, filter, requestUser);
   }
 
   private async generateFilter(query: GetPaginationUserBookmarksInput) {
-    const { tagId } = query;
+    const { tagId, interestId } = query;
 
     const filter: PaginationUserBookmarksFilter = {};
 
     if (tagId) {
       filter.tagId = tagId;
+    }
+
+    if (interestId) {
+      filter.interestId = interestId;
     }
 
     return filter;
