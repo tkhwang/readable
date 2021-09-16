@@ -2,15 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
 import { PaginationWrongCursorExceptoin } from '@readable/pagination/paginationBookmarks/domain/errors/paginationBookmarks.errors';
 import { GetPaginationUserBookmarksInput } from '@readable/pagination/paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
-import { User } from '@readable/users/domain/models/user.model';
+import { PaginationUserBookmarksFilter } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.filter';
 import { EntityRepository, Repository } from 'typeorm';
 import { UserBookmark } from '../entities/user-bookmark.entity';
 
 @Injectable()
 @EntityRepository(UserBookmark)
 export class UserBookmarkRepository extends Repository<UserBookmark> {
-  async getPaginationUserBookmarks(query: GetPaginationUserBookmarksInput, requestUser: User) {
+  async getPaginationUserBookmarks(query: GetPaginationUserBookmarksInput, filter: PaginationUserBookmarksFilter) {
     const { first, after, order, orderBy } = query;
+    const { tagId } = filter;
 
     const criteria = {
       createdAt: new Date(),
@@ -27,14 +28,22 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
       criteria['createdAt'] = afterCreatedAt;
     }
 
-    let userBookmarks = await this.createQueryBuilder('userBookmark')
-      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .leftJoinAndSelect('userBookmark.interest', 'interest')
-      .leftJoinAndSelect('userBookmark.tags', 'tags')
+    const queryBuilder = this.createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .innerJoinAndSelect('userBookmark.interest', 'interest');
+
+    if (tagId) {
+      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagId)', { tagId: [tagId] });
+    } else {
+      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tags');
+    }
+
+    queryBuilder
       .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] })
       .limit(first + 1)
-      .orderBy('userBookmark.createdAt', 'DESC')
-      .getMany();
+      .orderBy('userBookmark.createdAt', 'DESC');
+
+    let userBookmarks = await queryBuilder.getMany();
 
     if (!userBookmarks || !userBookmarks.length) return null;
 

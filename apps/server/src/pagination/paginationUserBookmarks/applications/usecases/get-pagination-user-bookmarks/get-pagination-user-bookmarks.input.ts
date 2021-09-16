@@ -1,9 +1,13 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { PaginationCommonInput } from '@readable/common/pagination/pagination.input';
 import { PaginationOrder, PaginationOrderBy } from '@readable/common/pagination/paginationCursor';
+import { Tag } from '@readable/tags/domain/models/tag.model';
 
 @InputType()
 export class GetPaginationUserBookmarksInput extends PaginationCommonInput {
+  @Field(type => String, { nullable: true, description: 'Pagination userBookmark filter: tag' })
+  tagId?: string;
+
   @Field(type => PaginationOrderBy, {
     defaultValue: PaginationOrderBy.LATEST,
     description: 'Pagination bookmarks orderBy field',
