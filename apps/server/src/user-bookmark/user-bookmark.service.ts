@@ -10,7 +10,6 @@ import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { IsNull, Not } from 'typeorm';
 import { UserBookmarkBRFO } from './domain/model/user-bookmark.model';
-import { UserBookmark } from './infrastructures/typeorm/entities/user-bookmark.entity';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
 
 @Injectable()
@@ -28,10 +27,18 @@ export class UserBookmarkService {
 
   // TODO(Teddy): WIP - userBookmark recommendation using DB only
   async findRecommendedUserBookmarks(urlHash: string, tags: Tag[], user: User) {
-    return tags.reduce(async (acc, cur) => {
+    const tagRecommendationsObject = await tags.reduce(async (accP, cur) => {
       const recommendedUserBookmarks = await this.findRecommendedUserBookmarksByTag(urlHash, cur, user);
-      return { ...(await acc), [cur.tag]: recommendedUserBookmarks };
+      const acc = await accP;
+      return { ...acc, [cur.tag]: recommendedUserBookmarks };
     }, {});
+
+    const tagRecommendationsArray = Object.keys(tagRecommendationsObject).map(tag => {
+      const recommendedUserBookmarks = tagRecommendationsObject[tag];
+      return { tag, recommendedUserBookmarks };
+    });
+
+    return tagRecommendationsArray.filter(tagRecommendation => tagRecommendation.recommendedUserBookmarks.length > 0);
   }
 
   async getUserBookmarksByUser(user: User) {
