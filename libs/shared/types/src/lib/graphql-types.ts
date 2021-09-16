@@ -128,11 +128,13 @@ export type FollowUserWithAuthOutputData = {
 export type GetPaginationUserBookmarksInput = {
   readonly after?: Maybe<Scalars['PaginationCursor']>;
   readonly first?: Maybe<Scalars['Int']>;
+  /** Pagination userBookmark filter: interest (in user bookmarks) */
+  readonly interestId?: Maybe<Scalars['String']>;
   /** Pagination bookmarks order field */
   readonly order?: Maybe<PaginationOrder>;
   /** Pagination bookmarks orderBy field */
   readonly orderBy?: Maybe<PaginationOrderBy>;
-  /** Pagination userBookmark filter: tag */
+  /** Pagination userBookmark filter: tag (in all users bookmarks) */
   readonly tagId?: Maybe<Scalars['String']>;
 };
 

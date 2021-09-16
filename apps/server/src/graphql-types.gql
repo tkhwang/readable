@@ -121,13 +121,16 @@ input GetPaginationUserBookmarksInput {
   after: PaginationCursor
   first: Int = 10
 
+  """Pagination userBookmark filter: interest (in user bookmarks)"""
+  interestId: String
+
   """Pagination bookmarks order field"""
   order: PaginationOrder = DESC
 
   """Pagination bookmarks orderBy field"""
   orderBy: PaginationOrderBy = LATEST
 
-  """Pagination userBookmark filter: tag"""
+  """Pagination userBookmark filter: tag (in all users bookmarks)"""
   tagId: String
 }
 
