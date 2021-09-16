@@ -27,9 +27,9 @@ export class UserBookmarkService {
   }
 
   // TODO(Teddy): WIP - userBookmark recommendation using DB only
-  async recommendUserBookmarks(urlHash: string, tags: Tag[], user: User) {
+  async findRecommendedUserBookmarks(urlHash: string, tags: Tag[], user: User) {
     return tags.reduce(async (acc, cur) => {
-      const recommendedUserBookmarks = await this.getRecommendationsByTag(urlHash, cur, user);
+      const recommendedUserBookmarks = await this.findRecommendedUserBookmarksByTag(urlHash, cur, user);
       return { ...(await acc), [cur.tag]: recommendedUserBookmarks };
     }, {});
   }
@@ -102,7 +102,7 @@ export class UserBookmarkService {
     return users ?? [];
   }
 
-  private async getRecommendationsByTag(urlHash: string, tag: Tag, user: User) {
+  private async findRecommendedUserBookmarksByTag(urlHash: string, tag: Tag, user: User) {
     return this.userBookmarkRepository
       .createQueryBuilder('userBookmark')
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')

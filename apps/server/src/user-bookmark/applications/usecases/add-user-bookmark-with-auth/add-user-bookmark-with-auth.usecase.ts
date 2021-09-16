@@ -31,7 +31,7 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
 
     const [existingUrlInfo, recommendations] = await Promise.all([
       this.urlInfoService.findUrlInfoByUrlHash(urlHash),
-      this.userBookmarkService.recommendUserBookmarks(urlHash, tags, requestUser),
+      this.userBookmarkService.findRecommendedUserBookmarks(urlHash, tags, requestUser),
     ]);
     if (existingUrlInfo) {
       const userBookmark = await this.userBookmarkService.upsertUserBookmark(
