@@ -113,10 +113,27 @@ export type FollowUserWithAuthInput = {
 
 export type FollowUserWithAuthOutput = {
   readonly __typename?: 'FollowUserWithAuthOutput';
-  /** Follower User */
-  readonly followerUser: User;
+  /** Follow response data */
+  readonly data: FollowUserWithAuthOutputData;
+  /** Common output */
+  readonly isSuccess: Scalars['Boolean'];
+};
+
+export type FollowUserWithAuthOutputData = {
+  readonly __typename?: 'FollowUserWithAuthOutputData';
   /** Following User */
   readonly followingUser: User;
+};
+
+export type GetPaginationUserBookmarksInput = {
+  readonly after?: Maybe<Scalars['PaginationCursor']>;
+  readonly first?: Maybe<Scalars['Int']>;
+  /** Pagination bookmarks order field */
+  readonly order?: Maybe<PaginationOrder>;
+  /** Pagination bookmarks orderBy field */
+  readonly orderBy?: Maybe<PaginationOrderBy>;
+  /** Pagination userBookmark filter: tag */
+  readonly tagId?: Maybe<Scalars['String']>;
 };
 
 export type Interest = {
@@ -260,10 +277,7 @@ export type QuerypaginationBookmarksArgs = {
 
 
 export type QuerypaginationUserBookmarksArgs = {
-  after?: Maybe<Scalars['PaginationCursor']>;
-  first?: Maybe<Scalars['Int']>;
-  order?: Maybe<PaginationOrder>;
-  orderBy?: Maybe<PaginationOrderBy>;
+  getPaginationUserBookmarksInput: GetPaginationUserBookmarksInput;
 };
 
 export type Tag = {
@@ -282,8 +296,13 @@ export type UnfollowUserWithAuthInput = {
 
 export type UnfollowUserWithAuthOutput = {
   readonly __typename?: 'UnfollowUserWithAuthOutput';
-  /** Follower User */
-  readonly followerUser: User;
+  readonly data: UnfollowUserWithAuthOutputData;
+  /** Common output */
+  readonly isSuccess: Scalars['Boolean'];
+};
+
+export type UnfollowUserWithAuthOutputData = {
+  readonly __typename?: 'UnfollowUserWithAuthOutputData';
   /** Following User */
   readonly followingUser: User;
 };
@@ -319,10 +338,9 @@ export type User = {
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly email?: Maybe<Scalars['String']>;
-  /** Followers of User */
-  readonly followerUsers: ReadonlyArray<User>;
-  /** Followings of User */
-  readonly followingUsers: ReadonlyArray<User>;
+  readonly followersCount: Scalars['Float'];
+  /** Followings User count */
+  readonly followingsCount: Scalars['Float'];
   readonly id: Scalars['ID'];
   readonly latestInterestId?: Maybe<Scalars['String']>;
   readonly name: Scalars['String'];

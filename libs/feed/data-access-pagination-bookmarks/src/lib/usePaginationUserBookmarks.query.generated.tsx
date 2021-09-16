@@ -40,7 +40,7 @@ export type PaginationUserBookmarksQuery = (
 
 export const PaginationUserBookmarksDocument = gql`
     query PaginationUserBookmarks {
-  paginationUserBookmarks(first: 10) {
+  paginationUserBookmarks(getPaginationUserBookmarksInput: {first: 10}) {
     pageInfo {
       hasNextPage
       endCursor

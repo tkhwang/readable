@@ -9,6 +9,7 @@ const defaultOptions =  {}
 export type PaginationUserBookmarksOnFeedQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars['Int']>;
   after?: Types.Maybe<Types.Scalars['PaginationCursor']>;
+  tagId?: Types.Maybe<Types.Scalars['String']>;
 }>;
 
 
@@ -42,8 +43,10 @@ export type PaginationUserBookmarksOnFeedQuery = (
 
 
 export const PaginationUserBookmarksOnFeedDocument = gql`
-    query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor) {
-  paginationUserBookmarks(first: $first, after: $after) {
+    query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor, $tagId: String) {
+  paginationUserBookmarks(
+    getPaginationUserBookmarksInput: {first: $first, after: $after, tagId: $tagId}
+  ) {
     pageInfo {
       hasNextPage
       endCursor
@@ -96,6 +99,7 @@ export type PaginationUserBookmarksOnFeedComponentProps = Omit<ApolloReactCompon
  *   variables: {
  *      first: // value for 'first'
  *      after: // value for 'after'
+ *      tagId: // value for 'tagId'
  *   },
  * });
  */
