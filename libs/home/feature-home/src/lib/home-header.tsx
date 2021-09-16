@@ -19,17 +19,17 @@ import {
 export const HomeHeader = () => {
   const { authenticated, logout } = useAuth();
 
-  const { me } = useMe();
+  const { me, isMeDataError } = useMe();
 
   const gotToLoginPage = () => {
     router.push('./login');
   };
 
   const renderAvatarMenu = () => {
-    if (!authenticated) {
+    if (!authenticated || isMeDataError) {
       return (
         <button
-          className="font-medium text-sm text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+          className="font-medium text-sm text-white hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
           onClick={() => gotToLoginPage()}
         >
           Sign in
@@ -103,9 +103,28 @@ export const HomeHeader = () => {
   };
 
   return (
-    <div className="flex justify-between justify-items-center">
-      <Logo />
-      {renderAvatarMenu()}
+    <div className="flex items-center py-4">
+      <div className="max-w-sm px-8 w-1/6 hidden sm:block">
+        <div className="w-full h-full min-w-max">
+          <Logo />
+        </div>
+      </div>
+
+      <div className="px-8 flex w-full items-center">
+        <div className="w-full max-w-screen-md">
+          <div className="flex text-white font-semibold space-x-5">
+            <div className="border-b-2">Following</div>
+            <div>Recommand</div>
+          </div>
+        </div>
+
+        <div className="pl-6 w-2/3 hidden lg:block max-w-sm">
+          <div className="w-full h-full flex justify-between">
+            <div className="rounded-2xl bg-gray-700 w-56"></div>
+            <div>{renderAvatarMenu()}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

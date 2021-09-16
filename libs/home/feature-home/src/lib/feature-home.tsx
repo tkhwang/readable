@@ -1,24 +1,12 @@
 import { HomeSidebar } from './home-sidebar';
 import { HomeHeader } from './home-header';
 import { HomeFeed } from './home-feed';
-import { useEffect, useState } from 'react';
 
 export const FeatureHome = () => {
-  const [top, setTop] = useState(true);
-
-  useEffect(() => {
-    const scrollHandler = () => {
-      window.pageYOffset > 62 ? setTop(false) : setTop(true);
-    };
-
-    window.addEventListener('scroll', scrollHandler);
-    return () => window.removeEventListener('scroll', scrollHandler);
-  }, [top]);
-
   return (
     <>
-      <header className="p-4">
-        <div className="border-2 h-8"></div>
+      <header className="bg-gray-800">
+        <HomeHeader />
       </header>
       <main className="min-h-screen flex bg-gray-800">
         <aside className="max-w-sm p-8 w-1/6 hidden sm:block">
@@ -40,9 +28,8 @@ export const FeatureHome = () => {
           </aside>
         </section>
       </main>
-      <footer className="p-6 bg-gray-300">
-        {/* TODO(zlrlo): 가이드 레이아웃 제거 필요 */}
-        <div className="border-2 border-red-300 h-20"></div>
+      <footer className="p-6 bg-gray-800">
+        <div className="h-20 bg-gray-700"></div>
       </footer>
     </>
   );
