@@ -91,7 +91,7 @@ export class UserBookmarkService {
 
   async getFieldReaders(userBookmark: UserBookmarkBRFO) {
     const userBookmarks = await this.userBookmarkRepository.find({
-      where: { urlHash: userBookmark.urlHash, readAt: Not(IsNull()) },
+      where: { urlHash: userBookmark.urlHash, doneAt: Not(IsNull()) },
     });
     const userIds = (userBookmarks ?? []).map(userBookmark => userBookmark.userId);
 

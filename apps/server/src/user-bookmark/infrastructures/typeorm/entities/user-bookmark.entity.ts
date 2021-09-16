@@ -26,5 +26,5 @@ export class UserBookmark extends CoreEntity {
   scheduledAt?: Date;
 
   @Column({ type: 'datetime', nullable: true })
-  readAt?: Date;
+  doneAt?: Date;
 }

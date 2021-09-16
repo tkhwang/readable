@@ -26,7 +26,7 @@ export class UserBookmarkBRFO extends CoreModel {
   scheduledAt?: Date;
 
   @Field(type => Date, { nullable: true })
-  readAt?: Date;
+  doneAt?: Date;
 }
 
 @ObjectType()

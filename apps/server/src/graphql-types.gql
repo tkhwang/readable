@@ -324,9 +324,9 @@ type UserBookmark {
   bookmarkers: [User!]!
   createdAt: DateTime!
   deletedAt: DateTime!
+  doneAt: DateTime
   id: ID!
   interest: Interest!
-  readAt: DateTime
 
   """User who read this url"""
   readers: [User!]!
