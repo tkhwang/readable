@@ -324,7 +324,7 @@ type UserBookmark {
   bookmarkers: [User!]!
   createdAt: DateTime!
   deletedAt: DateTime!
-  doneAt: DateTime
+  donedAt: DateTime
   id: ID!
   interest: Interest!
 
