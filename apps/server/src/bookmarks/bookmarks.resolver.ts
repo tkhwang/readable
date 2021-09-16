@@ -27,6 +27,10 @@ export class BookmarksResolver {
   /*
    * Query (as noun)
    */
+
+  /**
+   * @deprecated : Use myBookmarks instead
+   */
   @Query(returns => [Bookmark])
   @UseGuards(GqlAuthGuard)
   myBookmarks(@CurrentUser() requestUser: User) {
@@ -36,7 +40,9 @@ export class BookmarksResolver {
   /*
    * Mutation (as verb)
    */
-
+  /**
+   * @deprecated
+   */
   @Mutation(returns => Bookmark)
   @UseGuards(GqlAuthGuard)
   addBookmarkWithAuth(
@@ -46,6 +52,9 @@ export class BookmarksResolver {
     return this.addBookmarkWithAuthUsecase.execute(command, requestUser);
   }
 
+  /**
+   * @deprecated: Use deleteUserBookmarkWithAuth instead
+   */
   @Mutation(returns => CommonOutput)
   @UseGuards(GqlAuthGuard)
   deleteBookmarkWithAuth(
@@ -55,6 +64,9 @@ export class BookmarksResolver {
     return this.deleteBookmarkWithAuthUsecse.execute(command, requestUser);
   }
 
+  /**
+   * @deprecated: Use syncGoogleCalendarWithAuth instead
+   */
   @Mutation(returns => CommonOutput)
   @UseGuards(GqlAuthGuard)
   addBookmarkInGoogleEventsWithAuth(

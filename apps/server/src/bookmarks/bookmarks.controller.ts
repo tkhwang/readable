@@ -16,6 +16,9 @@ export class BookmarksController {
     private readonly bookmarksService: BookmarksService
   ) {}
 
+  /**
+   * @deprecated: Use getUrlInfo(POST /url-info) instead
+   */
   @UseGuards(JwtAuthGuard)
   @Post('/')
   async getUrlInfo(@Body('url') url: string, @Request() req: RequestWithInjectedUser) {
@@ -38,6 +41,9 @@ export class BookmarksController {
     };
   }
 
+  /**
+   * @deprecated: Use addUserBookmark (POST /user-bookmark) instaead
+   */
   @UseGuards(JwtAuthGuard)
   @Post('add')
   async addBookmarkWithAuth(
