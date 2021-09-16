@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 import { usePaginationUserBookmarksOnFeedQuery } from './data-access-feed.query.generated';
 
 const graphql = gql`
-  query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor) {
-    paginationUserBookmarks(first: $first, after: $after) {
+  query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor, $tagId: String) {
+    paginationUserBookmarks(getPaginationUserBookmarksInput: { first: $first, after: $after, tagId: $tagId }) {
       pageInfo {
         hasNextPage
         endCursor
