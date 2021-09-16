@@ -320,11 +320,16 @@ type User {
 }
 
 type UserBookmark {
+  """User who bookmarked this url"""
+  bookmarkers: [User!]!
   createdAt: DateTime!
   deletedAt: DateTime!
-  donedAt: DateTime
   id: ID!
   interest: Interest!
+  readAt: DateTime
+
+  """User who read this url"""
+  readers: [User!]!
   scheduledAt: DateTime
 
   """Tags"""
@@ -340,9 +345,9 @@ type UserBookmark {
 type UserBookmarkBRFO {
   createdAt: DateTime!
   deletedAt: DateTime!
-  donedAt: DateTime
   id: ID!
   interest: Interest!
+  readAt: DateTime
   scheduledAt: DateTime
 
   """Tags"""
