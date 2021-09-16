@@ -1,11 +1,18 @@
 import React from 'react';
 import { useUserBookmarks } from '@readable/collection/data-access-bookmark';
-import { useSyncBookmarks } from '@readable/collection/data-access-sync';
-import { AddInGoogleEventsInput, Bookmark, BookmarkBRFO, BookmarkInput } from '@readable/shared/types';
+import { useSyncUserBookmark } from '@readable/collection/data-access-sync';
+import {
+  AddInGoogleEventsInput,
+  Bookmark,
+  BookmarkBRFO,
+  BookmarkInput,
+  SyncGoogleCalendarWithAuthInput,
+} from '@readable/shared/types';
 
 export const BookmarksViewController = () => {
   const { myUserBookmarks, loading, error, deleteUserBookmarkWithAuthMutation } = useUserBookmarks();
-  const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
+  // const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
+  const { syncGoogleCalendarWithAuthMutation } = useSyncUserBookmark();
 
   if (loading) {
     return (
@@ -16,20 +23,18 @@ export const BookmarksViewController = () => {
   }
 
   // TODO(Teddy): WIP
-  const handleSyncBookmark = async (bookmark?: any) => {
-    if (!bookmark) return;
+  const handleSyncBookmark = async (urlInfo?: any) => {
+    if (!urlInfo) return;
 
-    const { url, title } = bookmark;
-    const addInGoogleEventsInput: AddInGoogleEventsInput = {
-      bookmarks: [
-        {
-          url,
-          title,
-          scheduledAt: new Date(),
-        },
-      ],
+    const { url, title } = urlInfo;
+    const syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput = {
+      urlInfo: {
+        url,
+        title,
+        scheduledAt: new Date(),
+      },
     };
-    await addBookmarkInGoogleEventsMutation({ variables: { addInGoogleEventsInput } });
+    await syncGoogleCalendarWithAuthMutation({ variables: { syncGoogleCalendarWithAuthInput } });
   };
 
   return (
@@ -78,12 +83,12 @@ export const BookmarksViewController = () => {
                 >
                   delete
                 </button>
-                {/* <button
+                <button
                   className="bg-transparent hover:bg-blue-500 text-blue-700 text-base hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  onClick={async () => handleSyncBookmark(bookmark)}
+                  onClick={async () => handleSyncBookmark(urlInfo)}
                 >
                   sync
-                </button> */}
+                </button>
               </div>
             </div>
           );
