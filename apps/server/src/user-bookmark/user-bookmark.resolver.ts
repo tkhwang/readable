@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
 import { CommonOutput } from '@readable/common/models/common.output';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
@@ -9,11 +9,13 @@ import { DeleteUserBookmarkWithAuthUsecase } from './applications/usecases/delet
 import { GetMyUserBookmarksWithAuthUsecase } from './applications/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
 import { SyncGoogleCalendarWithAuthInput } from './applications/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.input';
 import { SyncGoogleCalendaerWithAuthUsecase } from './applications/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.usecase';
-import { UserBookmark } from './domain/model/user-bookmark.model';
+import { UserBookmark, UserBookmarkBRFO } from './domain/model/user-bookmark.model';
+import { UserBookmarkService } from './user-bookmark.service';
 
 @Resolver(of => UserBookmark)
 export class UserBookmarkResolver {
   constructor(
+    private readonly userBookmarkService: UserBookmarkService,
     private readonly getMyUserBookmarksWithAuthUsecase: GetMyUserBookmarksWithAuthUsecase,
     private readonly deleteUserBookmarkWithAuthUsecase: DeleteUserBookmarkWithAuthUsecase,
     private readonly syncGoogleCalendaerWithAuthUsecase: SyncGoogleCalendaerWithAuthUsecase
@@ -52,4 +54,13 @@ export class UserBookmarkResolver {
   /*
    * Field Resolver
    */
+  @ResolveField('bookmarkers', returns => [User])
+  async bookmarkers(@Parent() userBookmark: UserBookmarkBRFO) {
+    return this.userBookmarkService.getFieldBookmarkers(userBookmark);
+  }
+
+  @ResolveField('readers', returns => [User])
+  async readers(@Parent() userBookmark: UserBookmarkBRFO) {
+    return this.userBookmarkService.getFieldReaders(userBookmark);
+  }
 }

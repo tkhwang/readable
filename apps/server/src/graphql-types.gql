@@ -210,7 +210,7 @@ type PaginationPageInfo {
 
 type PaginationUserBookmarkBRFOEdge {
   cursor: PaginationCursor!
-  node: UserBookmarkBRFO!
+  node: UserBookmark!
 }
 
 type PaginationUserBookmarkEdge {
@@ -320,29 +320,16 @@ type User {
 }
 
 type UserBookmark {
+  """User who bookmarked this url"""
+  bookmarkers: [User!]!
   createdAt: DateTime!
   deletedAt: DateTime!
   donedAt: DateTime
   id: ID!
   interest: Interest!
-  scheduledAt: DateTime
 
-  """Tags"""
-  tags: [Tag!]!
-  updatedAt: DateTime!
-
-  """URL hash"""
-  urlHash: String!
-  urlInfo: UrlInfo!
-  userId: String!
-}
-
-type UserBookmarkBRFO {
-  createdAt: DateTime!
-  deletedAt: DateTime!
-  donedAt: DateTime
-  id: ID!
-  interest: Interest!
+  """User who read this url"""
+  readers: [User!]!
   scheduledAt: DateTime
 
   """Tags"""

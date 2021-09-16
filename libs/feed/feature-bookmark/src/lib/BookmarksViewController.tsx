@@ -14,8 +14,8 @@ export const BookmarksViewController = () => {
           return <BookmarkCard bookmark={edge.node} />;
         })} */}
       {paginationUserBookmarks?.edges.map(edge => {
-        const { urlInfo, interest, tags } = edge.node;
-        const { id, siteName, title, url, imageUrl, description /*, collectors, schedulers, finishers*/ } = urlInfo;
+        const { urlInfo, interest, tags, bookmarkers, readers } = edge.node;
+        const { id, siteName, title, url, imageUrl, description } = urlInfo;
 
         return (
           <div className="p-10 ">
@@ -37,33 +37,24 @@ export const BookmarksViewController = () => {
                 })}
               </div>
             </div>
-            {/* <div className="h-16 flex flex-wrap content-start">
-              Collectors:
-              {collectors &&
-                collectors.length > 0 &&
-                collectors.map(collector => {
-                  const { name, avatarUrl } = collector;
+            <div className="h-16 flex flex-wrap content-start">
+              Bookmarker:
+              {bookmarkers &&
+                bookmarkers.length > 0 &&
+                bookmarkers.map(bookmarker => {
+                  const { name, avatarUrl } = bookmarker;
                   return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
                 })}
             </div>
             <div className="h-16 flex flex-wrap content-start">
-              Schedulers:
-              {schedulers &&
-                schedulers.length > 0 &&
-                schedulers.map(scheduler => {
-                  const { name, avatarUrl } = scheduler;
+              Reader:
+              {readers &&
+                readers.length > 0 &&
+                readers.map(reader => {
+                  const { name, avatarUrl } = reader;
                   return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
                 })}
             </div>
-            <div className="h-16 flex flex-wrap content-start">
-              Finishers:
-              {finishers &&
-                finishers.length > 0 &&
-                finishers.map(finisher => {
-                  const { name, avatarUrl } = finisher;
-                  return <img className="w-12 rounded-full m-1" src={avatarUrl ?? ''} alt={name} />;
-                })}
-            </div> */}
           </div>
         );
       })}

@@ -7,6 +7,8 @@ import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url
 import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
 import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
+import { IsNull, Not } from 'typeorm';
+import { UserBookmarkBRFO } from './domain/model/user-bookmark.model';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
 
 @Injectable()
@@ -74,6 +76,27 @@ export class UserBookmarkService {
     ]);
 
     return newlyAddedUserBookmark;
+  }
+
+  /*
+   * Field Resolver
+   */
+  async getFieldBookmarkers(userBookmark: UserBookmarkBRFO) {
+    const userBookmarks = await this.userBookmarkRepository.find({ where: { urlHash: userBookmark.urlHash } });
+    const userIds = (userBookmarks ?? []).map(userBookmark => userBookmark.userId);
+
+    const users = await this.usersRepository.findByIds(userIds);
+    return users ?? [];
+  }
+
+  async getFieldReaders(userBookmark: UserBookmarkBRFO) {
+    const userBookmarks = await this.userBookmarkRepository.find({
+      where: { urlHash: userBookmark.urlHash, donedAt: Not(IsNull()) },
+    });
+    const userIds = (userBookmarks ?? []).map(userBookmark => userBookmark.userId);
+
+    const users = await this.usersRepository.findByIds(userIds);
+    return users ?? [];
   }
 
   // MEMO(Teddy): It should be in userModule, but there is here due to DI issue.

@@ -31,6 +31,12 @@ export type PaginationUserBookmarksQuery = (
         ), readonly tags: ReadonlyArray<(
           { readonly __typename?: 'Tag' }
           & Pick<Types.Tag, 'id' | 'tag'>
+        )>, readonly bookmarkers: ReadonlyArray<(
+          { readonly __typename?: 'User' }
+          & Pick<Types.User, 'id' | 'name' | 'avatarUrl'>
+        )>, readonly readers: ReadonlyArray<(
+          { readonly __typename?: 'User' }
+          & Pick<Types.User, 'id' | 'name' | 'avatarUrl'>
         )> }
       ) }
     )> }
@@ -66,6 +72,16 @@ export const PaginationUserBookmarksDocument = gql`
         tags {
           id
           tag
+        }
+        bookmarkers {
+          id
+          name
+          avatarUrl
+        }
+        readers {
+          id
+          name
+          avatarUrl
         }
       }
     }

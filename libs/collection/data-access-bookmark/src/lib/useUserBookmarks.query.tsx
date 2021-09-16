@@ -26,6 +26,16 @@ const GET_MY_USERBOOKMARKS = gql`
         id
         tag
       }
+      bookmarkers {
+        id
+        name
+        avatarUrl
+      }
+      readers {
+        id
+        name
+        avatarUrl
+      }
     }
   }
 `;
