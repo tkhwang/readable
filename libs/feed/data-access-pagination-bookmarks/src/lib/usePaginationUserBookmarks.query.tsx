@@ -31,6 +31,16 @@ const PAGINATION_USER_BOOKMARKS = gql`
             id
             tag
           }
+          bookmarkers {
+            id
+            name
+            avatarUrl
+          }
+          readers {
+            id
+            name
+            avatarUrl
+          }
         }
       }
     }

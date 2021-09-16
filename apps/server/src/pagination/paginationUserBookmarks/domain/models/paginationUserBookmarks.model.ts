@@ -10,7 +10,7 @@ export class PaginationUserBookmarkEdge {
   cursor: PaginationCursor;
 
   @Field(type => UserBookmark)
-  node: UserBookmark;
+  node: UserBookmarkBRFO;
 }
 
 @ObjectType()
@@ -33,7 +33,7 @@ export class PaginationUserBookmarkBRFOEdge {
   @Field(type => PaginationCursorScalar)
   cursor: PaginationCursor;
 
-  @Field(type => UserBookmarkBRFO)
+  @Field(type => UserBookmark)
   node: UserBookmarkBRFO;
 }
 

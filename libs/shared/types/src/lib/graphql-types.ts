@@ -382,11 +382,15 @@ export type User = {
 
 export type UserBookmark = {
   readonly __typename?: 'UserBookmark';
+  /** User who bookmarked this url */
+  readonly bookmarkers: ReadonlyArray<User>;
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
-  readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly id: Scalars['ID'];
   readonly interest: Interest;
+  readonly readAt?: Maybe<Scalars['DateTime']>;
+  /** User who read this url */
+  readonly readers: ReadonlyArray<User>;
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   /** Tags */
   readonly tags: ReadonlyArray<Tag>;
@@ -401,9 +405,9 @@ export type UserBookmarkBRFO = {
   readonly __typename?: 'UserBookmarkBRFO';
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
-  readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly id: Scalars['ID'];
   readonly interest: Interest;
+  readonly readAt?: Maybe<Scalars['DateTime']>;
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   /** Tags */
   readonly tags: ReadonlyArray<Tag>;
