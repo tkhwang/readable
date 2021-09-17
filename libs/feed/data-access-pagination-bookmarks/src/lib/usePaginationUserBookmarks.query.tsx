@@ -31,11 +31,13 @@ const PAGINATION_USER_BOOKMARKS = gql`
             id
             tag
           }
+          bookmarkersCount
           bookmarkers {
             id
             name
             avatarUrl
           }
+          readersCount
           readers {
             id
             name

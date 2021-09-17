@@ -260,7 +260,7 @@ export type PaginationPageInfo = {
 export type PaginationUserBookmarkBRFOEdge = {
   readonly __typename?: 'PaginationUserBookmarkBRFOEdge';
   readonly cursor: Scalars['PaginationCursor'];
-  readonly node: UserBookmarkBRFO;
+  readonly node: UserBookmark;
 };
 
 export type PaginationUserBookmarkEdge = {
@@ -314,6 +314,7 @@ export type Tag = {
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly id: Scalars['ID'];
+  readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
 };
@@ -382,32 +383,19 @@ export type User = {
 
 export type UserBookmark = {
   readonly __typename?: 'UserBookmark';
-  /** User who bookmarked this url */
+  /** User who bookmarked this url (field resolver) */
   readonly bookmarkers: ReadonlyArray<User>;
+  /** Number of user who bookmarked this url (field resolver) */
+  readonly bookmarkersCount: Scalars['Float'];
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
+  readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly id: Scalars['ID'];
   readonly interest: Interest;
-  readonly readAt?: Maybe<Scalars['DateTime']>;
-  /** User who read this url */
+  /** User who read this url (field resolver) */
   readonly readers: ReadonlyArray<User>;
-  readonly scheduledAt?: Maybe<Scalars['DateTime']>;
-  /** Tags */
-  readonly tags: ReadonlyArray<Tag>;
-  readonly updatedAt: Scalars['DateTime'];
-  /** URL hash */
-  readonly urlHash: Scalars['String'];
-  readonly urlInfo: UrlInfo;
-  readonly userId: Scalars['String'];
-};
-
-export type UserBookmarkBRFO = {
-  readonly __typename?: 'UserBookmarkBRFO';
-  readonly createdAt: Scalars['DateTime'];
-  readonly deletedAt: Scalars['DateTime'];
-  readonly id: Scalars['ID'];
-  readonly interest: Interest;
-  readonly readAt?: Maybe<Scalars['DateTime']>;
+  /** Number of user who read this url (field resolver) */
+  readonly readersCount: Scalars['Float'];
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   /** Tags */
   readonly tags: ReadonlyArray<Tag>;

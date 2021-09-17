@@ -14,7 +14,7 @@ export const BookmarksViewController = () => {
           return <BookmarkCard bookmark={edge.node} />;
         })} */}
       {paginationUserBookmarks?.edges.map(edge => {
-        const { urlInfo, interest, tags, bookmarkers, readers } = edge.node;
+        const { urlInfo, interest, tags, bookmarkers, bookmarkersCount, readers, readersCount } = edge.node;
         const { id, siteName, title, url, imageUrl, description } = urlInfo;
 
         return (
@@ -43,7 +43,7 @@ export const BookmarksViewController = () => {
               </div>
             </div>
             <div className="h-16 flex flex-wrap content-start">
-              Bookmarker:
+              Bookmarker ({bookmarkersCount || 0}) :
               {bookmarkers &&
                 bookmarkers.length > 0 &&
                 bookmarkers.map(bookmarker => {
@@ -52,7 +52,7 @@ export const BookmarksViewController = () => {
                 })}
             </div>
             <div className="h-16 flex flex-wrap content-start">
-              Reader:
+              Reader ({readersCount || 0}) :
               {readers &&
                 readers.length > 0 &&
                 readers.map(reader => {
