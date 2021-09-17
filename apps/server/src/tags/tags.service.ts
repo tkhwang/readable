@@ -1,20 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
+import { normalizeText } from 'normalize-text';
 
 @Injectable()
 export class TagsService {
   constructor(@InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository) {}
 
+  /**
+   * Normalize tag for better inter-operability
+   * (ex) react.js, React.js, react, React => all are normalized to 'react'
+   *
+   * @param {string} tag
+   * @return {*}
+   * @memberof TagsService
+   */
+  normalizeTag(tag: string) {
+    return normalizeText(this.preprocessTag(tag));
+  }
+
   async mapTags(tags: string[]) {
+    const tagsWithNormalizedText = tags.map(tag => {
+      return {
+        tag,
+        normalizedTag: this.normalizeTag(tag),
+      };
+    });
+
     return Promise.all(
-      tags.map(async tag => {
-        let tagEntity = await this.tagsRepository.findOne({ where: { tag } });
+      tagsWithNormalizedText.map(async tagWithNormalizedText => {
+        const tagEntities = await this.tagsRepository.find({
+          where: { normalizedTag: tagWithNormalizedText.normalizedTag },
+        });
+
+        let tagEntity = (tagEntities ?? []).find(tagEntity => tagEntity.tag === tagWithNormalizedText.tag);
         if (!tagEntity) {
-          tagEntity = await this.tagsRepository.save(this.tagsRepository.create({ tag }));
+          tagEntity = await this.tagsRepository.save(this.tagsRepository.create(tagWithNormalizedText));
         }
         return tagEntity;
       })
     );
+  }
+
+  private preprocessTag(tag: string) {
+    // MEMO(Teddy): react.js -> react, node.js -> node
+    if (tag.endsWith('.js')) {
+      return tag.slice(0, -3);
+    }
+    return tag;
   }
 }

@@ -16,7 +16,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     requestUser: User
   ) {
     const { first, after, order, orderBy } = query;
-    const { tagId, interestId } = filter;
+    const { normalizedTag, interestId } = filter;
 
     const criteria = {
       createdAt: new Date(),
@@ -37,8 +37,10 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
       .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
 
-    if (tagId) {
-      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagId)', { tagId: [tagId] });
+    if (normalizedTag) {
+      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
+        normalizedTag,
+      });
     } else {
       queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tags');
     }

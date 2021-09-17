@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { InterestsService } from '@readable/interests/interests.service';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
+import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsService } from '@readable/tags/tags.service';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
 import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
@@ -17,6 +18,7 @@ export class UserBookmarkService {
   constructor(
     private readonly interestsService: InterestsService,
     private readonly tagsService: TagsService,
+    @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository,
     @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository
   ) {}
@@ -110,10 +112,15 @@ export class UserBookmarkService {
   }
 
   private async findRecommendedUserBookmarksByTag(urlHash: string, tag: Tag, user: User) {
+    const tags = await this.tagsRepository.find({ where: { normalizedTag: tag.normalizedTag } });
+    const tagIds = (tags ?? []).map(tag => tag.id);
+
     return this.userBookmarkRepository
       .createQueryBuilder('userBookmark')
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id = (:tagId)', { tagId: tag.id })
+      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagIds)', {
+        tagIds,
+      })
       .addSelect('COUNT(*) AS userBookmarkCount')
       .where('userBookmark.urlHash != :urlHash', { urlHash })
       .andWhere('userBookmark.userId != :userId', { userId: user.id })
