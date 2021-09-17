@@ -127,7 +127,7 @@ export class UserBookmarkService {
       .where('userBookmark.urlHash != :urlHash', { urlHash })
       .andWhere('userBookmark.userId != :userId', { userId: user.id })
       .groupBy('userBookmark.urlHash')
-      .orderBy('userBookmarkCount')
+      .orderBy('userBookmarkCount', 'DESC')
       .limit(2)
       .getMany();
   }
