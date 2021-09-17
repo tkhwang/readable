@@ -5,4 +5,7 @@ import { CoreModel } from '@readable/common/models/core.model';
 export class Tag extends CoreModel {
   @Field(type => String)
   tag: string;
+
+  @Field(type => String)
+  normalizedTag: string;
 }

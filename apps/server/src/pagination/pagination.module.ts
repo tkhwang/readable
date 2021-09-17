@@ -6,6 +6,7 @@ import { BookmarkUser } from '@readable/bookmarks/infrastructures/typeorm/entiti
 import { BookmarksRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarks.repository';
 import { BookmarkUsersRepository } from '@readable/bookmarks/infrastructures/typeorm/repositories/bookmarkUsers.repository';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
+import { TagsModule } from '@readable/tags/tags.module';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { GetPaginationBookmarksUsecase } from './paginationBookmarks/applications/usecases/get-pagination-bookmarks/get-pagination-bookmarks.usecase';
 import { PaginationBookmarksResolver } from './paginationBookmarks/paginationBookmarks.resolver';
@@ -24,6 +25,7 @@ import { PaginationUserBookmarksResolver } from './paginationUserBookmarks/pagin
       TagsRepository,
     ]),
     BookmarksModule,
+    TagsModule,
   ],
   providers: [
     PaginationBookmarksResolver,

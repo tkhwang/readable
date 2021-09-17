@@ -1466,6 +1466,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@bitty/pipe@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@bitty/pipe/-/pipe-0.2.1.tgz#bcab2ec4fd5fb57e4ebc17b6094219da26d1b224"
+  integrity sha512-SOvnlZ2tvG2bjEYsd1OOPBQUUwSTEaRiJ7m1x3geJsOWv8zIt2kM8H1rUepjCrA8zKWCk6kQoi652nU44BVuzA==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -15981,6 +15986,13 @@ normalize-range@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
   integrity sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=
+
+normalize-text@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/normalize-text/-/normalize-text-2.3.3.tgz#799763ef13a7bf1f87697eba3a662202f0a34b80"
+  integrity sha512-LR9nmMC2TIJ9eAJsxvF3ySroXtLFEQrO+ByQBLg/eLslTdY2iId8GvTp7Ggj/RL2wz6nv1d8gGuB6DhmaKEqUA==
+  dependencies:
+    "@bitty/pipe" "^0.2.1"
 
 normalize-url@1.9.1:
   version "1.9.1"

@@ -5,4 +5,7 @@ import { Column, Entity } from 'typeorm';
 export class Tag extends CoreEntity {
   @Column()
   tag: string;
+
+  @Column()
+  normalizedTag: string;
 }

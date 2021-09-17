@@ -113,7 +113,9 @@ export class UserBookmarkService {
     return this.userBookmarkRepository
       .createQueryBuilder('userBookmark')
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id = (:tagId)', { tagId: tag.id })
+      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = (:normalizedTag)', {
+        normalizedTag: tag.normalizedTag,
+      })
       .addSelect('COUNT(*) AS userBookmarkCount')
       .where('userBookmark.urlHash != :urlHash', { urlHash })
       .andWhere('userBookmark.userId != :userId', { userId: user.id })

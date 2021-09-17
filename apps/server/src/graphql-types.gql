@@ -247,6 +247,7 @@ type Tag {
   createdAt: DateTime!
   deletedAt: DateTime!
   id: ID!
+  normalizedTag: String!
   tag: String!
   updatedAt: DateTime!
 }
