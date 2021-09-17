@@ -114,9 +114,11 @@ export class UserBookmarkService {
       .createQueryBuilder('userBookmark')
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
       .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id = (:tagId)', { tagId: tag.id })
+      .addSelect('COUNT(*) AS userBookmarkCount')
       .where('userBookmark.urlHash != :urlHash', { urlHash })
       .andWhere('userBookmark.userId != :userId', { userId: user.id })
       .groupBy('userBookmark.urlHash')
+      .orderBy('userBookmarkCount')
       .limit(2)
       .getMany();
   }

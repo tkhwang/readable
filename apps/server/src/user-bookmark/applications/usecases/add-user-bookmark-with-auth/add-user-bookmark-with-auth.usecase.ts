@@ -33,6 +33,9 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
       this.urlInfoService.findUrlInfoByUrlHash(urlHash),
       this.userBookmarkService.findRecommendedUserBookmarks(urlHash, tags, requestUser),
     ]);
+
+    console.log('TCL: AddUserBookmarkWithAuthUsecase -> execute -> recommendations', recommendations);
+
     if (existingUrlInfo) {
       const userBookmark = await this.userBookmarkService.upsertUserBookmark(
         requestUser,
