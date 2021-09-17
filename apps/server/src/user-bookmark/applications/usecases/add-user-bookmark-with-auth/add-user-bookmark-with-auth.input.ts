@@ -1,5 +1,6 @@
-import { Field } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
+@InputType()
 export class AddUserBookmarkWithAuthInput {
   @Field(type => String, { description: 'URL for adding bookmark' })
   url: string;

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { InterestsService } from '@readable/interests/interests.service';
+import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { TagsService } from '@readable/tags/tags.service';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
 import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
@@ -24,28 +25,37 @@ export class UserBookmarkService {
     return this.userBookmarkRepository.count({ where: { urlHash } });
   }
 
-  async getUserBookmarksByUser(user: User) {
-    return (
-      this.userBookmarkRepository
-        .createQueryBuilder('userBookmark')
-        // .leftJoinAndSelect('userBookmark.user', 'user')
-        .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-        .leftJoinAndSelect('userBookmark.interest', 'interest')
-        .leftJoinAndSelect('userBookmark.tags', 'tags')
-        .where('userBookmark.userId = :userId', { userId: user.id })
-        .orderBy('userBookmark.createdAt', 'DESC')
-        .getMany()
-    );
+  // TODO(Teddy): WIP - userBookmark recommendation using DB only
+  async findRecommendedUserBookmarks(urlHash: string, tags: Tag[], user: User) {
+    const tagRecommendationsObject = await tags.reduce(async (accP, cur) => {
+      const recommendedUserBookmarks = await this.findRecommendedUserBookmarksByTag(urlHash, cur, user);
+      const acc = await accP;
+      return { ...acc, [cur.tag]: recommendedUserBookmarks };
+    }, {});
+
+    const tagRecommendationsArray = Object.keys(tagRecommendationsObject).map(tag => {
+      const recommendedUserBookmarks = tagRecommendationsObject[tag];
+      return { tag, recommendedUserBookmarks };
+    });
+
+    return tagRecommendationsArray.filter(tagRecommendation => tagRecommendation.recommendedUserBookmarks.length > 0);
   }
 
-  async upsertUserBookmark(user: User, urlInfo: UrlInfo, txtInterest: string, txtTags: string[]) {
-    const [existingUserBookmark, interest, tags] = await Promise.all([
-      this.userBookmarkRepository.findOne({
-        where: { urlHash: urlInfo.urlHash, userId: user.id },
-      }),
-      this.interestsService.mapInterest(txtInterest, user),
-      this.tagsService.mapTags(txtTags),
-    ]);
+  async getUserBookmarksByUser(user: User) {
+    return this.userBookmarkRepository
+      .createQueryBuilder('userBookmark')
+      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .leftJoinAndSelect('userBookmark.interest', 'interest')
+      .leftJoinAndSelect('userBookmark.tags', 'tags')
+      .where('userBookmark.userId = :userId', { userId: user.id })
+      .orderBy('userBookmark.createdAt', 'DESC')
+      .getMany();
+  }
+
+  async upsertUserBookmark(user: User, urlInfo: UrlInfo, interest: Interest, tags: Tag[]) {
+    const existingUserBookmark = await this.userBookmarkRepository.findOne({
+      where: { urlHash: urlInfo.urlHash, userId: user.id },
+    });
 
     if (existingUserBookmark) {
       const updatedUserBookmark = {
@@ -97,6 +107,20 @@ export class UserBookmarkService {
 
     const users = await this.usersRepository.findByIds(userIds);
     return users ?? [];
+  }
+
+  private async findRecommendedUserBookmarksByTag(urlHash: string, tag: Tag, user: User) {
+    return this.userBookmarkRepository
+      .createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id = (:tagId)', { tagId: tag.id })
+      .addSelect('COUNT(*) AS userBookmarkCount')
+      .where('userBookmark.urlHash != :urlHash', { urlHash })
+      .andWhere('userBookmark.userId != :userId', { userId: user.id })
+      .groupBy('userBookmark.urlHash')
+      .orderBy('userBookmarkCount')
+      .limit(2)
+      .getMany();
   }
 
   // MEMO(Teddy): It should be in userModule, but there is here due to DI issue.
