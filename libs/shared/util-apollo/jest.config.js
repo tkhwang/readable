@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'shared-data-access-apollo',
+  displayName: 'shared-util-apollo',
   preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/shared/data-access-apollo',
+  coverageDirectory: '../../../coverage/libs/shared/util-apollo',
 };

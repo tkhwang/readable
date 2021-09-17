@@ -61,9 +61,6 @@
     "server": {
       "tags": []
     },
-    "shared-data-access-apollo": {
-      "tags": ["scope:client-shared"]
-    },
     "shared-data-access-me": {
       "tags": ["scope:client-shared"]
     },
@@ -71,6 +68,9 @@
       "tags": ["scope:client-shared"]
     },
     "shared-types": {
+      "tags": ["scope:client-shared"]
+    },
+    "shared-util-apollo": {
       "tags": ["scope:client-shared"]
     },
     "shared-util-auth": {

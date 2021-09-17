@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@readable/shared/data-access-apollo';
+import { useApollo } from '@readable/shared/util-apollo';
 
 import 'tailwindcss/tailwind.css';
 

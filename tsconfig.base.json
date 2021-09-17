@@ -29,10 +29,10 @@
       "@readable/home/feature-coming-soon": ["libs/home/feature-coming-soon/src/index.ts"],
       "@readable/home/feature-home": ["libs/home/feature-home/src/index.ts"],
       "@readable/login/feature-login": ["libs/login/feature-login/src/index.ts"],
-      "@readable/shared/data-access-apollo": ["libs/shared/data-access-apollo/src/index.ts"],
       "@readable/shared/data-access-me": ["libs/shared/data-access-me/src/index.ts"],
       "@readable/shared/data-access-user": ["libs/shared/data-access-user/src/index.ts"],
       "@readable/shared/types": ["libs/shared/types/src/index.ts"],
+      "@readable/shared/util-apollo": ["libs/shared/util-apollo/src/index.ts"],
       "@readable/shared/util-auth": ["libs/shared/util-auth/src/index.ts"],
       "@readable/shared/util-common": ["libs/shared/util-common/src/index.ts"],
       "@readable/ui": ["libs/ui/src/index.ts"]

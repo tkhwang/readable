@@ -385,27 +385,6 @@
         }
       }
     },
-    "shared-data-access-apollo": {
-      "root": "libs/shared/data-access-apollo",
-      "sourceRoot": "libs/shared/data-access-apollo/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/data-access-apollo/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data-access-apollo"],
-          "options": {
-            "jestConfig": "libs/shared/data-access-apollo/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "shared-data-access-me": {
       "root": "libs/shared/data-access-me",
       "sourceRoot": "libs/shared/data-access-me/src",
@@ -464,6 +443,27 @@
           "outputs": ["coverage/libs/shared/types"],
           "options": {
             "jestConfig": "libs/shared/types/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util-apollo": {
+      "root": "libs/shared/util-apollo",
+      "sourceRoot": "libs/shared/util-apollo/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util-apollo/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util-apollo"],
+          "options": {
+            "jestConfig": "libs/shared/util-apollo/jest.config.js",
             "passWithNoTests": true
           }
         }
