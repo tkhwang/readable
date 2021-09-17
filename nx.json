@@ -64,9 +64,6 @@
     "shared-data-access-apollo": {
       "tags": ["scope:client-shared"]
     },
-    "shared-data-access-auth": {
-      "tags": ["scope:client-shared"]
-    },
     "shared-data-access-me": {
       "tags": ["scope:client-shared"]
     },

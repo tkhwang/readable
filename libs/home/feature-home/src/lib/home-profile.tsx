@@ -1,4 +1,4 @@
-import { useAuth } from '@readable/shared/data-access-auth';
+import { useAuth } from '@readable/shared/util-auth';
 import { useMeViewModel } from '@readable/shared/data-access-me';
 import { Profile } from '@readable/ui';
 import { useRouter } from 'next/router';

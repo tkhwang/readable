@@ -1,5 +1,4 @@
 import router from 'next/router';
-import { useAuth } from '@readable/shared/data-access-auth';
 import { useMe } from '@readable/shared/data-access-me';
 import { Avatar, DropdownMenu, Logo, MenuItemButton } from '@readable/ui';
 import { Menu } from '@headlessui/react';
@@ -17,16 +16,14 @@ import {
 } from '@heroicons/react/solid';
 
 export const HomeHeader = () => {
-  const { authenticated, logout } = useAuth();
-
-  const { me, isMeDataError } = useMe();
+  const { me } = useMe({ redirectTo: '/login' });
 
   const gotToLoginPage = () => {
     router.push('./login');
   };
 
   const renderAvatarMenu = () => {
-    if (!authenticated || isMeDataError) {
+    if (!me) {
       return (
         <button
           className="font-medium text-sm text-white hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"

@@ -406,27 +406,6 @@
         }
       }
     },
-    "shared-data-access-auth": {
-      "root": "libs/shared/data-access-auth",
-      "sourceRoot": "libs/shared/data-access-auth/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/data-access-auth/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data-access-auth"],
-          "options": {
-            "jestConfig": "libs/shared/data-access-auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "shared-data-access-me": {
       "root": "libs/shared/data-access-me",
       "sourceRoot": "libs/shared/data-access-me/src",
