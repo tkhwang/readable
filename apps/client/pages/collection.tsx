@@ -1,8 +1,8 @@
 import React from 'react';
-import { FeatureCollection } from '@readable/collection/feature-collection';
+import { BookmarksViewController } from '@readable/feed/feature-bookmark';
 
 function Collection() {
-  return <FeatureCollection />;
+  return <BookmarksViewController />;
 }
 
 export default Collection;
