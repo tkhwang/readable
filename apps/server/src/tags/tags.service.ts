@@ -7,7 +7,15 @@ import { normalizeText } from 'normalize-text';
 export class TagsService {
   constructor(@InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository) {}
 
-  normalize(tag: string) {
+  /**
+   * Normalize tag for better inter-operability
+   * (ex) react.js, React.js, react, React => all are normalized to 'react'
+   *
+   * @param {string} tag
+   * @return {*}
+   * @memberof TagsService
+   */
+  normalizeTag(tag: string) {
     return normalizeText(this.preprocessTag(tag));
   }
 
@@ -15,7 +23,7 @@ export class TagsService {
     const tagsWithNormalizedText = tags.map(tag => {
       return {
         tag,
-        normalizedTag: this.normalize(tag),
+        normalizedTag: this.normalizeTag(tag),
       };
     });
 

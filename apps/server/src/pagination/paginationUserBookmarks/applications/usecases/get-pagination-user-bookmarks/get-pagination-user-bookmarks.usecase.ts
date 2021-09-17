@@ -31,7 +31,7 @@ export class GetPaginationUserBookmarksUsecase
       const tag = await this.tagsRepository.findOne(tagId);
       if (!tag) throw new TagNotFoundExcepiton(tagId);
 
-      filter.normalizedTag = this.tagsService.normalize(tag.tag);
+      filter.normalizedTag = this.tagsService.normalizeTag(tag.tag);
     }
 
     if (interestId) {
