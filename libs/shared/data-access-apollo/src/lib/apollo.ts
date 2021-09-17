@@ -33,6 +33,7 @@ function createApolloClient() {
         Query: {
           fields: {
             paginationBookmarks: relayStylePagination(),
+            paginationUserBookmarks: relayStylePagination(),
           },
         },
       },

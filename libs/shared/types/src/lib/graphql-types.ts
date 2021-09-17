@@ -129,19 +129,6 @@ export type FollowUserWithAuthOutputData = {
   readonly followingUser: User;
 };
 
-export type GetPaginationUserBookmarksInput = {
-  readonly after?: Maybe<Scalars['PaginationCursor']>;
-  readonly first?: Maybe<Scalars['Int']>;
-  /** Pagination userBookmark filter: interest (in user bookmarks) */
-  readonly interestId?: Maybe<Scalars['String']>;
-  /** Pagination bookmarks order field */
-  readonly order?: Maybe<PaginationOrder>;
-  /** Pagination bookmarks orderBy field */
-  readonly orderBy?: Maybe<PaginationOrderBy>;
-  /** Pagination userBookmark filter: tag (in all users bookmarks) */
-  readonly tagId?: Maybe<Scalars['String']>;
-};
-
 export type Interest = {
   readonly __typename?: 'Interest';
   readonly createdAt: Scalars['DateTime'];
@@ -295,7 +282,10 @@ export type QuerypaginationBookmarksArgs = {
 
 
 export type QuerypaginationUserBookmarksArgs = {
-  getPaginationUserBookmarksInput: GetPaginationUserBookmarksInput;
+  after?: Maybe<Scalars['PaginationCursor']>;
+  first?: Maybe<Scalars['Int']>;
+  order?: Maybe<PaginationOrder>;
+  orderBy?: Maybe<PaginationOrderBy>;
 };
 
 export type SyncGoogleCalendarWithAuthInput = {

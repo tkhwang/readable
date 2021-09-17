@@ -6,7 +6,10 @@ import * as Apollo from '@apollo/client';
 import * as ApolloReactComponents from '@apollo/client/react/components';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 const defaultOptions =  {}
-export type PaginationUserBookmarksQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type PaginationUserBookmarksQueryVariables = Types.Exact<{
+  first?: Types.Maybe<Types.Scalars['Int']>;
+  after?: Types.Maybe<Types.Scalars['PaginationCursor']>;
+}>;
 
 
 export type PaginationUserBookmarksQuery = (
@@ -45,8 +48,8 @@ export type PaginationUserBookmarksQuery = (
 
 
 export const PaginationUserBookmarksDocument = gql`
-    query PaginationUserBookmarks {
-  paginationUserBookmarks(getPaginationUserBookmarksInput: {first: 10}) {
+    query PaginationUserBookmarks($first: Int, $after: PaginationCursor) {
+  paginationUserBookmarks(first: $first, after: $after) {
     pageInfo {
       hasNextPage
       endCursor
@@ -109,6 +112,8 @@ export type PaginationUserBookmarksComponentProps = Omit<ApolloReactComponents.Q
  * @example
  * const { data, loading, error } = usePaginationUserBookmarksQuery({
  *   variables: {
+ *      first: // value for 'first'
+ *      after: // value for 'after'
  *   },
  * });
  */

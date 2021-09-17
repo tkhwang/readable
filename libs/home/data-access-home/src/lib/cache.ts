@@ -6,6 +6,7 @@ const cache = new InMemoryCache({
     Query: {
       fields: {
         paginationBookmarks: relayStylePagination(),
+        paginationUserBookmarks: relayStylePagination(),
       },
     },
   },

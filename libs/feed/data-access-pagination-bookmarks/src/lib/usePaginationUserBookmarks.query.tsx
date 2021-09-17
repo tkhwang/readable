@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import { usePaginationUserBookmarksQuery } from './usePaginationUserBookmarks.query.generated';
 
 const PAGINATION_USER_BOOKMARKS = gql`
-  query PaginationUserBookmarks {
-    paginationUserBookmarks(getPaginationUserBookmarksInput: { first: 10 }) {
+  query PaginationUserBookmarks($first: Int, $after: PaginationCursor) {
+    paginationUserBookmarks(first: $first, after: $after) {
       pageInfo {
         hasNextPage
         endCursor

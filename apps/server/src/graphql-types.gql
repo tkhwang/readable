@@ -121,23 +121,6 @@ type FollowUserWithAuthOutputData {
   followingUser: User!
 }
 
-input GetPaginationUserBookmarksInput {
-  after: PaginationCursor
-  first: Int = 10
-
-  """Pagination userBookmark filter: interest (in user bookmarks)"""
-  interestId: String
-
-  """Pagination bookmarks order field"""
-  order: PaginationOrder = DESC
-
-  """Pagination bookmarks orderBy field"""
-  orderBy: PaginationOrderBy = LATEST
-
-  """Pagination userBookmark filter: tag (in all users bookmarks)"""
-  tagId: String
-}
-
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -229,7 +212,7 @@ type Query {
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
   paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
-  paginationUserBookmarks(getPaginationUserBookmarksInput: GetPaginationUserBookmarksInput!): PaginationUserBookmarks
+  paginationUserBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationUserBookmarks
 }
 
 input SyncGoogleCalendarWithAuthInput {
