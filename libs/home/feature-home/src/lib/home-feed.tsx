@@ -3,7 +3,7 @@ import { useDataAccessFeed } from '@readable/home/data-access-home';
 import { useEffect, useRef } from 'react';
 
 export const HomeFeed = () => {
-  const { entries, pageInfo, fetchMoreFeed } = useDataAccessFeed();
+  const { entries, pageInfo, fetchMoreFeedData } = useDataAccessFeed();
 
   const target = useRef<HTMLDivElement>(null);
 
@@ -17,7 +17,7 @@ export const HomeFeed = () => {
         return;
       }
 
-      fetchMoreFeed();
+      fetchMoreFeedData();
 
       observer.unobserve(entry.target);
       if (target.current) {
@@ -32,42 +32,23 @@ export const HomeFeed = () => {
     }
 
     return () => intersectionObserver && intersectionObserver.disconnect();
-  }, [fetchMoreFeed]);
+  }, [fetchMoreFeedData]);
 
   return (
     <div className="grid grid-cols-1 grid-flow-row sm:grid-cols-2 -my-4 sm:-mx-2">
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-      <div className="mx-2 my-4">
-        <ShadowCard />
-      </div>
-
-      {/* {entries?.map(({ id, cursor, imageUrl }) => {
+      {entries?.map(({ id, cursor, imageUrl, description, siteName, profileImageUrl, tags }) => {
         return (
-          <div key={id} ref={cursor === pageInfo?.endCursor ? target : null}>
-            <Card imageUrl={imageUrl}></Card>
+          <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="mx-2 my-4">
+            <ShadowCard
+              cardImageUrl={imageUrl}
+              description={description}
+              siteName={siteName}
+              profileImageUrl={profileImageUrl}
+              tags={tags}
+            />
           </div>
         );
-      })} */}
+      })}
     </div>
   );
 };

@@ -32,7 +32,7 @@ export type AddInGoogleEventsInput = {
 export enum AuthProviders {
   Facebook = 'Facebook',
   Github = 'Github',
-  Google = 'Google',
+  Google = 'Google'
 }
 
 export type Bookmark = {
@@ -96,6 +96,7 @@ export type CommonOutput = {
   readonly isSuccess: Scalars['Boolean'];
 };
 
+
 export type DeleteBookmarkWithAuthInput = {
   readonly bookmarkId: Scalars['String'];
 };
@@ -150,33 +151,41 @@ export type Mutation = {
   readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
 };
 
+
 export type MutationaddBookmarkInGoogleEventsWithAuthArgs = {
   addInGoogleEventsInput: AddInGoogleEventsInput;
 };
+
 
 export type MutationaddBookmarkWithAuthArgs = {
   addBookMarkWithAuthInput: AddBookMarkWithAuthInput;
 };
 
+
 export type MutationdeleteBookmarkWithAuthArgs = {
   deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput;
 };
+
 
 export type MutationdeleteUserBookmarkWithAuthArgs = {
   deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput;
 };
 
+
 export type MutationfindOrAddInterestWithAuthArgs = {
   findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput;
 };
+
 
 export type MutationfollowUserWithAuthArgs = {
   followUserWithAuthInput: FollowUserWithAuthInput;
 };
 
+
 export type MutationsyncGoogleCalendarWithAuthArgs = {
   syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput;
 };
+
 
 export type MutationunfollowUserWithAuthArgs = {
   unfollowUserWithAuthInput: UnfollowUserWithAuthInput;
@@ -216,16 +225,17 @@ export type PaginationBookmarks = {
   readonly pageInfo: PaginationPageInfo;
 };
 
+
 /** Pagination Order (ASC or DESC) */
 export enum PaginationOrder {
   ASC = 'ASC',
-  DESC = 'DESC',
+  DESC = 'DESC'
 }
 
 /** Pagination OrderBy */
 export enum PaginationOrderBy {
   LATEST = 'LATEST',
-  LIKE_COUNT = 'LIKE_COUNT',
+  LIKE_COUNT = 'LIKE_COUNT'
 }
 
 export type PaginationPageInfo = {
@@ -262,12 +272,14 @@ export type Query = {
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
 };
 
+
 export type QuerypaginationBookmarksArgs = {
   after?: Maybe<Scalars['PaginationCursor']>;
   first?: Maybe<Scalars['Int']>;
   order?: Maybe<PaginationOrder>;
   orderBy?: Maybe<PaginationOrderBy>;
 };
+
 
 export type QuerypaginationUserBookmarksArgs = {
   after?: Maybe<Scalars['PaginationCursor']>;
@@ -370,10 +382,8 @@ export type UserBookmark = {
   readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly id: Scalars['ID'];
   readonly interest: Interest;
-  /** User who read this url (field resolver) */
+  /** User who read this url */
   readonly readers: ReadonlyArray<User>;
-  /** Number of user who read this url (field resolver) */
-  readonly readersCount: Scalars['Float'];
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   /** Tags */
   readonly tags: ReadonlyArray<Tag>;

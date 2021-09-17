@@ -30,6 +30,12 @@ const graphql = gql`
             id
             tag
           }
+          bookmarkers {
+            id
+            name
+            email
+            avatarUrl
+          }
         }
       }
     }
@@ -37,30 +43,41 @@ const graphql = gql`
 `;
 
 export function useDataAccessFeed() {
-  const { data, fetchMore } = usePaginationUserBookmarksOnFeedQuery({
+  const { data: feedData, loading: isFeedDataLoading, fetchMore } = usePaginationUserBookmarksOnFeedQuery({
     variables: {
-      // TODO(Teddy): Fetch more issue...
       first: 5,
-      // first: 30,
     },
   });
 
-  const pageInfo = data?.paginationUserBookmarks?.pageInfo;
+  const pageInfo = feedData?.paginationUserBookmarks?.pageInfo;
+  const edges = feedData?.paginationUserBookmarks?.edges;
 
-  const entries = data?.paginationUserBookmarks?.edges.map(edge => {
-    const { urlInfo } = edge.node;
-    const { id, imageUrl } = urlInfo;
+  const entries = edges?.map(edge => {
+    const urlInfo = {
+      id: edge.node.urlInfo.id,
+      imageUrl: edge.node.urlInfo.imageUrl ?? undefined,
+      description: edge.node.urlInfo.description ?? '',
+      siteName: edge.node.urlInfo.siteName ?? '',
+    };
 
-    return { id, cursor: edge.cursor, imageUrl: imageUrl || '' };
+    const cardOwner = {
+      profileImageUrl: edge.node.bookmarkers[0].avatarUrl ?? undefined,
+    };
+
+    const tags = edge.node.tags.map(tag => {
+      return { id: tag.id, name: tag.tag };
+    });
+
+    return { cursor: edge.cursor, ...urlInfo, ...cardOwner, tags };
   });
 
-  const fetchMoreFeed = () => {
+  const fetchMoreFeedData = () => {
     if (pageInfo?.hasNextPage) {
       fetchMore({
-        variables: { first: 10, after: pageInfo.endCursor },
+        variables: { first: 5, after: pageInfo.endCursor },
       });
     }
   };
 
-  return { entries, pageInfo, fetchMoreFeed };
+  return { entries, pageInfo, fetchMoreFeedData };
 }

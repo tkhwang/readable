@@ -32,17 +32,11 @@ function createApolloClient() {
       typePolicies: {
         Query: {
           fields: {
-            paginationBookmarks: relayStylePagination(),
             paginationUserBookmarks: relayStylePagination(),
           },
         },
       },
     }),
-    defaultOptions: {
-      watchQuery: {
-        fetchPolicy: 'cache-and-network',
-      },
-    },
   });
 }
 
