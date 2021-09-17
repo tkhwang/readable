@@ -321,16 +321,22 @@ type User {
 }
 
 type UserBookmark {
-  """User who bookmarked this url"""
+  """User who bookmarked this url (field resolver)"""
   bookmarkers: [User!]!
+
+  """Number of user who bookmarked this url (field resolver)"""
+  bookmarkersCount: Float!
   createdAt: DateTime!
   deletedAt: DateTime!
   donedAt: DateTime
   id: ID!
   interest: Interest!
 
-  """User who read this url"""
+  """User who read this url (field resolver)"""
   readers: [User!]!
+
+  """Number of user who read this url (field resolver)"""
+  readersCount: Float!
   scheduledAt: DateTime
 
   """Tags"""
