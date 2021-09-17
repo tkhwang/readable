@@ -21,10 +21,11 @@ export class TagsService {
 
     return Promise.all(
       tagsWithNormalizedText.map(async tagWithNormalizedText => {
-        let tagEntity = await this.tagsRepository.findOne({
-          where: { tag: tagWithNormalizedText.tag, normalizedTag: tagWithNormalizedText.normalizedTag },
+        const tagEntities = await this.tagsRepository.find({
+          where: { normalizedTag: tagWithNormalizedText.normalizedTag },
         });
 
+        let tagEntity = (tagEntities ?? []).find(tagEntity => tagEntity.tag === tagWithNormalizedText.tag);
         if (!tagEntity) {
           tagEntity = await this.tagsRepository.save(this.tagsRepository.create(tagWithNormalizedText));
         }
