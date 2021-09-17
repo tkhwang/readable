@@ -14,17 +14,19 @@ const graphql = gql`
   }
 `;
 
-type useMeProps = {
-  redirectTo?: string;
+type useMeType = {
+  redirectTo: string;
 };
 
-export function useMe({ redirectTo }: useMeProps) {
-  const { data: meData, loading: isMeDataLoading, error: isMeDataError } = useMeQuery();
+export function useMe({ redirectTo }: useMeType) {
+  const { data: meData, loading: isMeDataLoading, error: isMeDataError } = useMeQuery({
+    fetchPolicy: 'cache-and-network',
+  });
 
   const router = useRouter();
 
   if (isMeDataError) {
-    router.push(redirectTo ?? '/login');
+    router.push(redirectTo);
   }
 
   return {
