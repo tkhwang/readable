@@ -406,27 +406,6 @@
         }
       }
     },
-    "shared-data-access-user": {
-      "root": "libs/shared/data-access-user",
-      "sourceRoot": "libs/shared/data-access-user/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/data-access-user/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data-access-user"],
-          "options": {
-            "jestConfig": "libs/shared/data-access-user/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "shared-types": {
       "root": "libs/shared/types",
       "sourceRoot": "libs/shared/types/src",
