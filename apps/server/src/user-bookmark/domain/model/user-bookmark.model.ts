@@ -31,9 +31,15 @@ export class UserBookmarkBRFO extends CoreModel {
 
 @ObjectType()
 export class UserBookmark extends UserBookmarkBRFO {
-  @Field(type => [User], { description: 'User who bookmarked this url' })
+  @Field(type => [User], { description: 'User who bookmarked this url (field resolver)' })
   bookmarkers: User[];
 
-  @Field(type => [User], { description: 'User who read this url' })
+  @Field(type => Number, { description: 'Number of user who bookmarked this url (field resolver)' })
+  bookmarkersCount: number;
+
+  @Field(type => [User], { description: 'User who read this url (field resolver)' })
   readers: User[];
+
+  @Field(type => Number, { description: 'Number of user who read this url (field resolver)' })
+  readersCount: number;
 }

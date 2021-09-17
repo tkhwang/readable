@@ -96,6 +96,10 @@ export class UserBookmarkService {
   async getFieldBookmarkers(userBookmark: UserBookmarkBRFO) {
     const userBookmarks = await this.userBookmarkRepository.find({
       where: { urlHash: userBookmark.urlHash, donedAt: IsNull() },
+      take: 5,
+      order: {
+        createdAt: 'DESC',
+      },
     });
     const userIds = (userBookmarks ?? []).map(userBookmark => userBookmark.userId);
 
@@ -103,14 +107,26 @@ export class UserBookmarkService {
     return users ?? [];
   }
 
+  async getFieldBookmarkersCount(userBookmark: UserBookmarkBRFO) {
+    return this.userBookmarkRepository.count({ where: { urlHash: userBookmark.urlHash, donedAt: IsNull() } });
+  }
+
   async getFieldReaders(userBookmark: UserBookmarkBRFO) {
     const userBookmarks = await this.userBookmarkRepository.find({
       where: { urlHash: userBookmark.urlHash, donedAt: Not(IsNull()) },
+      take: 5,
+      order: {
+        createdAt: 'DESC',
+      },
     });
     const userIds = (userBookmarks ?? []).map(userBookmark => userBookmark.userId);
 
     const users = await this.usersRepository.findByIds(userIds);
     return users ?? [];
+  }
+
+  async getFieldReadersCount(userBookmark: UserBookmarkBRFO) {
+    return this.userBookmarkRepository.count({ where: { urlHash: userBookmark.urlHash, donedAt: Not(IsNull()) } });
   }
 
   private async findRecommendedUserBookmarksByTag(urlHash: string, tag: Tag, user: User) {

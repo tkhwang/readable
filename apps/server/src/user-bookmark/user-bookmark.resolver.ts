@@ -59,8 +59,18 @@ export class UserBookmarkResolver {
     return this.userBookmarkService.getFieldBookmarkers(userBookmark);
   }
 
+  @ResolveField('bookmarkersCount', returns => Number)
+  async bookmarkersCount(@Parent() userBookmark: UserBookmarkBRFO) {
+    return this.userBookmarkService.getFieldBookmarkersCount(userBookmark);
+  }
+
   @ResolveField('readers', returns => [User])
   async readers(@Parent() userBookmark: UserBookmarkBRFO) {
     return this.userBookmarkService.getFieldReaders(userBookmark);
+  }
+
+  @ResolveField('readersCount', returns => Number)
+  async readersCount(@Parent() userBookmark: UserBookmarkBRFO) {
+    return this.userBookmarkService.getFieldReadersCount(userBookmark);
   }
 }
