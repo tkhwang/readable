@@ -24,7 +24,7 @@ export class ImageService {
 
       // https://github.com/oliver-moran/jimp/issues/90#issuecomment-408650356
       const boundGetBuffer = promisify(img.getBuffer.bind(image));
-      const buffer = await boundGetBuffer(Jimp.MIME_PNG);
+      const buffer = await boundGetBuffer(Jimp.MIME_JPEG);
 
       const url = await S3.uploadToS3(IMAGE.GENERATED_SCREENSHOT.S3_BUCKET, urlHash, buffer);
       return url;
