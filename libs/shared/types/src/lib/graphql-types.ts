@@ -382,8 +382,10 @@ export type UserBookmark = {
   readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly id: Scalars['ID'];
   readonly interest: Interest;
-  /** User who read this url */
+  /** User who read this url (field resolver) */
   readonly readers: ReadonlyArray<User>;
+  /** Number of user who read this url (field resolver) */
+  readonly readersCount: Scalars['Float'];
   readonly scheduledAt?: Maybe<Scalars['DateTime']>;
   /** Tags */
   readonly tags: ReadonlyArray<Tag>;
