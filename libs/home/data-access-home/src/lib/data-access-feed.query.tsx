@@ -45,7 +45,7 @@ const graphql = gql`
 export function useDataAccessFeed() {
   const { data: feedData, loading: isFeedDataLoading, fetchMore } = usePaginationUserBookmarksOnFeedQuery({
     variables: {
-      first: 5,
+      first: 8,
     },
   });
 
@@ -74,7 +74,7 @@ export function useDataAccessFeed() {
   const fetchMoreFeedData = () => {
     if (pageInfo?.hasNextPage) {
       fetchMore({
-        variables: { first: 5, after: pageInfo.endCursor },
+        variables: { first: 8, after: pageInfo.endCursor },
       });
     }
   };
