@@ -1,13 +1,15 @@
 import React from 'react';
 import { FeatureHome } from '@readable/home/feature-home';
-import { AuthRoute } from '@readable/shared/data-access-auth';
+import { useMe } from '@readable/shared/data-access-me';
 
-function Index() {
-  return (
-    <AuthRoute redirectPath={'/welcome'}>
-      <FeatureHome></FeatureHome>
-    </AuthRoute>
-  );
+function Home() {
+  const { me, isMeDataLoading } = useMe({ redirectTo: '/login' });
+
+  if (!me || isMeDataLoading) {
+    return <div>loading...</div>;
+  }
+
+  return <FeatureHome></FeatureHome>;
 }
 
-export default Index;
+export default Home;

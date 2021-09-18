@@ -1,1 +1,1 @@
-export { useMeViewModel } from './lib/useMeViewModel.query';
+export { useMe } from './lib/useMe.query';

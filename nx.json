@@ -61,19 +61,13 @@
     "server": {
       "tags": []
     },
-    "shared-data-access-apollo": {
-      "tags": ["scope:client-shared"]
-    },
-    "shared-data-access-auth": {
-      "tags": ["scope:client-shared"]
-    },
     "shared-data-access-me": {
       "tags": ["scope:client-shared"]
     },
-    "shared-data-access-user": {
+    "shared-types": {
       "tags": ["scope:client-shared"]
     },
-    "shared-types": {
+    "shared-util-apollo": {
       "tags": ["scope:client-shared"]
     },
     "shared-util-auth": {

@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: ['./apps/client/**/*.{js,ts,jsx,tsx}', './libs/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -36,6 +38,7 @@ module.exports = {
           800: '#285E61',
           900: '#234E52',
         },
+        lime: colors.lime,
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.16)',
@@ -48,6 +51,8 @@ module.exports = {
         inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.04)',
         outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
         none: 'none',
+        'offset-black': '4px 4px black',
+        'offset-lime': '2px 2px lime',
       },
       spacing: {
         '9/16': '56.25%',
@@ -129,5 +134,5 @@ module.exports = {
     boxShadow: ['responsive', 'hover', 'focus', 'focus-within'],
     opacity: ['responsive', 'hover', 'focus', 'group-hover'],
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
 };

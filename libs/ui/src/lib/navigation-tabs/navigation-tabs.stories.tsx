@@ -7,4 +7,19 @@ export default {
 } as Meta;
 
 const Template: Story<NavigationTabsProps> = args => <NavigationTabs {...args} />;
-export const Default = Template.bind({});
+
+export const Border = Template.bind({});
+
+Border.parameters = {
+  nextRouter: {
+    path: '/',
+  },
+};
+
+Border.args = {
+  tabs: [
+    { href: '/', tabName: 'Overview' },
+    { href: '/', tabName: 'Collections' },
+    { href: '/', tabName: 'Schedule' },
+  ],
+};

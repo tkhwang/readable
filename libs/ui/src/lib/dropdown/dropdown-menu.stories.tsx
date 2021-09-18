@@ -15,6 +15,7 @@ import {
   UserIcon as UserSolidIcon,
   UserRemoveIcon as UserRemoveSolidIcon,
 } from '@heroicons/react/solid';
+import profileImage from '../../../assets/Fernando_Pidrilio.svg';
 
 export default {
   title: 'Dropdown/DropdownMenu',
@@ -102,5 +103,5 @@ const Template: Story<DropdownMenuProps> = args => (
 export const Default = Template.bind({});
 
 Default.args = {
-  renderMenuButton: (props: AvatarProps) => <Avatar {...props} />,
+  renderMenuButton: () => <Avatar profileImage={profileImage} />,
 };

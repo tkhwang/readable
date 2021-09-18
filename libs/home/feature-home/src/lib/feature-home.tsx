@@ -5,17 +5,32 @@ import { HomeFeed } from './home-feed';
 export const FeatureHome = () => {
   return (
     <>
-      <HomeHeader />
-      <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
-        <HomeSidebar></HomeSidebar>
-        <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
-          <h1 className="text-xl md:text-2xl mb-4 font-bold" id="home">
-            All activity
-          </h1>
-          <HomeFeed />
-        </main>
-      </div>
-      <div className="w-full h-48 bg-gray-300"></div>
+      <header className="bg-gray-800">
+        <HomeHeader />
+      </header>
+      <main className="min-h-screen flex bg-gray-800">
+        <aside className="max-w-sm p-8 w-1/6 hidden sm:block">
+          <div className="w-full h-full min-w-max text-white font-semibold">
+            <HomeSidebar />
+          </div>
+        </aside>
+
+        <section className="p-8 flex w-full">
+          <article className="w-full max-w-screen-md">
+            <HomeFeed />
+          </article>
+
+          <aside className="pl-6 w-2/3 hidden lg:block max-w-sm">
+            <div className="w-full h-full">
+              <div className="w-full h-52 bg-black"></div>
+              <div className="w-full h-96 mt-3 bg-black"></div>
+            </div>
+          </aside>
+        </section>
+      </main>
+      <footer className="p-6 bg-gray-800">
+        <div className="h-20 bg-gray-700"></div>
+      </footer>
     </>
   );
 };

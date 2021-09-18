@@ -1,32 +1,36 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type NavigationTabsProps = {};
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import Link from 'next/link';
+import { useState } from 'react';
 
-export function NavigationTabs() {
+type Tabs = {
+  href: string;
+  tabName: string;
+};
+
+export type NavigationTabsProps = {
+  tabs: Tabs[];
+};
+
+export function NavigationTabs({ tabs }: NavigationTabsProps) {
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
   return (
-    <ul className="flex border-b">
-      <li className="-mb-px mr-1">
-        <a
-          className="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"
-          href="#"
-        >
-          Active
-        </a>
-      </li>
-      <li className="mr-1">
-        <a className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#">
-          Tab
-        </a>
-      </li>
-      <li className="mr-1">
-        <a className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#">
-          Tab
-        </a>
-      </li>
-      <li className="mr-1">
-        <a className="bg-white inline-block py-2 px-4 text-gray-400 font-semibold" href="#">
-          Tab
-        </a>
-      </li>
+    <ul className="flex">
+      {tabs.map(({ href, tabName }, index) => {
+        return (
+          <li key={tabName} className="-mb-px mr-1">
+            <Link href={href}>
+              <a
+                className={`bg-white inline-block ${
+                  index === selectedTabIndex && 'border-l border-t border-r rounded-t'
+                } py-4 px-4`}
+              >
+                {tabName}
+              </a>
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }

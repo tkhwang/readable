@@ -1,17 +1,15 @@
-import { Card } from '@readable/ui';
+import { ShadowCard } from '@readable/ui';
 import { useDataAccessFeed } from '@readable/home/data-access-home';
 import { useEffect, useRef } from 'react';
 
 export const HomeFeed = () => {
-  const { entries, pageInfo, fetchMoreFeed } = useDataAccessFeed();
+  const { entries, pageInfo, fetchMoreFeedData } = useDataAccessFeed();
 
-  const viewport = useRef<HTMLDivElement>(null);
   const target = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const options: IntersectionObserverInit = {
-      root: viewport.current,
-      threshold: 0,
+      threshold: 0.5,
     };
 
     const handleIntersection = ([entry]: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -19,7 +17,7 @@ export const HomeFeed = () => {
         return;
       }
 
-      fetchMoreFeed();
+      fetchMoreFeedData();
 
       observer.unobserve(entry.target);
       if (target.current) {
@@ -34,19 +32,23 @@ export const HomeFeed = () => {
     }
 
     return () => intersectionObserver && intersectionObserver.disconnect();
-  }, [fetchMoreFeed]);
+  }, [fetchMoreFeedData]);
 
   return (
-    <>
-      <div ref={viewport} className="border-8 h-96 overflow-scroll">
-        {entries?.map(({ id, cursor, imageUrl }) => {
-          return (
-            <div key={id} ref={cursor === pageInfo?.endCursor ? target : null}>
-              <Card imageUrl={imageUrl || ''}></Card>
-            </div>
-          );
-        })}
-      </div>
-    </>
+    <div className="grid grid-cols-1 grid-flow-row sm:grid-cols-2 -my-4 sm:-mx-2">
+      {entries?.map(({ id, cursor, imageUrl, description, siteName, profileImageUrl, tags }) => {
+        return (
+          <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="mx-2 my-4">
+            <ShadowCard
+              cardImageUrl={imageUrl}
+              description={description}
+              siteName={siteName}
+              profileImageUrl={profileImageUrl}
+              tags={tags}
+            />
+          </div>
+        );
+      })}
+    </div>
   );
 };
