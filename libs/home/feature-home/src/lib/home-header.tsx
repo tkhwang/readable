@@ -20,7 +20,7 @@ export const HomeHeader = () => {
         </div>
 
         <div className="pl-6 max-w-sm w-full">
-          <div className="w-full flex space-x-2 justify-end">
+          <div className="w-full flex space-x-4 justify-end">
             <div className="rounded-3xl bg-gray-700 p-3 items-center h-10 flex-1 hidden sm:flex">
               <input className="bg-gray-700 outline-none w-full" />
               <SearchIcon className="w-5 h-5 text-white" />
