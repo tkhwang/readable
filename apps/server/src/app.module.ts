@@ -6,11 +6,8 @@ import { UsersModule } from '@readable/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
-import { BookmarksModule } from './bookmarks/bookmarks.module';
-import { Bookmark } from './bookmarks/infrastructures/typeorm/entities/bookmark.entity';
 import { OAuthUser } from './users/infrastructures/typeorm/entities/oauthUser.entity';
 import { User } from './users/infrastructures/typeorm/entities/user.entity';
-import { BookmarkUser } from './bookmarks/infrastructures/typeorm/entities/bookmarkUser.entity';
 import { PaginationModule } from './pagination/pagination.module';
 import { Tag } from './tags/infrastructures/typeorm/entities/tags.entity';
 import { InterestsModule } from './interests/interests.module';
@@ -60,14 +57,13 @@ import { TagsModule } from './tags/tags.module';
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: true,
-      entities: [OAuthUser, User, Bookmark, BookmarkUser, Tag, Interest, UserFollow, UrlInfo, UserBookmark],
+      entities: [OAuthUser, User, Tag, Interest, UserFollow, UrlInfo, UserBookmark],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB
     // MongooseModule.forRoot(process.env.READABLE_MONGODB_URL),
     UsersModule,
     AuthModule,
-    BookmarksModule,
     PaginationModule,
     InterestsModule,
     ImageModule,
