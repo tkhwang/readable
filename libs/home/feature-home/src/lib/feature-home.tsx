@@ -9,18 +9,18 @@ export const FeatureHome = () => {
         <HomeHeader />
       </header>
       <main className="min-h-screen flex bg-gray-800">
-        <aside className="max-w-sm p-8 w-1/6 hidden sm:block">
+        <aside className="max-w-sm pl-16 w-1/5 hidden sm:block">
           <div className="w-full h-full min-w-max text-white font-semibold">
             <HomeSidebar />
           </div>
         </aside>
 
-        <section className="p-8 flex w-full">
-          <article className="w-full max-w-screen-md">
+        <section className="px-8 flex w-full">
+          <article className="max-w-4xl">
             <HomeFeed />
           </article>
 
-          <aside className="pl-6 w-2/3 hidden lg:block max-w-sm">
+          <aside className="pl-6 hidden w-full lg:block max-w-sm">
             <div className="w-full h-full">
               <div className="w-full h-52 bg-black"></div>
               <div className="w-full h-96 mt-3 bg-black"></div>
