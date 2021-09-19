@@ -36,7 +36,7 @@ export const HomeFeed = () => {
 
   return (
     <div className="grid grid-cols-1 grid-flow-row sm:grid-cols-2 -my-4 sm:-mx-2">
-      {entries?.map(({ id, cursor, imageUrl, description, siteName, profileImageUrl, tags }) => {
+      {entries?.map(({ id, cursor, imageUrl, description, siteName, profileImageUrl, tags }, index) => {
         return (
           <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="mx-2 my-4">
             <ShadowCard
@@ -45,6 +45,7 @@ export const HomeFeed = () => {
               siteName={siteName}
               profileImageUrl={profileImageUrl}
               tags={tags}
+              index={index}
             />
           </div>
         );
