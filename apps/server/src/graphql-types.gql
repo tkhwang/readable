@@ -2,82 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AddBookMarkWithAuthInput {
-  """User interest which includes bookmarks."""
-  interest: [String!]!
-
-  """Tag ids"""
-  tags: [String!]
-  url: String!
-}
-
-input AddInGoogleEventsInput {
-  """Bookmarks for adding in Google calendar events"""
-  bookmarks: [BookmarkInput!]!
-}
-
 """Auth providers"""
 enum AuthProviders {
   Facebook
   Github
   Google
-}
-
-type Bookmark {
-  collectors: [User!]
-  createdAt: DateTime!
-  deletedAt: DateTime!
-  description: String!
-  finishers: [User!]
-  generatedImage: String!
-  howMany: Int!
-  id: ID!
-  imageUrl: String!
-  interest: Interest!
-
-  """User interest which includes bookmarks."""
-  interestId: [String!]!
-  schedulers: [User!]
-  siteName: String!
-  summary: String
-
-  """tag ids"""
-  tagIds: [String!]
-  tags: [Tag!]!
-  title: String!
-  type: String!
-  updatedAt: DateTime!
-  url: String!
-  urlHash: String!
-}
-
-type BookmarkBRFO {
-  createdAt: DateTime!
-  deletedAt: DateTime!
-  description: String!
-  generatedImage: String!
-  howMany: Int!
-  id: ID!
-  imageUrl: String!
-
-  """User interest which includes bookmarks."""
-  interestId: [String!]!
-  siteName: String!
-  summary: String
-
-  """tag ids"""
-  tagIds: [String!]
-  title: String!
-  type: String!
-  updatedAt: DateTime!
-  url: String!
-  urlHash: String!
-}
-
-input BookmarkInput {
-  scheduledAt: DateTime!
-  title: String!
-  url: String!
 }
 
 type CommonOutput {
@@ -89,10 +18,6 @@ type CommonOutput {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-input DeleteBookmarkWithAuthInput {
-  bookmarkId: String!
-}
 
 input DeleteUserBookmarkWithAuthInput {
   userBookmarkId: String!
@@ -131,9 +56,6 @@ type Interest {
 }
 
 type Mutation {
-  addBookmarkInGoogleEventsWithAuth(addInGoogleEventsInput: AddInGoogleEventsInput!): CommonOutput!
-  addBookmarkWithAuth(addBookMarkWithAuthInput: AddBookMarkWithAuthInput!): Bookmark!
-  deleteBookmarkWithAuth(deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput!): CommonOutput!
   deleteUserBookmarkWithAuth(deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
@@ -154,21 +76,6 @@ type OAuthUser {
   refreshToken: String
   updatedAt: DateTime!
   user: User!
-}
-
-type PaginationBookmarkBRFOEdge {
-  cursor: PaginationCursor!
-  node: BookmarkBRFO!
-}
-
-type PaginationBookmarkEdge {
-  cursor: PaginationCursor!
-  node: Bookmark!
-}
-
-type PaginationBookmarks {
-  edges: [PaginationBookmarkEdge!]!
-  pageInfo: PaginationPageInfo!
 }
 
 """Relay Style Pagination Curosr"""
@@ -208,10 +115,8 @@ type PaginationUserBookmarks {
 
 type Query {
   me: User!
-  myBookmarks: [Bookmark!]!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
-  paginationBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationBookmarks
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationUserBookmarks
 }
 

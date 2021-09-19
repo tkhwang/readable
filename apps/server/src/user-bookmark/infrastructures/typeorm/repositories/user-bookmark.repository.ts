@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
-import { PaginationWrongCursorExceptoin } from '@readable/pagination/paginationBookmarks/domain/errors/paginationBookmarks.errors';
 import { GetPaginationUserBookmarksInput } from '@readable/pagination/paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
+import { PaginationWrongCursorExceptoin } from '@readable/pagination/paginationUserBookmarks/domain/errors/paginationUserBookmarks.errors';
 import { PaginationUserBookmarksFilter } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.filter';
 import { User } from '@readable/users/domain/models/user.model';
 import { EntityRepository, Repository } from 'typeorm';
