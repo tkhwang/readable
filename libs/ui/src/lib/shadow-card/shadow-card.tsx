@@ -10,12 +10,16 @@ export interface ShadowCardProps {
   siteName: string;
   profileImageUrl?: string;
   tags?: { id: string; name: string }[];
+  index: number;
 }
 
-export function ShadowCard({ cardImageUrl, description, siteName, profileImageUrl, tags }: ShadowCardProps) {
+export function ShadowCard({ cardImageUrl, description, siteName, profileImageUrl, tags, index }: ShadowCardProps) {
   const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
+
+  const colors = ['gray', 'red', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'];
+  const randomColor = colors[index % 9];
 
   return (
     <div className="shadow-offset-black overflow-hidden">
@@ -38,7 +42,7 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
         </div>
       </div>
       {/* Contents */}
-      <div className="p-4 opacity-90">
+      <div className={`p-4 opacity-90 bg-${randomColor}-400`}>
         <div className="flex -mx-2">
           <div className="mx-2 flex-1">
             <div className="text-white font-light text-xs">UX Design</div>
@@ -68,7 +72,7 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
         </div>
       </div>
       {/* Footer */}
-      <div className="py-3 px-4 bg-red-400 flex flex-wrap justify-between items-center text-white text-xs">
+      <div className={`py-3 px-4 bg-${randomColor}-400 flex flex-wrap justify-between items-center text-white text-xs`}>
         <div className="flex items-center">
           <div className="border-2 rounded-md w-5 h-5" />
           <div className="ml-2">{siteName}</div>
