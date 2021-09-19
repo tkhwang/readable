@@ -46,7 +46,7 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
         <div className="flex -mx-2">
           <div className="mx-2 flex-1">
             <div className="text-white font-light text-xs">UX Design</div>
-            <div className="text-white font-bold break-all overflow-hidden line-clamp-3">{description}</div>
+            <div className="text-white font-bold break-word overflow-hidden line-clamp-3">{description}</div>
             <div className="flex space-x-2">
               {tags?.map(({ id, name }) => (
                 <div key={id} className="text-white text-xs mt-2">
