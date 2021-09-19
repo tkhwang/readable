@@ -2,6 +2,7 @@ import CardImage from '../../../assets/card_sample.svg';
 import { BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
 import { BookmarkIcon as BookmarkOutlineIcon, BadgeCheckIcon } from '@heroicons/react/outline';
 import Avatar from '../avatar/avatar';
+import Image, { ImageLoader, ImageLoaderProps } from 'next/image';
 
 export interface ShadowCardProps {
   cardImageUrl?: string;
@@ -12,6 +13,10 @@ export interface ShadowCardProps {
 }
 
 export function ShadowCard({ cardImageUrl, description, siteName, profileImageUrl, tags }: ShadowCardProps) {
+  const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
+
   return (
     <div className="shadow-offset-black overflow-hidden">
       {/* Header */}
@@ -34,10 +39,10 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
       </div>
       {/* Contents */}
       <div className="p-4 opacity-90">
-        <div className="flex justify-between -mx-2">
+        <div className="flex -mx-2">
           <div className="mx-2 flex-1">
             <div className="text-white font-light text-xs">UX Design</div>
-            <div className="text-white font-bold break-words overflow-hidden line-clamp-3">{description}</div>
+            <div className="text-white font-bold break-all overflow-hidden line-clamp-3">{description}</div>
             <div className="flex space-x-2">
               {tags?.map(({ id, name }) => (
                 <div key={id} className="text-white text-xs mt-2">
@@ -46,9 +51,19 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
               ))}
             </div>
           </div>
-          <div className="flex-1 mx-2 overflow-hidden rounded-sm w-44 h-44">
-            {/* TODO(zlrlo): default 이미지 작업 필요함 */}
-            <img src={cardImageUrl ?? CardImage} alt="" className="object-cover w-full h-full"></img>
+          <div className="flex-1 mx-2 flex justify-end">
+            <div className="overflow-hidden rounded-sm">
+              {/* TODO(zlrlo): default 이미지 작업 필요함 */}
+              <Image
+                loader={myLoader}
+                src={cardImageUrl ?? CardImage}
+                alt=""
+                width={176}
+                height={176}
+                quality={100}
+                objectFit="cover"
+              />
+            </div>
           </div>
         </div>
       </div>
