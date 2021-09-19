@@ -5,10 +5,10 @@ import { HomeFeed } from './home-feed';
 export const FeatureHome = () => {
   return (
     <>
-      <header className="bg-gray-800">
+      <header className="bg-gray-800 fixed w-full z-10">
         <HomeHeader />
       </header>
-      <main className="min-h-screen flex bg-gray-800">
+      <main className="min-h-screen flex bg-gray-800 pt-28">
         <aside className="max-w-sm pl-16 w-1/5 hidden sm:block">
           <div className="w-full h-full min-w-max text-white font-semibold">
             <HomeSidebar />
