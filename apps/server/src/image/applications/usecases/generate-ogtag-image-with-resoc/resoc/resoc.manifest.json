@@ -1,0 +1,24 @@
+{
+  "partials": {
+    "content": "./content.html.mustache",
+    "styles": "./styles.css.mustache"
+  },
+  "parameters": [
+    {
+      "name": "title",
+      "type": "text",
+      "demoValue": "Making the most boring website ever with TypeScript, NestJs, React and others."
+    },
+    {
+      "name": "siteName",
+      "type": "text",
+      "demoValue": "dev.to"
+    },
+    {
+      "label": "Image",
+      "name": "imageUrl",
+      "type": "imageUrl",
+      "demoValue": ""
+    }
+  ]
+}

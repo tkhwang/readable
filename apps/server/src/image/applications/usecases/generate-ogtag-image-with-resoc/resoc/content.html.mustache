@@ -1,0 +1,27 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+
+<div class="wrapper">
+  <main>
+    <div class="project">
+      <p class="title">
+        {{ title }}
+      </p>
+      <p class="description">
+        {{ siteName }}
+      </p>
+    </div>
+    <div class="pic">
+      <img src="{{ imageUrl }}" />
+    </div>
+  </main>
+</div>
+
+<script>
+  var formatter = Intl.NumberFormat('en', { notation: 'compact' });
+  var data = document.querySelectorAll(".metric-data");
+  for (var i = 0; i < data.length; i++) {
+    data[i].innerHTML = formatter.format(data[i].innerHTML);
+  }
+</script>

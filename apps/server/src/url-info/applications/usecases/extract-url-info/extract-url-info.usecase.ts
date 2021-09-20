@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
+import { GenerateOgtagImageWithResocInput } from '@readable/image/applications/usecases/generate-ogtag-image-with-resoc/generate-ogtag-image-with-resoc.input';
+import { GenerateOgtagImageWithResocUseCase } from '@readable/image/applications/usecases/generate-ogtag-image-with-resoc/generate-ogtag-image-with-resoc.usecase';
 import { ImageService } from '@readable/image/image.service';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { InterestsService } from '@readable/interests/interests.service';
@@ -14,6 +16,7 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
     private readonly interestsService: InterestsService,
+    private readonly generateOgtagImageWithResocUseCase: GenerateOgtagImageWithResocUseCase,
     @InjectRepository(InterestsRepository) private readonly interestsRepository: InterestsRepository
   ) {}
 
@@ -46,7 +49,8 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
     urlInfo.urlHash = urlHash;
     urlInfo['howMany'] = howMany;
     if (!urlInfo.imageUrl) {
-      urlInfo.imageUrl = await this.imageService.getImageUrl(urlInfo);
+      const command = new GenerateOgtagImageWithResocInput(urlInfo);
+      urlInfo.imageUrl = await this.generateOgtagImageWithResocUseCase.execute(command);
     }
 
     return {

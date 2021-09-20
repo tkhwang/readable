@@ -9,6 +9,8 @@ import { ImageService } from '@readable/image/image.service';
 import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
 import { InterestsService } from '@readable/interests/interests.service';
 import { TagsService } from '@readable/tags/tags.service';
+import { GenerateOgtagImageWithResocInput } from '@readable/image/applications/usecases/generate-ogtag-image-with-resoc/generate-ogtag-image-with-resoc.input';
+import { GenerateOgtagImageWithResocUseCase } from '@readable/image/applications/usecases/generate-ogtag-image-with-resoc/generate-ogtag-image-with-resoc.usecase';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
@@ -17,6 +19,7 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     private readonly imageService: ImageService,
     private readonly interestsService: InterestsService,
     private readonly tagsService: TagsService,
+    private readonly generateOgtagImageWithResocUseCase: GenerateOgtagImageWithResocUseCase,
     @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
   ) {}
 
@@ -52,7 +55,8 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
 
     const urlInfo = await this.urlInfoService.extractSiteInformation(url);
     if (!urlInfo.imageUrl) {
-      urlInfo.imageUrl = await this.imageService.getImageUrl(urlInfo);
+      const command = new GenerateOgtagImageWithResocInput(urlInfo);
+      urlInfo.imageUrl = await this.generateOgtagImageWithResocUseCase.execute(command);
     }
     urlInfo.urlHash = urlHash;
 
