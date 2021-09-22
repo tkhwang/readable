@@ -37,7 +37,6 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.20",
-    "@elastic/elasticsearch": "^7.14.1",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
     "@nestjs/common": "^7.0.0",
@@ -58,7 +57,6 @@
     "@types/passport-jwt": "^3.0.5",
     "@types/passport-local": "^1.0.33",
     "apollo-server-express": "^2.25.1",
-    "aws-elasticsearch-js": "^1.0.3",
     "aws-sdk": "^2.987.0",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.10",
