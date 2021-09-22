@@ -38,7 +38,6 @@ import { SearchModule } from './search/search.module';
         TOKEN_SECRET: Joi.string().required(),
         NLP_HOST: Joi.string().required(),
         NLP_SERVER_SECRET: Joi.string().required(),
-        AWS_REGION: Joi.string().required(),
         AWS_S3_BUCKET: Joi.string().required(),
         AWS_S3_URL_PREFIX: Joi.string().required(),
         AWS_IAM_USER_KEY: Joi.string().required(),
