@@ -9,9 +9,8 @@ export const oauthGoogleCredentials = JSON.parse(process.env.OAUTH_GOOGLE_CREDEN
 
 export const awsCredentials = {
   ELASTICSEARCH: {
-    REGION: process.env.AWS_REGION || '',
     ENDPOINT: process.env.AWS_ELASTICSEARCH_ENDPOINT || '',
-    ACCESS_KEY: process.env.AWS_ELASTICSEARCH_ACCESS_KEY || '',
-    SECRET_KEY: process.env.AWS_ELASTICSEARCH_SECRET_KEY || '',
+    BASIC_AUTH_TOKEN:
+      `${process.env.AWS_ELASTICSEARCH_BASIC_AUTH_ID}:${process.env.AWS_ELASTICSEARCH_BASIC_AUTH_PW}` || '',
   },
 };

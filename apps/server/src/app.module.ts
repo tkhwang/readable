@@ -43,8 +43,9 @@ import { SearchModule } from './search/search.module';
         AWS_S3_URL_PREFIX: Joi.string().required(),
         AWS_IAM_USER_KEY: Joi.string().required(),
         AWS_IAM_USER_SECRET: Joi.string().required(),
-        AWS_ELASTICSEARCH_ACCESS_KEY: Joi.string().required(),
-        AWS_ELASTICSEARCH_SECRET_KEY: Joi.string().required(),
+        AWS_ELASTICSEARCH_ENDPOINT: Joi.string().required(),
+        AWS_ELASTICSEARCH_BASIC_AUTH_ID: Joi.string().required(),
+        AWS_ELASTICSEARCH_BASIC_AUTH_PW: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot({

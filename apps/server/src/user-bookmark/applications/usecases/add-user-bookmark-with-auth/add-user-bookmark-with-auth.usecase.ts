@@ -9,6 +9,7 @@ import { ImageService } from '@readable/image/image.service';
 import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
 import { InterestsService } from '@readable/interests/interests.service';
 import { TagsService } from '@readable/tags/tags.service';
+import { SearchService } from '@readable/search/search.service';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
@@ -17,6 +18,7 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     private readonly imageService: ImageService,
     private readonly interestsService: InterestsService,
     private readonly tagsService: TagsService,
+    private readonly searchService: SearchService,
     @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
   ) {}
 
@@ -57,7 +59,11 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     urlInfo.urlHash = urlHash;
 
     const newUrlInfo = await this.urlInfoRepository.save(this.urlInfoRepository.create(urlInfo));
-    const userBookmark = await this.userBookmarkService.upsertUserBookmark(requestUser, newUrlInfo, interest, tags);
+
+    const [userBookmark] = await Promise.all([
+      this.userBookmarkService.upsertUserBookmark(requestUser, newUrlInfo, interest, tags),
+      this.searchService.indexDocument(newUrlInfo),
+    ]);
 
     return {
       userBookmark,
