@@ -6,3 +6,12 @@ export const endpoints = {
 };
 
 export const oauthGoogleCredentials = JSON.parse(process.env.OAUTH_GOOGLE_CREDENTIALS ?? '');
+
+export const awsCredentials = {
+  ELASTICSEARCH: {
+    REGION: process.env.AWS_REGION || '',
+    ENDPOINT: process.env.AWS_ELASTICSEARCH_ENDPOINT || '',
+    ACCESS_KEY: process.env.AWS_ELASTICSEARCH_ACCESS_KEY || '',
+    SECRET_KEY: process.env.AWS_ELASTICSEARCH_SECRET_KEY || '',
+  },
+};
