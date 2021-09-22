@@ -19,6 +19,7 @@ import { UserBookmarkModule } from './user-bookmark/user-bookmark.module';
 import { UrlInfo } from './url-info/infrastructures/typeorm/entities/url-info.entity';
 import { UserBookmark } from './user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 import { TagsModule } from './tags/tags.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -37,10 +38,13 @@ import { TagsModule } from './tags/tags.module';
         TOKEN_SECRET: Joi.string().required(),
         NLP_HOST: Joi.string().required(),
         NLP_SERVER_SECRET: Joi.string().required(),
+        AWS_REGION: Joi.string().required(),
         AWS_S3_BUCKET: Joi.string().required(),
         AWS_S3_URL_PREFIX: Joi.string().required(),
         AWS_IAM_USER_KEY: Joi.string().required(),
         AWS_IAM_USER_SECRET: Joi.string().required(),
+        AWS_ELASTICSEARCH_ACCESS_KEY: Joi.string().required(),
+        AWS_ELASTICSEARCH_SECRET_KEY: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot({
@@ -70,6 +74,7 @@ import { TagsModule } from './tags/tags.module';
     UserBookmarkModule,
     TagsModule,
     UrlInfoModule,
+    SearchModule,
   ],
   controllers: [],
   providers: [],
