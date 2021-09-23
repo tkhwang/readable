@@ -115,11 +115,28 @@ module.exports = {
       },
       animation: {
         float: 'float 3s ease-in-out infinite',
+        bigBounce: 'bigBounce 500ms alternate infinite ease',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5%)' },
+        },
+        bigBounce: {
+          '0%': {
+            top: '30px',
+            height: '5px',
+            borderRadius: '60px 60px 20px 20px',
+            transform: 'scaleX(2)',
+          },
+          '35%': {
+            height: '15px',
+            borderRadius: '50%',
+            transform: 'scaleX(1)',
+          },
+          '100%': {
+            top: '0',
+          },
         },
       },
       zIndex: {
