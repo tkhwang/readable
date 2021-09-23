@@ -34,24 +34,24 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     }
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
-      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
       .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
 
     if (normalizedTag) {
-      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
+      queryBuilder.leftJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
         normalizedTag,
       });
     } else {
-      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tags');
+      queryBuilder.leftJoinAndSelect('userBookmark.tags', 'tags');
     }
 
     if (interestId) {
-      queryBuilder.innerJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
+      queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
         interestId,
       });
       queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
     } else {
-      queryBuilder.innerJoinAndSelect('userBookmark.interest', 'interest');
+      queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest');
     }
 
     queryBuilder.limit(first + 1).orderBy('userBookmark.createdAt', 'DESC');
