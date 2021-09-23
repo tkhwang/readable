@@ -11,9 +11,18 @@ export interface ShadowCardProps {
   profileImageUrl?: string;
   tags?: { id: string; name: string }[];
   index: number;
+  title: string;
 }
 
-export function ShadowCard({ cardImageUrl, description, siteName, profileImageUrl, tags, index }: ShadowCardProps) {
+export function ShadowCard({
+  cardImageUrl,
+  description,
+  siteName,
+  profileImageUrl,
+  tags,
+  index,
+  title,
+}: ShadowCardProps) {
   const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -22,7 +31,7 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
   const randomNumber = index % COLOR_NUMBER;
 
   return (
-    <div className="shadow-offset-black overflow-hidden">
+    <div className="shadow-offset-black overflow-hidden h-full flex flex-col">
       {/* Header */}
       <div className="flex p-4 bg-gray-900 justify-between items-center">
         <div className="flex items-center">
@@ -43,17 +52,19 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
       </div>
       {/* Contents */}
       <div
-        className={`p-4 opacity-90 ${randomNumber === 0 && 'bg-gray-400'} ${randomNumber === 1 && 'bg-red-400'} ${
-          randomNumber === 2 && 'bg-yellow-400'
-        } ${randomNumber === 3 && 'bg-green-400'} ${randomNumber === 4 && 'bg-blue-400'} ${
-          randomNumber === 5 && 'bg-indigo-400'
-        } ${randomNumber === 6 && 'bg-purple-400'} ${randomNumber === 7 && 'bg-pink-400'}`}
+        className={`p-4 opacity-90 flex-1 ${randomNumber === 0 && 'bg-gray-400'} ${
+          randomNumber === 1 && 'bg-red-400'
+        } ${randomNumber === 2 && 'bg-yellow-400'} ${randomNumber === 3 && 'bg-green-400'} ${
+          randomNumber === 4 && 'bg-blue-400'
+        } ${randomNumber === 5 && 'bg-indigo-400'} ${randomNumber === 6 && 'bg-purple-400'} ${
+          randomNumber === 7 && 'bg-pink-400'
+        }`}
       >
         <div className="flex -mx-2">
           {/* 내용 영역 */}
           <div className="w-3/5 mx-2">
-            <div className="text-white font-light text-xs">UX Design</div>
-            <div className="text-white font-bold break-word overflow-hidden line-clamp-3 mb-2">{description}</div>
+            <div className="font-bold break-word">{title}</div>
+            <div className="text-white text-sm break-word overflow-hidden line-clamp-2 mb-2">{description}</div>
             <div className="flex flex-wrap">
               {tags?.map(({ id, name }) => (
                 <div key={id} className="text-white text-xs px-0.5">

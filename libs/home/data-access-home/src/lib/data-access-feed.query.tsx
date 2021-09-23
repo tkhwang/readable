@@ -58,6 +58,7 @@ export function useDataAccessFeed() {
       imageUrl: edge.node.urlInfo.imageUrl ?? undefined,
       description: edge.node.urlInfo.description ?? '',
       siteName: edge.node.urlInfo.siteName ?? '',
+      title: edge.node.urlInfo.title ?? '',
     };
 
     const cardOwner = {
