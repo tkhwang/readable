@@ -2,7 +2,7 @@ import CardImage from '../../../assets/card_sample.svg';
 import { BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
 import { BookmarkIcon as BookmarkOutlineIcon, BadgeCheckIcon } from '@heroicons/react/outline';
 import Avatar from '../avatar/avatar';
-import Image, { ImageLoader, ImageLoaderProps } from 'next/image';
+import Image, { ImageLoaderProps } from 'next/image';
 
 export interface ShadowCardProps {
   cardImageUrl?: string;
@@ -44,17 +44,19 @@ export function ShadowCard({ cardImageUrl, description, siteName, profileImageUr
       {/* Contents */}
       <div className={`p-4 opacity-90 ${bgColor}`}>
         <div className="flex -mx-2">
-          <div className="mx-2 flex-1">
+          {/* 내용 영역 */}
+          <div className="w-3/5 mx-2">
             <div className="text-white font-light text-xs">UX Design</div>
-            <div className="text-white font-bold break-word overflow-hidden line-clamp-3">{description}</div>
-            <div className="flex space-x-2">
+            <div className="text-white font-bold break-word overflow-hidden line-clamp-3 mb-2">{description}</div>
+            <div className="flex flex-wrap">
               {tags?.map(({ id, name }) => (
-                <div key={id} className="text-white text-xs mt-2">
+                <div key={id} className="text-white text-xs px-0.5">
                   #{name}
                 </div>
               ))}
             </div>
           </div>
+          {/* 이미지 영역 */}
           <div className="flex-1 mx-2 flex justify-end">
             <div className="overflow-hidden rounded-sm">
               {/* TODO(zlrlo): default 이미지 작업 필요함 */}
