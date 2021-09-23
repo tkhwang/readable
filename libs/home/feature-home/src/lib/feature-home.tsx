@@ -15,7 +15,7 @@ export const FeatureHome = () => {
           </div>
         </aside>
 
-        <section className="px-8 flex w-full">
+        <section className="px-4 sm:px-8 flex w-full">
           <article className="max-w-4xl">
             <HomeFeed />
           </article>
