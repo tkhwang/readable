@@ -20,6 +20,7 @@ import { UrlInfo } from './url-info/infrastructures/typeorm/entities/url-info.en
 import { UserBookmark } from './user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 import { TagsModule } from './tags/tags.module';
 import { SearchModule } from './search/search.module';
+import { RecommendModule } from './recommend/recommend.module';
 
 @Module({
   imports: [
@@ -75,6 +76,7 @@ import { SearchModule } from './search/search.module';
     TagsModule,
     UrlInfoModule,
     SearchModule,
+    RecommendModule,
   ],
   controllers: [],
   providers: [],
