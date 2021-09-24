@@ -37,8 +37,8 @@ export class PaginationUserBookmarksService {
   ) {
     const { first, after, order, orderBy } = query;
     const criteria = this.generateCriteria(query);
-    let entities = await queryFunction(query, filter, criteria, requestUser);
 
+    let entities = await queryFunction(query, filter, criteria, requestUser);
     if (!entities || !entities.length) return null;
 
     const hasNextPage = entities.length > first - 1;
