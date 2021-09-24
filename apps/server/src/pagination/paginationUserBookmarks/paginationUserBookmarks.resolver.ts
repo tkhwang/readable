@@ -28,13 +28,22 @@ export class PaginationUserBookmarksResolver {
     @Args('first', { type: () => Int, defaultValue: 10 })
     first?: number,
     @Args('after', { type: () => PaginationCursorScalar, nullable: true })
-    after?: PaginationCursorInput
+    after?: PaginationCursorInput,
+    // Optional
+    @Args('tagId', { type: () => String, nullable: true }) tagId?: string,
+    @Args('interestId', { type: () => String, nullable: true }) interestId?: string,
+    @Args('myUserBookmark', { type: () => Boolean, nullable: true }) myUserBookmark?: boolean,
+    @Args('userId', { type: () => String, nullable: true }) userId?: string
   ): Promise<PaginationUserBookmarkBRFOs | null> {
     const query = new GetPaginationUserBookmarksInput();
     if (orderBy) query.orderBy = orderBy;
     if (order) query.order = order;
     if (first) query.first = first;
     if (after) query.after = after;
+    if (tagId) query.tagId = tagId;
+    if (interestId) query.interestId = interestId;
+    if (myUserBookmark) query.myUserBookmark = myUserBookmark;
+    if (userId) query.userId = userId;
 
     return this.getPaginationUserBookmarksUsecase.execute(query, requestUser);
   }

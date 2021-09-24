@@ -13,8 +13,8 @@ import { PaginationUserBookmarksService } from './paginationUserBookmarks/pagina
   providers: [
     PaginationUserBookmarksResolver,
     PaginationUserBookmarksService,
-    GetPaginationUserBookmarksUsecase,
     PaginationService,
+    GetPaginationUserBookmarksUsecase,
   ],
 })
 export class PaginationModule {}

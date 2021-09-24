@@ -17,14 +17,14 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     requestUser: User
   ) {
     const { first, after, order, orderBy } = query;
-    const { normalizedTag, interestId } = filter;
+    const { normalizedTag, interestId, myUserBookmark, userId } = filter;
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
       .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
 
     if (normalizedTag) {
-      queryBuilder.leftJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
+      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
         normalizedTag,
       });
     } else {
@@ -32,12 +32,20 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     }
 
     if (interestId) {
-      queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
+      queryBuilder.innerJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
         interestId,
       });
       queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
     } else {
       queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest');
+    }
+
+    if (myUserBookmark) {
+      queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
+    }
+
+    if (userId) {
+      queryBuilder.andWhere('userBookmark.userId = :userId', { userId });
     }
 
     queryBuilder.limit(first + 1).orderBy('userBookmark.createdAt', 'DESC');
