@@ -2,6 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { PaginationUserBookmarksFilter } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.filter';
 import { PaginationUserBookmarks } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.model';
+import { PaginationUserBookmarksService } from '@readable/pagination/paginationUserBookmarks/paginationUserBookmarks.service';
 import { TagNotFoundExcepiton } from '@readable/tags/domain/erros/tag.error';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsService } from '@readable/tags/tags.service';
@@ -13,13 +14,21 @@ export class GetPaginationUserBookmarksUsecase
   implements Usecase<GetPaginationUserBookmarksInput, PaginationUserBookmarks | null> {
   constructor(
     private readonly tagsService: TagsService,
+    private readonly paginationUserBookmarksService: PaginationUserBookmarksService,
     @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository,
     @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository
   ) {}
 
   async execute(query: GetPaginationUserBookmarksInput, requestUser: User) {
     const filter = await this.generateFilter(query);
-    return this.userBookmarkRepository.getPaginationUserBookmarks(query, filter, requestUser);
+    return this.paginationUserBookmarksService.generatePaginationFromQuery(
+      query,
+      filter,
+      requestUser,
+      (query, filter, criteria, requestUser) => {
+        return this.userBookmarkRepository.queryForPagination(query, filter, criteria, requestUser);
+      }
+    );
   }
 
   private async generateFilter(query: GetPaginationUserBookmarksInput) {
