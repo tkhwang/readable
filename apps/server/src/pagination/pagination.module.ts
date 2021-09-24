@@ -5,6 +5,7 @@ import { TagsModule } from '@readable/tags/tags.module';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { GetPaginationUserBookmarksUsecase } from './paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.usecase';
 import { PaginationUserBookmarksResolver } from './paginationUserBookmarks/paginationUserBookmarks.resolver';
+import { PaginationService } from './pagination.service';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { PaginationUserBookmarksResolver } from './paginationUserBookmarks/pagin
   providers: [
     PaginationUserBookmarksResolver,
     GetPaginationUserBookmarksUsecase,
+    PaginationService,
   ],
 })
 export class PaginationModule {}
