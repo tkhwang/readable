@@ -177,6 +177,7 @@ export type QuerypaginationUserBookmarksArgs = {
   order?: Maybe<PaginationOrder>;
   orderBy?: Maybe<PaginationOrderBy>;
   tagId?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['String']>;
 };
 
 export type SearchByTextInAllUrlinfosInput = {
