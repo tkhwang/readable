@@ -9,6 +9,21 @@ import { PaginationQueryCriteriaType } from './domain/models/paginationUserBookm
 
 @Injectable()
 export class PaginationUserBookmarksService {
+  /**
+   * Generate RelayStylePagination query result by taking queryFunction
+   *
+   * @param {GetPaginationUserBookmarksInput} query
+   * @param {PaginationUserBookmarksFilter} filter
+   * @param {User} requestUser
+   * @param {(
+   *       query: GetPaginationUserBookmarksInput,
+   *       filter: PaginationUserBookmarksFilter,
+   *       criteria: PaginationQueryCriteriaType,
+   *       requestUser: User
+   *     ) => Promise<UserBookmark[]>} queryFunction
+   * @return {*}
+   * @memberof PaginationUserBookmarksService
+   */
   async generatePaginationFromQuery(
     query: GetPaginationUserBookmarksInput,
     filter: PaginationUserBookmarksFilter,
@@ -21,36 +36,9 @@ export class PaginationUserBookmarksService {
     ) => Promise<UserBookmark[]>
   ) {
     const { first, after, order, orderBy } = query;
-
     const criteria = this.generateCriteria(query);
 
     let entities = await queryFunction(query, filter, criteria, requestUser);
-
-    // const queryBuilder = this.createQueryBuilder('userBookmark')
-    //   .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-    //   .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
-
-    // if (normalizedTag) {
-    //   queryBuilder.leftJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
-    //     normalizedTag,
-    //   });
-    // } else {
-    //   queryBuilder.leftJoinAndSelect('userBookmark.tags', 'tags');
-    // }
-
-    // if (interestId) {
-    //   queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
-    //     interestId,
-    //   });
-    //   queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
-    // } else {
-    //   queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest');
-    // }
-
-    // queryBuilder.limit(first + 1).orderBy('userBookmark.createdAt', 'DESC');
-
-    // let userBookmarks = await queryBuilder.getMany();
-
     if (!entities || !entities.length) return null;
 
     const hasNextPage = entities.length > first - 1;
@@ -83,7 +71,6 @@ export class PaginationUserBookmarksService {
     if (after) {
       const { createdAt: afterCreatedAt, order: orderInCursor, orderBy: orderByInCursor } = after;
 
-      // MEMO(Teddy): 요청한 orderBy/order와 커서 안의 정보가 서로 다른 경우 에러를 발생시킨다.
       if (!(order === orderInCursor && orderBy === orderByInCursor)) {
         throw new PaginationWrongCursorExceptoin(after, orderBy, order);
       }

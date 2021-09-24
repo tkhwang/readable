@@ -6,17 +6,13 @@ import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/
 import { GetPaginationUserBookmarksUsecase } from './paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.usecase';
 import { PaginationUserBookmarksResolver } from './paginationUserBookmarks/paginationUserBookmarks.resolver';
 import { PaginationService } from './pagination.service';
+import { PaginationUserBookmarksService } from './paginationUserBookmarks/paginationUserBookmarks.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      UserBookmarkRepository,
-      TagsRepository,
-    ]),
-    TagsModule,
-  ],
+  imports: [TypeOrmModule.forFeature([UserBookmarkRepository, TagsRepository]), TagsModule],
   providers: [
     PaginationUserBookmarksResolver,
+    PaginationUserBookmarksService,
     GetPaginationUserBookmarksUsecase,
     PaginationService,
   ],
