@@ -24,7 +24,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
       .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
 
     if (normalizedTag) {
-      queryBuilder.leftJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
+      queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
         normalizedTag,
       });
     } else {
@@ -32,7 +32,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     }
 
     if (interestId) {
-      queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
+      queryBuilder.innerJoinAndSelect('userBookmark.interest', 'interest', 'interest.id = :interestId', {
         interestId,
       });
       queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });

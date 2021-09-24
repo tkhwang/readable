@@ -118,7 +118,7 @@ type Query {
   me: User!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
-  paginationUserBookmarks(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationUserBookmarks
+  paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String): PaginationUserBookmarks
 }
 
 input SearchByTextInAllUrlinfosInput {

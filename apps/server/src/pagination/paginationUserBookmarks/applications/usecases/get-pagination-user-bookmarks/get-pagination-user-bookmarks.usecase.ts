@@ -21,6 +21,7 @@ export class GetPaginationUserBookmarksUsecase
 
   async execute(query: GetPaginationUserBookmarksInput, requestUser: User) {
     const filter = await this.paginationService.generateFilter(query);
+
     return this.paginationUserBookmarksService.generatePaginationFromQuery(
       query,
       filter,

@@ -15,19 +15,6 @@ export type Scalars = {
   PaginationCursor: any;
 };
 
-export type AddBookMarkWithAuthInput = {
-  /** User interest which includes bookmarks. */
-  readonly interest: ReadonlyArray<Scalars['String']>;
-  /** Tag ids */
-  readonly tags?: Maybe<ReadonlyArray<Scalars['String']>>;
-  readonly url: Scalars['String'];
-};
-
-export type AddInGoogleEventsInput = {
-  /** Bookmarks for adding in Google calendar events */
-  readonly bookmarks: ReadonlyArray<BookmarkInput>;
-};
-
 /** Auth providers */
 export enum AuthProviders {
   Facebook = 'Facebook',
@@ -35,71 +22,12 @@ export enum AuthProviders {
   Google = 'Google'
 }
 
-export type Bookmark = {
-  readonly __typename?: 'Bookmark';
-  readonly collectors?: Maybe<ReadonlyArray<User>>;
-  readonly createdAt: Scalars['DateTime'];
-  readonly deletedAt: Scalars['DateTime'];
-  readonly description: Scalars['String'];
-  readonly finishers?: Maybe<ReadonlyArray<User>>;
-  readonly generatedImage: Scalars['String'];
-  readonly howMany: Scalars['Int'];
-  readonly id: Scalars['ID'];
-  readonly imageUrl: Scalars['String'];
-  readonly interest: Interest;
-  /** User interest which includes bookmarks. */
-  readonly interestId: ReadonlyArray<Scalars['String']>;
-  readonly schedulers?: Maybe<ReadonlyArray<User>>;
-  readonly siteName: Scalars['String'];
-  readonly summary?: Maybe<Scalars['String']>;
-  /** tag ids */
-  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
-  readonly tags: ReadonlyArray<Tag>;
-  readonly title: Scalars['String'];
-  readonly type: Scalars['String'];
-  readonly updatedAt: Scalars['DateTime'];
-  readonly url: Scalars['String'];
-  readonly urlHash: Scalars['String'];
-};
-
-export type BookmarkBRFO = {
-  readonly __typename?: 'BookmarkBRFO';
-  readonly createdAt: Scalars['DateTime'];
-  readonly deletedAt: Scalars['DateTime'];
-  readonly description: Scalars['String'];
-  readonly generatedImage: Scalars['String'];
-  readonly howMany: Scalars['Int'];
-  readonly id: Scalars['ID'];
-  readonly imageUrl: Scalars['String'];
-  /** User interest which includes bookmarks. */
-  readonly interestId: ReadonlyArray<Scalars['String']>;
-  readonly siteName: Scalars['String'];
-  readonly summary?: Maybe<Scalars['String']>;
-  /** tag ids */
-  readonly tagIds?: Maybe<ReadonlyArray<Scalars['String']>>;
-  readonly title: Scalars['String'];
-  readonly type: Scalars['String'];
-  readonly updatedAt: Scalars['DateTime'];
-  readonly url: Scalars['String'];
-  readonly urlHash: Scalars['String'];
-};
-
-export type BookmarkInput = {
-  readonly scheduledAt: Scalars['DateTime'];
-  readonly title: Scalars['String'];
-  readonly url: Scalars['String'];
-};
-
 export type CommonOutput = {
   readonly __typename?: 'CommonOutput';
   /** 공통 Response (output) */
   readonly isSuccess: Scalars['Boolean'];
 };
 
-
-export type DeleteBookmarkWithAuthInput = {
-  readonly bookmarkId: Scalars['String'];
-};
 
 export type DeleteUserBookmarkWithAuthInput = {
   readonly userBookmarkId: Scalars['String'];
@@ -141,29 +69,11 @@ export type Interest = {
 
 export type Mutation = {
   readonly __typename?: 'Mutation';
-  readonly addBookmarkInGoogleEventsWithAuth: CommonOutput;
-  readonly addBookmarkWithAuth: Bookmark;
-  readonly deleteBookmarkWithAuth: CommonOutput;
   readonly deleteUserBookmarkWithAuth: CommonOutput;
   readonly findOrAddInterestWithAuth: Interest;
   readonly followUserWithAuth: FollowUserWithAuthOutput;
   readonly syncGoogleCalendarWithAuth: CommonOutput;
   readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
-};
-
-
-export type MutationaddBookmarkInGoogleEventsWithAuthArgs = {
-  addInGoogleEventsInput: AddInGoogleEventsInput;
-};
-
-
-export type MutationaddBookmarkWithAuthArgs = {
-  addBookMarkWithAuthInput: AddBookMarkWithAuthInput;
-};
-
-
-export type MutationdeleteBookmarkWithAuthArgs = {
-  deleteBookmarkWithAuthInput: DeleteBookmarkWithAuthInput;
 };
 
 
@@ -207,24 +117,6 @@ export type OAuthUser = {
   readonly user: User;
 };
 
-export type PaginationBookmarkBRFOEdge = {
-  readonly __typename?: 'PaginationBookmarkBRFOEdge';
-  readonly cursor: Scalars['PaginationCursor'];
-  readonly node: BookmarkBRFO;
-};
-
-export type PaginationBookmarkEdge = {
-  readonly __typename?: 'PaginationBookmarkEdge';
-  readonly cursor: Scalars['PaginationCursor'];
-  readonly node: Bookmark;
-};
-
-export type PaginationBookmarks = {
-  readonly __typename?: 'PaginationBookmarks';
-  readonly edges: ReadonlyArray<PaginationBookmarkEdge>;
-  readonly pageInfo: PaginationPageInfo;
-};
-
 
 /** Pagination Order (ASC or DESC) */
 export enum PaginationOrder {
@@ -264,28 +156,31 @@ export type PaginationUserBookmarks = {
 
 export type Query = {
   readonly __typename?: 'Query';
+  readonly allUrlInfosBySearch?: Maybe<ReadonlyArray<UrlInfo>>;
   readonly me: User;
-  readonly myBookmarks: ReadonlyArray<Bookmark>;
   readonly myInterests: ReadonlyArray<Interest>;
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
-  readonly paginationBookmarks?: Maybe<PaginationBookmarks>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
 };
 
 
-export type QuerypaginationBookmarksArgs = {
-  after?: Maybe<Scalars['PaginationCursor']>;
-  first?: Maybe<Scalars['Int']>;
-  order?: Maybe<PaginationOrder>;
-  orderBy?: Maybe<PaginationOrderBy>;
+export type QueryallUrlInfosBySearchArgs = {
+  searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput;
 };
 
 
 export type QuerypaginationUserBookmarksArgs = {
   after?: Maybe<Scalars['PaginationCursor']>;
   first?: Maybe<Scalars['Int']>;
+  interestId?: Maybe<Scalars['String']>;
+  myUserBookmark?: Maybe<Scalars['Boolean']>;
   order?: Maybe<PaginationOrder>;
   orderBy?: Maybe<PaginationOrderBy>;
+  tagId?: Maybe<Scalars['String']>;
+};
+
+export type SearchByTextInAllUrlinfosInput = {
+  readonly query: Scalars['String'];
 };
 
 export type SyncGoogleCalendarWithAuthInput = {

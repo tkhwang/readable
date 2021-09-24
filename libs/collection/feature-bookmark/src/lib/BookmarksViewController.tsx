@@ -1,17 +1,10 @@
 import React from 'react';
 import { useUserBookmarks } from '@readable/collection/data-access-bookmark';
 import { useSyncUserBookmark } from '@readable/collection/data-access-sync';
-import {
-  AddInGoogleEventsInput,
-  Bookmark,
-  BookmarkBRFO,
-  BookmarkInput,
-  SyncGoogleCalendarWithAuthInput,
-} from '@readable/shared/types';
+import { SyncGoogleCalendarWithAuthInput } from '@readable/shared/types';
 
 export const BookmarksViewController = () => {
   const { myUserBookmarks, loading, error, deleteUserBookmarkWithAuthMutation } = useUserBookmarks();
-  // const { addBookmarkInGoogleEventsMutation } = useSyncBookmarks();
   const { syncGoogleCalendarWithAuthMutation } = useSyncUserBookmark();
 
   if (loading) {
