@@ -10,9 +10,12 @@ import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.servi
 import { InterestsService } from '@readable/interests/interests.service';
 import { TagsService } from '@readable/tags/tags.service';
 import { SearchService } from '@readable/search/search.service';
+import { RecommendUserBookmarksByTagsUsecase } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.usecase';
+import { RecommendUserBookmarksByTagsInput } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.input';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
+    private readonly recommendUserBookmarksByTagsUsecase: RecommendUserBookmarksByTagsUsecase,
     private readonly userBookmarkService: UserBookmarkService,
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
@@ -31,12 +34,12 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
       this.tagsService.mapTags(txtTags),
     ]);
 
+    const recommendUserBookmarksByTagsInput = new RecommendUserBookmarksByTagsInput(tags, urlHash, 4);
+
     const [existingUrlInfo, recommendations] = await Promise.all([
       this.urlInfoService.findUrlInfoByUrlHash(urlHash),
-      this.userBookmarkService.findRecommendedUserBookmarks(urlHash, tags, requestUser),
+      this.recommendUserBookmarksByTagsUsecase.execute(recommendUserBookmarksByTagsInput, requestUser),
     ]);
-
-    console.log('TCL: AddUserBookmarkWithAuthUsecase -> execute -> recommendations', recommendations);
 
     if (existingUrlInfo) {
       const userBookmark = await this.userBookmarkService.upsertUserBookmark(

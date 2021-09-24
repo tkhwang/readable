@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ImageModule } from '@readable/image/image.module';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { InterestsModule } from '@readable/interests/interests.module';
+import { RecommendModule } from '@readable/recommend/recommend.module';
 import { SearchModule } from '@readable/search/search.module';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsModule } from '@readable/tags/tags.module';
@@ -34,6 +35,7 @@ import { UserBookmarkService } from './user-bookmark.service';
     ImageModule,
     UrlInfoModule,
     SearchModule,
+    RecommendModule,
   ],
   controllers: [UserBookmarkController],
   providers: [
