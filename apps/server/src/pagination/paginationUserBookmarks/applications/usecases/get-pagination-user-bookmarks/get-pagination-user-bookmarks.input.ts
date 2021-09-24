@@ -4,18 +4,6 @@ import { PaginationOrder, PaginationOrderBy } from '@readable/common/pagination/
 
 @InputType()
 export class GetPaginationUserBookmarksInput extends PaginationCommonInput {
-  @Field(type => String, {
-    nullable: true,
-    description: 'Pagination userBookmark filter: tag (in all users bookmarks)',
-  })
-  tagId?: string;
-
-  @Field(type => String, {
-    nullable: true,
-    description: 'Pagination userBookmark filter: interest (in user bookmarks)',
-  })
-  interestId: string;
-
   @Field(type => PaginationOrderBy, {
     defaultValue: PaginationOrderBy.LATEST,
     description: 'Pagination bookmarks orderBy field',
@@ -27,4 +15,19 @@ export class GetPaginationUserBookmarksInput extends PaginationCommonInput {
     description: 'Pagination bookmarks order field',
   })
   order: PaginationOrder;
+
+  @Field(type => String, {
+    nullable: true,
+    description: 'Pagination userBookmark filter: tag (in all users bookmarks)',
+  })
+  tagId?: string;
+
+  @Field(type => String, {
+    nullable: true,
+    description: 'Pagination userBookmark filter: interest (in user bookmarks)',
+  })
+  interestId?: string;
+
+  @Field(type => Boolean, { nullable: true, description: 'Pagination userBookmark filter: myUserBookmark' })
+  myUserBookmark?: boolean;
 }

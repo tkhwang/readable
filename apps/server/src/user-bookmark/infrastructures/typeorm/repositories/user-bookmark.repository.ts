@@ -17,7 +17,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     requestUser: User
   ) {
     const { first, after, order, orderBy } = query;
-    const { normalizedTag, interestId } = filter;
+    const { normalizedTag, interestId, myUserBookmark } = filter;
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
@@ -38,6 +38,10 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
       queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
     } else {
       queryBuilder.leftJoinAndSelect('userBookmark.interest', 'interest');
+    }
+
+    if (myUserBookmark) {
+      queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
     }
 
     queryBuilder.limit(first + 1).orderBy('userBookmark.createdAt', 'DESC');
