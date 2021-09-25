@@ -15,14 +15,6 @@ export class Tag extends CoreEntity {
 
   @Column({ nullable: true })
   description?: string;
-
-  // constructor(tag: string, imageUrl?: string, description?: string) {
-  //   super();
-  //   this.tag = tag;
-  //   this.normalizedTag = TagsUtilityService.normalizeTag(tag);
-  //   this.imageUrl = imageUrl;
-  //   this.description = description;
-  // }
 }
 
-export type TagData = Pick<Tag, 'id' | 'tag' | 'imageUrl' | 'description'>;
+export type TagData = Pick<Tag, 'tag' | 'imageUrl' | 'description'>;
