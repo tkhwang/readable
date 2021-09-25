@@ -7,16 +7,12 @@ import { API_KEY } from '@readable/common/constants';
 @Injectable()
 export class HeaderApiKeyStrategy extends PassportStrategy(Strategy, 'api-key') {
   constructor(private readonly configService: ConfigService) {
-    // super({ header: 'X-API-KEY', prefix: '' }, true, async (apiKey, done) => {
     super({ header: 'x-api-key', prefix: '' }, true, async (apiKey, done) => {
-      console.log('TCL: HeaderApiKeyStrategy -> constructor -> apiKey', apiKey);
-      console.log('TCL: publicvalidate -> API_KEY', API_KEY);
       return this.validate(apiKey, done);
     });
   }
 
-  public validate = (apiKey: string, done: (error: Error, data) => {}) => {
-    // if (this.configService.get<string>('API_KEY') === apiKey) {
+  public validate = (apiKey: string, done: (error: Error | null, data) => {}) => {
     if (apiKey === API_KEY) {
       done(null, true);
     }
