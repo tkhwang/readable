@@ -48,7 +48,3 @@ export class PaginationUserBookmarkBRFOsConnection {
 
 @ObjectType()
 export class PaginationUserBookmarkBRFOs extends PaginationUserBookmarkBRFOsConnection {}
-
-export interface PaginationQueryCriteriaType {
-  createdAt: Date;
-}
