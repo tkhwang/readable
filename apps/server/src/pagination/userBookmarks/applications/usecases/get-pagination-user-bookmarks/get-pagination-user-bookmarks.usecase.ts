@@ -1,8 +1,8 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { PaginationService } from '@readable/pagination/pagination.service';
-import { PaginationUserBookmarks } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.model';
-import { PaginationUserBookmarksService } from '@readable/pagination/paginationUserBookmarks/paginationUserBookmarks.service';
+import { PaginationUserBookmarks } from '@readable/pagination/userBookmarks/domain/models/paginationUserBookmarks.model';
+import { PaginationUserBookmarksService } from '@readable/pagination/userBookmarks/paginationUserBookmarks.service';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsService } from '@readable/tags/tags.service';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';

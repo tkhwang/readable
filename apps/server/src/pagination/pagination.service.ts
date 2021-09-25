@@ -4,8 +4,8 @@ import { TagNotFoundExcepiton } from '@readable/tags/domain/erros/tag.error';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsUtilityService } from '@readable/tags/tags-utility.service';
 import { TagsService } from '@readable/tags/tags.service';
-import { GetPaginationUserBookmarksInput } from './paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
-import { PaginationUserBookmarksFilter } from './paginationUserBookmarks/domain/models/paginationUserBookmarks.filter';
+import { GetPaginationUserBookmarksInput } from './userBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
+import { PaginationUserBookmarksFilter } from './userBookmarks/domain/models/paginationUserBookmarks.filter';
 
 @Injectable()
 export class PaginationService {

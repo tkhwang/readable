@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { GetPaginationUserBookmarksInput } from '@readable/pagination/paginationUserBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
-import { PaginationUserBookmarksFilter } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.filter';
-import { PaginationQueryCriteriaType } from '@readable/pagination/paginationUserBookmarks/domain/models/paginationUserBookmarks.model';
+import { GetPaginationUserBookmarksInput } from '@readable/pagination/userBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
+import { PaginationUserBookmarksFilter } from '@readable/pagination/userBookmarks/domain/models/paginationUserBookmarks.filter';
+import { PaginationQueryCriteriaType } from '@readable/pagination/userBookmarks/domain/models/paginationUserBookmarks.model';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { User } from '@readable/users/domain/models/user.model';
 import { EntityRepository, Repository } from 'typeorm';
