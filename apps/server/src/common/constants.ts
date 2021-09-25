@@ -14,3 +14,5 @@ export const awsCredentials = {
       `${process.env.AWS_ELASTICSEARCH_BASIC_AUTH_ID}:${process.env.AWS_ELASTICSEARCH_BASIC_AUTH_PW}` || '',
   },
 };
+
+export const API_KEY = process.env.API_KEY || '';

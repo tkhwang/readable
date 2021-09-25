@@ -21,6 +21,7 @@ import { UserBookmark } from './user-bookmark/infrastructures/typeorm/entities/u
 import { TagsModule } from './tags/tags.module';
 import { SearchModule } from './search/search.module';
 import { RecommendModule } from './recommend/recommend.module';
+import { OperationModule } from './operation/operation.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { RecommendModule } from './recommend/recommend.module';
         AWS_ELASTICSEARCH_ENDPOINT: Joi.string().required(),
         AWS_ELASTICSEARCH_BASIC_AUTH_ID: Joi.string().required(),
         AWS_ELASTICSEARCH_BASIC_AUTH_PW: Joi.string().required(),
+        API_KEY: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot({
@@ -77,6 +79,7 @@ import { RecommendModule } from './recommend/recommend.module';
     UrlInfoModule,
     SearchModule,
     RecommendModule,
+    OperationModule,
   ],
   controllers: [],
   providers: [],
