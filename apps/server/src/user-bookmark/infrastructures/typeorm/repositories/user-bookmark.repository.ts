@@ -63,8 +63,8 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     const relatedTagIds = (relatedTags ?? []).map(tag => tag.id);
 
     return this.createQueryBuilder('userBookmark')
-      .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .leftJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagIds)', {
+      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagIds)', {
         tagIds: relatedTagIds,
       })
       .addSelect('COUNT(*) AS userBookmarkCount')

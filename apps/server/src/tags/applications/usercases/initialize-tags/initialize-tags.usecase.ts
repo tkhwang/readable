@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SearchDomain } from '@readable/search/domain/models/search.model';
 import { SearchService } from '@readable/search/search.service';
@@ -5,6 +6,7 @@ import { TagBuilder } from '@readable/tags/infrastructures/typeorm/entities/tags
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { initialiTags } from './initialize-tags.data';
 
+@Injectable()
 export class InitializeTagsUseCase {
   constructor(
     private readonly searchService: SearchService,

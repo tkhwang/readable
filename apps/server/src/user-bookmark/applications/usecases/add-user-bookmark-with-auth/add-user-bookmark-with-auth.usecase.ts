@@ -8,20 +8,21 @@ import { UrlInfoService } from '@readable/url-info/url-info.service';
 import { ImageService } from '@readable/image/image.service';
 import { UserBookmarkService } from '@readable/user-bookmark/user-bookmark.service';
 import { InterestsService } from '@readable/interests/interests.service';
-import { TagsService } from '@readable/tags/tags.service';
 import { SearchService } from '@readable/search/search.service';
 import { RecommendUserBookmarksByTagsUsecase } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.usecase';
 import { RecommendUserBookmarksByTagsInput } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.input';
 import { SearchDomain } from '@readable/search/domain/models/search.model';
+import { MapTagsUsecase } from '@readable/tags/applications/usercases/map-tags/map-tags.usecase';
+import { MapTagsInput } from '@readable/tags/applications/usercases/map-tags/map-tags.input';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
     private readonly recommendUserBookmarksByTagsUsecase: RecommendUserBookmarksByTagsUsecase,
+    private readonly mapTagsUsecase: MapTagsUsecase,
     private readonly userBookmarkService: UserBookmarkService,
     private readonly urlInfoService: UrlInfoService,
     private readonly imageService: ImageService,
     private readonly interestsService: InterestsService,
-    private readonly tagsService: TagsService,
     private readonly searchService: SearchService,
     @InjectRepository(UrlInfoRepository) private readonly urlInfoRepository: UrlInfoRepository
   ) {}
@@ -30,9 +31,12 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     const { url, interest: txtInterest, tags: txtTags = [] } = command;
     const urlHash = sha256(url).toString();
 
+    const mapTagsInput = new MapTagsInput();
+    mapTagsInput.tags = txtTags;
+
     const [interest, tags] = await Promise.all([
       this.interestsService.mapInterest(txtInterest, requestUser),
-      this.tagsService.mapTags(txtTags),
+      this.mapTagsUsecase.execute(mapTagsInput),
     ]);
 
     const recommendUserBookmarksByTagsInput = new RecommendUserBookmarksByTagsInput(tags, urlHash, 4);
