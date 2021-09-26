@@ -238,11 +238,15 @@ export type Tag = {
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description?: Maybe<Scalars['String']>;
+  /** Tag followers User count (resolver field) */
+  readonly followersCount: Scalars['Float'];
   readonly id: Scalars['ID'];
   readonly imageUrl?: Maybe<Scalars['String']>;
   readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
+  /** Tagged post count (resolver field) */
+  readonly userBookmarksCount: Scalars['Float'];
 };
 
 export type UnfollowUserWithAuthInput = {
@@ -303,6 +307,8 @@ export type User = {
   readonly oauthUsers: ReadonlyArray<OAuthUser>;
   readonly provider: AuthProviders;
   readonly providerId: Scalars['String'];
+  /** Tags */
+  readonly tags: ReadonlyArray<Tag>;
   readonly timezone: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
 };

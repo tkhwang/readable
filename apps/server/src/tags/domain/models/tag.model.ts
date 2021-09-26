@@ -18,7 +18,9 @@ export class TagBRFO extends CoreModel {
 
 @ObjectType()
 export class Tag extends TagBRFO {
-  // @Field(type => Number, { description: 'Tag followers User count (resolver field)' })
-  // followersCount: number;
-  // postsCount: number;
+  @Field(type => Number, { description: 'Tag followers User count (resolver field)' })
+  followersCount: number;
+
+  @Field(type => Number, { description: 'Tagged post count (resolver field)' })
+  userBookmarksCount: number;
 }

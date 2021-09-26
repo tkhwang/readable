@@ -5,10 +5,13 @@ import { InitializeTagsUseCase } from './applications/usercases/initialize-tags/
 import { MapTagsUsecase } from './applications/usercases/map-tags/map-tags.usecase';
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
 import { TagsService } from './tags.service';
+import { TagsResolver } from './tags.resolver';
+import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TagsRepository]), SearchModule],
-  providers: [TagsService, InitializeTagsUseCase, MapTagsUsecase],
+  imports: [TypeOrmModule.forFeature([TagsRepository, UserBookmarkRepository, UsersRepository]), SearchModule],
+  providers: [TagsService, InitializeTagsUseCase, MapTagsUsecase, TagsResolver],
   exports: [TagsService, InitializeTagsUseCase, MapTagsUsecase],
 })
 export class TagsModule {}

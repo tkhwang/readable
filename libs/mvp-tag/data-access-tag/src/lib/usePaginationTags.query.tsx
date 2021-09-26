@@ -17,6 +17,8 @@ const GET_PAGINATION_TAGS = gql`
           normalizedTag
           imageUrl
           description
+          followersCount
+          userBookmarksCount
         }
       }
     }

@@ -1,12 +1,12 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { PaginationService } from '@readable/pagination/pagination.service';
-import { PaginationTags } from '@readable/pagination/tags/domain/models/paginationTags.model';
+import { PaginationTagBRFOs, PaginationTags } from '@readable/pagination/tags/domain/models/paginationTags.model';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { GetPaginationTagsInput } from './get-pagination-tags.input';
 
-export class GetPaginationTagsUsecase implements Usecase<GetPaginationTagsInput, PaginationTags | null> {
+export class GetPaginationTagsUsecase implements Usecase<GetPaginationTagsInput, PaginationTagBRFOs | null> {
   constructor(
     private readonly paginationService: PaginationService,
     @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository

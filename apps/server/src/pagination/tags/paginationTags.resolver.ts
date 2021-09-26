@@ -8,7 +8,7 @@ import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/models/user.model';
 import { GetPaginationTagsInput } from './applications/usecases/get-pagination-tags/get-pagination-tags.input';
 import { GetPaginationTagsUsecase } from './applications/usecases/get-pagination-tags/get-pagination-tags.usecase';
-import { PaginationTags } from './domain/models/paginationTags.model';
+import { PaginationTagBRFOs, PaginationTags } from './domain/models/paginationTags.model';
 
 @Resolver(of => PaginationTags)
 export class PaginationTagsResolver {
@@ -30,7 +30,7 @@ export class PaginationTagsResolver {
     first?: number,
     @Args('after', { type: () => PaginationCursorScalar, nullable: true })
     after?: PaginationCursorInput
-  ) {
+  ): Promise<PaginationTagBRFOs | null> {
     const query = new GetPaginationTagsInput();
     if (orderBy) query.orderBy = orderBy;
     if (order) query.order = order;

@@ -1,6 +1,7 @@
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { OAuthUser } from './oauthUser.entity';
 
 @Entity('users')
@@ -32,4 +33,8 @@ export class User extends CoreEntity {
 
   @Column({ nullable: true })
   latestInterestId?: string;
+
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags: Tag[];
 }

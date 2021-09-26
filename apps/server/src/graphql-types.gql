@@ -162,11 +162,17 @@ type Tag {
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String
+
+  """Tag followers User count (resolver field)"""
+  followersCount: Float!
   id: ID!
   imageUrl: String
   normalizedTag: String!
   tag: String!
   updatedAt: DateTime!
+
+  """Tagged post count (resolver field)"""
+  userBookmarksCount: Float!
 }
 
 input UnfollowUserWithAuthInput {
@@ -233,6 +239,9 @@ type User {
   oauthUsers: [OAuthUser!]!
   provider: AuthProviders!
   providerId: String!
+
+  """Tags"""
+  tags: [Tag!]!
   timezone: String!
   updatedAt: DateTime!
 }
