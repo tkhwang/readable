@@ -64,6 +64,9 @@
     "mvp-tag-feature-tag": {
       "tags": ["scope:client"]
     },
+    "mvp-tag-input-tag": {
+      "tags": []
+    },
     "server": {
       "tags": []
     },

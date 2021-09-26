@@ -26,5 +26,6 @@ module.exports = {
     '<rootDir>/libs/home/data-access-feed',
     '<rootDir>/libs/mvp-tag/data-access-tag',
     '<rootDir>/libs/mvp-tag/feature-tag',
+    '<rootDir>/libs/mvp-tag/input-tag',
   ],
 };

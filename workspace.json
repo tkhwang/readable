@@ -377,6 +377,27 @@
         }
       }
     },
+    "mvp-tag-input-tag": {
+      "root": "libs/mvp-tag/input-tag",
+      "sourceRoot": "libs/mvp-tag/input-tag/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mvp-tag/input-tag/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mvp-tag/input-tag"],
+          "options": {
+            "jestConfig": "libs/mvp-tag/input-tag/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "server": {
       "root": "apps/server",
       "sourceRoot": "apps/server/src",
