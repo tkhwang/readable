@@ -1,7 +1,7 @@
 import { awsCredentials } from '@readable/common/constants';
 import axios from 'axios';
 import { Injectable } from '@nestjs/common';
-import { SearchIndex, UrlInfoSearchDocument } from './domain/models/search.model';
+import { SearchDoc, SearchIndex } from './domain/models/search.model';
 
 @Injectable()
 export class SearchService {
@@ -20,22 +20,15 @@ export class SearchService {
     });
   }
 
-  async get() {
-    return this.esClient.get('/urlinfo');
-  }
+  // async get() {
+  //   return this.esClient.get('/urlinfo');
+  // }
 
-  /**
-   * Create elasticsearch document index when registering urlInfo
-   *
-   * @param {UrlInfo} urlInfo
-   * @return {*}
-   * @memberof SearchService
-   */
-  async indexDocument(index: SearchIndex, elasticDoc?: UrlInfoSearchDocument) {
-    if (!elasticDoc) return;
+  async indexDocument(index: SearchIndex, searchDoc?: SearchDoc) {
+    if (!searchDoc) return;
 
-    const { id } = elasticDoc;
-    return this.esClient.put(`${index}/_doc/${id}`, elasticDoc);
+    const { id } = searchDoc;
+    return this.esClient.put(`${index}/_doc/${id}`, searchDoc);
   }
 
   async getDocument(index: SearchIndex, id: string) {
@@ -51,13 +44,6 @@ export class SearchService {
     }
   }
 
-  /**
-   * Search text among urlInfo (url, title, siteName, description)
-   *
-   * @param {string} query
-   * @return {*}
-   * @memberof SearchService
-   */
   async search(index: SearchIndex, query: string, fields: string[]) {
     const queryObject = {
       query: {
@@ -71,6 +57,29 @@ export class SearchService {
     try {
       // https://stackoverflow.com/a/45292081/2453632
       return await this.esClient.get(`${index}/_search`, {
+        data: JSON.stringify(queryObject),
+      });
+    } catch (error) {
+      console.error(JSON.stringify(error, null, 2));
+    }
+  }
+
+  async suggestTag(index: SearchIndex, query: string) {
+    const queryObject = {
+      suggest: {
+        tag: {
+          prefix: query,
+          completion: {
+            field: 'tag',
+            size: 3,
+          },
+        },
+      },
+    };
+
+    try {
+      // https://stackoverflow.com/a/45292081/2453632
+      return await this.esClient.post(`${index}/_search`, {
         data: JSON.stringify(queryObject),
       });
     } catch (error) {

@@ -23,5 +23,7 @@ export const SearchDomain = {
   },
 };
 
-export type UrlInfoSearchDocument = Pick<UrlInfo, 'id' | 'url' | 'title' | 'siteName' | 'description'>;
-export type TagSearchDocument = Pick<Tag, 'id' | 'tag' | 'normalizedTag'>;
+export type UrlInfoSearchDoc = Pick<UrlInfo, 'id' | 'url' | 'title' | 'siteName' | 'description'>;
+export type TagSearchDoc = Pick<Tag, 'id' | 'tag' | 'normalizedTag'>;
+
+export type SearchDoc = UrlInfoSearchDoc | TagSearchDoc;

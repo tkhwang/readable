@@ -1,10 +1,15 @@
 import { InjectRepository } from '@nestjs/typeorm';
+import { SearchDomain } from '@readable/search/domain/models/search.model';
+import { SearchService } from '@readable/search/search.service';
 import { TagBuilder } from '@readable/tags/infrastructures/typeorm/entities/tags.entity.builder';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { initialiTags } from './initialize-tags.data';
 
 export class InitializeTagsUseCase {
-  constructor(@InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository) {}
+  constructor(
+    private readonly searchService: SearchService,
+    @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository
+  ) {}
 
   async execute() {
     for (const tag of initialiTags) {
@@ -16,7 +21,14 @@ export class InitializeTagsUseCase {
 
       const existingTag = await this.tagsRepository.findOne({ normalizedTag: newTag.normalizedTag });
       if (!existingTag) {
-        await this.tagsRepository.save(newTag);
+        const newTagEntity = await this.tagsRepository.save(newTag);
+
+        const tagElasticDoc = {
+          id: newTagEntity.id,
+          tag: newTagEntity.tag,
+          normalizedTag: newTagEntity.normalizedTag,
+        };
+        await this.searchService.indexDocument(SearchDomain.tag.index, tagElasticDoc);
       }
     }
   }
