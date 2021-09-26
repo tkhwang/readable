@@ -12,6 +12,7 @@ import { TagsService } from '@readable/tags/tags.service';
 import { SearchService } from '@readable/search/search.service';
 import { RecommendUserBookmarksByTagsUsecase } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.usecase';
 import { RecommendUserBookmarksByTagsInput } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.input';
+import { SearchDomain } from '@readable/search/domain/models/search.model';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
@@ -62,10 +63,17 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     urlInfo.urlHash = urlHash;
 
     const newUrlInfo = await this.urlInfoRepository.save(this.urlInfoRepository.create(urlInfo));
+    const newUrlInfoSearchDoc = {
+      id: newUrlInfo.id,
+      url: newUrlInfo.url,
+      title: newUrlInfo.title,
+      siteName: newUrlInfo.siteName,
+      description: newUrlInfo.description,
+    };
 
     const [userBookmark] = await Promise.all([
       this.userBookmarkService.upsertUserBookmark(requestUser, newUrlInfo, interest, tags),
-      this.searchService.indexDocument(newUrlInfo),
+      this.searchService.indexDocument(SearchDomain.urlInfo.index, newUrlInfoSearchDoc),
     ]);
 
     return {

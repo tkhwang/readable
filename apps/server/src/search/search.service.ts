@@ -1,14 +1,13 @@
 import { awsCredentials } from '@readable/common/constants';
 import axios from 'axios';
-import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
 import { Injectable } from '@nestjs/common';
+import { SearchIndex, UrlInfoSearchDocument } from './domain/models/search.model';
 
 @Injectable()
 export class SearchService {
   // MEMO(Teddy): It shoudl use @elasticsearch/elasticsearch-js#7.x official client.
   // But use axios client due to the auth problem.
   private readonly esClient;
-  private readonly URLINFO_INDEX = 'urlinfo';
 
   constructor() {
     this.esClient = axios.create({
@@ -32,20 +31,20 @@ export class SearchService {
    * @return {*}
    * @memberof SearchService
    */
-  async indexDocument(urlInfo: UrlInfo) {
-    const { id, url, title, siteName, description } = urlInfo;
-    const elasticsearchDocument = { url, title, siteName, description };
+  async indexDocument(index: SearchIndex, elasticDoc?: UrlInfoSearchDocument) {
+    if (!elasticDoc) return;
 
-    return this.esClient.put(`${this.URLINFO_INDEX}/_doc/${id}`, elasticsearchDocument);
+    const { id } = elasticDoc;
+    return this.esClient.put(`${index}/_doc/${id}`, elasticDoc);
   }
 
-  async getDocument(id: string) {
-    return this.esClient.get(`${this.URLINFO_INDEX}/_doc/${id}`);
+  async getDocument(index: SearchIndex, id: string) {
+    return this.esClient.get(`${index}/_doc/${id}`);
   }
 
-  async exist(id: string) {
+  async exist(index: SearchIndex, id: string) {
     try {
-      await this.getDocument(id);
+      await this.getDocument(index, id);
       return true;
     } catch (error) {
       return false;
@@ -59,19 +58,19 @@ export class SearchService {
    * @return {*}
    * @memberof SearchService
    */
-  async search(query: string) {
+  async search(index: SearchIndex, query: string, fields: string[]) {
     const queryObject = {
       query: {
         multi_match: {
           query,
-          fields: ['url', 'title', 'siteName', 'description'],
+          fields,
         },
       },
     };
 
     try {
       // https://stackoverflow.com/a/45292081/2453632
-      return await this.esClient.get(`${this.URLINFO_INDEX}/_search`, {
+      return await this.esClient.get(`${index}/_search`, {
         data: JSON.stringify(queryObject),
       });
     } catch (error) {
