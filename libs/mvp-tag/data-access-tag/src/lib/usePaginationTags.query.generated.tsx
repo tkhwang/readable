@@ -24,7 +24,7 @@ export type PaginationTagsQuery = (
       & Pick<Types.PaginationTagsEdge, 'cursor'>
       & { readonly node: (
         { readonly __typename?: 'Tag' }
-        & Pick<Types.Tag, 'id' | 'tag' | 'normalizedTag' | 'imageUrl' | 'description'>
+        & Pick<Types.Tag, 'id' | 'tag' | 'normalizedTag' | 'imageUrl' | 'description' | 'followersCount' | 'userBookmarksCount'>
       ) }
     )> }
   )> }
@@ -46,6 +46,8 @@ export const PaginationTagsDocument = gql`
         normalizedTag
         imageUrl
         description
+        followersCount
+        userBookmarksCount
       }
     }
   }
