@@ -1,5 +1,4 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { TagsUtilityService } from '@readable/tags/tags-utility.service';
 import { Column, Entity } from 'typeorm';
 
 @Entity('tags')
