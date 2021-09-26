@@ -1,6 +1,7 @@
 import { ObjectType, Field, InputType } from '@nestjs/graphql';
 import { AuthProviders } from '@readable/auth/domain/auth.type';
 import { CoreModel } from '@readable/common/models/core.model';
+import { Tag } from '@readable/tags/domain/models/tag.model';
 import { OAuthUser } from './oauthUser.model';
 
 @InputType({ isAbstract: true })
@@ -29,6 +30,9 @@ export class UserBRFO extends CoreModel {
 
   @Field(type => String, { nullable: true })
   latestInterestId?: string;
+
+  @Field(type => [Tag], { description: 'Tags' })
+  tags: Tag[];
 }
 
 @ObjectType()
