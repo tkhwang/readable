@@ -9,10 +9,10 @@ export class TagBRFO extends CoreModel {
   @Field(type => String)
   normalizedTag: string;
 
-  @Field(type => String)
+  @Field(type => String, { nullable: true })
   imageUrl?: string;
 
-  @Field(type => String)
+  @Field(type => String, { nullable: true })
   description?: string;
 }
 

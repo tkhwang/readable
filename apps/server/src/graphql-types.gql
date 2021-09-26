@@ -155,9 +155,9 @@ input SyncGoogleCalendarWithAuthUrlInfo {
 type Tag {
   createdAt: DateTime!
   deletedAt: DateTime!
-  description: String!
+  description: String
   id: ID!
-  imageUrl: String!
+  imageUrl: String
   normalizedTag: String!
   tag: String!
   updatedAt: DateTime!
