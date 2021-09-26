@@ -24,5 +24,7 @@ module.exports = {
     '<rootDir>/libs/feed/feature-bookmark',
     '<rootDir>/libs/collection/data-access-sync',
     '<rootDir>/libs/home/data-access-feed',
+    '<rootDir>/libs/mvp-tag/data-access-tag',
+    '<rootDir>/libs/mvp-tag/feature-tag',
   ],
 };

@@ -335,6 +335,48 @@
         }
       }
     },
+    "mvp-tag-data-access-tag": {
+      "root": "libs/mvp-tag/data-access-tag",
+      "sourceRoot": "libs/mvp-tag/data-access-tag/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mvp-tag/data-access-tag/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mvp-tag/data-access-tag"],
+          "options": {
+            "jestConfig": "libs/mvp-tag/data-access-tag/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mvp-tag-feature-tag": {
+      "root": "libs/mvp-tag/feature-tag",
+      "sourceRoot": "libs/mvp-tag/feature-tag/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mvp-tag/feature-tag/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mvp-tag/feature-tag"],
+          "options": {
+            "jestConfig": "libs/mvp-tag/feature-tag/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "server": {
       "root": "apps/server",
       "sourceRoot": "apps/server/src",

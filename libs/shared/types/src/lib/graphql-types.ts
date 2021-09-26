@@ -136,6 +136,24 @@ export type PaginationPageInfo = {
   readonly hasNextPage: Scalars['Boolean'];
 };
 
+export type PaginationTagBRFOEdge = {
+  readonly __typename?: 'PaginationTagBRFOEdge';
+  readonly cursor: Scalars['PaginationCursor'];
+  readonly node: Tag;
+};
+
+export type PaginationTags = {
+  readonly __typename?: 'PaginationTags';
+  readonly edges: ReadonlyArray<PaginationTagsEdge>;
+  readonly pageInfo: PaginationPageInfo;
+};
+
+export type PaginationTagsEdge = {
+  readonly __typename?: 'PaginationTagsEdge';
+  readonly cursor: Scalars['PaginationCursor'];
+  readonly node: Tag;
+};
+
 export type PaginationUserBookmarkBRFOEdge = {
   readonly __typename?: 'PaginationUserBookmarkBRFOEdge';
   readonly cursor: Scalars['PaginationCursor'];
@@ -160,12 +178,21 @@ export type Query = {
   readonly me: User;
   readonly myInterests: ReadonlyArray<Interest>;
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
+  readonly paginationTags?: Maybe<PaginationTags>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
 };
 
 
 export type QueryallUrlInfosBySearchArgs = {
   searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput;
+};
+
+
+export type QuerypaginationTagsArgs = {
+  after?: Maybe<Scalars['PaginationCursor']>;
+  first?: Maybe<Scalars['Int']>;
+  order?: Maybe<PaginationOrder>;
+  orderBy?: Maybe<PaginationOrderBy>;
 };
 
 
@@ -199,7 +226,9 @@ export type Tag = {
   readonly __typename?: 'Tag';
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
+  readonly description: Scalars['String'];
   readonly id: Scalars['ID'];
+  readonly imageUrl: Scalars['String'];
   readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
