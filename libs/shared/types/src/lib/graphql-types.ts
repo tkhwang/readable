@@ -180,6 +180,7 @@ export type Query = {
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
   readonly paginationTags?: Maybe<PaginationTags>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
+  readonly tagSuggestion?: Maybe<ReadonlyArray<Tag>>;
 };
 
 
@@ -207,7 +208,17 @@ export type QuerypaginationUserBookmarksArgs = {
   userId?: Maybe<Scalars['String']>;
 };
 
+
+export type QuerytagSuggestionArgs = {
+  suggestTagInput: SuggestTagInput;
+};
+
 export type SearchByTextInAllUrlinfosInput = {
+  readonly query: Scalars['String'];
+};
+
+export type SuggestTagInput = {
+  /** Query text for tag suggestion */
   readonly query: Scalars['String'];
 };
 
@@ -226,9 +237,9 @@ export type Tag = {
   readonly __typename?: 'Tag';
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
-  readonly description: Scalars['String'];
+  readonly description?: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
-  readonly imageUrl: Scalars['String'];
+  readonly imageUrl?: Maybe<Scalars['String']>;
   readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];

@@ -64,26 +64,35 @@ export class SearchService {
     }
   }
 
-  async suggestTag(index: SearchIndex, query: string) {
+  async suggest(index: SearchIndex, query: string, field: string, howMany = 3) {
     const queryObject = {
       suggest: {
         tag: {
           prefix: query,
           completion: {
-            field: 'tag',
-            size: 3,
+            field,
+            size: howMany,
           },
         },
       },
     };
 
     try {
-      // https://stackoverflow.com/a/45292081/2453632
-      return await this.esClient.post(`${index}/_search`, {
-        data: JSON.stringify(queryObject),
+      const {
+        data: { suggest },
+      } = await this.esClient.post(`${index}/_search`, JSON.stringify(queryObject));
+
+      if (suggest.tag.length === 0) return null;
+
+      return suggest.tag[0].options.map(option => {
+        const {
+          _source: { id, tag, normalizedTag },
+        } = option;
+        return { id, tag, normalizedTag };
       });
     } catch (error) {
       console.error(JSON.stringify(error, null, 2));
+      return null;
     }
   }
 }

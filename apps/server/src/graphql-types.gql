@@ -135,9 +135,15 @@ type Query {
   myUserBookmarks: [UserBookmark!]!
   paginationTags(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationTags
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String, userId: String): PaginationUserBookmarks
+  tagSuggestion(suggestTagInput: SuggestTagInput!): [Tag!]
 }
 
 input SearchByTextInAllUrlinfosInput {
+  query: String!
+}
+
+input SuggestTagInput {
+  """Query text for tag suggestion"""
   query: String!
 }
 

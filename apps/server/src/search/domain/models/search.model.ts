@@ -20,6 +20,7 @@ export const SearchDomain = {
   tag: {
     index: SearchIndex.Tag,
     properties: ['id', 'tag', 'normalizedTag'],
+    searchField: 'tag',
   },
 };
 

@@ -10,6 +10,7 @@ export function TagPage() {
   return (
     <>
       <MvpTagIputTag />
+      <div className="text-2xl">Reference: All tags</div>
       {paginationTags?.edges &&
         paginationTags.edges.length > 0 &&
         paginationTags.edges.map(edge => {
@@ -17,7 +18,7 @@ export function TagPage() {
 
           return (
             <div className="p-10">
-              <div className="max-w-xl rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
+              <div className="max-w-md rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
                 <div className="px-6 pt-4 pb-2">{normalizedTag}</div>
                 <img src={imageUrl || defaultTagImage} className="image" alt="tag" />
               </div>

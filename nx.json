@@ -61,6 +61,9 @@
     "mvp-tag-data-access-tag": {
       "tags": ["scope:client"]
     },
+    "mvp-tag-data-access-tag-sugguest": {
+      "tags": []
+    },
     "mvp-tag-feature-tag": {
       "tags": ["scope:client"]
     },
