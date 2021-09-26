@@ -27,5 +27,6 @@ module.exports = {
     '<rootDir>/libs/mvp-tag/data-access-tag',
     '<rootDir>/libs/mvp-tag/feature-tag',
     '<rootDir>/libs/mvp-tag/input-tag',
+    '<rootDir>/libs/mvp-tag/data-access-tag-sugguest',
   ],
 };

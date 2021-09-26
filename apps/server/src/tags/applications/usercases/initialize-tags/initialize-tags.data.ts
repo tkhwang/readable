@@ -33,6 +33,11 @@ export const initialiTags: TagData[] = [
     imageUrl: 'https://readable-2021-dev.s3.ap-northeast-2.amazonaws.com/tags/css.jpg',
     description: '',
   },
+  {
+    tag: 'next.js',
+    imageUrl: '',
+    description: '',
+  },
   // Backend
   {
     tag: 'node.js',

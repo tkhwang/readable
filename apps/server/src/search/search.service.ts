@@ -1,14 +1,13 @@
 import { awsCredentials } from '@readable/common/constants';
 import axios from 'axios';
-import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
 import { Injectable } from '@nestjs/common';
+import { SearchDoc, SearchIndex } from './domain/models/search.model';
 
 @Injectable()
 export class SearchService {
   // MEMO(Teddy): It shoudl use @elasticsearch/elasticsearch-js#7.x official client.
   // But use axios client due to the auth problem.
   private readonly esClient;
-  private readonly URLINFO_INDEX = 'urlinfo';
 
   constructor() {
     this.esClient = axios.create({
@@ -21,61 +20,79 @@ export class SearchService {
     });
   }
 
-  async get() {
-    return this.esClient.get('/urlinfo');
+  // async get() {
+  //   return this.esClient.get('/urlinfo');
+  // }
+
+  async indexDocument(index: SearchIndex, searchDoc?: SearchDoc) {
+    if (!searchDoc) return;
+
+    const { id } = searchDoc;
+    return this.esClient.put(`${index}/_doc/${id}`, searchDoc);
   }
 
-  /**
-   * Create elasticsearch document index when registering urlInfo
-   *
-   * @param {UrlInfo} urlInfo
-   * @return {*}
-   * @memberof SearchService
-   */
-  async indexDocument(urlInfo: UrlInfo) {
-    const { id, url, title, siteName, description } = urlInfo;
-    const elasticsearchDocument = { url, title, siteName, description };
-
-    return this.esClient.put(`${this.URLINFO_INDEX}/_doc/${id}`, elasticsearchDocument);
+  async getDocument(index: SearchIndex, id: string) {
+    return this.esClient.get(`${index}/_doc/${id}`);
   }
 
-  async getDocument(id: string) {
-    return this.esClient.get(`${this.URLINFO_INDEX}/_doc/${id}`);
-  }
-
-  async exist(id: string) {
+  async exist(index: SearchIndex, id: string) {
     try {
-      await this.getDocument(id);
+      await this.getDocument(index, id);
       return true;
     } catch (error) {
       return false;
     }
   }
 
-  /**
-   * Search text among urlInfo (url, title, siteName, description)
-   *
-   * @param {string} query
-   * @return {*}
-   * @memberof SearchService
-   */
-  async search(query: string) {
+  async search(index: SearchIndex, query: string, fields: string[]) {
     const queryObject = {
       query: {
         multi_match: {
           query,
-          fields: ['url', 'title', 'siteName', 'description'],
+          fields,
         },
       },
     };
 
     try {
       // https://stackoverflow.com/a/45292081/2453632
-      return await this.esClient.get(`${this.URLINFO_INDEX}/_search`, {
+      return await this.esClient.get(`${index}/_search`, {
         data: JSON.stringify(queryObject),
       });
     } catch (error) {
       console.error(JSON.stringify(error, null, 2));
+    }
+  }
+
+  async suggest(index: SearchIndex, query: string, field: string, howMany = 3) {
+    const queryObject = {
+      suggest: {
+        tag: {
+          prefix: query,
+          completion: {
+            field,
+            size: howMany,
+          },
+        },
+      },
+    };
+
+    try {
+      const {
+        data: { suggest },
+      } = await this.esClient.post(`${index}/_search`, JSON.stringify(queryObject));
+
+      if (suggest.tag.length === 0) return null;
+
+      return suggest.tag[0].options.map(option => {
+        const {
+          _source: { id, tag, normalizedTag },
+        } = option;
+        return { id, tag, normalizedTag };
+      });
+    } catch (error) {
+      console.error(JSON.stringify(error, null, 2));
+      return null;
     }
   }
 }
