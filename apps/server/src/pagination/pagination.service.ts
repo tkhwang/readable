@@ -40,9 +40,12 @@ export class PaginationService {
     const criteria = this.generateCriteria(query);
 
     let entities = await queryFunction(query, filter, criteria, requestUser);
+
     if (!entities || !entities.length) return null;
 
-    const hasNextPage = entities.length > first;
+    // TODO(Teddy): limit problem
+    // const hasNextPage = entities.length > first;
+    const hasNextPage = entities.length > first - 1;
 
     if (hasNextPage) {
       entities = entities.slice(0, entities.length - 1);
