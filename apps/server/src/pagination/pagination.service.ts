@@ -42,7 +42,7 @@ export class PaginationService {
     let entities = await queryFunction(query, filter, criteria, requestUser);
     if (!entities || !entities.length) return null;
 
-    const hasNextPage = entities.length > first - 1;
+    const hasNextPage = entities.length > first;
 
     if (hasNextPage) {
       entities = entities.slice(0, entities.length - 1);
