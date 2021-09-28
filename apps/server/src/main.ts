@@ -19,7 +19,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 7000;
 
-  Logger.log(`🔧 @server : NODE_ENV = , ${process.env['NODE' + '_ENV']}`);
+  Logger.log(`🔧 @server : NODE_ENV = ${process.env['NODE' + '_ENV']}`);
 
   await app.listen(port, () => {
     // REST

@@ -4,7 +4,7 @@ import * as express from 'express';
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   use(request: express.Request, response: express.Response, next: (err?: any) => any): any {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env['NODE' + '_ENV'] !== 'production') {
       console.log('\n');
       console.log('[+] url     -> ', request.originalUrl);
       console.log('[+] cookies -> ', request.cookies);

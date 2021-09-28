@@ -63,7 +63,7 @@ import { OperationModule } from './operation/operation.module';
       username: process.env.READABLE_RDS_USERNAME,
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
-      logging: true,
+      logging: process.env['NODE' + '_ENV'] === 'production' ? false : true,
       entities: [OAuthUser, User, Tag, Interest, UserFollow, UrlInfo, UserBookmark],
       synchronize: true,
     }),
