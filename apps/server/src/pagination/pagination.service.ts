@@ -43,9 +43,7 @@ export class PaginationService {
 
     if (!entities || !entities.length) return null;
 
-    // TODO(Teddy): limit problem
-    // const hasNextPage = entities.length > first;
-    const hasNextPage = entities.length > first - 1;
+    const hasNextPage = entities.length > first;
 
     if (hasNextPage) {
       entities = entities.slice(0, entities.length - 1);

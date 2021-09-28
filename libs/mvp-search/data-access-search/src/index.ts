@@ -1,1 +1,1 @@
-export * from './lib/useSearchTextInALlUrlinfos.query';
+export * from './lib/useSearchText.query';
