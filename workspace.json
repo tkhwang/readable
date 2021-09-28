@@ -335,6 +335,27 @@
         }
       }
     },
+    "mvp-search-data-access-search": {
+      "root": "libs/mvp-search/data-access-search",
+      "sourceRoot": "libs/mvp-search/data-access-search/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mvp-search/data-access-search/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mvp-search/data-access-search"],
+          "options": {
+            "jestConfig": "libs/mvp-search/data-access-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "mvp-tag-data-access-tag": {
       "root": "libs/mvp-tag/data-access-tag",
       "sourceRoot": "libs/mvp-tag/data-access-tag/src",

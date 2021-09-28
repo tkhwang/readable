@@ -58,6 +58,9 @@
     "login-feature-login": {
       "tags": ["scope:client"]
     },
+    "mvp-search-data-access-search": {
+      "tags": []
+    },
     "mvp-tag-data-access-tag": {
       "tags": ["scope:client"]
     },
