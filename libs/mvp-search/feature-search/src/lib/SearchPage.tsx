@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useSearchTextInAllUrlinfos } from '@readable/mvp-search/data-access-search';
+import { useSearchText } from '@readable/mvp-search/data-access-search';
 
 export function SearchPage() {
   const [searchText, setSearchText] = useState('');
-  const { allUrlInfosBySearch, loading, error } = useSearchTextInAllUrlinfos(searchText);
+  const { allUrlInfosBySearch, loading, error } = useSearchText(searchText);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
