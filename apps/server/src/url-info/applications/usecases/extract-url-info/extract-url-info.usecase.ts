@@ -7,7 +7,6 @@ import { InterestsService } from '@readable/interests/interests.service';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
 import { User } from '@readable/users/domain/models/user.model';
 import * as sha256 from 'crypto-js/sha256';
-import * as getFavicons from 'get-website-favicon';
 
 @Injectable()
 export class ExtractUrlInfoUsecase implements Usecase<string, any> {
@@ -43,16 +42,12 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
       };
     }
 
-    const [urlInfo, favicon] = await Promise.all([this.urlInfoService.extractSiteInformation(url), getFavicons(url)]);
+    const urlInfo = await this.urlInfoService.extractSiteInformation(url);
     urlInfo.urlHash = urlHash;
     urlInfo['howMany'] = howMany;
-    urlInfo.favicon = favicon.icons?.length > 0 ? favicon.icons[0]?.src : '';
-
     if (!urlInfo.imageUrl) {
       urlInfo.imageUrl = await this.imageService.getImageUrl(urlInfo);
     }
-
-    console.log('TCL: ExtractUrlInfoUsecase -> execute -> urlInfo', urlInfo);
 
     return {
       urlInfo,

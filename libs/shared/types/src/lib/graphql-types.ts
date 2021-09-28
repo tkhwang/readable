@@ -273,6 +273,8 @@ export type UrlInfo = {
   readonly deletedAt: Scalars['DateTime'];
   /** Description */
   readonly description?: Maybe<Scalars['String']>;
+  /** Site favicon */
+  readonly favicon?: Maybe<Scalars['String']>;
   readonly howMany: Scalars['Int'];
   readonly id: Scalars['ID'];
   /** Image url */

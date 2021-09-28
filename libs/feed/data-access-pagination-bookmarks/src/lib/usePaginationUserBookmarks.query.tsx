@@ -20,6 +20,7 @@ const PAGINATION_USER_BOOKMARKS = gql`
             urlHash
             title
             siteName
+            favicon
             imageUrl
             description
           }
