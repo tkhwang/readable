@@ -14,6 +14,7 @@ import { RecommendUserBookmarksByTagsInput } from '@readable/recommend/applicati
 import { SearchDomain } from '@readable/search/domain/models/search.model';
 import { MapTagsUsecase } from '@readable/tags/applications/usercases/map-tags/map-tags.usecase';
 import { MapTagsInput } from '@readable/tags/applications/usercases/map-tags/map-tags.input';
+import * as getFavicons from 'get-website-favicon';
 
 export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWithAuthInput, any> {
   constructor(
@@ -60,11 +61,12 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
       };
     }
 
-    const urlInfo = await this.urlInfoService.extractSiteInformation(url);
+    const [urlInfo, favicon] = await Promise.all([this.urlInfoService.extractSiteInformation(url), getFavicons(url)]);
     if (!urlInfo.imageUrl) {
       urlInfo.imageUrl = await this.imageService.getImageUrl(urlInfo);
     }
     urlInfo.urlHash = urlHash;
+    urlInfo.favicon = favicon.icons?.length > 0 ? favicon.icons[0]?.src : '';
 
     const newUrlInfo = await this.urlInfoRepository.save(this.urlInfoRepository.create(urlInfo));
     const newUrlInfoSearchDoc = {

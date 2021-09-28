@@ -15,7 +15,7 @@ export const BookmarksViewController = () => {
         })} */}
       {paginationUserBookmarks?.edges.map(edge => {
         const { urlInfo, interest, tags, bookmarkers, bookmarkersCount, readers, readersCount } = edge.node;
-        const { id, siteName, title, url, imageUrl, description } = urlInfo;
+        const { id, siteName, title, url, favicon, imageUrl, description } = urlInfo;
 
         return (
           <div className="p-10 ">
@@ -25,6 +25,7 @@ export const BookmarksViewController = () => {
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{title}</div>
                   <p className="text-gray-700 text-base">{description}</p>
+                  {favicon && <img className="w-16" src={favicon || ''} alt={title || ''} />}
                 </div>
               </a>
               <div className="px-6 pt-4 pb-2">

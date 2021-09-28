@@ -23,6 +23,9 @@ export class UrlInfo extends CoreEntity {
   description?: string;
 
   @Column({ nullable: true })
+  favicon?: string;
+
+  @Column({ nullable: true })
   imageUrl?: string;
 
   @Column('varchar', { nullable: true, name: 'summary', length: 4096 })

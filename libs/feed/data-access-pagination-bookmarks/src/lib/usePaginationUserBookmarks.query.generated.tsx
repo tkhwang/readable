@@ -27,7 +27,7 @@ export type PaginationUserBookmarksQuery = (
         & Pick<Types.UserBookmark, 'id' | 'urlHash' | 'bookmarkersCount' | 'readersCount'>
         & { readonly urlInfo: (
           { readonly __typename?: 'UrlInfo' }
-          & Pick<Types.UrlInfo, 'id' | 'url' | 'urlHash' | 'title' | 'siteName' | 'imageUrl' | 'description'>
+          & Pick<Types.UrlInfo, 'id' | 'url' | 'urlHash' | 'title' | 'siteName' | 'favicon' | 'imageUrl' | 'description'>
         ), readonly interest: (
           { readonly __typename?: 'Interest' }
           & Pick<Types.Interest, 'id' | 'interest'>
@@ -65,6 +65,7 @@ export const PaginationUserBookmarksDocument = gql`
           urlHash
           title
           siteName
+          favicon
           imageUrl
           description
         }

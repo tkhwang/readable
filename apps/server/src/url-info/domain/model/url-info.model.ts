@@ -21,6 +21,9 @@ export class UrlInfoBRFO extends CoreModel {
   @Field(type => String, { nullable: true, description: 'Description' })
   description?: string;
 
+  @Field(type => String, { nullable: true, description: 'Site favicon' })
+  favicon?: string;
+
   @Field(type => String, { nullable: true, description: 'Image url' })
   imageUrl?: string;
 

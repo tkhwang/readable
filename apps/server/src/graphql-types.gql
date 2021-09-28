@@ -198,6 +198,9 @@ type UrlInfo {
 
   """Description"""
   description: String
+
+  """Site favicon"""
+  favicon: String
   howMany: Int!
   id: ID!
 

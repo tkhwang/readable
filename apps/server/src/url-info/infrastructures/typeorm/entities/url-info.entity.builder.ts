@@ -33,6 +33,11 @@ export class UrlInfoBuilder {
     return this;
   }
 
+  setFavicon(favicon: string) {
+    this.urlInfo.favicon = favicon;
+    return this;
+  }
+
   setImageUrl(imageUrl: string) {
     this.urlInfo.imageUrl = imageUrl;
     return this;
