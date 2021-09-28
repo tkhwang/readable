@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { useAllUrlInfosBySearchQuery } from './useSearchTextInALlUrlinfos.query.generated';
+import { useAllUrlInfosBySearchQuery } from './useSearchTextInAllUrlinfos.query.generated';
 
 const SEARCH_BY_TEXT_IN_ALL_URLINFOS = gql`
   query AllUrlInfosBySearch($searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput!) {

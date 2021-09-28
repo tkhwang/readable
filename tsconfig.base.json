@@ -30,6 +30,7 @@
       "@readable/home/feature-home": ["libs/home/feature-home/src/index.ts"],
       "@readable/login/feature-login": ["libs/login/feature-login/src/index.ts"],
       "@readable/mvp-search/data-access-search": ["libs/mvp-search/data-access-search/src/index.ts"],
+      "@readable/mvp-search/feature-search": ["libs/mvp-search/feature-search/src/index.ts"],
       "@readable/mvp-tag/data-access-tag": ["libs/mvp-tag/data-access-tag/src/index.ts"],
       "@readable/mvp-tag/data-access-tag-sugguest": ["libs/mvp-tag/data-access-tag-sugguest/src/index.ts"],
       "@readable/mvp-tag/feature-tag": ["libs/mvp-tag/feature-tag/src/index.ts"],
