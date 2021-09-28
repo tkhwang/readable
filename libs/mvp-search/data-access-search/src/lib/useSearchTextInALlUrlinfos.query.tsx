@@ -13,7 +13,7 @@ const SEARCH_BY_TEXT_IN_ALL_URLINFOS = gql`
   }
 `;
 
-export function useSearchTextInALlUrlinfos(query: string) {
+export function useSearchTextInAllUrlinfos(query: string) {
   const { data, loading, error } = useAllUrlInfosBySearchQuery({
     variables: {
       searchByTextInAllUrlinfosInput: {
