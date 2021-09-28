@@ -10,6 +10,11 @@ export const HomeSidebar = () => {
         </Link>
       </div>
       <div className="mt-8">
+        <Link href="/mvpSearch">
+          <a>Search (MVP)</a>
+        </Link>
+      </div>
+      <div className="mt-8">
         <Link href="/mvpTag">
           <a>Tag (MVP)</a>
         </Link>
