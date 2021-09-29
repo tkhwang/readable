@@ -49,6 +49,8 @@ export class ExtractUrlInfoUsecase implements Usecase<string, any> {
       urlInfo.imageUrl = await this.imageService.getImageUrl(urlInfo);
     }
 
+    console.log('TCL: ExtractUrlInfoUsecase -> execute -> urlInfo', urlInfo);
+
     return {
       urlInfo,
       interests: myInterests,

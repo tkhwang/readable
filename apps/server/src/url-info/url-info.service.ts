@@ -8,6 +8,7 @@ import { UrlInfoRepository } from './infrastructures/typeorm/repositories/url-in
 import { UrlInfo } from './infrastructures/typeorm/entities/url-info.entity';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { User } from '@readable/users/domain/models/user.model';
+import { get } from 'lodash';
 
 @Injectable()
 export class UrlInfoService {
@@ -51,6 +52,8 @@ export class UrlInfoService {
       return {
         ...urlInfoByManual,
         ...urlInfoByLibrary,
+        imageUrl: this.findExactImageUrl(urlInfoByLibrary, urlInfoByManual),
+        title: this.findExactTitle(urlInfoByLibrary, urlInfoByManual),
         type: urlInfoByLibrary.type || urlInfoByManual.type || '',
         siteName: urlInfoByLibrary.siteName || urlInfoByManual.siteName || '',
       };
@@ -81,7 +84,10 @@ export class UrlInfoService {
 
     const html = await this.getHtml(url);
     const $ = cheerio.load(html.data as any);
-    const title = $('title') ?? $('h1') ?? $('h1.tittle');
+    const extractH1 = $('h1');
+    const extractH1Title = $('h1.tittle');
+
+    const title = extractH1 ?? extractH1Title ?? '';
 
     return new UrlInfoBuilder()
       .setUrl(url)
@@ -89,6 +95,30 @@ export class UrlInfoService {
       .setTitle(title?.text() ?? '')
       .setType(pathName ? 'article' : 'website')
       .build();
+  }
+
+  private findExactImageUrl(urlInfoByLibrary: UrlInfo, urlInfoByManual: UrlInfo) {
+    const urlInfoByLibraryImageUrl = get(urlInfoByLibrary, 'imageUrl', '');
+    const urlInfoByManualImageUrl = get(urlInfoByManual, 'imageUrl', '');
+    const urlInfoByLibraryUrl = get(urlInfoByLibrary, 'url', '');
+
+    if (urlInfoByLibraryImageUrl && urlInfoByLibraryImageUrl.startsWith('/')) {
+      if (urlInfoByLibraryUrl) {
+        if (urlInfoByLibraryUrl.endsWith('/')) {
+          return `${urlInfoByLibraryUrl.slice(0, -1)}${urlInfoByLibraryImageUrl}`;
+        }
+        return `${urlInfoByLibraryUrl}${urlInfoByLibraryImageUrl}`;
+      }
+    }
+
+    return urlInfoByLibraryImageUrl || urlInfoByManualImageUrl || '';
+  }
+
+  private findExactTitle(urlInfoByLibrary: UrlInfo, urlInfoByManual: UrlInfo) {
+    const urlInfoByLibraryTitle = get(urlInfoByLibrary, 'title', '');
+    const urlInfoByManualTitle = get(urlInfoByManual, 'title', '');
+
+    return urlInfoByLibraryTitle.length > urlInfoByManualTitle.length ? urlInfoByLibraryTitle : urlInfoByManualTitle;
   }
 
   private async getHtml(url: string) {

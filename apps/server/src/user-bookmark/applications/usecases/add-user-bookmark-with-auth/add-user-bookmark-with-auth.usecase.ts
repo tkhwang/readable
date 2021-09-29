@@ -68,6 +68,8 @@ export class AddUserBookmarkWithAuthUsecase implements Usecase<AddUserBookmarkWi
     urlInfo.urlHash = urlHash;
     urlInfo.favicon = favicon.icons?.length > 0 ? favicon.icons[0]?.src : '';
 
+    console.log('TCL: AddUserBookmarkWithAuthUsecase -> execute -> urlInfo', urlInfo);
+
     const newUrlInfo = await this.urlInfoRepository.save(this.urlInfoRepository.create(urlInfo));
     const newUrlInfoSearchDoc = {
       id: newUrlInfo.id,
