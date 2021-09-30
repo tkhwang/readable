@@ -38,10 +38,10 @@ export class TagsService {
   }
 
   async getFieldIsFollowingTag(tag: TagBRFO, user: User) {
-    const userEntity = await this.usersRepository
-      .createQueryBuilder('user')
-      .where('user.id = :userId', { userId: user.id })
-      .getOne();
+    const userEntity = await this.usersRepository.findOne({
+      where: { id: user.id },
+      relations: ['tags'],
+    });
 
     const userTagIds = (userEntity?.tags ?? []).map(tag => tag.id);
 

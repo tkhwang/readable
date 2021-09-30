@@ -5,7 +5,7 @@ import {
   FollowUserFailedException,
   NoNeedFollowYourselfException,
 } from '@readable/users/domain/errors/userFollow.error';
-import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
+import { UserNotFoundException } from '@readable/users/domain/errors/users.error';
 import { User } from '@readable/users/domain/models/user.model';
 import { UserFollowsRepository } from '@readable/users/infrastructures/typeorm/repositories/userFollow.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
@@ -41,7 +41,7 @@ export class FollowUserWithAuthUsecase implements Usecase<FollowUserWithAuthInpu
       await this.userFollowsRepository.save(userFollow);
 
       const followingUserModel = await this.usersRepository.findOne({ where: { id: followingUserId } });
-      if (!followingUserModel) throw new UserNotFoundExcepiton(followingUserId);
+      if (!followingUserModel) throw new UserNotFoundException(followingUserId);
 
       return new FollowUserWithAuthOutput(true, new FollowUserWithAuthOutputData(followingUserModel));
     } catch (error) {

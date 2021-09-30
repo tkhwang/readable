@@ -8,10 +8,14 @@ import { TagsService } from './tags.service';
 import { TagsResolver } from './tags.resolver';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
+import { FollowTagWithAuthUsecase } from './applications/usercases/follow-tag-with-auth/follow-tag-with-auth.usecase';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TagsRepository, UserBookmarkRepository, UsersRepository]), SearchModule],
-  providers: [TagsService, InitializeTagsUseCase, MapTagsUsecase, TagsResolver],
+  imports: [
+    TypeOrmModule.forFeature([TagsRepository, UserBookmarkRepository, UsersRepository, UsersRepository]),
+    SearchModule,
+  ],
+  providers: [TagsService, InitializeTagsUseCase, MapTagsUsecase, TagsResolver, FollowTagWithAuthUsecase],
   exports: [TagsService, InitializeTagsUseCase, MapTagsUsecase],
 })
 export class TagsModule {}

@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export class TagNotFoundExcepiton extends HttpException {
+export class TagNotFoundException extends HttpException {
   constructor(tagId: string) {
-    super(`[-] TagNotFoundExcepiton : Tag(${tagId} not found.`, HttpStatus.BAD_REQUEST);
+    super(`[-] TagNotFoundException : Tag(${tagId} not found.`, HttpStatus.BAD_REQUEST);
   }
 }

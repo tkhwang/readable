@@ -3,7 +3,7 @@ import { Usecase } from '@readable/common/applications/usecase';
 import { oauthGoogleCredentials } from '@readable/common/constants';
 import { CommonOutput } from '@readable/common/models/common.output';
 import { UserAuthTokenRefreshTokenNotFoundException } from '@readable/user-bookmark/domain/errors/user-bookmark.error';
-import { OAuthUserNotFoundExcepiton } from '@readable/users/domain/errors/oauthUser.error';
+import { OAuthUserNotFoundException } from '@readable/users/domain/errors/oauthUser.error';
 import { User } from '@readable/users/domain/models/user.model';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
 import { google } from 'googleapis';
@@ -51,7 +51,7 @@ export class SyncGoogleCalendaerWithAuthUsecase implements Usecase<SyncGoogleCal
 
   private async getUserTokens(requestUser: User) {
     const oauthUser = await this.oAuthUsersRepository.findOne({ where: { user: requestUser } });
-    if (!oauthUser) throw new OAuthUserNotFoundExcepiton(requestUser.id);
+    if (!oauthUser) throw new OAuthUserNotFoundException(requestUser.id);
 
     const { accessToken, refreshToken } = oauthUser;
 

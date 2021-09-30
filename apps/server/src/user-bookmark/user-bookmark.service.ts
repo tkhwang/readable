@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
-import { UserNotFoundExcepiton } from '@readable/users/domain/errors/users.error';
+import { UserNotFoundException } from '@readable/users/domain/errors/users.error';
 import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { IsNull, Not } from 'typeorm';
@@ -110,7 +110,7 @@ export class UserBookmarkService {
   // MEMO(Teddy): It should be in userModule, but there is here due to DI issue.
   private async updateLatestInterest(requestUser: User, interest: Interest) {
     const user = await this.usersRepository.findOne(requestUser.id);
-    if (!user) throw new UserNotFoundExcepiton(requestUser.id);
+    if (!user) throw new UserNotFoundException(requestUser.id);
 
     user.latestInterestId = interest.id;
     return this.usersRepository.save(user);
