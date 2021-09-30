@@ -16,3 +16,6 @@ export * from './lib/logo/logo';
 export * from './lib/menu-item-button/menu-item-button';
 export * from './lib/shadow-card/shadow-card';
 export * from './lib/loading/loading';
+export * from './lib/layout/main-layout';
+export * from './lib/header/main-header';
+export * from './lib/navigation/main-sidebar';
