@@ -23,4 +23,7 @@ export class Tag extends TagBRFO {
 
   @Field(type => Number, { description: 'Tagged post count (resolver field)' })
   userBookmarksCount: number;
+
+  @Field(type => Boolean)
+  isFollowingTag: boolean;
 }

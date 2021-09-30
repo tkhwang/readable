@@ -28,6 +28,14 @@ input FindOrAddInterestWithAuthInput {
   interest: String!
 }
 
+input FollowTagWithAuthInput {
+  tagId: String!
+}
+
+type FollowTagWithAuthOutput {
+  isSuccess: Boolean!
+}
+
 input FollowUserWithAuthInput {
   """Following User id"""
   followingUserId: String!
@@ -58,6 +66,7 @@ type Interest {
 type Mutation {
   deleteUserBookmarkWithAuth(deleteUserBookmarkWithAuthInput: DeleteUserBookmarkWithAuthInput!): CommonOutput!
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
+  followTagWithAuth(followTagWithAuthInput: FollowTagWithAuthInput!): FollowTagWithAuthOutput!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
   syncGoogleCalendarWithAuth(syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput!): CommonOutput!
   unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!
@@ -167,6 +176,7 @@ type Tag {
   followersCount: Float!
   id: ID!
   imageUrl: String
+  isFollowingTag: Boolean!
   normalizedTag: String!
   tag: String!
   updatedAt: DateTime!

@@ -7,7 +7,6 @@ export function MvpTagIputTag(props: Props) {
   const [name, setName] = useState('');
 
   const { tagSuggest } = useTagSuggest(name);
-  console.log('TCL: tagSuggest', tagSuggest);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();

@@ -19,6 +19,7 @@ const GET_PAGINATION_TAGS = gql`
           description
           followersCount
           userBookmarksCount
+          isFollowingTag
         }
       }
     }
@@ -28,7 +29,11 @@ const GET_PAGINATION_TAGS = gql`
 export type PaginationTagsViewModel = ViewModel<typeof usePaginationTags>;
 
 export function usePaginationTags() {
-  const { data, loading, error } = usePaginationTagsQuery();
+  const { data, loading, error } = usePaginationTagsQuery({
+    variables: {
+      first: 30,
+    },
+  });
 
   const paginationTags = data?.paginationTags;
 

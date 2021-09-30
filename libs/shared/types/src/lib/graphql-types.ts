@@ -38,6 +38,15 @@ export type FindOrAddInterestWithAuthInput = {
   readonly interest: Scalars['String'];
 };
 
+export type FollowTagWithAuthInput = {
+  readonly tagId: Scalars['String'];
+};
+
+export type FollowTagWithAuthOutput = {
+  readonly __typename?: 'FollowTagWithAuthOutput';
+  readonly isSuccess: Scalars['Boolean'];
+};
+
 export type FollowUserWithAuthInput = {
   /** Following User id */
   readonly followingUserId: Scalars['String'];
@@ -71,6 +80,7 @@ export type Mutation = {
   readonly __typename?: 'Mutation';
   readonly deleteUserBookmarkWithAuth: CommonOutput;
   readonly findOrAddInterestWithAuth: Interest;
+  readonly followTagWithAuth: FollowTagWithAuthOutput;
   readonly followUserWithAuth: FollowUserWithAuthOutput;
   readonly syncGoogleCalendarWithAuth: CommonOutput;
   readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
@@ -84,6 +94,11 @@ export type MutationdeleteUserBookmarkWithAuthArgs = {
 
 export type MutationfindOrAddInterestWithAuthArgs = {
   findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput;
+};
+
+
+export type MutationfollowTagWithAuthArgs = {
+  followTagWithAuthInput: FollowTagWithAuthInput;
 };
 
 
@@ -242,6 +257,7 @@ export type Tag = {
   readonly followersCount: Scalars['Float'];
   readonly id: Scalars['ID'];
   readonly imageUrl?: Maybe<Scalars['String']>;
+  readonly isFollowingTag: Scalars['Boolean'];
   readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];

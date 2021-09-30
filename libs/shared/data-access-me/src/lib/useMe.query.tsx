@@ -10,6 +10,10 @@ const graphql = gql`
       provider
       providerId
       avatarUrl
+      tags {
+        id
+        tag
+      }
     }
   }
 `;

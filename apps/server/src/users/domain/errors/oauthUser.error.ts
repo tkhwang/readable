@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export class OAuthUserNotFoundExcepiton extends HttpException {
+export class OAuthUserNotFoundException extends HttpException {
   constructor(userId: string) {
-    super(`[-] OAuthUserNotFoundExcepiton : User(${userId}  OAuthUser not found.`, HttpStatus.BAD_REQUEST);
+    super(`[-] OAuthUserNotFoundException : User(${userId}  OAuthUser not found.`, HttpStatus.BAD_REQUEST);
   }
 }

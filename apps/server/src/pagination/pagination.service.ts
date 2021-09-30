@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
-import { TagNotFoundExcepiton } from '@readable/tags/domain/erros/tag.error';
+import { TagNotFoundException } from '@readable/tags/domain/erros/tag.error';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsUtilityService } from '@readable/tags/tags-utility.service';
@@ -96,7 +96,7 @@ export class PaginationService {
 
     if (tagId) {
       const tag = await this.tagsRepository.findOne(tagId);
-      if (!tag) throw new TagNotFoundExcepiton(tagId);
+      if (!tag) throw new TagNotFoundException(tagId);
 
       filter.normalizedTag = TagsUtilityService.normalizeTag(tag.tag);
     }

@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
+import { includes } from 'lodash';
 import { TagBRFO } from './domain/models/tag.model';
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
 
@@ -33,5 +35,16 @@ export class TagsService {
         tagIds: [tag.id],
       })
       .getCount();
+  }
+
+  async getFieldIsFollowingTag(tag: TagBRFO, user: User) {
+    const userEntity = await this.usersRepository.findOne({
+      where: { id: user.id },
+      relations: ['tags'],
+    });
+
+    const userTagIds = (userEntity?.tags ?? []).map(tag => tag.id);
+
+    return userTagIds.includes(tag.id);
   }
 }
