@@ -15,7 +15,7 @@ export function MainLayout({ renderHeader, renderSidebar, renderSection }: MainL
           <div className="w-full h-full min-w-max text-white font-semibold">{renderSidebar()}</div>
         </aside>
         <section className="px-4 sm:px-8 flex w-full">
-          <article className="max-w-4xl">{renderSection()}</article>
+          <article className="max-w-4xl w-full">{renderSection()}</article>
           <aside className="pl-6 hidden w-full lg:block max-w-sm">
             <div className="w-full h-full">
               <div className="w-full h-52 bg-black"></div>
