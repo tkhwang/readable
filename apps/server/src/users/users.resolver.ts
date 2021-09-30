@@ -30,7 +30,7 @@ export class UsersResolver {
   @Query(returns => User)
   @UseGuards(GqlAuthGuard)
   me(@CurrentUser() user: User) {
-    return user;
+    return this.usersService.findUserWithRelation(user);
   }
 
   /*

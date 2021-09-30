@@ -14,6 +14,10 @@ export type MeQuery = (
   & { readonly me: (
     { readonly __typename?: 'User' }
     & Pick<Types.User, 'id' | 'name' | 'provider' | 'providerId' | 'avatarUrl'>
+    & { readonly tags: ReadonlyArray<(
+      { readonly __typename?: 'Tag' }
+      & Pick<Types.Tag, 'id' | 'tag'>
+    )> }
   ) }
 );
 
@@ -26,6 +30,10 @@ export const MeDocument = gql`
     provider
     providerId
     avatarUrl
+    tags {
+      id
+      tag
+    }
   }
 }
     `;

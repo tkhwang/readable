@@ -21,8 +21,13 @@ export class FollowTagWithAuthUsecase implements Usecase<FollowTagWithAuthInput,
 
     const [tag, user] = await Promise.all([
       this.tagsRepository.findOne({ id: tagId }),
-      this.usersRepository.findOne({ id: requestUser.id }),
+      this.usersRepository.findOne({
+        where: { id: requestUser.id },
+        relations: ['tags'],
+      }),
     ]);
+
+    console.log('TCL: FollowTagWithAuthUsecase -> execute -> user', user);
 
     if (!user) throw new UserNotFoundException(requestUser.id);
     if (!tag) throw new TagNotFoundException(tagId);
