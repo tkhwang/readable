@@ -242,7 +242,7 @@ export type Tag = {
   readonly followersCount: Scalars['Float'];
   readonly id: Scalars['ID'];
   readonly imageUrl?: Maybe<Scalars['String']>;
-  readonly isFollowedTag: Scalars['Boolean'];
+  readonly isFollowingTag: Scalars['Boolean'];
   readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];

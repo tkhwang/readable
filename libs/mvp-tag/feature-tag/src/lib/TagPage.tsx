@@ -22,7 +22,7 @@ export function TagPage() {
             description,
             followersCount,
             userBookmarksCount,
-            isFollowedTag,
+            isFollowingTag,
           } = edge.node;
 
           return (
@@ -30,12 +30,14 @@ export function TagPage() {
               <div className="max-w-md rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
                 <div className="flex">
                   <div className="px-20 pt-4 pb-2">{normalizedTag}</div>
-                  <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-6 rounded"
-                    disabled={!isFollowedTag}
-                  >
-                    follow
-                  </button>
+                  {!isFollowingTag && (
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-6 rounded"
+                      disabled={!isFollowingTag}
+                    >
+                      follow
+                    </button>
+                  )}
                 </div>
                 <img src={imageUrl || defaultTagImage} className="image" alt="tag" />
                 <ul>

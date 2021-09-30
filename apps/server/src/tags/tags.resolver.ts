@@ -24,8 +24,8 @@ export class TagsResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @ResolveField('isFollowedTag', returns => Boolean)
-  async isFollowedTag(@CurrentUser() requestUser: User, @Parent() tag: TagBRFO) {
-    return this.tagsService.getFieldIsFollowedTag(tag, requestUser);
+  @ResolveField('isFollowingTag', returns => Boolean)
+  async isFollowingTag(@CurrentUser() requestUser: User, @Parent() tag: TagBRFO) {
+    return this.tagsService.getFieldIsFollowingTag(tag, requestUser);
   }
 }

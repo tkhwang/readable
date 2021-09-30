@@ -19,7 +19,7 @@ const GET_PAGINATION_TAGS = gql`
           description
           followersCount
           userBookmarksCount
-          isFollowedTag
+          isFollowingTag
         }
       }
     }

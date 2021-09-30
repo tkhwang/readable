@@ -25,5 +25,5 @@ export class Tag extends TagBRFO {
   userBookmarksCount: number;
 
   @Field(type => Boolean)
-  isFollowedTag: boolean;
+  isFollowingTag: boolean;
 }
