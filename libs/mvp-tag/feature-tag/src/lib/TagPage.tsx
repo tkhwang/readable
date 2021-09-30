@@ -14,11 +14,29 @@ export function TagPage() {
       {paginationTags?.edges &&
         paginationTags.edges.length > 0 &&
         paginationTags.edges.map(edge => {
-          const { id, tag, normalizedTag, imageUrl, description, followersCount, userBookmarksCount } = edge.node;
+          const {
+            id,
+            tag,
+            normalizedTag,
+            imageUrl,
+            description,
+            followersCount,
+            userBookmarksCount,
+            isFollowedTag,
+          } = edge.node;
+
           return (
             <div className="p-10">
               <div className="max-w-md rounded overflow-hidden shadow-lg border-2 border-gray-200 hover:border-blue-500">
-                <div className="px-6 pt-4 pb-2">{normalizedTag}</div>
+                <div className="flex">
+                  <div className="px-20 pt-4 pb-2">{normalizedTag}</div>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-6 rounded"
+                    disabled={!isFollowedTag}
+                  >
+                    follow
+                  </button>
+                </div>
                 <img src={imageUrl || defaultTagImage} className="image" alt="tag" />
                 <ul>
                   <li>userBookmarksCount: {userBookmarksCount}</li>

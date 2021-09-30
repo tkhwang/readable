@@ -167,6 +167,7 @@ type Tag {
   followersCount: Float!
   id: ID!
   imageUrl: String
+  isFollowedTag: Boolean!
   normalizedTag: String!
   tag: String!
   updatedAt: DateTime!

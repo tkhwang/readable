@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { TagBRFO } from './domain/models/tag.model';
 import { TagsRepository } from './infrastructures/typeorm/repositories/tags.repository';
@@ -33,5 +34,22 @@ export class TagsService {
         tagIds: [tag.id],
       })
       .getCount();
+  }
+
+  async getFieldIsFollowedTag(tag: TagBRFO, user: User) {
+    const myUserBookmarks = await this.userBookmarkRepository
+      .createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.tags', 'tags')
+      .where('userBookmark.userId = :userId', { userId: user.id })
+      .getMany();
+
+    const myTags = (myUserBookmarks ?? [])
+      .map(userBookmark => userBookmark.tags)
+      .reduce((acc, cur) => (Array.isArray(cur) ? [...acc, ...cur] : [...acc, cur]), [])
+      .map(tag => tag.id);
+
+    const uniqueTags = [...new Set(myTags)];
+
+    return uniqueTags.includes(tag.id);
   }
 }
