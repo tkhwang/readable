@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql, WatchQueryFetchPolicy } from '@apollo/client';
 import { useMeQuery } from './useMe.query.generated';
 import { useRouter } from 'next/router';
 
@@ -16,11 +16,12 @@ const graphql = gql`
 
 type useMeType = {
   redirectTo: string;
+  fetchPolicy?: WatchQueryFetchPolicy;
 };
 
-export function useMe({ redirectTo }: useMeType) {
+export function useMe({ redirectTo, fetchPolicy }: useMeType) {
   const { data: meData, loading: isMeDataLoading, error: isMeDataError } = useMeQuery({
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: fetchPolicy,
   });
 
   const router = useRouter();

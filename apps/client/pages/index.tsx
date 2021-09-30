@@ -4,7 +4,7 @@ import { useMe } from '@readable/shared/data-access-me';
 import { Loading } from '@readable/ui';
 
 function Home() {
-  const { me, isMeDataLoading } = useMe({ redirectTo: '/login' });
+  const { me, isMeDataLoading } = useMe({ redirectTo: '/login', fetchPolicy: 'network-only' });
 
   if (!me || isMeDataLoading) {
     return (
