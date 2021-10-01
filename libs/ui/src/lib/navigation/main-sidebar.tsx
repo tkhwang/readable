@@ -1,6 +1,8 @@
 import Link from 'next/link';
 
-export const HomeSidebar = () => {
+export interface MainSidebarProps {}
+
+export function MainSidebar(props: MainSidebarProps) {
   return (
     <>
       <div>Explore</div>
@@ -21,4 +23,6 @@ export const HomeSidebar = () => {
       </div>
     </>
   );
-};
+}
+
+export default MainSidebar;
