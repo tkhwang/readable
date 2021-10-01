@@ -7,7 +7,7 @@ function Home() {
   const { userId } = router.query;
   console.log('TCL: Home -> userId', userId);
 
-  return <FeatureCollection></FeatureCollection>;
+  return <FeatureCollection />;
 }
 
 export default Home;
