@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { Avatar, AvatarProps } from './avatar';
-import profileImage from '../.././../assets/Fernando_Pidrilio.svg';
+import profileImage from '../.././../assets/avatar_default.svg';
 
 export default {
   title: 'Elements/Avatar',
