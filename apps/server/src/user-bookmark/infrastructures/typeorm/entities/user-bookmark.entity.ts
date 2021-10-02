@@ -18,7 +18,7 @@ export class UserBookmark extends CoreEntity {
   @ManyToOne(() => Interest, interest => interest.userBookmarks)
   interest: Interest;
 
-  @ManyToMany(() => Tag)
+  @ManyToMany(() => Tag, tag => tag.userBookmarks)
   @JoinTable()
   tags: Tag[];
 
