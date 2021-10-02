@@ -10,7 +10,7 @@ import { UserBookmark } from '../entities/user-bookmark.entity';
 @Injectable()
 @EntityRepository(UserBookmark)
 export class UserBookmarkRepository extends Repository<UserBookmark> {
-  async queryForPagination(
+  async queryForUserBookmarksFeedPagination(
     query: GetPaginationUserBookmarksInput,
     filter: PaginationUserBookmarksFilter,
     criteria: PaginationQueryCriteriaType,
