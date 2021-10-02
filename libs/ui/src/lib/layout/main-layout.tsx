@@ -6,7 +6,7 @@ export interface MainLayoutProps {
   renderFooter?: () => JSX.Element;
 }
 
-export function MainLayout({ renderHeader, renderSidebar, renderSection }: MainLayoutProps) {
+export function MainLayout({ renderHeader, renderSidebar, renderSection, renderSectionSidebar }: MainLayoutProps) {
   return (
     <>
       <header className="bg-gray-800 fixed w-full z-10">{renderHeader()}</header>
@@ -17,10 +17,7 @@ export function MainLayout({ renderHeader, renderSidebar, renderSection }: MainL
         <section className="px-4 sm:px-8 flex w-full">
           <article className="max-w-4xl w-full">{renderSection()}</article>
           <aside className="pl-6 hidden w-full lg:block max-w-sm">
-            <div className="w-full h-full">
-              <div className="w-full h-52 bg-black"></div>
-              <div className="w-full h-96 mt-3 bg-black"></div>
-            </div>
+            <div className="w-full h-full">{renderSectionSidebar && renderSectionSidebar()}</div>
           </aside>
         </section>
       </main>
