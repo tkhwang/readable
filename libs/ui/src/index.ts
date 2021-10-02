@@ -19,3 +19,4 @@ export * from './lib/layout/main-layout';
 export * from './lib/header/main-header';
 export * from './lib/navigation/main-sidebar';
 export * from './lib/profile/profile';
+export * from './lib/card/action-card';

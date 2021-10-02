@@ -1,6 +1,7 @@
 import { ShadowCard } from '@readable/ui';
 import { useDataAccessFeed } from '@readable/home/data-access-home';
 import { useEffect, useRef } from 'react';
+import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const HomeFeed = () => {
   const { entries, pageInfo, fetchMoreFeedData } = useDataAccessFeed();
@@ -40,13 +41,13 @@ export const HomeFeed = () => {
         return (
           <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="mx-2 my-4">
             <ShadowCard
-              cardImageUrl={imageUrl}
-              description={description}
-              siteName={siteName}
-              profileImageUrl={profileImageUrl}
+              cardImageUrl={imageUrl ?? undefined}
+              description={description ?? ''}
+              siteName={siteName ?? ''}
+              profileImageUrl={profileImageUrl ?? DEFAULT_PROFILE_IMAGE_URL}
               tags={tags}
               index={index}
-              title={title}
+              title={title ?? ''}
             />
           </div>
         );

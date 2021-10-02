@@ -15,7 +15,7 @@ import {
   UserIcon as UserSolidIcon,
   UserRemoveIcon as UserRemoveSolidIcon,
 } from '@heroicons/react/solid';
-import profileImage from '../../../assets/Fernando_Pidrilio.svg';
+import profileImage from '../../../assets/avatar_default.svg';
 
 export default {
   title: 'Dropdown/DropdownMenu',

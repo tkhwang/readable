@@ -75,5 +75,3 @@ export function Avatars(props: AvatarsProps) {
     </>
   );
 }
-
-export default Avatars;

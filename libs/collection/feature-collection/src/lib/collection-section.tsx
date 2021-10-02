@@ -1,3 +1,5 @@
+import { CollectionHistory } from './collection-history';
+import { CollectionInterest } from './collection-interest';
 import { CollectionProfile } from './collection-profile';
 
 export const CollectionSection = () => {
@@ -6,8 +8,12 @@ export const CollectionSection = () => {
       <div>
         <CollectionProfile />
       </div>
-      <div>pinned</div>
-      <div>recent activity</div>
+      <div className="mt-9">
+        <CollectionInterest />
+      </div>
+      <div className="mt-9">
+        <CollectionHistory />
+      </div>
     </div>
   );
 };

@@ -1,14 +1,14 @@
-import profileBackground from '../../../assets/profile_bg.svg';
-
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ProfileProps {}
+export interface ProfileProps {
+  backgroundImageUrl: string;
+}
 
-export function Profile(props: ProfileProps) {
+export function Profile({ backgroundImageUrl }: ProfileProps) {
   return (
     <div className="relative">
       <div className="bg-green-300 h-72" />
-      <div style={{ backgroundImage: `url(${profileBackground})` }} className="w-full h-72 absolute top-0" />
-      <div className="absolute top-0 p-5 border-2 w-full h-full">
+      <div style={{ backgroundImage: `url(${backgroundImageUrl})` }} className="w-full h-72 absolute top-0" />
+      <div className="absolute top-0 p-5 w-full h-full">
         <div className="flex bg-white space-x-4 w-3/5 min-w-min p-5">
           <div className="border-2 w-32 flex-shrink-0">사진</div>
           <div className="border-2 flex flex-col justify-between w-full">
