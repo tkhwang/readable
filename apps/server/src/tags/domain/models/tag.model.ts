@@ -1,5 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
+import { UserBookmark as UserBookmarkModel } from '@readable/user-bookmark/domain/model/user-bookmark.model';
+import { UserBookmark as UserBookmarkEntity } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 
 @ObjectType()
 export class TagBRFO extends CoreModel {
@@ -14,6 +16,9 @@ export class TagBRFO extends CoreModel {
 
   @Field(type => String, { nullable: true })
   description?: string;
+
+  @Field(type => [UserBookmarkModel])
+  userBookmarks: UserBookmarkEntity[];
 }
 
 @ObjectType()

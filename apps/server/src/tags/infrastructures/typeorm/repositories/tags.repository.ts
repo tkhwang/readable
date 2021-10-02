@@ -17,9 +17,12 @@ export class TagsRepository extends Repository<Tag> {
   ) {
     const { first, after, order, orderBy } = query;
 
-    const queryBuilder = this.createQueryBuilder('tag').where('tag.createdAt < :createdAt', {
-      createdAt: criteria['createdAt'],
-    });
+    const queryBuilder = this.createQueryBuilder('tag')
+      .innerJoinAndSelect('tag.userBookmarks', 'userBookmarks')
+      .loadRelationCountAndMap('tag.bookmarksCount', 'tag.userBookmarks')
+      .where('tag.createdAt < :createdAt', {
+        createdAt: criteria['createdAt'],
+      });
 
     queryBuilder.limit(first + 1).orderBy('tag.createdAt', 'DESC');
 

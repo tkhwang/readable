@@ -180,6 +180,7 @@ type Tag {
   normalizedTag: String!
   tag: String!
   updatedAt: DateTime!
+  userBookmarks: [UserBookmark!]!
 
   """Tagged post count (resolver field)"""
   userBookmarksCount: Float!
