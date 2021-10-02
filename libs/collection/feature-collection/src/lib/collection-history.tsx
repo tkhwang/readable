@@ -1,5 +1,5 @@
 import { ShadowCard } from '@readable/ui';
-import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
+import { DEFAULT_CARD_COVER_IMAGE_URL, DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const CollectionHistory = () => {
   return (
@@ -13,6 +13,7 @@ export const CollectionHistory = () => {
             siteName="siteName"
             index={0}
             profileImageUrl={DEFAULT_PROFILE_IMAGE_URL}
+            cardImageUrl={DEFAULT_CARD_COVER_IMAGE_URL}
           />
         </div>
         <div className="flex-1">
@@ -22,6 +23,7 @@ export const CollectionHistory = () => {
             siteName="siteName"
             index={1}
             profileImageUrl={DEFAULT_PROFILE_IMAGE_URL}
+            cardImageUrl={DEFAULT_CARD_COVER_IMAGE_URL}
           />
         </div>
       </div>

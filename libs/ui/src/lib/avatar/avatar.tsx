@@ -1,22 +1,19 @@
 import Image, { ImageLoaderProps } from 'next/image';
 
-type AvatarSize = 'sm' | 'base' | 'lg';
+export type AvatarSize = 'sm' | 'base' | 'lg';
 
 type UserInfo = {
   nickname: string;
   job?: string;
 };
 
-enum Direction {
-  Row = 'row',
-  Column = 'column',
-}
+export type Direction = 'row' | 'column';
 
 export interface AvatarProps {
   profileImage: string;
   size?: AvatarSize;
   userInfo?: UserInfo;
-  direction?: string;
+  direction?: Direction;
 }
 
 export function Avatar({ profileImage, size, userInfo, direction }: AvatarProps) {
@@ -30,7 +27,7 @@ export function Avatar({ profileImage, size, userInfo, direction }: AvatarProps)
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
-  const directionStyle = direction === Direction.Row ? 'flex-row space-x-2' : 'flex-col space-y-2`';
+  const directionStyle = direction === 'row' ? 'flex-row space-x-2' : 'flex-col space-y-2`';
 
   return (
     <div className={`flex ${direction && directionStyle} items-center`}>

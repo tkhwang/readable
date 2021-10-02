@@ -1,4 +1,4 @@
-import CommentCard from '../comment-card/comment-card';
+import CommentCard from '../card/comment-card';
 
 export interface GalleryProps {}
 
