@@ -2,16 +2,16 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 import { ActionAvatarList } from '@readable/ui';
 import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
-export const HomePopularCollection = () => {
+export const HomeRecommendCollector = () => {
   const profileImage = DEFAULT_PROFILE_IMAGE_URL;
 
   return (
-    <>
+    <div>
       <div className="text-gray-300 flex justify-between">
-        <div className="text-sm">Popular Collector</div>
+        <div className="text-sm">You might like</div>
         <ChevronRightIcon className="w-5 h-5" />
       </div>
-      <div className="py-5">
+      <div className="py-4">
         <ActionAvatarList
           avatarList={[
             {
@@ -20,7 +20,7 @@ export const HomePopularCollection = () => {
                 nickname: '20min',
                 job: 'Designer',
               },
-              direction: 'column',
+              direction: 'row',
             },
             {
               profileImage,
@@ -28,7 +28,7 @@ export const HomePopularCollection = () => {
                 nickname: '20min',
                 job: 'Designer',
               },
-              direction: 'column',
+              direction: 'row',
             },
             {
               profileImage,
@@ -36,13 +36,12 @@ export const HomePopularCollection = () => {
                 nickname: '20min',
                 job: 'Designer',
               },
-              direction: 'column',
+              direction: 'row',
             },
           ]}
-          listDirection="row"
-          avatarSize="lg"
+          listDirection="column"
         />
       </div>
-    </>
+    </div>
   );
 };

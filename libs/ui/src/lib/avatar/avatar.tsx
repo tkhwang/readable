@@ -1,6 +1,6 @@
 import Image, { ImageLoaderProps } from 'next/image';
 
-type AvatarSize = 'sm' | 'base' | 'lg';
+export type AvatarSize = 'sm' | 'base' | 'lg';
 
 type UserInfo = {
   nickname: string;
