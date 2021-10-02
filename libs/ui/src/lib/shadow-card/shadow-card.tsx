@@ -1,14 +1,14 @@
 import CardImage from '../../../assets/card_sample.svg';
 import { BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
 import { BookmarkIcon as BookmarkOutlineIcon, BadgeCheckIcon } from '@heroicons/react/outline';
-import Avatar from '../avatar/avatar';
+import { Avatar } from '../avatar/avatar';
 import Image, { ImageLoaderProps } from 'next/image';
 
 export interface ShadowCardProps {
   cardImageUrl?: string;
   description: string;
   siteName: string;
-  profileImageUrl?: string;
+  profileImageUrl: string;
   tags?: { id: string; name: string }[];
   index: number;
   title: string;
