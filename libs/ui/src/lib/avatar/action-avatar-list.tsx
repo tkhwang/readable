@@ -1,22 +1,27 @@
-import { Avatar } from '@readable/ui';
+import { Avatar, Direction } from '@readable/ui';
 
-type User = {
+type AvatarInfo = {
   profileImage: string;
   userInfo: {
     nickname: string;
     job: string;
   };
+  direction: Direction;
 };
 
+type ListDirection = 'column' | 'row';
+
 export interface ActionAvatarListProps {
-  userList: User[];
-  direction: boolean;
+  avatarList: AvatarInfo[];
+  listDirection: ListDirection;
 }
 
-export function ActionAvatarList({ userList, direction }: ActionAvatarListProps) {
+export function ActionAvatarList({ avatarList, listDirection }: ActionAvatarListProps) {
+  const listDirectionStyle = listDirection === 'row' ? 'flex-row space-x-6' : 'flex-col space-y-6';
+
   return (
-    <div className="flex space-x-6">
-      {userList.map(user => (
+    <div className={`flex ${listDirectionStyle}`}>
+      {avatarList.map(user => (
         <Avatar {...user} size="lg" />
       ))}
     </div>

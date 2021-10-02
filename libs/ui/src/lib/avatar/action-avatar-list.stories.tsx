@@ -9,16 +9,17 @@ export default {
 
 const Template: Story<ActionAvatarListProps> = args => <ActionAvatarList {...args} />;
 
-export const Default = Template.bind({});
+export const ColumnAvatar = Template.bind({});
 
-Default.args = {
-  userList: [
+ColumnAvatar.args = {
+  avatarList: [
     {
       profileImage,
       userInfo: {
         nickname: '20min',
         job: 'Designer',
       },
+      direction: 'column',
     },
     {
       profileImage,
@@ -26,6 +27,7 @@ Default.args = {
         nickname: '20min',
         job: 'Designer',
       },
+      direction: 'column',
     },
     {
       profileImage,
@@ -33,6 +35,38 @@ Default.args = {
         nickname: '20min',
         job: 'Designer',
       },
+      direction: 'column',
+    },
+  ],
+};
+
+export const RowAvatar = Template.bind({});
+
+RowAvatar.args = {
+  avatarList: [
+    {
+      profileImage,
+      userInfo: {
+        nickname: '20min',
+        job: 'Designer',
+      },
+      direction: 'row',
+    },
+    {
+      profileImage,
+      userInfo: {
+        nickname: '20min',
+        job: 'Designer',
+      },
+      direction: 'row',
+    },
+    {
+      profileImage,
+      userInfo: {
+        nickname: '20min',
+        job: 'Designer',
+      },
+      direction: 'row',
     },
   ],
 };

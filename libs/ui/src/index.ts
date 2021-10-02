@@ -20,3 +20,4 @@ export * from './lib/header/main-header';
 export * from './lib/navigation/main-sidebar';
 export * from './lib/profile/profile';
 export * from './lib/card/action-card';
+export * from './lib/avatar/action-avatar-list';
