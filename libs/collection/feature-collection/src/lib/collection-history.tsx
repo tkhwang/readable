@@ -1,4 +1,5 @@
 import { ShadowCard } from '@readable/ui';
+import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const CollectionHistory = () => {
   return (
@@ -11,7 +12,7 @@ export const CollectionHistory = () => {
             description="description"
             siteName="siteName"
             index={0}
-            profileImageUrl={'/images/avatar/avatar_default.svg'}
+            profileImageUrl={DEFAULT_PROFILE_IMAGE_URL}
           />
         </div>
         <div className="flex-1">
@@ -20,7 +21,7 @@ export const CollectionHistory = () => {
             description="description"
             siteName="siteName"
             index={1}
-            profileImageUrl={'/images/avatar/avatar_default.svg'}
+            profileImageUrl={DEFAULT_PROFILE_IMAGE_URL}
           />
         </div>
       </div>

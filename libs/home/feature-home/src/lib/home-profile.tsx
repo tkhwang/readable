@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/solid';
 import { clearAuthToken } from '@readable/shared/util-auth';
 import router from 'next/router';
+import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const HomeProfile = () => {
   const { me, isMeDataLoading } = useMe({ redirectTo: '/login' });
@@ -31,7 +32,7 @@ export const HomeProfile = () => {
   };
 
   return (
-    <DropdownMenu renderMenuButton={() => <Avatar profileImage={avatarUrl} />}>
+    <DropdownMenu renderMenuButton={() => <Avatar profileImage={avatarUrl ?? DEFAULT_PROFILE_IMAGE_URL} />}>
       <div className="px-1 py-1 ">
         <Menu.Item as="li">
           {({ active }) => (

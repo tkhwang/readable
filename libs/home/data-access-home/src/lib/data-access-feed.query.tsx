@@ -55,14 +55,14 @@ export function useDataAccessFeed() {
   const entries = edges?.map(edge => {
     const urlInfo = {
       id: edge.node.urlInfo.id,
-      imageUrl: edge.node.urlInfo.imageUrl ?? undefined,
-      description: edge.node.urlInfo.description ?? '',
-      siteName: edge.node.urlInfo.siteName ?? '',
-      title: edge.node.urlInfo.title ?? '',
+      imageUrl: edge.node.urlInfo.imageUrl,
+      description: edge.node.urlInfo.description,
+      siteName: edge.node.urlInfo.siteName,
+      title: edge.node.urlInfo.title,
     };
 
     const cardOwner = {
-      profileImageUrl: edge.node.bookmarkers[0].avatarUrl ?? undefined,
+      profileImageUrl: edge.node.bookmarkers[0].avatarUrl,
     };
 
     const tags = edge.node.tags.map(tag => {
