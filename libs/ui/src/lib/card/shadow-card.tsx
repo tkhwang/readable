@@ -1,11 +1,10 @@
-import CardImage from '../../../assets/card_sample.svg';
 import { BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
 import { BookmarkIcon as BookmarkOutlineIcon, BadgeCheckIcon } from '@heroicons/react/outline';
 import { Avatar } from '../avatar/avatar';
 import Image, { ImageLoaderProps } from 'next/image';
 
 export interface ShadowCardProps {
-  cardImageUrl?: string;
+  cardImageUrl: string;
   description: string;
   siteName: string;
   profileImageUrl: string;
@@ -79,7 +78,7 @@ export function ShadowCard({
               {/* TODO(zlrlo): default 이미지 작업 필요함 */}
               <Image
                 loader={myLoader}
-                src={cardImageUrl ?? CardImage}
+                src={cardImageUrl}
                 alt=""
                 width={176}
                 height={176}

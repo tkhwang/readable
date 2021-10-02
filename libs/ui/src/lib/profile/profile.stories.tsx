@@ -3,7 +3,7 @@ import { Profile, ProfileProps } from './profile';
 import dotPattern from '../../../assets/dot_pattern.svg';
 
 export default {
-  title: 'Profile',
+  title: 'Profile/Profile',
   component: Profile,
 } as Meta;
 

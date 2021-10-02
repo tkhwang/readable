@@ -1,4 +1,4 @@
-import cardImage from '../../../assets/card-cover.svg';
+import cardImage from '../../../assets/card_cover_default.svg';
 
 export interface BrutalistCardProps {}
 

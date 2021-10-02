@@ -4,7 +4,7 @@ import { CollectionSection } from './collection-section';
 export function FeatureCollection() {
   return (
     <MainLayout
-      renderHeader={() => <MainHeader renderHomeProfile={() => <div>profile</div>} />}
+      renderHeader={() => <MainHeader renderProfile={() => <div>profile</div>} />}
       renderSidebar={() => <MainSidebar />}
       renderSection={() => <CollectionSection />}
     />

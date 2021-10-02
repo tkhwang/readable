@@ -5,7 +5,7 @@ import { Meta, Story } from '@storybook/react';
 import { Subscribe, SubscribeProps } from './subscribe';
 
 export default {
-  title: 'Subscribe',
+  title: 'Form/Subscribe',
   component: Subscribe,
 } as Meta;
 

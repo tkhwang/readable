@@ -1,11 +1,11 @@
 import { SearchIcon } from '@heroicons/react/solid';
-import { Logo } from '@readable/ui';
+import Logo from '../logo/logo';
 
 export interface MainHeaderProps {
-  renderHomeProfile: () => JSX.Element;
+  renderProfile: () => JSX.Element;
 }
 
-export function MainHeader({ renderHomeProfile }: MainHeaderProps) {
+export function MainHeader({ renderProfile }: MainHeaderProps) {
   return (
     <div className="flex items-center py-8">
       <div className="max-w-sm px-8 w-1/5 hidden sm:block">
@@ -28,7 +28,7 @@ export function MainHeader({ renderHomeProfile }: MainHeaderProps) {
               <input className="bg-gray-700 outline-none w-full" />
               <SearchIcon className="w-5 h-5 text-white" />
             </div>
-            {renderHomeProfile()}
+            {renderProfile()}
           </div>
         </div>
       </div>
