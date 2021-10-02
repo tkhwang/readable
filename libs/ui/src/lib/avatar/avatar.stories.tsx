@@ -3,7 +3,7 @@ import { Avatar, AvatarProps } from './avatar';
 import profileImage from '../.././../assets/avatar_default.svg';
 
 export default {
-  title: 'Elements/Avatar',
+  title: 'Avatar/Avatar',
   component: Avatar,
 } as Meta;
 
@@ -13,4 +13,9 @@ export const Default = Template.bind({});
 
 Default.args = {
   profileImage,
+  userInfo: {
+    nickname: '20min',
+    job: 'designer',
+  },
+  direction: 'row',
 };
