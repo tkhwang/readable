@@ -1,19 +1,20 @@
 import { Meta, Story } from '@storybook/react';
-import { ActionAvatarList, ActionAvatarListProps } from './action-avatar-list';
+import { ActionAvatars, ActionAvatarsProps } from './action-avatars';
 import profileImage from '../.././../assets/avatar_default.svg';
 
 export default {
-  title: 'Avatar/ActionAvatarList',
-  component: ActionAvatarList,
+  title: 'Avatar/ActionAvatars',
+  component: ActionAvatars,
 } as Meta;
 
-const Template: Story<ActionAvatarListProps> = args => <ActionAvatarList {...args} />;
+const Template: Story<ActionAvatarsProps> = args => <ActionAvatars {...args} />;
 
 export const ColumnAvatar = Template.bind({});
 
 ColumnAvatar.args = {
-  avatarList: [
+  avatars: [
     {
+      id: '1',
       profileImage,
       userInfo: {
         nickname: '20min',
@@ -22,6 +23,7 @@ ColumnAvatar.args = {
       direction: 'column',
     },
     {
+      id: '2',
       profileImage,
       userInfo: {
         nickname: '20min',
@@ -30,6 +32,7 @@ ColumnAvatar.args = {
       direction: 'column',
     },
     {
+      id: '3',
       profileImage,
       userInfo: {
         nickname: '20min',
@@ -43,8 +46,9 @@ ColumnAvatar.args = {
 export const RowAvatar = Template.bind({});
 
 RowAvatar.args = {
-  avatarList: [
+  avatars: [
     {
+      id: '1',
       profileImage,
       userInfo: {
         nickname: '20min',
@@ -53,6 +57,7 @@ RowAvatar.args = {
       direction: 'row',
     },
     {
+      id: '2',
       profileImage,
       userInfo: {
         nickname: '20min',
@@ -61,6 +66,7 @@ RowAvatar.args = {
       direction: 'row',
     },
     {
+      id: '3',
       profileImage,
       userInfo: {
         nickname: '20min',

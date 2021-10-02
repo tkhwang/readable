@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { ActionAvatarList } from '@readable/ui';
+import { ActionAvatars } from '@readable/ui';
 import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const HomeRecommendCollector = () => {
@@ -12,9 +12,10 @@ export const HomeRecommendCollector = () => {
         <ChevronRightIcon className="w-5 h-5" />
       </div>
       <div className="py-4">
-        <ActionAvatarList
-          avatarList={[
+        <ActionAvatars
+          avatars={[
             {
+              id: '1',
               profileImage,
               userInfo: {
                 nickname: '20min',
@@ -23,6 +24,7 @@ export const HomeRecommendCollector = () => {
               direction: 'row',
             },
             {
+              id: '2',
               profileImage,
               userInfo: {
                 nickname: '20min',
@@ -31,6 +33,7 @@ export const HomeRecommendCollector = () => {
               direction: 'row',
             },
             {
+              id: '3',
               profileImage,
               userInfo: {
                 nickname: '20min',
