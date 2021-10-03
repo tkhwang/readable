@@ -17,15 +17,23 @@ export class TagsRepository extends Repository<Tag> {
   ) {
     const { first, after, order, orderBy } = query;
 
+    // MEMO(Teddy): it should work, but it's not. There is a bug in TypeORM.
+    // .loadRelationCountAndMap('tag.bookmarksCount', 'tag.userBookmarks')
+    // https://github.com/typeorm/typeorm/issues/1961#issuecomment-725577286
     const queryBuilder = this.createQueryBuilder('tag')
+      .select(subQuery => {
+        return subQuery
+          .select('COUNT(*)', 'count')
+          .from('user_bookmarks_tags_tags', 'user_bookmarks_tags_tags')
+          .where('user_bookmarks_tags_tags.tagsId = tag.id');
+      }, 'count')
       .innerJoinAndSelect('tag.userBookmarks', 'userBookmarks')
-      .loadRelationCountAndMap('tag.bookmarksCount', 'tag.userBookmarks')
-      .where('tag.createdAt < :createdAt', {
-        createdAt: criteria['createdAt'],
-      });
+      .orderBy('count', 'DESC')
+      .addOrderBy('tag.createdAt', 'DESC');
 
-    queryBuilder.limit(first + 1).orderBy('tag.createdAt', 'DESC');
+    const data = await queryBuilder.getMany();
+    console.log('TCL: TagsRepository -> data', JSON.stringify(data, null, 2));
 
-    return queryBuilder.getMany();
+    return data;
   }
 }
