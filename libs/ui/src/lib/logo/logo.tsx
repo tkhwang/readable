@@ -6,11 +6,8 @@ export interface LogoProps {}
 
 export function Logo() {
   return (
-    <div className="flex items-center">
-      <div className="relative w-8 h-8">
-        <Image src={LogoImage} alt="logo" layout="fill" />
-      </div>
-      <div className="text-white text-xl font-semibold hidden lg:block">Readable</div>
+    <div className="relative w-8 h-8">
+      <Image src={LogoImage} alt="logo" layout="fill" />
     </div>
   );
 }

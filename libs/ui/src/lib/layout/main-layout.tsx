@@ -4,22 +4,32 @@ export interface MainLayoutProps {
   renderSection: () => JSX.Element;
   renderSectionSidebar?: () => JSX.Element;
   renderFooter?: () => JSX.Element;
+  renderStickyArea?: () => JSX.Element;
 }
 
-export function MainLayout({ renderHeader, renderSidebar, renderSection, renderSectionSidebar }: MainLayoutProps) {
+export function MainLayout({
+  renderHeader,
+  renderSidebar,
+  renderSection,
+  renderSectionSidebar,
+  renderStickyArea,
+}: MainLayoutProps) {
   return (
     <>
-      <header className="bg-gray-800 fixed w-full z-10">{renderHeader()}</header>
-      <main className="min-h-screen flex bg-gray-800 pt-28">
-        <aside className="max-w-sm pl-16 w-1/5 hidden sm:block">
-          <div className="w-full h-full min-w-max text-white font-semibold">{renderSidebar()}</div>
-        </aside>
-        <section className="px-4 sm:px-8 flex w-full">
-          <article className="max-w-4xl w-full">{renderSection()}</article>
-          <aside className="pl-6 hidden w-full lg:block max-w-sm">
-            <div className="w-full h-full">{renderSectionSidebar && renderSectionSidebar()}</div>
-          </aside>
-        </section>
+      <header className="bg-gray-800">{renderHeader()}</header>
+      <main className="bg-gray-800 min-h-screen">
+        {renderStickyArea && (
+          <div className="bg-gray-800 sticky top-0 z-10 border-b-2 border-gray-700">{renderStickyArea()}</div>
+        )}
+        <div className="grid sm:grid-cols-12 max-w-7xl mr-auto ml-auto">
+          <aside className="relative z-20 col-span-3 border-2 border-dashed hidden lg:block"></aside>
+          <section className="col-span-8 lg:col-span-6 px-4 py-6">
+            <article>{renderSection()}</article>
+          </section>
+          <section className="col-span-4 lg:col-span-3 px-4 py-6 hidden sm:block">
+            {renderSectionSidebar && <>{renderSectionSidebar()}</>}
+          </section>
+        </div>
       </main>
       <footer className="p-6 bg-gray-800">
         <div className="h-20 bg-gray-700"></div>

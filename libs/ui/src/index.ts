@@ -1,4 +1,4 @@
-export * from './lib/form/form-underline';
+export * from './lib/form/form-with-underline';
 export * from './lib/navigation/navigation-tabs';
 export * from './lib/card/card';
 export * from './lib/ad/ad';
@@ -22,3 +22,5 @@ export * from './lib/profile/profile';
 export * from './lib/card/action-card';
 export * from './lib/avatar/action-avatars';
 export * from './lib/hashtag/hashtags';
+export * from './lib/header/main-header';
+export * from './lib/navigation/tabs-with-underline';
