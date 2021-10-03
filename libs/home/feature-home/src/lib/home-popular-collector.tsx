@@ -11,7 +11,7 @@ export const HomePopularCollection = () => {
         <div className="text-sm">Popular Collector</div>
         <ChevronRightIcon className="w-5 h-5" />
       </div>
-      <div className="py-5">
+      <div className="py-5 overflow-auto">
         <ActionAvatars
           avatars={[
             {
