@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { PaginationService } from '@readable/pagination/pagination.service';
-import { PaginationTagBRFOs, PaginationTags } from '@readable/pagination/tags/domain/models/paginationTags.model';
+import { PaginationTagBRFOs } from '@readable/pagination/tags/domain/models/paginationTags.model';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { GetPaginationTagsInput } from './get-pagination-tags.input';
@@ -19,8 +19,8 @@ export class GetPaginationTagsUsecase implements Usecase<GetPaginationTagsInput,
       query,
       filter,
       requestUser,
-      (query, filter, criteria, requestUser) => {
-        return this.tagsRepository.queryForPagination(query, filter, criteria, requestUser);
+      (query, filter, requestUser) => {
+        return this.tagsRepository.queryForPagination(query, filter, requestUser);
       }
     );
   }

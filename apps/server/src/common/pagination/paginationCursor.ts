@@ -30,10 +30,13 @@ export class PaginationCursor {
 
   createdAt: Date;
 
-  constructor(orderBy: PaginationOrderBy, order: PaginationOrder, createdAt: Date) {
+  tagCount?: string;
+
+  constructor(orderBy: PaginationOrderBy, order: PaginationOrder, createdAt: Date, tagCount?: string) {
     this.orderBy = orderBy;
     this.order = order;
     this.createdAt = moment.utc(createdAt).toDate();
+    this.tagCount = tagCount;
   }
 }
 
@@ -52,5 +55,6 @@ export const fromCursor = (cursor: string): PaginationCursor => {
     orderBy: parsed.orderBy,
     order: parsed.order,
     createdAt: moment.utc(parsed.createdAt).toDate(),
+    tagCount: parsed.tagCount,
   };
 };
