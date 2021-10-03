@@ -19,3 +19,7 @@ Default.args = {
   },
   direction: 'row',
 };
+
+Default.parameters = {
+  backgrounds: { default: 'dark' },
+};

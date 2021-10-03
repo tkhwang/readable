@@ -43,6 +43,10 @@ ColumnAvatar.args = {
   ],
 };
 
+ColumnAvatar.parameters = {
+  backgrounds: { default: 'dark' },
+};
+
 export const RowAvatar = Template.bind({});
 
 RowAvatar.args = {
@@ -75,4 +79,8 @@ RowAvatar.args = {
       direction: 'row',
     },
   ],
+};
+
+RowAvatar.parameters = {
+  backgrounds: { default: 'dark' },
 };

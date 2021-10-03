@@ -1,4 +1,4 @@
-import { Avatar, AvatarSize, Direction } from '@readable/ui';
+import { Avatar, AvatarSize, Direction } from './avatar';
 
 type AvatarInfo = {
   id: string;

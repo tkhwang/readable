@@ -1,11 +1,11 @@
-import { MainHeader, MainLayout, MainSidebar } from '@readable/ui';
+import { MainHeader, MainLayout } from '@readable/ui';
 import { CollectionSection } from './collection-section';
 
 export function FeatureCollection() {
   return (
     <MainLayout
       renderHeader={() => <MainHeader renderProfile={() => <div>profile</div>} />}
-      renderSidebar={() => <MainSidebar />}
+      renderSidebar={() => <div />}
       renderSection={() => <CollectionSection />}
     />
   );
