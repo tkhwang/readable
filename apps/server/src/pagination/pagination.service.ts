@@ -12,7 +12,7 @@ import { PaginationQueryCriteriaType } from './pagination.model';
 import { GetPaginationTagsInput } from './tags/applications/usecases/get-pagination-tags/get-pagination-tags.input';
 import { PaginationTagsFilter } from './tags/domain/models/paginationTags.filter';
 import { GetPaginationUserBookmarksInput } from './userBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
-import { PaginationWrongCursorExceptoin } from './userBookmarks/domain/errors/paginationUserBookmarks.errors';
+import { PaginationWrongCursorException } from './userBookmarks/domain/errors/paginationUserBookmarks.errors';
 import { PaginationUserBookmarksFilter } from './userBookmarks/domain/models/paginationUserBookmarks.filter';
 
 @Injectable()
@@ -32,14 +32,11 @@ export class PaginationService {
     queryFunction: (
       query: GetPaginationUserBookmarksInput | GetPaginationTagsInput,
       filter: PaginationUserBookmarksFilter | PaginationTagsFilter,
-      criteria: PaginationQueryCriteriaType,
       requestUser: User
     ) => Promise<UserBookmark[] | Tag[]>
   ) {
     const { first, after, order, orderBy } = query;
-    const criteria = this.generateCriteria(query);
-
-    let entities = await queryFunction(query, filter, criteria, requestUser);
+    let entities = await queryFunction(query, filter, requestUser);
 
     if (!entities || !entities.length) return null;
 
@@ -50,7 +47,7 @@ export class PaginationService {
     }
 
     const edges = entities.map(entity => ({
-      cursor: new PaginationCursor(orderBy, order, entity.createdAt),
+      cursor: new PaginationCursor(orderBy, order, entity.createdAt, entity?.tagCount),
       node: entity,
     }));
 
@@ -74,7 +71,7 @@ export class PaginationService {
       const { createdAt: afterCreatedAt, order: orderInCursor, orderBy: orderByInCursor } = after;
 
       if (!(order === orderInCursor && orderBy === orderByInCursor)) {
-        throw new PaginationWrongCursorExceptoin(after, orderBy, order);
+        throw new PaginationWrongCursorException(after, orderBy, order);
       }
 
       criteria['createdAt'] = afterCreatedAt;

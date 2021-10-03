@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { PaginationCursor, PaginationOrder, PaginationOrderBy } from '@readable/common/pagination/paginationCursor';
 
-export class PaginationWrongCursorExceptoin extends HttpException {
+export class PaginationWrongCursorException extends HttpException {
   constructor(cursor: PaginationCursor, orderBy: PaginationOrderBy, order: PaginationOrder) {
     const { orderBy: orderByInCursor, order: orderInCursor } = cursor;
 
