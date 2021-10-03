@@ -21,3 +21,7 @@ Default.args = {
     { key: '7', name: 'dev' },
   ],
 };
+
+Default.parameters = {
+  backgrounds: { default: 'dark' },
+};

@@ -11,9 +11,12 @@ const Template: Story<MainLayoutProps> = args => <MainLayout {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  renderHeader: () => <div className="text-white">header</div>,
-  renderSidebar: () => <div className="text-white">sidebar</div>,
-  renderSection: () => <div className="text-white">section</div>,
-  renderSectionSidebar: () => <div className="text-white">section sidebar</div>,
-  renderFooter: () => <div className="text-white">footer</div>,
+  renderHeader: () => <div className="text-white p-4 border-2 border-dashed">header</div>,
+  renderStickyArea: () => <div className="text-white p-4 border-2 border-dashed">sticky area</div>,
+  renderSidebar: () => <div className="text-white p-4  w-full h-full border-2 border-dashed">sidebar</div>,
+  renderSection: () => <div className="text-white p-4  w-full h-full border-2 border-dashed">section</div>,
+  renderSectionSidebar: () => (
+    <div className="text-white p-4 w-full h-full border-2 border-dashed">section sidebar</div>
+  ),
+  renderFooter: () => <div className="text-white p-4 w-full h-full border-2 border-dashed">footer</div>,
 };

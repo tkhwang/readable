@@ -9,3 +9,7 @@ export default {
 const Template: Story<TabsWithUnderlineProps> = args => <TabsWithUnderline {...args} />;
 
 export const Default = Template.bind({});
+
+Default.parameters = {
+  backgrounds: { default: 'dark' },
+};

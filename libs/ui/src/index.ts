@@ -1,5 +1,4 @@
 export * from './lib/form/form-with-underline';
-export * from './lib/navigation/navigation-tabs';
 export * from './lib/card/card';
 export * from './lib/ad/ad';
 export * from './lib/navigation/navigation-menu';
@@ -17,7 +16,6 @@ export * from './lib/card/shadow-card';
 export * from './lib/loading/loading';
 export * from './lib/layout/main-layout';
 export * from './lib/header/main-header';
-export * from './lib/navigation/main-sidebar';
 export * from './lib/profile/profile';
 export * from './lib/card/action-card';
 export * from './lib/avatar/action-avatars';
