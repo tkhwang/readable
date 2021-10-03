@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PaginationQueryCriteriaType } from '@readable/pagination/pagination.model';
 import { GetPaginationUserBookmarksInput } from '@readable/pagination/userBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
+import { PaginationWrongCursorException } from '@readable/pagination/userBookmarks/domain/errors/paginationUserBookmarks.errors';
 import { PaginationUserBookmarksFilter } from '@readable/pagination/userBookmarks/domain/models/paginationUserBookmarks.filter';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { User } from '@readable/users/domain/models/user.model';
@@ -13,11 +13,25 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
   async queryForUserBookmarksFeedPagination(
     query: GetPaginationUserBookmarksInput,
     filter: PaginationUserBookmarksFilter,
-    criteria: PaginationQueryCriteriaType,
+    // criteria: PaginationQueryCriteriaType,
     requestUser: User
   ) {
     const { first, after, order, orderBy } = query;
     const { normalizedTag, interestId, myUserBookmark, userId } = filter;
+
+    const criteria = {
+      createdAt: new Date(),
+    };
+
+    if (after) {
+      const { createdAt: afterCreatedAt, order: orderInCursor, orderBy: orderByInCursor } = after;
+
+      if (!(order === orderInCursor && orderBy === orderByInCursor)) {
+        throw new PaginationWrongCursorException(after, orderBy, order);
+      }
+
+      criteria['createdAt'] = afterCreatedAt;
+    }
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')

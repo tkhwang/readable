@@ -20,8 +20,8 @@ export class GetPaginationUserBookmarksUsecase
       query,
       filter,
       requestUser,
-      (query, filter, criteria, requestUser) => {
-        return this.userBookmarkRepository.queryForUserBookmarksFeedPagination(query, filter, criteria, requestUser);
+      (query, filter, requestUser) => {
+        return this.userBookmarkRepository.queryForUserBookmarksFeedPagination(query, filter, requestUser);
       }
     );
   }
