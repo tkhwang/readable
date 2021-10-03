@@ -5,7 +5,7 @@ export type FormWithUnderlineProps = {};
 
 export function FormWithUnderline() {
   return (
-    <form className="w-full max-w-sm">
+    <form className="w-full lg:max-w-sm">
       <div className="flex items-center border-b border-indigo-500">
         <input
           className="appearance-none bg-transparent border-none w-full text-gray-200 mr-3 py-1 px-2 leading-tight focus:outline-none"
