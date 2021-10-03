@@ -36,10 +36,10 @@ export const HomeFeed = () => {
   }, [fetchMoreFeedData]);
 
   return (
-    <div className="grid grid-cols-1 grid-flow-row sm:grid-cols-2 -my-4 sm:-mx-2">
+    <>
       {entries?.map(({ id, cursor, imageUrl, description, siteName, profileImageUrl, tags, title }, index) => {
         return (
-          <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="mx-2 my-4">
+          <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="my-6">
             <ShadowCard
               cardImageUrl={imageUrl ?? DEFAULT_CARD_COVER_IMAGE_URL}
               description={description ?? ''}
@@ -52,6 +52,6 @@ export const HomeFeed = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };

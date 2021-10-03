@@ -32,68 +32,70 @@ export const HomeProfile = () => {
   };
 
   return (
-    <DropdownMenu renderMenuButton={() => <Avatar profileImage={avatarUrl ?? DEFAULT_PROFILE_IMAGE_URL} />}>
-      <div className="px-1 py-1 ">
-        <Menu.Item as="li">
-          {({ active }) => (
-            <MenuItemButton
-              active={active}
-              renderIcon={() => <UserOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              renderActiveIcon={() => <UserSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              onClick={() => {
-                console.log('click');
-              }}
-            >
-              Your profile
-            </MenuItemButton>
-          )}
-        </Menu.Item>
+    <div className="relative z-50">
+      <DropdownMenu renderMenuButton={() => <Avatar profileImage={avatarUrl ?? DEFAULT_PROFILE_IMAGE_URL} />}>
+        <div className="px-1 py-1">
+          <Menu.Item as="li">
+            {({ active }) => (
+              <MenuItemButton
+                active={active}
+                renderIcon={() => <UserOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                renderActiveIcon={() => <UserSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                onClick={() => {
+                  console.log('click');
+                }}
+              >
+                Your profile
+              </MenuItemButton>
+            )}
+          </Menu.Item>
 
-        <Menu.Item as="li">
-          {({ active }) => (
-            <MenuItemButton
-              active={active}
-              renderIcon={() => <BookmarkAltOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              renderActiveIcon={() => <BookmarkAltSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              onClick={() => {
-                console.log('click');
-              }}
-            >
-              Your collections
-            </MenuItemButton>
-          )}
-        </Menu.Item>
-      </div>
-      <div className="px-1 py-1 ">
-        <Menu.Item as="li">
-          {({ active }) => (
-            <MenuItemButton
-              active={active}
-              renderIcon={() => <CogOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              renderActiveIcon={() => <CogSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              onClick={() => {
-                console.log('click');
-              }}
-            >
-              Settings
-            </MenuItemButton>
-          )}
-        </Menu.Item>
-      </div>
-      <div className="px-1 py-1 ">
-        <Menu.Item as="li">
-          {({ active }) => (
-            <MenuItemButton
-              active={active}
-              renderIcon={() => <UserRemoveOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              renderActiveIcon={() => <UserRemoveSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
-              onClick={() => logout()}
-            >
-              Sign out
-            </MenuItemButton>
-          )}
-        </Menu.Item>
-      </div>
-    </DropdownMenu>
+          <Menu.Item as="li">
+            {({ active }) => (
+              <MenuItemButton
+                active={active}
+                renderIcon={() => <BookmarkAltOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                renderActiveIcon={() => <BookmarkAltSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                onClick={() => {
+                  console.log('click');
+                }}
+              >
+                Your collections
+              </MenuItemButton>
+            )}
+          </Menu.Item>
+        </div>
+        <div className="px-1 py-1 ">
+          <Menu.Item as="li">
+            {({ active }) => (
+              <MenuItemButton
+                active={active}
+                renderIcon={() => <CogOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                renderActiveIcon={() => <CogSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                onClick={() => {
+                  console.log('click');
+                }}
+              >
+                Settings
+              </MenuItemButton>
+            )}
+          </Menu.Item>
+        </div>
+        <div className="px-1 py-1 ">
+          <Menu.Item as="li">
+            {({ active }) => (
+              <MenuItemButton
+                active={active}
+                renderIcon={() => <UserRemoveOutlineIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                renderActiveIcon={() => <UserRemoveSolidIcon className="w-5 h-5 mr-2" aria-hidden="true" />}
+                onClick={() => logout()}
+              >
+                Sign out
+              </MenuItemButton>
+            )}
+          </Menu.Item>
+        </div>
+      </DropdownMenu>
+    </div>
   );
 };
