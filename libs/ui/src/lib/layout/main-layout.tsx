@@ -18,7 +18,9 @@ export function MainLayout({
     <>
       <header className="bg-gray-800">{renderHeader()}</header>
       <main className="bg-gray-800 min-h-screen">
-        {renderStickyArea && <div className="bg-gray-800 sticky top-0 z-10">{renderStickyArea()}</div>}
+        {renderStickyArea && (
+          <div className="bg-gray-800 sticky top-0 z-10 border-b-2 border-gray-700">{renderStickyArea()}</div>
+        )}
         <div className="grid sm:grid-cols-12 max-w-7xl mr-auto ml-auto">
           <aside className="relative z-20 col-span-3 border-2 border-dashed hidden lg:block"></aside>
           <section className="col-span-8 lg:col-span-6 px-4 py-6">

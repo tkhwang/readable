@@ -37,6 +37,7 @@ export const HomeFeed = () => {
 
   return (
     <>
+      <div className="text-xl text-gray-300 font-bold">Here's what we found based on your interests...</div>
       {entries?.map(({ id, cursor, imageUrl, description, siteName, profileImageUrl, tags, title }, index) => {
         return (
           <div key={id} ref={cursor === pageInfo?.endCursor ? target : null} className="my-6">
