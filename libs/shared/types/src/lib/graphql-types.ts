@@ -261,6 +261,7 @@ export type Tag = {
   readonly normalizedTag: Scalars['String'];
   readonly tag: Scalars['String'];
   readonly updatedAt: Scalars['DateTime'];
+  readonly userBookmarks: ReadonlyArray<UserBookmark>;
   /** Tagged post count (resolver field) */
   readonly userBookmarksCount: Scalars['Float'];
 };

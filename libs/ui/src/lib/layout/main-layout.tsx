@@ -1,7 +1,7 @@
 export interface MainLayoutProps {
   renderHeader: () => JSX.Element;
   renderStickyArea?: () => JSX.Element;
-  renderSidebar: () => JSX.Element;
+  renderSidebar?: () => JSX.Element;
   renderSection: () => JSX.Element;
   renderSectionSidebar?: () => JSX.Element;
   renderFooter?: () => JSX.Element;
@@ -18,9 +18,7 @@ export function MainLayout({
     <>
       <header className="bg-gray-800">{renderHeader()}</header>
       <main className="bg-gray-800 min-h-screen">
-        {renderStickyArea && (
-          <div className="bg-gray-800 sticky top-0 z-10 border-b-2 border-gray-700">{renderStickyArea()}</div>
-        )}
+        {renderStickyArea && <div className="bg-gray-800 sticky top-0 z-10">{renderStickyArea()}</div>}
         <div className="grid sm:grid-cols-12 max-w-7xl mr-auto ml-auto">
           <aside className="relative z-20 col-span-3 hidden lg:block px-4 py-6">
             <div className="bg-black h-80 w-full"></div>

@@ -76,6 +76,12 @@
     "mvp-tag-input-tag": {
       "tags": []
     },
+    "search-data-access-search": {
+      "tags": ["scope:client"]
+    },
+    "search-feature-search": {
+      "tags": ["scope:client"]
+    },
     "server": {
       "tags": []
     },
