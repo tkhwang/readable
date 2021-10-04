@@ -2,19 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
-import { User } from '@readable/users/domain/models/user.model';
+import { User as UserModel } from '@readable/users/domain/models/user.model';
+import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
-import { FindManyFollowersWithAuthInput } from './find-many-followers-with-auth.input';
+import { FindUsersHavingManyUserBookmarksWithAuthInput } from './find-users-having-many-userBookmarks-with-auth.input';
 
 @Injectable()
-export class FindManyFollowersWithAuthUsecase implements Usecase<FindManyFollowersWithAuthInput, any> {
+export class FindManyUserBookmarksHavingUsersWithAuthUsecase
+  implements Usecase<FindUsersHavingManyUserBookmarksWithAuthInput, any> {
   constructor(
     @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository
   ) {}
 
-  async execute(query: FindManyFollowersWithAuthInput, requestUser: User) {
+  async execute(query: FindUsersHavingManyUserBookmarksWithAuthInput, requestUser: UserModel) {
     const { howMany } = query;
-    return this.usersRepository.findManyFollowersHavingUsers(howMany);
+    return this.usersRepository.findManyUserBookmarksHavingUsers(howMany);
   }
 }

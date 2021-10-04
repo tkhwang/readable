@@ -10,9 +10,9 @@ import { SigninUsecase } from './applications/usecases/signin/signin.usecase';
 import { UserFollowsRepository } from './infrastructures/typeorm/repositories/userFollow.repository';
 import { FollowUserWithAuthUsecase } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.usecase';
 import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
-import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.usecase';
+import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.usecase';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
-import { FindManyFollowersWithAuthUsecase } from './applications/usecases/find-many-followers-with-auth/find-many-followers-with-auth.usecase';
+import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
 
 @Module({
   imports: [
@@ -30,7 +30,7 @@ import { FindManyFollowersWithAuthUsecase } from './applications/usecases/find-m
     FollowUserWithAuthUsecase,
     UnfollowUserWithAuthUsecase,
     FindManyUserBookmarksHavingUsersWithAuthUsecase,
-    FindManyFollowersWithAuthUsecase,
+    FindUsersHavingManyFollowersWithAuthUsecase,
   ],
   exports: [UsersService, JwtModule, SigninUsecase],
 })

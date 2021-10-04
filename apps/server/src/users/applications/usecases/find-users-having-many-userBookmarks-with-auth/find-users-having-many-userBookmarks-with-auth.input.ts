@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class FindManyUserBookmarksHavingUsersWithAuthInput {
+export class FindUsersHavingManyUserBookmarksWithAuthInput {
   @Field(type => Number)
   howMany: number;
 }

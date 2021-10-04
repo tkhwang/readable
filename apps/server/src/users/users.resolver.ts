@@ -13,10 +13,10 @@ import { FollowUserWithAuthOutput } from './applications/usecases/follow-user-wi
 import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
 import { UnfollowUserWithAuthOutput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.output';
 import { UnfollowUserWithAuthInput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.input';
-import { FindManyUserBookmarksHavingUsersWithAuthInput } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.input';
-import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.usecase';
-import { FindManyFollowersWithAuthUsecase } from './applications/usecases/find-many-followers-with-auth/find-many-followers-with-auth.usecase';
-import { FindManyFollowersWithAuthInput } from './applications/usecases/find-many-followers-with-auth/find-many-followers-with-auth.input';
+import { FindUsersHavingManyUserBookmarksWithAuthInput } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.input';
+import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.usecase';
+import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
+import { FindUsersHavingManyFollowersWithAuthInput } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.input';
 
 @Resolver(of => User)
 export class UsersResolver {
@@ -25,7 +25,7 @@ export class UsersResolver {
     private readonly followUserWithAuthUsecase: FollowUserWithAuthUsecase,
     private readonly unfollowUserWithAuthUsecase: UnfollowUserWithAuthUsecase,
     private readonly findManyUserBookmarksHavingUsersWithAuthUsecase: FindManyUserBookmarksHavingUsersWithAuthUsecase,
-    private readonly findManyFollowersWithAuthUsecase: FindManyFollowersWithAuthUsecase,
+    private readonly findUsersHavingManyFollowersWithAuthUsecase: FindUsersHavingManyFollowersWithAuthUsecase,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
@@ -43,11 +43,11 @@ export class UsersResolver {
   @UseGuards(GqlAuthGuard)
   usersHavingManyUserBookmarks(
     @CurrentUser() requestUser: User,
-    @Args('findManyUserBookmarksHavingUsersWithAuthInput')
-    findManyUserBookmarksHavingUsersWithAuthInput: FindManyUserBookmarksHavingUsersWithAuthInput
+    @Args('findUsersHavingManyUserBookmarksWithAuthInput')
+    findUsersHavingManyUserBookmarksWithAuthInput: FindUsersHavingManyUserBookmarksWithAuthInput
   ) {
     return this.findManyUserBookmarksHavingUsersWithAuthUsecase.execute(
-      findManyUserBookmarksHavingUsersWithAuthInput,
+      findUsersHavingManyUserBookmarksWithAuthInput,
       requestUser
     );
   }
@@ -56,9 +56,13 @@ export class UsersResolver {
   @UseGuards(GqlAuthGuard)
   usersHavingManyFollowers(
     @CurrentUser() requestUser: User,
-    @Args('findManyFollowersWithAuthInput') findManyFollowersWithAuthInput: FindManyFollowersWithAuthInput
+    @Args('findUsersHavingManyFollowersWithAuthInput')
+    findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput
   ) {
-    return this.findManyFollowersWithAuthUsecase.execute(findManyFollowersWithAuthInput, requestUser);
+    return this.findUsersHavingManyFollowersWithAuthUsecase.execute(
+      findUsersHavingManyFollowersWithAuthInput,
+      requestUser
+    );
   }
 
   /*
