@@ -255,9 +255,12 @@ type User {
   email: String
   followersCount: Float!
 
-  """Followings User count"""
+  """Followings User count (field resolver)"""
   followingsCount: Float!
   id: ID!
+
+  """Whether I follow this user or not (field resolver)"""
+  isFollowingUser: Boolean!
   latestInterestId: String
   name: String!
   oauthUsers: [OAuthUser!]!

@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { UseGuards } from '@nestjs/common';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
-import { User } from './domain/models/user.model';
+import { User, UserBRFO } from './domain/models/user.model';
 import { FollowUserWithAuthUsecase } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.usecase';
 import { FollowUserWithAuthInput } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.input';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -74,12 +74,17 @@ export class UsersResolver {
    * Field Resolver
    */
   @ResolveField('followingsCount', returns => Number)
-  async followingsCount(@Parent() user: User) {
+  async followingsCount(@Parent() user: UserBRFO) {
     return this.userFollowsRepository.count({ where: { followerUserId: user.id } });
   }
 
   @ResolveField('followersCount', returns => Number)
-  async followerUsers(@Parent() user: User) {
+  async followerUsers(@Parent() user: UserBRFO) {
     return this.userFollowsRepository.count({ where: { followingUserId: user.id } });
+  }
+
+  @ResolveField('isFollowingUser', returns => Boolean)
+  async isFollowingUser(@CurrentUser() requestUser: User, @Parent() user: UserBRFO) {
+    return this.usersService.getFieldIsFollowingUser(user, requestUser);
   }
 }

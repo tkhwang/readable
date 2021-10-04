@@ -37,9 +37,12 @@ export class UserBRFO extends CoreModel {
 
 @ObjectType()
 export class User extends UserBRFO {
-  @Field(type => Number, { description: 'Followers User count' })
+  @Field(type => Number, { description: 'Followers User count (field resolver)' })
   followersCount: number;
 
-  @Field(type => Number, { description: 'Followings User count' })
+  @Field(type => Number, { description: 'Followings User count (field resolver)' })
   followingsCount: number;
+
+  @Field(type => Boolean, { description: 'Whether I follow this user or not (field resolver)' })
+  isFollowingUser: boolean;
 }
