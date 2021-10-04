@@ -9,7 +9,7 @@ import { Tag } from '../entities/tags.entity';
 @Injectable()
 @EntityRepository(Tag)
 export class TagsRepository extends Repository<Tag> {
-  async getPopularTags(howMany: number) {
+  async findPopularTags(howMany: number) {
     const queryBuilder = this.createQueryBuilder('tag')
       .select('tag.id', 'id')
       .addSelect('tag.tag', 'tag')

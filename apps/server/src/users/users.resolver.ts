@@ -13,6 +13,8 @@ import { FollowUserWithAuthOutput } from './applications/usecases/follow-user-wi
 import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
 import { UnfollowUserWithAuthOutput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.output';
 import { UnfollowUserWithAuthInput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.input';
+import { FindManyUserBookmarksHavingUsersWithAuthInput } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.input';
+import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.usecase';
 
 @Resolver(of => User)
 export class UsersResolver {
@@ -20,6 +22,7 @@ export class UsersResolver {
     private readonly usersService: UsersService,
     private readonly followUserWithAuthUsecase: FollowUserWithAuthUsecase,
     private readonly unfollowUserWithAuthUsecase: UnfollowUserWithAuthUsecase,
+    private readonly findManyUserBookmarksHavingUsersWithAuthUsecase: FindManyUserBookmarksHavingUsersWithAuthUsecase,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
@@ -31,6 +34,19 @@ export class UsersResolver {
   @UseGuards(GqlAuthGuard)
   me(@CurrentUser() user: User) {
     return this.usersService.findUserWithRelation(user);
+  }
+
+  @Query(returns => [User])
+  @UseGuards(GqlAuthGuard)
+  manyUserBookmarksHavingUsers(
+    @CurrentUser() requestUser: User,
+    @Args('findManyUserBookmarksHavingUsersWithAuthInput')
+    findManyUserBookmarksHavingUsersWithAuthInput: FindManyUserBookmarksHavingUsersWithAuthInput
+  ) {
+    return this.findManyUserBookmarksHavingUsersWithAuthUsecase.execute(
+      findManyUserBookmarksHavingUsersWithAuthInput,
+      requestUser
+    );
   }
 
   /*
