@@ -23,16 +23,20 @@ input DeleteUserBookmarkWithAuthInput {
   userBookmarkId: String!
 }
 
-input FindManyUserBookmarksHavingUsersWithAuthInput {
-  howMany: Float!
-}
-
 input FindOrAddInterestWithAuthInput {
   """Interest text"""
   interest: String!
 }
 
 input FindPopularTagsWithAuthInput {
+  howMany: Float!
+}
+
+input FindUsersHavingManyFollowersWithAuthInput {
+  howMany: Float!
+}
+
+input FindUsersHavingManyUserBookmarksWithAuthInput {
   howMany: Float!
 }
 
@@ -147,7 +151,6 @@ type PaginationUserBookmarks {
 
 type Query {
   allUrlInfosBySearch(searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput!): [UrlInfo!]
-  manyUserBookmarksHavingUsers(findManyUserBookmarksHavingUsersWithAuthInput: FindManyUserBookmarksHavingUsersWithAuthInput!): [User!]!
   me: User!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
@@ -155,6 +158,8 @@ type Query {
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String, userId: String): PaginationUserBookmarks
   popularTags(findPopularTagsWithAuthInput: FindPopularTagsWithAuthInput!): [Tag!]
   tagSuggestion(suggestTagInput: SuggestTagInput!): [Tag!]
+  usersHavingManyFollowers(findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput!): [User!]!
+  usersHavingManyUserBookmarks(findUsersHavingManyUserBookmarksWithAuthInput: FindUsersHavingManyUserBookmarksWithAuthInput!): [User!]!
 }
 
 input SearchByTextInAllUrlinfosInput {
@@ -255,9 +260,12 @@ type User {
   email: String
   followersCount: Float!
 
-  """Followings User count"""
+  """Followings User count (field resolver)"""
   followingsCount: Float!
   id: ID!
+
+  """Whether I follow this user or not (field resolver)"""
+  isFollowingUser: Boolean!
   latestInterestId: String
   name: String!
   oauthUsers: [OAuthUser!]!

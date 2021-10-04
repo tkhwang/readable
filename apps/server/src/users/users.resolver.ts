@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { UseGuards } from '@nestjs/common';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
-import { User } from './domain/models/user.model';
+import { User, UserBRFO } from './domain/models/user.model';
 import { FollowUserWithAuthUsecase } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.usecase';
 import { FollowUserWithAuthInput } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.input';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,8 +13,10 @@ import { FollowUserWithAuthOutput } from './applications/usecases/follow-user-wi
 import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
 import { UnfollowUserWithAuthOutput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.output';
 import { UnfollowUserWithAuthInput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.input';
-import { FindManyUserBookmarksHavingUsersWithAuthInput } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.input';
-import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.usecase';
+import { FindUsersHavingManyUserBookmarksWithAuthInput } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.input';
+import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.usecase';
+import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
+import { FindUsersHavingManyFollowersWithAuthInput } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.input';
 
 @Resolver(of => User)
 export class UsersResolver {
@@ -23,6 +25,7 @@ export class UsersResolver {
     private readonly followUserWithAuthUsecase: FollowUserWithAuthUsecase,
     private readonly unfollowUserWithAuthUsecase: UnfollowUserWithAuthUsecase,
     private readonly findManyUserBookmarksHavingUsersWithAuthUsecase: FindManyUserBookmarksHavingUsersWithAuthUsecase,
+    private readonly findUsersHavingManyFollowersWithAuthUsecase: FindUsersHavingManyFollowersWithAuthUsecase,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
@@ -38,13 +41,26 @@ export class UsersResolver {
 
   @Query(returns => [User])
   @UseGuards(GqlAuthGuard)
-  manyUserBookmarksHavingUsers(
+  usersHavingManyUserBookmarks(
     @CurrentUser() requestUser: User,
-    @Args('findManyUserBookmarksHavingUsersWithAuthInput')
-    findManyUserBookmarksHavingUsersWithAuthInput: FindManyUserBookmarksHavingUsersWithAuthInput
+    @Args('findUsersHavingManyUserBookmarksWithAuthInput')
+    findUsersHavingManyUserBookmarksWithAuthInput: FindUsersHavingManyUserBookmarksWithAuthInput
   ) {
     return this.findManyUserBookmarksHavingUsersWithAuthUsecase.execute(
-      findManyUserBookmarksHavingUsersWithAuthInput,
+      findUsersHavingManyUserBookmarksWithAuthInput,
+      requestUser
+    );
+  }
+
+  @Query(returns => [User])
+  @UseGuards(GqlAuthGuard)
+  usersHavingManyFollowers(
+    @CurrentUser() requestUser: User,
+    @Args('findUsersHavingManyFollowersWithAuthInput')
+    findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput
+  ) {
+    return this.findUsersHavingManyFollowersWithAuthUsecase.execute(
+      findUsersHavingManyFollowersWithAuthInput,
       requestUser
     );
   }
@@ -74,12 +90,17 @@ export class UsersResolver {
    * Field Resolver
    */
   @ResolveField('followingsCount', returns => Number)
-  async followingsCount(@Parent() user: User) {
+  async followingsCount(@Parent() user: UserBRFO) {
     return this.userFollowsRepository.count({ where: { followerUserId: user.id } });
   }
 
   @ResolveField('followersCount', returns => Number)
-  async followerUsers(@Parent() user: User) {
+  async followerUsers(@Parent() user: UserBRFO) {
     return this.userFollowsRepository.count({ where: { followingUserId: user.id } });
+  }
+
+  @ResolveField('isFollowingUser', returns => Boolean)
+  async isFollowingUser(@CurrentUser() requestUser: User, @Parent() user: UserBRFO) {
+    return this.usersService.getFieldIsFollowingUser(user, requestUser);
   }
 }
