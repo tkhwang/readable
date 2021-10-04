@@ -9,7 +9,7 @@ import { TagsResolver } from './tags.resolver';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { FollowTagWithAuthUsecase } from './applications/usercases/follow-tag-with-auth/follow-tag-with-auth.usecase';
-import { GetPopularTagsWithAuthUsecase } from './applications/usercases/get-popular-tags-with-auth/get-popular-tags-with-auth.usecase';
+import { FindPopularTagsWithAuthUsecase } from './applications/usercases/find-popular-tags-with-auth/find-popular-tags-with-auth.usecase';
 
 @Module({
   imports: [
@@ -22,7 +22,7 @@ import { GetPopularTagsWithAuthUsecase } from './applications/usercases/get-popu
     MapTagsUsecase,
     TagsResolver,
     FollowTagWithAuthUsecase,
-    GetPopularTagsWithAuthUsecase,
+    FindPopularTagsWithAuthUsecase,
   ],
   exports: [TagsService, InitializeTagsUseCase, MapTagsUsecase],
 })

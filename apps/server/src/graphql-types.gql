@@ -28,6 +28,10 @@ input FindOrAddInterestWithAuthInput {
   interest: String!
 }
 
+input FindPopularTagsWithAuthInput {
+  howMany: Float!
+}
+
 input FollowTagWithAuthInput {
   tagId: String!
 }
@@ -52,10 +56,6 @@ type FollowUserWithAuthOutput {
 type FollowUserWithAuthOutputData {
   """Following User"""
   followingUser: User!
-}
-
-input GetPopularTagsWithAuthInput {
-  howMany: Float!
 }
 
 type Interest {
@@ -148,7 +148,7 @@ type Query {
   myUserBookmarks: [UserBookmark!]!
   paginationTags(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationTags
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String, userId: String): PaginationUserBookmarks
-  popularTags(getPopularTagsWithAuthInput: GetPopularTagsWithAuthInput!): [Tag!]
+  popularTags(findPopularTagsWithAuthInput: FindPopularTagsWithAuthInput!): [Tag!]
   tagSuggestion(suggestTagInput: SuggestTagInput!): [Tag!]
 }
 
