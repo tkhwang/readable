@@ -9,6 +9,29 @@ import { Tag } from '../entities/tags.entity';
 @Injectable()
 @EntityRepository(Tag)
 export class TagsRepository extends Repository<Tag> {
+  async getPopularTags(howMany: number) {
+    const queryBuilder = this.createQueryBuilder('tag')
+      .select('tag.id', 'id')
+      .addSelect('tag.tag', 'tag')
+      .addSelect('tag.normalizedTag', 'normalizedTag')
+      .addSelect('tag.imageUrl', 'imageUrl')
+      .addSelect(subQuery => {
+        return subQuery
+          .select('CAST(COUNT(user_bookmarks_tags_tags.userBookmarksId) AS UNSIGNED)', 'tagCount')
+          .from('user_bookmarks_tags_tags', 'user_bookmarks_tags_tags')
+          .where('user_bookmarks_tags_tags.tagsId = tag.id');
+      }, 'tagCount')
+      .innerJoinAndSelect('tag.userBookmarks', 'userBookmarks')
+      .loadRelationCountAndMap('tag.tagCount', 'tag.userBookmarks')
+      .limit(howMany)
+      .orderBy('tagCount', 'DESC')
+      .addOrderBy('tag.createdAt', 'DESC')
+      .groupBy('tag.id');
+
+    return queryBuilder.getRawMany();
+  }
+
+  // TODO(Teddy)
   async queryForPagination(query: GetPaginationTagsInput, filter: PaginationTagsFilter, requestUser: User) {
     const { first, after, order, orderBy } = query;
 
