@@ -54,6 +54,10 @@ type FollowUserWithAuthOutputData {
   followingUser: User!
 }
 
+input GetPopularTagsWithAuthInput {
+  howMany: Float!
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -144,6 +148,7 @@ type Query {
   myUserBookmarks: [UserBookmark!]!
   paginationTags(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationTags
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String, userId: String): PaginationUserBookmarks
+  popularTags(getPopularTagsWithAuthInput: GetPopularTagsWithAuthInput!): [Tag!]
   tagSuggestion(suggestTagInput: SuggestTagInput!): [Tag!]
 }
 
