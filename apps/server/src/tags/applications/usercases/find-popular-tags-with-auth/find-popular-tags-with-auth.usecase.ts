@@ -12,6 +12,6 @@ export class FindPopularTagsWithAuthUsecase implements Usecase<FindPopularTagsWi
   async execute(query: FindPopularTagsWithAuthInput, requestUser: User) {
     const { howMany } = query;
 
-    return this.tagsRepository.getPopularTags(howMany);
+    return this.tagsRepository.findPopularTags(howMany);
   }
 }
