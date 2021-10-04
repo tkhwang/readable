@@ -23,6 +23,10 @@ input DeleteUserBookmarkWithAuthInput {
   userBookmarkId: String!
 }
 
+input FindManyFollowersWithAuthInput {
+  howMany: Float!
+}
+
 input FindManyUserBookmarksHavingUsersWithAuthInput {
   howMany: Float!
 }
@@ -147,6 +151,7 @@ type PaginationUserBookmarks {
 
 type Query {
   allUrlInfosBySearch(searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput!): [UrlInfo!]
+  manyFollowersHavingUsers(findManyFollowersWithAuthInput: FindManyFollowersWithAuthInput!): [User!]!
   manyUserBookmarksHavingUsers(findManyUserBookmarksHavingUsersWithAuthInput: FindManyUserBookmarksHavingUsersWithAuthInput!): [User!]!
   me: User!
   myInterests: [Interest!]!

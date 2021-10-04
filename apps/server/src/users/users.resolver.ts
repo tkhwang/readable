@@ -15,6 +15,8 @@ import { UnfollowUserWithAuthOutput } from './applications/usecases/unfollow-use
 import { UnfollowUserWithAuthInput } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.input';
 import { FindManyUserBookmarksHavingUsersWithAuthInput } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.input';
 import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-many-userBookmarks-having-users-with-auth/find-many-userBookmarks-having-users-with-auth.usecase';
+import { FindManyFollowersWithAuthUsecase } from './applications/usecases/find-many-followers-with-auth/find-many-followers-with-auth.usecase';
+import { FindManyFollowersWithAuthInput } from './applications/usecases/find-many-followers-with-auth/find-many-followers-with-auth.input';
 
 @Resolver(of => User)
 export class UsersResolver {
@@ -23,6 +25,7 @@ export class UsersResolver {
     private readonly followUserWithAuthUsecase: FollowUserWithAuthUsecase,
     private readonly unfollowUserWithAuthUsecase: UnfollowUserWithAuthUsecase,
     private readonly findManyUserBookmarksHavingUsersWithAuthUsecase: FindManyUserBookmarksHavingUsersWithAuthUsecase,
+    private readonly findManyFollowersWithAuthUsecase: FindManyFollowersWithAuthUsecase,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
@@ -47,6 +50,15 @@ export class UsersResolver {
       findManyUserBookmarksHavingUsersWithAuthInput,
       requestUser
     );
+  }
+
+  @Query(returns => [User])
+  @UseGuards(GqlAuthGuard)
+  manyFollowersHavingUsers(
+    @CurrentUser() requestUser: User,
+    @Args('findManyFollowersWithAuthInput') findManyFollowersWithAuthInput: FindManyFollowersWithAuthInput
+  ) {
+    return this.findManyFollowersWithAuthUsecase.execute(findManyFollowersWithAuthInput, requestUser);
   }
 
   /*
