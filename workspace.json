@@ -461,6 +461,48 @@
         }
       }
     },
+    "search-data-access-search": {
+      "root": "libs/search/data-access-search",
+      "sourceRoot": "libs/search/data-access-search/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/search/data-access-search/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/search/data-access-search"],
+          "options": {
+            "jestConfig": "libs/search/data-access-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "search-feature-search": {
+      "root": "libs/search/feature-search",
+      "sourceRoot": "libs/search/feature-search/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/search/feature-search/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/search/feature-search"],
+          "options": {
+            "jestConfig": "libs/search/feature-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "server": {
       "root": "apps/server",
       "sourceRoot": "apps/server/src",

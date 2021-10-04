@@ -30,5 +30,7 @@ module.exports = {
     '<rootDir>/libs/mvp-tag/data-access-tag-sugguest',
     '<rootDir>/libs/mvp-search/data-access-search',
     '<rootDir>/libs/mvp-search/feature-search',
+    '<rootDir>/libs/search/feature-search',
+    '<rootDir>/libs/search/data-access-search',
   ],
 };

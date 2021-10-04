@@ -9,7 +9,9 @@ export interface DropdownMenuProps {
 export function DropdownMenu({ renderMenuButton, children }: DropdownMenuProps) {
   return (
     <Menu as="div" className="relative">
-      <Menu.Button>{renderMenuButton()}</Menu.Button>
+      <div className="flex">
+        <Menu.Button>{renderMenuButton()}</Menu.Button>
+      </div>
 
       <Transition
         as={React.Fragment}
