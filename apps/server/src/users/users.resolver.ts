@@ -41,7 +41,7 @@ export class UsersResolver {
 
   @Query(returns => [User])
   @UseGuards(GqlAuthGuard)
-  manyUserBookmarksHavingUsers(
+  usersHavingManyUserBookmarks(
     @CurrentUser() requestUser: User,
     @Args('findManyUserBookmarksHavingUsersWithAuthInput')
     findManyUserBookmarksHavingUsersWithAuthInput: FindManyUserBookmarksHavingUsersWithAuthInput
@@ -54,7 +54,7 @@ export class UsersResolver {
 
   @Query(returns => [User])
   @UseGuards(GqlAuthGuard)
-  manyFollowersHavingUsers(
+  usersHavingManyFollowers(
     @CurrentUser() requestUser: User,
     @Args('findManyFollowersWithAuthInput') findManyFollowersWithAuthInput: FindManyFollowersWithAuthInput
   ) {
