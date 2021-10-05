@@ -1,4 +1,6 @@
 import { usePaginationUserBookmarksViewModel } from '@readable/feed/data-access-pagination-bookmarks';
+import CalendarHeatmap from 'react-calendar-heatmap';
+import 'react-calendar-heatmap/dist/styles.css';
 
 export const BookmarksViewController = () => {
   const { paginationUserBookmarks, loading, error } = usePaginationUserBookmarksViewModel();
@@ -13,6 +15,18 @@ export const BookmarksViewController = () => {
         paginationBookmarks.edges.map(edge => {
           return <BookmarkCard bookmark={edge.node} />;
         })} */}
+      <CalendarHeatmap
+        startDate={new Date('2021-01-01')}
+        endDate={new Date('2021-12-30')}
+        values={
+          (paginationUserBookmarks &&
+            paginationUserBookmarks?.edges.length > 0 &&
+            paginationUserBookmarks?.edges.map(edge => {
+              return { date: edge.node.createdAt, count: 1 };
+            })) ||
+          []
+        }
+      />
       {paginationUserBookmarks?.edges.map(edge => {
         const { urlInfo, interest, tags, bookmarkers, bookmarkersCount, readers, readersCount } = edge.node;
         const { id, siteName, title, url, favicon, imageUrl, description } = urlInfo;

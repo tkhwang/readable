@@ -24,7 +24,7 @@ export type PaginationUserBookmarksQuery = (
       & Pick<Types.PaginationUserBookmarkEdge, 'cursor'>
       & { readonly node: (
         { readonly __typename?: 'UserBookmark' }
-        & Pick<Types.UserBookmark, 'id' | 'urlHash' | 'bookmarkersCount' | 'readersCount'>
+        & Pick<Types.UserBookmark, 'id' | 'urlHash' | 'bookmarkersCount' | 'readersCount' | 'createdAt'>
         & { readonly urlInfo: (
           { readonly __typename?: 'UrlInfo' }
           & Pick<Types.UrlInfo, 'id' | 'url' | 'urlHash' | 'title' | 'siteName' | 'favicon' | 'imageUrl' | 'description'>
@@ -89,6 +89,7 @@ export const PaginationUserBookmarksDocument = gql`
           name
           avatarUrl
         }
+        createdAt
       }
     }
   }

@@ -44,6 +44,7 @@ const PAGINATION_USER_BOOKMARKS = gql`
             name
             avatarUrl
           }
+          createdAt
         }
       }
     }
