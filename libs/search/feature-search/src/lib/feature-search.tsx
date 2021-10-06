@@ -4,7 +4,7 @@ import { SearchFeed } from './search-feed';
 export function FeatureSearch() {
   return (
     <MainLayout
-      renderHeader={() => <MainHeader renderProfileDropdown={() => <div>profile</div>} />}
+      renderHeader={() => <MainHeader renderProfile={() => <div>profile</div>} />}
       renderSection={() => <SearchFeed />}
     />
   );
