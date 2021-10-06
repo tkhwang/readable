@@ -6,16 +6,17 @@ import { useRouter } from 'next/router';
 export const SearchFeed = () => {
   const router = useRouter();
   const { query } = router.query;
+  console.log('TCL: SearchFeed -> query', query);
 
-  const searchQuery = query as string;
-  
-  // TODO(zlrlo): 페이지네이션으로 변경 필요
+  const searchQuery = Array.isArray(query) ? '' : query ?? '';
+
+  // TODO(zlrlo): 리팩토링 필요
   const { entries } = useDataAccessSearch(searchQuery);
 
   return (
     <>
       <div className="">
-        <FormWithUnderline inputValue={searchQuery} onSubmit={() => {}}/>
+        <FormWithUnderline inputValue={searchQuery} />
       </div>
       {entries?.map(({ id, description, siteName, title }, index) => {
         return (
