@@ -1,15 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { SearchDropdownMenu } from '../dropdown/search-dropdown-menu';
+import { useState } from 'react';
 import Logo from '../logo/logo';
 
-export type MainHeaderProps = {
-  renderProfile: () => JSX.Element;
-};
+export interface SearchDropdownMenuProps {
+  onClose: () => void;
+}
 
-export function MainHeader({ renderProfile }: MainHeaderProps) {
+export interface MainHeaderProps {
+  renderProfileDropdown?: () => JSX.Element;
+  children?: (props: SearchDropdownMenuProps) => JSX.Element;
+}
+
+export function MainHeader({ renderProfileDropdown, children }: MainHeaderProps) {
   const [menuDropdown, setMenuDropdown] = useState<boolean>(false);
   const [searchDropdown, setSearchDropdown] = useState<boolean>(false);
 
@@ -68,14 +72,16 @@ export function MainHeader({ renderProfile }: MainHeaderProps) {
             </Link>
           </nav>
 
-          {/* Button */}
-          <div className="mr-8 hidden lg:block">
-            <SearchIcon onClick={() => toggleSearchDropdown()} className="w-7 h-7 text-white" />
-          </div>
-          <div className="hidden lg:block">{renderProfile()}</div>
+          {/* Dropdown */}
+          {children && (
+            <div className="mr-8 hidden lg:block">
+              <SearchIcon onClick={() => toggleSearchDropdown()} className="w-7 h-7 text-white" />
+            </div>
+          )}
+          {renderProfileDropdown  && <div className="hidden lg:block">{renderProfileDropdown()}</div>}
         </div>
       </div>
-      {searchDropdown && <SearchDropdownMenu onClose={toggleSearchDropdown} />}
+      {children && searchDropdown && children({onClose: toggleSearchDropdown})}
     </>
   );
 }
