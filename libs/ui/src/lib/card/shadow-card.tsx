@@ -1,119 +1,124 @@
-import { BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
-import { BookmarkIcon as BookmarkOutlineIcon, BadgeCheckIcon } from '@heroicons/react/outline';
+import { BookmarkAltIcon, BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
+import { BadgeCheckIcon } from '@heroicons/react/outline';
 import { Avatar } from '../avatar/avatar';
 import Image, { ImageLoaderProps } from 'next/image';
+import { Hashtag } from '../hashtag/hashtag';
 
-export interface ShadowCardProps {
+type UrlInfo = {
   cardImageUrl: string;
   description: string;
   siteName: string;
-  profileImageUrl: string;
-  tags?: { id: string; name: string }[];
-  index: number;
   title: string;
+  logoImageUrl: string;
+};
+
+type CardOwner = {
+  profileImageUrl: string;
+  name: string;
+};
+
+type Tag = {
+  id: string;
+  name: string;
+};
+export interface ShadowCardProps {
+  urlInfo: UrlInfo;
+  cardOwner: CardOwner;
+  tags: Tag[];
+  bookmarkersCount: number;
+  readersCount: number;
 }
 
-export function ShadowCard({
-  cardImageUrl,
-  description,
-  siteName,
-  profileImageUrl,
-  tags,
-  index,
-  title,
-}: ShadowCardProps) {
-  const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
+export function ShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readersCount }: ShadowCardProps) {
+  const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
-  const COLOR_NUMBER = 8;
-  const randomNumber = index % COLOR_NUMBER;
+  const cardImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
 
   return (
-    <div className="shadow-offset-black overflow-hidden h-full flex flex-col">
+    <div className="group transform transition ease-in duration-150 shadow-offset-black hover:shadow-none hover:translate-x-1 hover:translate-y-1">
       {/* Header */}
-      <div className="flex p-4 bg-gray-900 justify-between items-center">
+      <div className="flex py-4 px-5 bg-customGray-dark justify-between items-center">
         <div className="flex items-center">
-          <Avatar profileImage={profileImageUrl} />
-          <div className="text-white ml-2">
-            <div className="text-xs">@20min</div>
-            <div className="text-xs font-thin">10min ago</div>
+          <Avatar profileImage={cardOwner.profileImageUrl} size="xs" />
+          <div className="ml-2 flex items-center text-xs flex-shrink-0">
+            <div>@{cardOwner.name}</div>
+            <div className="sm:block hidden text-gray-400 ml-1 flex-shrink-0">marked 10min ago</div>
           </div>
         </div>
-        <div className="flex space-x-5">
-          <div>
-            <BookmarkIcon className="text-gray-400 w-5 h-5" />
+        <div className="flex space-x-4 items-center">
+          <div className="space-x-2 hidden lg:block">
+            {tags?.slice(0, 2).map(({ id, name }) => {
+              return <Hashtag key={id}>{name}</Hashtag>;
+            })}
           </div>
           <div>
             <DotsVerticalIcon className="text-gray-400 w-5 h-5"></DotsVerticalIcon>
           </div>
+          <div>
+            <BookmarkIcon className="text-indigo-600 w-5 h-5" />
+          </div>
         </div>
       </div>
       {/* Contents */}
-      <div
-        className={`p-4 opacity-90 flex-1 ${randomNumber === 0 && 'bg-gray-400'} ${
-          randomNumber === 1 && 'bg-red-400'
-        } ${randomNumber === 2 && 'bg-yellow-400'} ${randomNumber === 3 && 'bg-green-400'} ${
-          randomNumber === 4 && 'bg-blue-400'
-        } ${randomNumber === 5 && 'bg-indigo-400'} ${randomNumber === 6 && 'bg-purple-400'} ${
-          randomNumber === 7 && 'bg-pink-400'
-        }`}
-      >
-        <div className="flex -mx-2">
-          {/* 내용 영역 */}
-          <div className="w-3/5 mx-2">
-            <div className="font-bold break-word">{title}</div>
-            <div className="text-white text-sm break-word overflow-hidden line-clamp-2 mb-2">{description}</div>
-            <div className="flex flex-wrap">
-              {tags?.map(({ id, name }) => (
-                <div key={id} className="text-white text-xs px-0.5">
-                  #{name}
+      <div className="p-4 group-hover:bg-customGray-dark">
+        <div className="flex justify-between -mx-2">
+          {/* Summary of the site */}
+          <div className="mx-2 flex flex-col justify-between overflow-hidden flex-1">
+            <div>
+              <div className="flex items-center mb-3">
+                <div className="mr-3 w-5 h-5 relative rounded-sm overflow-hidden">
+                  <Image
+                    loader={logoImageLoader}
+                    src={urlInfo.logoImageUrl}
+                    alt={`${urlInfo.siteName} Favicon`}
+                    layout="fill"
+                    objectFit="cover"
+                  />
                 </div>
-              ))}
+                <div className="text-xs line-clamp-1">{urlInfo.siteName}</div>
+              </div>
+
+              <div className="sm:text-xl font-bold mb-2 line-clamp-2 leading-snug">{urlInfo.title}</div>
+              <div className="sm:block hidden line-clamp-2 max-h-10 text-gray-400">{urlInfo.description}</div>
             </div>
-          </div>
-          {/* 이미지 영역 */}
-          <div className="flex-1 mx-2 flex justify-end">
-            <div className="overflow-hidden rounded-sm">
-              {/* TODO(zlrlo): default 이미지 작업 필요함 */}
-              <Image
-                loader={myLoader}
-                src={cardImageUrl}
-                alt=""
-                width={176}
-                height={176}
-                quality={100}
-                objectFit="cover"
-              />
+
+            <div className="flex text-xs pt-4">
+              <div className="hidden sm:flex mr-2">
+                <div>Jul 1, 2020</div>
+                <div className="ml-1">&#183;</div>
+              </div>
+              <div className="flex items-center mr-2">
+                <BookmarkAltIcon className="w-3 h-3" />
+                <div className="ml-1 flex items-center">
+                  {bookmarkersCount} <div className="hidden md:block ml-1">marks</div>
+                </div>
+                <div className="ml-1">&#183;</div>
+              </div>
+              <div className="flex items-center">
+                <BadgeCheckIcon className="w-3 h-3" />
+                <div className="ml-1 flex items-center">
+                  {readersCount} <div className="hidden md:block ml-1">reads</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      {/* Footer */}
-      <div
-        className={`py-3 px-4 flex flex-wrap justify-between items-center text-white text-xs ${
-          randomNumber === 0 && 'bg-gray-400'
-        } ${randomNumber === 1 && 'bg-red-400'} ${randomNumber === 2 && 'bg-yellow-400'} ${
-          randomNumber === 3 && 'bg-green-400'
-        } ${randomNumber === 4 && 'bg-blue-400'} ${randomNumber === 5 && 'bg-indigo-400'} ${
-          randomNumber === 6 && 'bg-purple-400'
-        } ${randomNumber === 7 && 'bg-pink-400'}`}
-      >
-        <div className="flex items-center">
-          <div className="border-2 rounded-md w-5 h-5" />
-          <div className="ml-2">{siteName}</div>
-        </div>
-        <div className="flex items-center space-x-5">
-          {/* TODO(zlrlo): 북마크 수, 읽은 사람 수 작업 필요 */}
-          {/* <div className="flex items-center">
-            <BookmarkOutlineIcon className="w-5 h-5 " />
-            <div className="ml-1">2,890 marks</div>
           </div>
 
-          <div className="flex items-center">
-            <BadgeCheckIcon className="w-5 h-5 " />
-            <div className="ml-1">1,594 reads</div>
-          </div> */}
+          {/* Card Image */}
+          <div className="mx-2 flex justify-end flex-shrink-0 sm:w-52 md:w-full w-40 flex-1">
+            <Image
+              loader={cardImageLoader}
+              src={urlInfo.cardImageUrl}
+              alt={`${urlInfo.siteName} Open Graph`}
+              width={320}
+              height={180}
+              quality={100}
+              objectFit="cover"
+            />
+          </div>
         </div>
       </div>
     </div>

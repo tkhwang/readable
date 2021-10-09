@@ -4,8 +4,8 @@ export interface HashtagProps {
 
 export function Hashtag({ children }: HashtagProps) {
   return (
-    <button className="border-2 py-1 px-4 rounded-3xl bg-gray-700">
-      <div className="text-gray-300 text-sm font-light">#{children}</div>
+    <button className="border-1 py-1 px-3 rounded-3xl">
+      <div className="text-sm leading-tight">#{children}</div>
     </button>
   );
 }

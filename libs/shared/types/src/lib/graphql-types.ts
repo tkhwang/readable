@@ -38,6 +38,18 @@ export type FindOrAddInterestWithAuthInput = {
   readonly interest: Scalars['String'];
 };
 
+export type FindPopularTagsWithAuthInput = {
+  readonly howMany: Scalars['Float'];
+};
+
+export type FindUsersHavingManyFollowersWithAuthInput = {
+  readonly howMany: Scalars['Float'];
+};
+
+export type FindUsersHavingManyUserBookmarksWithAuthInput = {
+  readonly howMany: Scalars['Float'];
+};
+
 export type FollowTagWithAuthInput = {
   readonly tagId: Scalars['String'];
 };
@@ -195,7 +207,10 @@ export type Query = {
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
   readonly paginationTags?: Maybe<PaginationTags>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
+  readonly popularTags?: Maybe<ReadonlyArray<Tag>>;
   readonly tagSuggestion?: Maybe<ReadonlyArray<Tag>>;
+  readonly usersHavingManyFollowers: ReadonlyArray<User>;
+  readonly usersHavingManyUserBookmarks: ReadonlyArray<User>;
 };
 
 
@@ -224,8 +239,23 @@ export type QuerypaginationUserBookmarksArgs = {
 };
 
 
+export type QuerypopularTagsArgs = {
+  findPopularTagsWithAuthInput: FindPopularTagsWithAuthInput;
+};
+
+
 export type QuerytagSuggestionArgs = {
   suggestTagInput: SuggestTagInput;
+};
+
+
+export type QueryusersHavingManyFollowersArgs = {
+  findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput;
+};
+
+
+export type QueryusersHavingManyUserBookmarksArgs = {
+  findUsersHavingManyUserBookmarksWithAuthInput: FindUsersHavingManyUserBookmarksWithAuthInput;
 };
 
 export type SearchByTextInAllUrlinfosInput = {
@@ -318,9 +348,11 @@ export type User = {
   readonly deletedAt: Scalars['DateTime'];
   readonly email?: Maybe<Scalars['String']>;
   readonly followersCount: Scalars['Float'];
-  /** Followings User count */
+  /** Followings User count (field resolver) */
   readonly followingsCount: Scalars['Float'];
   readonly id: Scalars['ID'];
+  /** Whether I follow this user or not (field resolver) */
+  readonly isFollowingUser: Scalars['Boolean'];
   readonly latestInterestId?: Maybe<Scalars['String']>;
   readonly name: Scalars['String'];
   readonly oauthUsers: ReadonlyArray<OAuthUser>;

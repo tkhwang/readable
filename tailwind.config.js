@@ -15,6 +15,14 @@ module.exports = {
         yellow: colors.amber,
         teal: colors.teal,
         lime: colors.lime,
+        customGray: {
+          darkest: '#18191F',
+          dark: 'rgba(0, 0, 0, 0.2)',
+          DEFAULT: '#2C2D32',
+        },
+      },
+      borderWidth: {
+        1: '1px',
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.16)',

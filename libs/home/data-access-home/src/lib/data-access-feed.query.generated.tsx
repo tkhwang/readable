@@ -24,10 +24,10 @@ export type PaginationUserBookmarksOnFeedQuery = (
       & Pick<Types.PaginationUserBookmarkEdge, 'cursor'>
       & { readonly node: (
         { readonly __typename?: 'UserBookmark' }
-        & Pick<Types.UserBookmark, 'id' | 'urlHash'>
+        & Pick<Types.UserBookmark, 'id' | 'bookmarkersCount' | 'readersCount'>
         & { readonly urlInfo: (
           { readonly __typename?: 'UrlInfo' }
-          & Pick<Types.UrlInfo, 'id' | 'url' | 'urlHash' | 'title' | 'siteName' | 'imageUrl' | 'description'>
+          & Pick<Types.UrlInfo, 'id' | 'url' | 'title' | 'siteName' | 'imageUrl' | 'description' | 'favicon'>
         ), readonly interest: (
           { readonly __typename?: 'Interest' }
           & Pick<Types.Interest, 'id' | 'interest'>
@@ -55,15 +55,14 @@ export const PaginationUserBookmarksOnFeedDocument = gql`
       cursor
       node {
         id
-        urlHash
         urlInfo {
           id
           url
-          urlHash
           title
           siteName
           imageUrl
           description
+          favicon
         }
         interest {
           id
@@ -73,12 +72,14 @@ export const PaginationUserBookmarksOnFeedDocument = gql`
           id
           tag
         }
+        bookmarkersCount
         bookmarkers {
           id
           name
           email
           avatarUrl
         }
+        readersCount
       }
     }
   }

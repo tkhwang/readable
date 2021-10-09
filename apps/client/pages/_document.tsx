@@ -14,7 +14,7 @@ export default class CustomDocument extends Document<{ styleTags: ReactElement[]
     return (
       <Html lang="en" className="text-gray-100 leading-tight">
         <Head>{this.props.styleTags}</Head>
-        <body className="min-h-screen bg-gray-700">
+        <body className="min-h-screen bg-customGray">
           <Main />
           <NextScript />
         </body>
