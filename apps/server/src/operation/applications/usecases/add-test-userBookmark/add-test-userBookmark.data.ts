@@ -188,4 +188,115 @@ export const OPERATION_TEST_URLS = [
     url:
       'https://www.cnbc.com/2021/09/08/most-expensive-home-in-america-defaults-and-heads-for-sale.html?utm_source=pocket_discover',
   },
+  {
+    url:
+      'https://www.latimes.com/entertainment-arts/story/2021-10-06/ivy-queen-spotify-podcast-loud-gets-reggaeton-history-right?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.gq.com/story/kumail-nanjiani-profile?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://narratively.com/the-high-notes-and-hard-knocks-of-my-traveling-karaoke-family/',
+  },
+  {
+    url: 'https://www.axios.com/coronavirus-vaccine-mandates-working-6c7f1f01-33e7-4cde-ad09-50f22cec2d42.html',
+  },
+  {
+    url: 'https://www.si.com/wnba/2021/09/20/wnba-vaccination-99-percent-daily-cover?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.statnews.com/2021/10/04/what-we-know-and-dont-know-about-mercks-new-covid-19-pill/?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.scientificamerican.com/article/why-we-need-to-upgrade-our-face-masks-and-where-to-get-them/',
+  },
+  {
+    url: 'https://www.theatlantic.com/health/archive/2021/09/america-prepared-next-pandemic/620238/',
+  },
+  {
+    url:
+      'https://www.wired.com/story/the-forever-virus-wont-go-away-until-kids-get-vaccinated/?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.inquirer.com/opinion/commentary/pennsylvania-nursing-shortage-pandemic-20210923.html?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://getpocket.com/explore/item/how-to-finally-put-an-end-to-pointless-arguments?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://getpocket.com/explore/item/the-dark-side-of-resilience?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.theatlantic.com/podcasts/archive/2021/10/howto-happiness-meditation-arthurbrooks-danharris/620280/',
+  },
+  {
+    url:
+      'https://psyche.co/ideas/being-alone-with-your-thoughts-is-a-skill-you-can-practise?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.entrepreneur.com/article/379064?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.fatherly.com/love-money/feel-disconnected-in-relationship-small-nice-things/',
+  },
+  {
+    url:
+      'https://getpocket.com/explore/item/yes-you-can-do-arm-workouts-at-home-here-are-2-effective-circuits-to-try?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.npr.org/2021/10/07/1015460605/gas-stove-emissions-climate-change-health-effects?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.tomsguide.com/how-to/the-best-exercises-to-do-if-you-sit-down-all-day?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.menshealth.com/uk/fitness/a758971/the-5-best-exercises-for-burning-belly-fat/?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.geekwire.com/2021/predicting-weight-loss-study-suggests-gut-bacteria-may-influence-ability-shed-pounds/',
+  },
+  {
+    url: 'https://www.huffpost.com/entry/exercises-morning-tired_l_61391c68e4b090b79e7f1a63?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.today.com/health/30-day-challenge-5-minute-yoga-stretch-routine-today-t229654',
+  },
+  {
+    url:
+      'https://www.politico.com/news/magazine/2021/09/26/trump-politics-american-democracy-threat-2021-2022-analysis-514180?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://getpocket.com/explore/item/why-misinformation-is-about-who-you-trust-not-what-you-think?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.theatlantic.com/ideas/archive/2021/09/how-liberals-killed-new-deal/620122/',
+  },
+  {
+    url: 'https://www.vox.com/policy-and-politics/22684328/us-debt-ceiling-government-shutdown-biden-democrats',
+  },
+  {
+    url: 'https://www.texasmonthly.com/news-politics/the-innocent-man-part-one/',
+  },
+  {
+    url:
+      'https://foreignpolicy.com/2021/08/31/cia-us-military-training-foreign-army-afghanistan-defense-department/?utm_source=pocket_discover',
+  },
+  {
+    url:
+      'https://www.salon.com/2021/10/06/norm-ornstein-on-the-of-democracy-this-is-the-same-roadmap-we-saw-in-germany/?utm_source=pocket_discover',
+  },
+  {
+    url: 'https://www.vox.com/the-highlight/22570738/chowchilla-school-bus-kidnapping',
+  },
+  {
+    url: 'https://www.smithsonianmag.com/science-nature/ode-orca-180978578/?utm_source=pocket_discover',
+  },
 ];
