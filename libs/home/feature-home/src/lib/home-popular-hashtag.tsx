@@ -1,7 +1,14 @@
 import { ChevronRightIcon } from '@heroicons/react/solid';
+import { useDataAccessPopularTags } from '@readable/home/data-access-home';
 import { Hashtags } from '@readable/ui';
 
 export const HomePopularHashtag = () => {
+  const { popularTags, isPopularTagsDataLoading } = useDataAccessPopularTags();
+
+  if (!popularTags || isPopularTagsDataLoading) {
+    return <div>loading...</div>;
+  }
+
   return (
     <>
       <button className="flex justify-between py-3 px-6 shadow-offset-black w-full">
@@ -9,17 +16,7 @@ export const HomePopularHashtag = () => {
         <ChevronRightIcon className="w-5 h-5" />
       </button>
       <div className="px-6 pb-6 py-4 shadow-offset-black">
-        <Hashtags
-          hashtagNames={[
-            { key: '1', name: 'ux' },
-            { key: '2', name: 'react' },
-            { key: '3', name: 'food' },
-            { key: '4', name: 'design' },
-            { key: '5', name: 'design' },
-            { key: '6', name: 'movie' },
-            { key: '7', name: 'dev' },
-          ]}
-        />
+        <Hashtags hashtagNames={popularTags} />
       </div>
     </>
   );
