@@ -1,6 +1,6 @@
 import { BookmarkIcon, DotsVerticalIcon } from '@heroicons/react/solid';
-import { Avatar } from '../../avatar/avatar';
-import { Hashtag } from '../../hashtag/hashtag';
+import { AvatarIcon } from '../../avatar/avatar-icon';
+import { Hashtag } from '../../button/hashtag';
 
 export type CardOwner = {
   profileImageUrl?: string;
@@ -21,7 +21,7 @@ export function ShadowCardHeader({ cardOwner, tags }: ShadowCardHeaderProps) {
   return (
     <div className="flex py-4 px-5 bg-customGray-dark justify-between items-center">
       <div className="flex items-center">
-        <Avatar profileImage={cardOwner.profileImageUrl} size="xs" />
+        <AvatarIcon profileImage={cardOwner.profileImageUrl} size="xs" />
         <div className="ml-2 flex items-center text-xs flex-shrink-0">
           <div>@{cardOwner.name}</div>
           <div className="sm:block hidden text-gray-400 ml-1 flex-shrink-0">marked 10min ago</div>

@@ -16,13 +16,14 @@ export function ShadowCardSummary({ description, siteName, title, logoImageUrl }
   return (
     <div>
       <div className="flex items-center mb-3">
-        <div className="mr-3 w-5 h-5 relative rounded-sm overflow-hidden">
+        <div className="w-5 h-5 mr-3 rounded-sm overflow-hidden flex-shrink-0">
           <Image
             loader={logoImageLoader}
-            src={logoImageUrl ?? DEFAULT_FAVICON_IMAGE_URL}
+            src={logoImageUrl || DEFAULT_FAVICON_IMAGE_URL}
             alt={`${siteName} Favicon`}
-            layout="fill"
             objectFit="cover"
+            width={20}
+            height={20}
           />
         </div>
         <div className="text-xs line-clamp-1">{siteName}</div>

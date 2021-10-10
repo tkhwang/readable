@@ -41,10 +41,10 @@ export function ShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readers
           </div>
 
           {/* Card Image */}
-          <div className="mx-2 flex justify-end flex-shrink-0 sm:w-52 md:w-full w-40 flex-1">
+          <div className="mx-2 flex justify-end sm:w-52 md:w-full w-40 flex-1">
             <Image
               loader={cardImageLoader}
-              src={urlInfo.cardImageUrl ?? DEFAULT_CARD_COVER_IMAGE_URL}
+              src={urlInfo.cardImageUrl || DEFAULT_CARD_COVER_IMAGE_URL}
               alt={`${urlInfo.siteName} Open Graph`}
               width={320}
               height={180}
