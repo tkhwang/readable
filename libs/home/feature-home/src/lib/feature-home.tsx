@@ -7,9 +7,9 @@ import { HomeFeedFilter } from './home-feed-filter';
 export const FeatureHome = () => {
   return (
     <TwoColumnsLayout
-      renderHeader={() => <div></div>}
+      renderHeader={() => <HomeHeader />}
       renderFirstColumn={() => <HomeFeed />}
-      renderSecondColumn={() => <div></div>}
+      renderSecondColumn={() => <HomeSectionSidebar />}
       renderFooter={() => <div></div>}
     />
   );

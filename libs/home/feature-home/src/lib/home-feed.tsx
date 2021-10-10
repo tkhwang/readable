@@ -1,7 +1,6 @@
 import { ShadowCard } from '@readable/ui';
 import { useDataAccessFeed } from '@readable/home/data-access-home';
 import { useEffect, useRef } from 'react';
-import { DEFAULT_CARD_COVER_IMAGE_URL, DEFAULT_FAVICON_IMAGE_URL, DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const HomeFeed = () => {
   const { entries, pageInfo, fetchMoreFeedData } = useDataAccessFeed();
@@ -36,10 +35,10 @@ export const HomeFeed = () => {
   }, [fetchMoreFeedData]);
 
   return (
-    <>
-      {entries?.map(({ cursor, urlInfo, cardOwner, tags, bookmarkersCount, readersCount }, index) => {
+    <div className="space-y-6">
+      {entries?.map(({ cursor, urlInfo, cardOwner, tags, bookmarkersCount, readersCount }) => {
         return (
-          <div key={urlInfo.id} ref={cursor === pageInfo?.endCursor ? target : null} className="my-6">
+          <div key={urlInfo.id} ref={cursor === pageInfo?.endCursor ? target : null}>
             <ShadowCard
               urlInfo={urlInfo}
               cardOwner={cardOwner}
@@ -50,6 +49,6 @@ export const HomeFeed = () => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };

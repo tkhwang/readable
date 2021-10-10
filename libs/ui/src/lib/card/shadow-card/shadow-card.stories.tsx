@@ -1,8 +1,8 @@
 import { Meta, Story } from '@storybook/react';
 import { ShadowCard, ShadowCardProps } from './shadow-card';
-import avatarDefaultImage from '../../../assets/avatar_default.svg';
-import cardCoverDefaultImage from '../../../assets/card_cover_default.svg';
-import logoDefaultImage from '../../../assets/logo_sample.svg';
+import avatarDefaultImage from '../../../../assets/avatar_default.svg';
+import cardCoverDefaultImage from '../../../../assets/card_cover_default.svg';
+import logoDefaultImage from '../../../../assets/logo_sample.svg';
 
 export default {
   title: 'Card/ShadowCard',

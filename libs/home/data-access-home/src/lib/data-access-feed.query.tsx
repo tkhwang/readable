@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { DEFAULT_CARD_COVER_IMAGE_URL, DEFAULT_FAVICON_IMAGE_URL, DEFAULT_PROFILE_IMAGE_URL } from '../const';
 import { usePaginationUserBookmarksOnFeedQuery } from './data-access-feed.query.generated';
 
 const graphql = gql`
@@ -58,17 +57,17 @@ export function useDataAccessFeed() {
     ({ node: { urlInfo: serverUrlInfo, bookmarkers, tags: serverTags, bookmarkersCount, readersCount }, cursor }) => {
       const urlInfo = {
         id: serverUrlInfo.id,
-        cardImageUrl: serverUrlInfo.imageUrl ?? DEFAULT_CARD_COVER_IMAGE_URL,
+        cardImageUrl: serverUrlInfo.imageUrl ?? undefined,
         description: serverUrlInfo.description ?? '',
         siteName: serverUrlInfo.siteName ?? '',
         title: serverUrlInfo.title ?? '',
-        logoImageUrl: serverUrlInfo.favicon ?? DEFAULT_FAVICON_IMAGE_URL,
+        logoImageUrl: serverUrlInfo.favicon ?? undefined,
         url: serverUrlInfo.url,
       };
 
       // TODO(zlrlo): 수정 필요
       const cardOwner = {
-        profileImageUrl: bookmarkers[0].avatarUrl ?? DEFAULT_PROFILE_IMAGE_URL,
+        profileImageUrl: bookmarkers[0].avatarUrl ?? undefined,
         name: bookmarkers[0].name,
       };
 
