@@ -15,11 +15,9 @@ Default.args = {
   profileImage,
   userInfo: {
     nickname: '20min',
-    job: 'designer',
+    job:
+      'Defining and informing the complex field of user experience (UX) through frequent publication of high-quality articles for experts and newcomers alike.',
   },
   direction: 'row',
-};
-
-Default.parameters = {
-  backgrounds: { default: 'dark' },
+  size: 'lg',
 };

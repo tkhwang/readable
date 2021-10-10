@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { Hashtags, HashtagsProps } from './hashtags';
 
 export default {
-  title: 'Hashtag/Hashtags',
+  title: 'Button/Hashtags',
   component: Hashtags,
 } as Meta;
 
@@ -20,8 +20,4 @@ Default.args = {
     { key: '6', name: 'movie' },
     { key: '7', name: 'dev' },
   ],
-};
-
-Default.parameters = {
-  backgrounds: { default: 'dark' },
 };
