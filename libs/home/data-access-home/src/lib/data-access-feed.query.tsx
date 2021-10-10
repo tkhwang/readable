@@ -67,8 +67,8 @@ export function useDataAccessFeed() {
 
       // TODO(zlrlo): 수정 필요
       const cardOwner = {
-        profileImageUrl: bookmarkers[0].avatarUrl ?? undefined,
-        name: bookmarkers[0].name,
+        profileImageUrl: bookmarkers[0]?.avatarUrl ?? undefined,
+        name: bookmarkers[0]?.name,
       };
 
       const tags = serverTags.map(serverTag => {
