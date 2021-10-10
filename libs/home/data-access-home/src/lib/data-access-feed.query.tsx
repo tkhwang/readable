@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
-import { usePaginationUserBookmarksOnFeedQuery } from './data-access-feed.query.generated';
+import { usePaginationUserBookmarksOnHomeQuery } from './data-access-feed.query.generated';
 
 const graphql = gql`
-  query PaginationUserBookmarksOnFeed($first: Int, $after: PaginationCursor) {
+  query PaginationUserBookmarksOnHome($first: Int, $after: PaginationCursor) {
     paginationUserBookmarks(first: $first, after: $after) {
       pageInfo {
         hasNextPage
@@ -12,15 +12,14 @@ const graphql = gql`
         cursor
         node {
           id
-          urlHash
           urlInfo {
             id
             url
-            urlHash
             title
             siteName
             imageUrl
             description
+            favicon
           }
           interest {
             id
@@ -30,12 +29,14 @@ const graphql = gql`
             id
             tag
           }
+          bookmarkersCount
           bookmarkers {
             id
             name
             email
             avatarUrl
           }
+          readersCount
         }
       }
     }
@@ -43,7 +44,7 @@ const graphql = gql`
 `;
 
 export function useDataAccessFeed() {
-  const { data: feedData, loading: isFeedDataLoading, fetchMore } = usePaginationUserBookmarksOnFeedQuery({
+  const { data: feedData, loading: isFeedDataLoading, fetchMore } = usePaginationUserBookmarksOnHomeQuery({
     variables: {
       first: 8,
     },
@@ -52,25 +53,31 @@ export function useDataAccessFeed() {
   const pageInfo = feedData?.paginationUserBookmarks?.pageInfo;
   const edges = feedData?.paginationUserBookmarks?.edges;
 
-  const entries = edges?.map(edge => {
-    const urlInfo = {
-      id: edge.node.urlInfo.id,
-      imageUrl: edge.node.urlInfo.imageUrl,
-      description: edge.node.urlInfo.description,
-      siteName: edge.node.urlInfo.siteName,
-      title: edge.node.urlInfo.title,
-    };
+  const entries = edges?.map(
+    ({ node: { urlInfo: serverUrlInfo, bookmarkers, tags: serverTags, bookmarkersCount, readersCount }, cursor }) => {
+      const urlInfo = {
+        id: serverUrlInfo.id,
+        cardImageUrl: serverUrlInfo.imageUrl ?? undefined,
+        description: serverUrlInfo.description ?? '',
+        siteName: serverUrlInfo.siteName ?? '',
+        title: serverUrlInfo.title ?? '',
+        logoImageUrl: serverUrlInfo.favicon ?? undefined,
+        url: serverUrlInfo.url,
+      };
 
-    const cardOwner = {
-      profileImageUrl: edge.node.bookmarkers[0].avatarUrl,
-    };
+      // TODO(zlrlo): 수정 필요
+      const cardOwner = {
+        profileImageUrl: bookmarkers[0].avatarUrl ?? undefined,
+        name: bookmarkers[0].name,
+      };
 
-    const tags = edge.node.tags.map(tag => {
-      return { id: tag.id, name: tag.tag };
-    });
+      const tags = serverTags.map(serverTag => {
+        return { id: serverTag.id, name: serverTag.tag };
+      });
 
-    return { cursor: edge.cursor, ...urlInfo, ...cardOwner, tags };
-  });
+      return { cursor: cursor, urlInfo, cardOwner, tags, bookmarkersCount, readersCount };
+    }
+  );
 
   const fetchMoreFeedData = () => {
     if (pageInfo?.hasNextPage) {

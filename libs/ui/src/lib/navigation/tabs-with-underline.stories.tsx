@@ -10,6 +10,9 @@ const Template: Story<TabsWithUnderlineProps> = args => <TabsWithUnderline {...a
 
 export const Default = Template.bind({});
 
-Default.parameters = {
-  backgrounds: { default: 'dark' },
+Default.args = {
+  tabs: [
+    { id: '1', name: 'Following' },
+    { id: '2', name: 'Recommend' },
+  ],
 };

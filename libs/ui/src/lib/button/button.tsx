@@ -1,14 +1,16 @@
-import 'tailwindcss/tailwind.css';
+export interface ButtonProps {
+  children: string;
+  isActive?: boolean;
+}
 
-/* eslint-disable-next-line */
-export interface ButtonProps {}
-
-export function Button(props: ButtonProps) {
+export function Button({ children, isActive }: ButtonProps) {
   return (
-    <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
-      Click me
+    <button
+      className={`py-2 px-4 text-xs rounded-3xl ${
+        isActive ? 'bg-indigo-600 hover:bg-indigo-800' : 'bg-black hover:bg-indigo-600'
+      } `}
+    >
+      {children}
     </button>
   );
 }
-
-export default Button;

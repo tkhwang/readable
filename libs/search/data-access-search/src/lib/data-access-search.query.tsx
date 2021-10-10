@@ -29,12 +29,21 @@ export function useDataAccessSearch(query: string) {
   const entries = edges?.map(edge => {
     const urlInfo = {
       id: edge.id,
-      description: edge.description,
-      siteName: edge.siteName,
-      title: edge.title,
+      cardImageUrl: undefined,
+      description: edge.description ?? 'description',
+      siteName: edge.siteName ?? 'siteName',
+      title: edge.title ?? 'title',
+      logoImageUrl: undefined,
+      url: 'url',
     };
 
-    return { ...urlInfo };
+    const cardOwner = {
+      profileImageUrl: undefined,
+      name: 'name',
+    };
+
+    const tags = [{ id: '1', name: 'tag' }];
+    return { urlInfo, cardOwner, tags, bookmarkersCount: 0, readersCount: 0 };
   });
 
   return { entries };

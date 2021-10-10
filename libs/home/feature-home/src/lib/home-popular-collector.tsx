@@ -1,51 +1,41 @@
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { ActionAvatars } from '@readable/ui';
-import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
-
+import { Avatar } from '@readable/ui';
 export const HomePopularCollection = () => {
-  const profileImage = DEFAULT_PROFILE_IMAGE_URL;
-
   return (
-    <>
-      <div className="text-gray-300 flex justify-between">
-        <div className="text-sm">Popular Collector</div>
+    <div>
+      <button className="flex justify-between py-3 px-6 shadow-offset-black w-full">
+        <div className="md:text-base text-sm">Popular Collector</div>
         <ChevronRightIcon className="w-5 h-5" />
-      </div>
-      <div className="py-5 overflow-auto">
-        <ActionAvatars
-          avatars={[
-            {
-              id: '1',
-              profileImage,
-              userInfo: {
-                nickname: '20min',
-                job: 'Designer',
-              },
-              direction: 'column',
-            },
-            {
-              id: '2',
-              profileImage,
-              userInfo: {
-                nickname: '20min',
-                job: 'Designer',
-              },
-              direction: 'column',
-            },
-            {
-              id: '3',
-              profileImage,
-              userInfo: {
-                nickname: '20min',
-                job: 'Designer',
-              },
-              direction: 'column',
-            },
-          ]}
-          listDirection="row"
-          avatarSize="lg"
+      </button>
+      <div className="space-y-7 px-6 pb-6 py-4 shadow-offset-black">
+        <Avatar
+          userInfo={{
+            nickname: '20min',
+            job:
+              'Defining and informing the complex field of user experience (UX) through frequent publication of high-quality articles for experts and newcomers alike.',
+          }}
+          size="lg"
+          direction="row"
+        />
+        <Avatar
+          userInfo={{
+            nickname: '20min',
+            job:
+              'Defining and informing the complex field of user experience (UX) through frequent publication of high-quality articles for experts and newcomers alike.',
+          }}
+          size="lg"
+          direction="row"
+        />
+        <Avatar
+          userInfo={{
+            nickname: '20min',
+            job:
+              'Defining and informing the complex field of user experience (UX) through frequent publication of high-quality articles for experts and newcomers alike.',
+          }}
+          size="lg"
+          direction="row"
         />
       </div>
-    </>
+    </div>
   );
 };

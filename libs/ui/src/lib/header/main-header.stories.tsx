@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
-import { Avatar } from '../avatar/avatar';
 import { MainHeader, MainHeaderProps } from './main-header';
 import profileImage from '../.././../assets/avatar_default.svg';
+import { AvatarIcon } from '../avatar/avatar-icon';
 
 export default {
   title: 'Header/MainHeader',
@@ -13,9 +13,6 @@ const Template: Story<MainHeaderProps> = args => <MainHeader {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  renderProfile: () => <Avatar profileImage={profileImage} />,
-};
-
-Default.parameters = {
-  backgrounds: { default: 'dark' },
+  renderProfileDropdown: () => <AvatarIcon profileImage={profileImage} />,
+  children: ({ onClose }) => <div></div>,
 };

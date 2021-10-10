@@ -17,5 +17,3 @@ export function Hashtags({ hashtagNames }: HashtagsProps) {
     </div>
   );
 }
-
-export default Hashtags;
