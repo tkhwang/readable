@@ -37,8 +37,6 @@ export class RecommendUserUseCase implements Usecase<RecommendUserInput, User[]>
     const tagsUserUses = await this.findTagsUserUses(user);
 
     const userTags = this.filterUniqueTags([...tagsUserFollows, ...tagsUserUses]);
-    console.log('TCL: RecommendUserUseCase -> execute -> userTags', userTags);
-
     if (userTags.length === 0) return [];
 
     const recommendedUsers = await this.findOtherUsersWithMyTags(userId, userTags);

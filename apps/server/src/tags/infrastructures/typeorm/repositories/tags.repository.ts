@@ -44,8 +44,6 @@ export class TagsRepository extends Repository<Tag> {
   async queryForPagination(query: GetPaginationTagsInput, filter: PaginationTagsFilter, requestUser: User) {
     const { first, after, order, orderBy } = query;
 
-    console.log('TCL: TagsRepository -> after', after);
-
     // MEMO(Teddy): Use count using SubQuery instead of loadRelationCountAndMap
     // https://github.com/typeorm/typeorm/issues/1961#issuecomment-725577286
     const queryBuilder = this.createQueryBuilder('tag')

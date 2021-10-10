@@ -22,12 +22,9 @@ export class DeleteUserBookmarkWithAuthUsecase implements Usecase<DeleteUserBook
         where: { id: userBookmarkId, userId: requestUser.id },
       });
 
-      console.log('TCL: DeleteUserBookmarkWithAuthUsecase -> execute -> userBookmark', userBookmark);
-
       if (!userBookmark) throw new UnauthorizedDeleteUserBookmarkWithAuthException(requestUser.id, userBookmarkId);
 
-      const data = await this.userBookmarkRepository.softRemove(userBookmark);
-      console.log('TCL: DeleteUserBookmarkWithAuthUsecase -> execute -> data', data);
+      await this.userBookmarkRepository.softRemove(userBookmark);
 
       return new CommonOutput(true);
     } catch (error) {

@@ -27,8 +27,6 @@ export class FollowTagWithAuthUsecase implements Usecase<FollowTagWithAuthInput,
       }),
     ]);
 
-    console.log('TCL: FollowTagWithAuthUsecase -> execute -> user', user);
-
     if (!user) throw new UserNotFoundException(requestUser.id);
     if (!tag) throw new TagNotFoundException(tagId);
 
