@@ -4,7 +4,7 @@ import { SearchDomain } from '@readable/search/domain/models/search.model';
 import { SearchService } from '@readable/search/search.service';
 import { TagBuilder } from '@readable/tags/infrastructures/typeorm/entities/tags.entity.builder';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
-import { initialiTags } from './initialize-tags.data';
+import { OPERATION_INIT_TAGS } from './initialize-tags.data';
 
 @Injectable()
 export class InitializeTagsUseCase {
@@ -14,7 +14,7 @@ export class InitializeTagsUseCase {
   ) {}
 
   async execute() {
-    for (const tag of initialiTags) {
+    for (const tag of OPERATION_INIT_TAGS) {
       const newTag = new TagBuilder()
         .setTag(tag.tag)
         .setImageUrl(tag.imageUrl || '')
