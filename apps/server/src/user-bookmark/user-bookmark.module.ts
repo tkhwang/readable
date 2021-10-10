@@ -46,6 +46,6 @@ import { UserBookmarkService } from './user-bookmark.service';
     DeleteUserBookmarkWithAuthUsecase,
     SyncGoogleCalendaerWithAuthUsecase,
   ],
-  exports: [UserBookmarkService],
+  exports: [UserBookmarkService, AddUserBookmarkWithAuthUsecase],
 })
 export class UserBookmarkModule {}
