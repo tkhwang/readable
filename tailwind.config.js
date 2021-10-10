@@ -24,6 +24,9 @@ module.exports = {
       borderWidth: {
         1: '1px',
       },
+      flex: {
+        profile: '1 1 44px',
+      },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.16)',
         sm: '0 1px 2px 0 rgba(0, 0, 0, 0.16)',
@@ -133,7 +136,7 @@ module.exports = {
     textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     translate: ['responsive', 'hover', 'focus', 'group-hover'],
     boxShadow: ['responsive', 'hover', 'focus', 'focus-within'],
-    opacity: ['responsive', 'hover', 'focus', 'group-hover'],
+    opacity: ['responsive', 'hover', 'focus', 'group-hover', 'disabled'],
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
 };
