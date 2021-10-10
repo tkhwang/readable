@@ -95,7 +95,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     }
 
     queryBuilder
-      // TODO(Teddy): manyToMany join limit query problem
+      .groupBy('userBookmark.id')
       // Use take instead of limit
       // https://github.com/typeorm/typeorm/issues/3967#issuecomment-529489375
       .take(first + 1)
@@ -103,12 +103,4 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
 
     return queryBuilder.getMany();
   }
-
-  // async findTagsThatUserUses(userId: string) {
-  //   return this.createQueryBuilder('userBookmark')
-  //     .innerJoinAndSelect('userBookmark.tags', 'tags')
-  //     .where('userBookmark.userId = :userId', { userId })
-  //     .groupBy('tags')
-  //     .getMany();
-  // }
 }
