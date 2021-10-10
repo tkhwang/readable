@@ -1,6 +1,7 @@
 /* eslint-disable no-import-assign */
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import 'tailwindcss/tailwind.css';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 import * as NextImage from 'next/image';
 const OriginalNextImage = NextImage.default;
