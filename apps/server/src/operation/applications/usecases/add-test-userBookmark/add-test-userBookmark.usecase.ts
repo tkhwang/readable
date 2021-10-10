@@ -34,24 +34,24 @@ export class AddTestUserBookmarkUsecase implements Usecase<null, CommonOutput> {
     this.allUsersLength = allUsers.length;
     this.allTagsLength = allTags.length;
 
-    try {
-      for (const url of OPERATION_TEST_URLS) {
-        const user = this.getRandomUser();
-        const tags = this.getRandomTags(this.getRandomTagsNumber());
+    for (const url of OPERATION_TEST_URLS) {
+      const user = this.getRandomUser();
+      const tags = this.getRandomTags(this.getRandomTagsNumber());
 
-        const addUserBookmarkWithAuthInput = new AddUserBookmarkWithAuthInput(
-          url.url,
-          'Readable',
-          tags.map(tag => tag.tag)
-        );
+      const addUserBookmarkWithAuthInput = new AddUserBookmarkWithAuthInput(
+        url.url,
+        'Readable',
+        tags.map(tag => tag.tag)
+      );
 
+      try {
         await this.addUserBookmark(addUserBookmarkWithAuthInput, user);
+      } catch (error) {
+        console.error(`[-] AddTestUserBookmarkUsecase failed: ${error}`);
       }
-
-      return new CommonOutput(true);
-    } catch (error) {
-      return new CommonOutput(false, error.message);
     }
+
+    return new CommonOutput(true);
   }
 
   private addUserBookmark(command: AddUserBookmarkWithAuthInput, requestUser: UserEntity) {
