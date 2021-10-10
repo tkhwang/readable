@@ -9,6 +9,15 @@ import { Tag } from '../entities/tags.entity';
 @Injectable()
 @EntityRepository(Tag)
 export class TagsRepository extends Repository<Tag> {
+  async findTagsUserUses(userId: string) {
+    const queryBuilder = this.createQueryBuilder('tag')
+      .innerJoinAndSelect('tag.userBookmarks', 'userBookmarks', 'userBookmarks.userId IN (:userId)', { userId })
+      .groupBy('tag.id')
+      .orderBy('tag.createdAt', 'DESC');
+
+    return queryBuilder.getMany();
+  }
+
   async findPopularTags(howMany: number) {
     const queryBuilder = this.createQueryBuilder('tag')
       .select('tag.id', 'id')
@@ -34,8 +43,6 @@ export class TagsRepository extends Repository<Tag> {
   // TODO(Teddy)
   async queryForPagination(query: GetPaginationTagsInput, filter: PaginationTagsFilter, requestUser: User) {
     const { first, after, order, orderBy } = query;
-
-    console.log('TCL: TagsRepository -> after', after);
 
     // MEMO(Teddy): Use count using SubQuery instead of loadRelationCountAndMap
     // https://github.com/typeorm/typeorm/issues/1961#issuecomment-725577286

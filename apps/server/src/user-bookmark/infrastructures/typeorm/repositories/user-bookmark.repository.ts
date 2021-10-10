@@ -10,6 +10,38 @@ import { UserBookmark } from '../entities/user-bookmark.entity';
 @Injectable()
 @EntityRepository(UserBookmark)
 export class UserBookmarkRepository extends Repository<UserBookmark> {
+  async findOtherUserBookmarksByTags(userId: string, tags: Tag[]) {
+    const queryBuilder = this.createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.tags', 'tags', 'tags.id IN (:tagIds)', { tagIds: tags.map(tag => tag.id) })
+      .where('userBookmark.userId != :userId', { userId })
+      .groupBy('userBookmark.userId');
+
+    return queryBuilder.getMany();
+  }
+
+  async findRecommendedUserBookmarksByTag(
+    urlHash: string,
+    selectedTag: Tag,
+    relatedTags: Tag[],
+    howMany: number,
+    user: User
+  ) {
+    const relatedTagIds = (relatedTags ?? []).map(tag => tag.id);
+
+    return this.createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagIds)', {
+        tagIds: relatedTagIds,
+      })
+      .addSelect('COUNT(*) AS userBookmarkCount')
+      .where('userBookmark.urlHash != :urlHash', { urlHash })
+      .andWhere('userBookmark.userId != :userId', { userId: user.id })
+      .groupBy('userBookmark.urlHash')
+      .orderBy('userBookmarkCount', 'DESC')
+      .limit(howMany)
+      .getMany();
+  }
+
   async queryForUserBookmarksFeedPagination(
     query: GetPaginationUserBookmarksInput,
     filter: PaginationUserBookmarksFilter,
@@ -72,26 +104,11 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     return queryBuilder.getMany();
   }
 
-  async findRecommendedUserBookmarksByTag(
-    urlHash: string,
-    selectedTag: Tag,
-    relatedTags: Tag[],
-    howMany: number,
-    user: User
-  ) {
-    const relatedTagIds = (relatedTags ?? []).map(tag => tag.id);
-
-    return this.createQueryBuilder('userBookmark')
-      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.id IN (:tagIds)', {
-        tagIds: relatedTagIds,
-      })
-      .addSelect('COUNT(*) AS userBookmarkCount')
-      .where('userBookmark.urlHash != :urlHash', { urlHash })
-      .andWhere('userBookmark.userId != :userId', { userId: user.id })
-      .groupBy('userBookmark.urlHash')
-      .orderBy('userBookmarkCount', 'DESC')
-      .limit(howMany)
-      .getMany();
-  }
+  // async findTagsThatUserUses(userId: string) {
+  //   return this.createQueryBuilder('userBookmark')
+  //     .innerJoinAndSelect('userBookmark.tags', 'tags')
+  //     .where('userBookmark.userId = :userId', { userId })
+  //     .groupBy('tags')
+  //     .getMany();
+  // }
 }

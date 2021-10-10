@@ -27,11 +27,6 @@ export class UsersRepository extends Repository<User> {
 
     const findManyFollowersHavingUsers = await queryBuilder.getRawMany();
 
-    console.log(
-      'TCL: UsersRepository -> findManyFollowersHavingUsers -> findManyFollowersHavingUsers',
-      findManyFollowersHavingUsers
-    );
-
     return findManyFollowersHavingUsers;
   }
 
@@ -56,12 +51,6 @@ export class UsersRepository extends Repository<User> {
       .groupBy('user.id');
 
     const findManyUserBookmarksHavingUsers = await queryBuilder.getRawMany();
-
-    console.log(
-      'TCL: UsersRepository -> findManyUserBookmarksHavingUsers -> findManyUserBookmarksHavingUsers',
-      findManyUserBookmarksHavingUsers
-    );
-
     return findManyUserBookmarksHavingUsers;
   }
 }

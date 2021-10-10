@@ -157,6 +157,7 @@ type Query {
   paginationTags(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationTags
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String, userId: String): PaginationUserBookmarks
   popularTags(findPopularTagsWithAuthInput: FindPopularTagsWithAuthInput!): [Tag!]
+  recommendUsers: [User!]!
   tagSuggestion(suggestTagInput: SuggestTagInput!): [Tag!]
   usersHavingManyFollowers(findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput!): [User!]!
   usersHavingManyUserBookmarks(findUsersHavingManyUserBookmarksWithAuthInput: FindUsersHavingManyUserBookmarksWithAuthInput!): [User!]!
