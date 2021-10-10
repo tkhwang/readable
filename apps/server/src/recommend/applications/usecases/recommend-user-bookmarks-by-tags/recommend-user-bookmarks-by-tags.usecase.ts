@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
@@ -6,6 +7,7 @@ import { User } from '@readable/users/domain/models/user.model';
 import { RecommendUserBookmarksByTagsInput } from './recommend-user-bookmarks-by-tags.input';
 import { RecommendUserBookmarksByTagsOutput } from './recommend-user-bookmarks-by-tags.output';
 
+@Injectable()
 export class RecommendUserBookmarksByTagsUsecase
   implements Usecase<RecommendUserBookmarksByTagsInput, RecommendUserBookmarksByTagsOutput[]> {
   constructor(

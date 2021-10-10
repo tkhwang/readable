@@ -9,6 +9,15 @@ import { Tag } from '../entities/tags.entity';
 @Injectable()
 @EntityRepository(Tag)
 export class TagsRepository extends Repository<Tag> {
+  async findTagsUserUses(userId: string) {
+    const queryBuilder = this.createQueryBuilder('tag')
+      .innerJoinAndSelect('tag.userBookmarks', 'userBookmarks', 'userBookmarks.userId IN (:userId)', { userId })
+      .groupBy('tag.id')
+      .orderBy('tag.createdAt', 'DESC');
+
+    return queryBuilder.getMany();
+  }
+
   async findPopularTags(howMany: number) {
     const queryBuilder = this.createQueryBuilder('tag')
       .select('tag.id', 'id')
