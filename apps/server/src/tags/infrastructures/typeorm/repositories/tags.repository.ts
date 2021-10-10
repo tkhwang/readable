@@ -49,6 +49,7 @@ export class TagsRepository extends Repository<Tag> {
     const queryBuilder = this.createQueryBuilder('tag')
       .select('tag.id', 'id')
       .addSelect('tag.tag', 'tag')
+      .addSelect('tag.imageUrl', 'imageUrl')
       .addSelect('tag.normalizedTag', 'normalizedTag')
       .addSelect(subQuery => {
         return subQuery
