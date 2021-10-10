@@ -1,5 +1,5 @@
 import { useMe } from '@readable/shared/data-access-me';
-import { Avatar, DropdownMenu, MenuItemButton } from '@readable/ui';
+import { AvatarIcon, DropdownMenu, MenuItemButton } from '@readable/ui';
 import { Menu } from '@headlessui/react';
 import {
   BookmarkAltIcon as BookmarkAltOutlineIcon,
@@ -15,7 +15,6 @@ import {
 } from '@heroicons/react/solid';
 import { clearAuthToken } from '@readable/shared/util-auth';
 import router from 'next/router';
-import { DEFAULT_PROFILE_IMAGE_URL } from '../const';
 
 export const HomeProfile = () => {
   const { me, isMeDataLoading } = useMe({ redirectTo: '/login' });
@@ -33,7 +32,7 @@ export const HomeProfile = () => {
 
   return (
     <div className="relative z-50">
-      <DropdownMenu renderMenuButton={() => <Avatar profileImage={avatarUrl ?? DEFAULT_PROFILE_IMAGE_URL} />}>
+      <DropdownMenu renderMenuButton={() => <AvatarIcon profileImage={avatarUrl ?? undefined} />}>
         <div className="px-1 py-1">
           <Menu.Item as="li">
             {({ active }) => (
