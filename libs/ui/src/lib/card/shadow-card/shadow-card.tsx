@@ -33,7 +33,7 @@ export function ShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readers
           <div className="mx-2 flex flex-col justify-between overflow-hidden flex-1">
             <ShadowCardSummary
               description={urlInfo.description}
-              siteName={urlInfo.title}
+              siteName={urlInfo.siteName}
               title={urlInfo.title}
               logoImageUrl={urlInfo.logoImageUrl}
             />
