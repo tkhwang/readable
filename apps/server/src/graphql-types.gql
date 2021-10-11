@@ -151,6 +151,7 @@ type PaginationUserBookmarks {
 
 type Query {
   allUrlInfosBySearch(searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput!): [UrlInfo!]
+  allUserBookmarksBySearch(searchByTextInAllUserBookmarksInput: SearchByTextInAllUserBookmarksInput!): [UserBookmark!]
   me: User!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
@@ -164,6 +165,10 @@ type Query {
 }
 
 input SearchByTextInAllUrlinfosInput {
+  query: String!
+}
+
+input SearchByTextInAllUserBookmarksInput {
   query: String!
 }
 
