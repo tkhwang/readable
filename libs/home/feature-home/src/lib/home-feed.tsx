@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 export const HomeFeed = () => {
   const { entries, pageInfo, fetchMoreFeedData } = useDataAccessFeed();
 
-  const target = useRef<HTMLDivElement>(null);
+  const target = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const options: IntersectionObserverInit = {
@@ -35,20 +35,22 @@ export const HomeFeed = () => {
   }, [fetchMoreFeedData]);
 
   return (
-    <div className="space-y-6">
+    <ul className="space-y-6">
       {entries?.map(({ cursor, urlInfo, cardOwner, tags, bookmarkersCount, readersCount }) => {
         return (
-          <div key={urlInfo.id} ref={cursor === pageInfo?.endCursor ? target : null}>
-            <ShadowCard
-              urlInfo={urlInfo}
-              cardOwner={cardOwner}
-              tags={tags}
-              bookmarkersCount={bookmarkersCount}
-              readersCount={readersCount}
-            />
-          </div>
+          <li key={urlInfo.id} ref={cursor === pageInfo?.endCursor ? target : null}>
+            <a href={urlInfo.url}>
+              <ShadowCard
+                urlInfo={urlInfo}
+                cardOwner={cardOwner}
+                tags={tags}
+                bookmarkersCount={bookmarkersCount}
+                readersCount={readersCount}
+              />
+            </a>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

@@ -202,12 +202,14 @@ export type PaginationUserBookmarks = {
 export type Query = {
   readonly __typename?: 'Query';
   readonly allUrlInfosBySearch?: Maybe<ReadonlyArray<UrlInfo>>;
+  readonly allUserBookmarksBySearch?: Maybe<ReadonlyArray<UserBookmark>>;
   readonly me: User;
   readonly myInterests: ReadonlyArray<Interest>;
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
   readonly paginationTags?: Maybe<PaginationTags>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
   readonly popularTags?: Maybe<ReadonlyArray<Tag>>;
+  readonly recommendUsers: ReadonlyArray<User>;
   readonly tagSuggestion?: Maybe<ReadonlyArray<Tag>>;
   readonly usersHavingManyFollowers: ReadonlyArray<User>;
   readonly usersHavingManyUserBookmarks: ReadonlyArray<User>;
@@ -216,6 +218,11 @@ export type Query = {
 
 export type QueryallUrlInfosBySearchArgs = {
   searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput;
+};
+
+
+export type QueryallUserBookmarksBySearchArgs = {
+  searchByTextInAllUserBookmarksInput: SearchByTextInAllUserBookmarksInput;
 };
 
 
@@ -259,6 +266,10 @@ export type QueryusersHavingManyUserBookmarksArgs = {
 };
 
 export type SearchByTextInAllUrlinfosInput = {
+  readonly query: Scalars['String'];
+};
+
+export type SearchByTextInAllUserBookmarksInput = {
   readonly query: Scalars['String'];
 };
 
