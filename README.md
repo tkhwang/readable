@@ -1,12 +1,14 @@
 # Readable
 
+[![Heroku](https://pyheroku-badge.herokuapp.com/?app=readable-2021&style=flat)](https://dashboard.heroku.com/apps/readable-2021) [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=readable)](https://vercel.com/tkhwang/readable) [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/readable2021dev/readable)
+
 Read and share anything readable in **Readable** !
 
-[![Heroku](https://pyheroku-badge.herokuapp.com/?app=readable-2021&style=flat)](https://dashboard.heroku.com/apps/readable-2021) `apps/server` | [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=readable)](https://vercel.com/tkhwang/readable) `apps/client`
+- Related : [Chrome extension for saving bookmark](https://github.com/zlrlo/readable-extensions)
 
-## Related
+## Stack
 
-- [Chrome extension for saving bookmark](https://github.com/zlrlo/readable-extensions)
+<a frameborder="0" data-theme="dark" data-layers="1,2,3,4" data-stack-embed="true" href="https://embed.stackshare.io/stacks/embed/c962b7180019e2e9c1764d1eedea2b"/></a><script async src="https://cdn1.stackshare.io/javascripts/client-code.js" charset="utf-8"></script>
 
 ## Feature
 
