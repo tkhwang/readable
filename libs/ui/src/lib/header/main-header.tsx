@@ -47,10 +47,10 @@ export function MainHeader({ renderProfileDropdown, children }: MainHeaderProps)
           <Logo />
         </button>
 
-        <div className="flex items-center lg:hidden space-x-5">{renderButtonGroup()}</div>
+        <div className="flex items-center sm:hidden space-x-5">{renderButtonGroup()}</div>
 
-        <nav className={`w-full flex-grow lg:flex lg:items-center lg:w-auto`}>
-          <div className="text-sm lg:flex-grow lg:mt-0 mt-4">
+        <nav className={`w-full flex-grow sm:flex sm:items-center sm:w-auto`}>
+          <div className="text-sm sm:flex-grow sm:mt-0 mt-4">
             <TabsWithUnderline
               tabs={[
                 { id: '1', name: 'Following' },
@@ -59,7 +59,7 @@ export function MainHeader({ renderProfileDropdown, children }: MainHeaderProps)
             />
           </div>
 
-          <div className="hidden lg:flex items-center space-x-7">{renderButtonGroup()}</div>
+          <div className="hidden sm:flex items-center space-x-7">{renderButtonGroup()}</div>
         </nav>
       </div>
       {children && searchDropdown && children({ onClose: toggleSearchDropdown })}
