@@ -10,6 +10,16 @@ import { UserBookmark } from '../entities/user-bookmark.entity';
 @Injectable()
 @EntityRepository(UserBookmark)
 export class UserBookmarkRepository extends Repository<UserBookmark> {
+  async findUserBookmarksByUrlInfoIds(urlInfoIds: string[]) {
+    const queryBuilder = this.createQueryBuilder('userBookmark')
+      .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo', 'urlInfo.id IN (:...urlInfoIds)', {
+        urlInfoIds,
+      })
+      .groupBy('urlInfo.id');
+
+    return queryBuilder.orderBy('userBookmark.createdAt', 'DESC').getMany();
+  }
+
   async findOtherUserBookmarksByTags(userId: string, tags: Tag[]) {
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .innerJoinAndSelect('userBookmark.tags', 'tags', 'tags.id IN (:tagIds)', { tagIds: tags.map(tag => tag.id) })
