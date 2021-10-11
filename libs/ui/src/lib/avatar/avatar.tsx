@@ -6,7 +6,7 @@ export type AvatarSize = 'xs' | 'sm' | 'base' | 'lg';
 
 type UserInfo = {
   nickname: string;
-  job?: string;
+  description: string;
 };
 
 export type Direction = 'row' | 'column';
@@ -51,9 +51,8 @@ export function Avatar({ profileImage, size, userInfo, direction, isActive }: Av
         <div className="flex flex-col space-y-1 w-full">
           <div className="text-xs">@{userInfo.nickname}</div>
           <div className="flex flex-col space-y-2">
-            {userInfo.job && (
-              <div className="text-gray-400 text-xs line-clamp-3 lg:line-clamp-4 break-words">{userInfo.job}</div>
-            )}
+            <div className="text-gray-400 text-xs line-clamp-3 lg:line-clamp-4 break-words">{userInfo.description}</div>
+
             <div className="flex-shrink-0">
               <Button isActive={isActive}>{isActive ? 'following' : 'follow'}</Button>
             </div>
