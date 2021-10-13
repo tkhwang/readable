@@ -15,6 +15,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
       .innerJoinAndSelect('userBookmark.urlInfo', 'urlInfo', 'urlInfo.id IN (:...urlInfoIds)', {
         urlInfoIds,
       })
+      .where('userBookmark.isPrivate = :isPrivate', { isPrivate: false })
       .groupBy('urlInfo.id');
 
     return queryBuilder.orderBy('userBookmark.createdAt', 'DESC').getMany();
