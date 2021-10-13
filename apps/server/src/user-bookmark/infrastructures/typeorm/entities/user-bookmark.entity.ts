@@ -22,6 +22,9 @@ export class UserBookmark extends CoreEntity {
   @JoinTable()
   tags: Tag[];
 
+  @Column({ default: false })
+  isPrivate: boolean;
+
   @Column({ type: 'datetime', nullable: true })
   scheduledAt?: Date;
 

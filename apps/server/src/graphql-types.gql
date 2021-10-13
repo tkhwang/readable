@@ -295,6 +295,7 @@ type UserBookmark {
   donedAt: DateTime
   id: ID!
   interest: Interest!
+  isPrivate: Boolean!
 
   """User who read this url (field resolver)"""
   readers: [User!]!

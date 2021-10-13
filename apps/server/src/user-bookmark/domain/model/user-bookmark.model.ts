@@ -22,6 +22,9 @@ export class UserBookmarkBRFO extends CoreModel {
   @Field(type => [Tag], { description: 'Tags' })
   tags: Tag[];
 
+  @Field(type => Boolean)
+  isPrivate: boolean;
+
   @Field(type => Date, { nullable: true })
   scheduledAt?: Date;
 
