@@ -62,6 +62,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     const { normalizedTag, interestId, myUserBookmark, userId } = filter;
 
     const criteria = {
+      isPrivate: false,
       createdAt: new Date(),
     };
 
@@ -77,7 +78,8 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
-      .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] });
+      .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] })
+      .andWhere('isPrivate = :isPrivate', { isPrivate: criteria['isPrivate'] });
 
     if (normalizedTag) {
       queryBuilder.innerJoinAndSelect('userBookmark.tags', 'tag', 'tag.normalizedTag = :normalizedTag', {
