@@ -8,12 +8,12 @@ export type SearchDropdownMenuProps = {
   onClose: () => void;
 };
 
-export interface MainHeaderProps {
+export interface ResponsiveHeaderProps {
   renderProfileDropdown?: () => JSX.Element;
   children?: (props: SearchDropdownMenuProps) => JSX.Element;
 }
 
-export function MainHeader({ renderProfileDropdown, children }: MainHeaderProps) {
+export function ResponsiveHeader({ renderProfileDropdown, children }: ResponsiveHeaderProps) {
   const [menuDropdown, setMenuDropdown] = useState<boolean>(false);
 
   const [searchDropdown, setSearchDropdown] = useState<boolean>(false);
