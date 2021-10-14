@@ -1,12 +1,13 @@
-import { MainHeader, MainLayout } from '@readable/ui';
+import { MainHeader, TwoColumnsLayout } from '@readable/ui';
 import { CollectionSection } from './collection-section';
 
 export function FeatureCollection() {
   return (
-    <MainLayout
+    <TwoColumnsLayout
       renderHeader={() => <MainHeader renderProfileDropdown={() => <div>profile</div>} />}
-      renderSidebar={() => <div />}
-      renderSection={() => <CollectionSection />}
+      renderFirstColumn={() => <CollectionSection />}
+      renderSecondColumn={() => <div></div>}
+      renderFooter={() => <div></div>}
     />
   );
 }

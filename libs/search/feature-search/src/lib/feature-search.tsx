@@ -1,11 +1,13 @@
-import { MainHeader, MainLayout } from '@readable/ui';
+import { MainHeader, TwoColumnsLayout } from '@readable/ui';
 import { SearchFeed } from './search-feed';
 
 export function FeatureSearch() {
   return (
-    <MainLayout
+    <TwoColumnsLayout
       renderHeader={() => <MainHeader renderProfileDropdown={() => <div>profile</div>} />}
-      renderSection={() => <SearchFeed />}
+      renderFirstColumn={() => <SearchFeed />}
+      renderSecondColumn={() => <div></div>}
+      renderFooter={() => <div></div>}
     />
   );
 }
