@@ -15,9 +15,9 @@ export function TwoColumnsLayout({
     <>
       {renderHeader()}
       <div className="box-content sm:px-6 px-3 max-w-7xl ml-auto mr-auto">
-        <main className="grid grid-cols-12 gap-7 min-h-screen mt-4">
-          <section className="sm:col-span-8 col-span-12">{renderFirstColumn()}</section>
-          <section className="sm:col-span-4 sm:block hidden">{renderSecondColumn()}</section>
+        <main className="sm:grid sm:grid-cols-12 sm:gap-7 min-h-screen mt-4">
+          {renderFirstColumn()}
+          {renderSecondColumn()}
         </main>
       </div>
       <footer>{renderFooter()}</footer>

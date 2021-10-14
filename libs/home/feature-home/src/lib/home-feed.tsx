@@ -35,22 +35,24 @@ export const HomeFeed = () => {
   }, [fetchMoreFeedData]);
 
   return (
-    <ul className="space-y-6">
-      {entries?.map(({ cursor, urlInfo, cardOwner, tags, bookmarkersCount, readersCount }) => {
-        return (
-          <li key={urlInfo.id} ref={cursor === pageInfo?.endCursor ? target : null}>
-            <a href={urlInfo.url}>
-              <ShadowCard
-                urlInfo={urlInfo}
-                cardOwner={cardOwner}
-                tags={tags}
-                bookmarkersCount={bookmarkersCount}
-                readersCount={readersCount}
-              />
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <section className="sm:col-span-8">
+      <ul className="space-y-6">
+        {entries?.map(({ cursor, urlInfo, cardOwner, tags, bookmarkersCount, readersCount }) => {
+          return (
+            <li key={urlInfo.id} ref={cursor === pageInfo?.endCursor ? target : null}>
+              <a href={urlInfo.url}>
+                <ShadowCard
+                  urlInfo={urlInfo}
+                  cardOwner={cardOwner}
+                  tags={tags}
+                  bookmarkersCount={bookmarkersCount}
+                  readersCount={readersCount}
+                />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 };
