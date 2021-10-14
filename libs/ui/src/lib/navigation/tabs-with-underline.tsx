@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 type Tab = {
   id: string;
   name: string;
@@ -26,7 +25,7 @@ export function TabsWithUnderline({ tabs }: TabsWithUnderlineProps) {
               {name}
             </a>
             <div
-              className={`transition-colors ease-in-out duration-200 border-1 border-customGray group-hover:border-gray-200 absolute -bottom-1 w-full`}
+              className={`transition-colors ease-in-out duration-200 border-1 border-transparent group-hover:border-gray-200 absolute -bottom-1 w-full`}
             />
           </li>
         );
