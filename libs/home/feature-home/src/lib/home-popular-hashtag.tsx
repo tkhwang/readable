@@ -11,11 +11,11 @@ export const HomePopularHashtag = () => {
 
   return (
     <>
-      <button className="flex justify-between py-3 px-6 shadow-offset-black w-full">
+      <button className="flex justify-between py-3 px-6 w-full">
         <div className="md:text-base text-sm">Popular Tag</div>
         <ChevronRightIcon className="w-5 h-5" />
       </button>
-      <div className="px-6 pb-6 py-4 shadow-offset-black">
+      <div className="px-6 pb-6 py-4">
         <Hashtags hashtagNames={popularTags} />
       </div>
     </>
