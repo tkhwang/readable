@@ -6,7 +6,7 @@ export interface LogoProps {}
 
 export function Logo() {
   return (
-    <div className="relative w-8 h-8">
+    <div className="relative w-6 h-6">
       <Image src={LogoImage} alt="logo" layout="fill" />
     </div>
   );
