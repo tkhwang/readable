@@ -16,8 +16,18 @@ module.exports = {
       borderWidth: {
         1: '1px',
       },
+      width: {
+        'screen-30': '30vw',
+        'screen-20': '20vw',
+      },
+      height: {
+        'screen-16.25w': '16.25vw',
+        'screen-10w': '10vw',
+        'screen-23w': '23vw',
+      },
       flex: {
         profile: '1 1 44px',
+        'basis-380px': '0 1 380px',
       },
       boxShadow: {
         'offset-black': '4px 4px black',

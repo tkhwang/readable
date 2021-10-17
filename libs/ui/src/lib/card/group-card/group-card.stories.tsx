@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { GroupCard, GroupCardProps } from './group-card';
 import { SmallGroupCard } from './small-group-card';
+import cardPreview from '../../../../.storybook/assets/card_cover_default.svg';
 
 export default {
   title: 'Card/GroupCard',
@@ -21,4 +22,12 @@ const SmTemplate: Story<GroupCardProps> = args => (
 
 export const Default = Template.bind({});
 
+Default.args = {
+  previewImageUrlList: [cardPreview, cardPreview, cardPreview],
+};
+
 export const Small = SmTemplate.bind({});
+
+Small.args = {
+  previewImageUrlList: [cardPreview, cardPreview, cardPreview],
+};

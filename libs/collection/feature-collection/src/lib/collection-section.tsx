@@ -4,16 +4,12 @@ import { CollectionProfile } from './collection-profile';
 
 export const CollectionSection = () => {
   return (
-    <div className="flex flex-col">
-      <div>
-        <CollectionProfile />
-      </div>
-      <div className="mt-9">
-        <CollectionInterest />
-      </div>
-      <div className="mt-9">
-        <CollectionHistory />
-      </div>
+    <div className="space-y-14">
+      <CollectionProfile />
+
+      <CollectionInterest />
+
+      <CollectionHistory />
     </div>
   );
 };
