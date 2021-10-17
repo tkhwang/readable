@@ -22,3 +22,4 @@ export * from './lib/header/responsive-header';
 export * from './lib/navigation/tabs-with-underline';
 export * from './lib/layout/two-columns-layout';
 export * from './lib/avatar/avatar-icon';
+export * from './lib/card/group-card';
