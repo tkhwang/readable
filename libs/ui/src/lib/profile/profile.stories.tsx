@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { Profile, ProfileProps } from './profile';
-import dotPattern from '../../../assets/dot_pattern.svg';
+import dotPattern from '../../../.storybook/assets/dot_pattern.svg';
 
 export default {
   title: 'Profile/Profile',

@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { ColumnCard, ColumnCardProps } from './column-card';
-import cardImage from '../../../assets/card_cover_default.svg';
+import cardImage from '../../../.storybook/assets/card_cover_default.svg';
 
 export default {
   title: 'Card/ColumnCard',

@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { AvatarIcon, AvatarIconProps } from './avatar-icon';
-import profileImage from '../.././../assets/avatar_default.svg';
+import profileImage from '../../../.storybook/assets/avatar_default.svg';
 
 export default {
   title: 'Avatar/AvatarIcon',

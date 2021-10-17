@@ -13,7 +13,7 @@ Default.parameters = { backgrounds: { default: 'light' } };
 
 Default.args = {
   children: 'follow',
-  active: false,
+  isActive: false,
 };
 
 export const Active = Template.bind({});

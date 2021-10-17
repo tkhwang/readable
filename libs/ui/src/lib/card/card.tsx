@@ -1,6 +1,3 @@
-import { DotsVerticalIcon } from '@heroicons/react/solid';
-import Link from 'next/link';
-
 export type CardProps = {
   imageUrl: string;
 };

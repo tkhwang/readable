@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import cardPatternImage from '../../../assets/card_pattern.svg';
+import cardPatternImage from '../../../.storybook/assets/card_pattern.svg';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ActionCardProps {}
 
 export function ActionCard(props: ActionCardProps) {

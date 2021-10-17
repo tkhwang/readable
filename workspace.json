@@ -685,7 +685,7 @@
             "config": {
               "configFolder": "libs/ui/.storybook"
             },
-            "staticDir": ["libs/ui/assets"]
+            "staticDir": ["libs/ui/.storybook/assets"]
           },
           "configurations": {
             "ci": {

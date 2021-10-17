@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { ResponsiveHeader, ResponsiveHeaderProps } from './responsive-header';
-import profileImage from '../.././../assets/avatar_default.svg';
+import profileImage from '../.././../.storybook/assets/avatar_default.svg';
 import { AvatarIcon } from '../avatar/avatar-icon';
 
 export default {
