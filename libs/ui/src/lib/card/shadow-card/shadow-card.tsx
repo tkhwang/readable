@@ -2,14 +2,13 @@ import Image, { ImageLoaderProps } from 'next/image';
 import { CardOwner, ShadowCardHeader, Tag } from './shadow-card-header';
 import { ShadowCardSummary } from './shadow-card-summary';
 import { ShadowCardBottom } from './shadow-card-bottom';
-import { DEFAULT_CARD_COVER_IMAGE_URL } from '../../../const';
 
 type UrlInfo = {
-  cardImageUrl?: string;
+  cardImageUrl: string;
   description: string;
   siteName: string;
   title: string;
-  logoImageUrl?: string;
+  logoImageUrl: string;
 };
 
 export interface ShadowCardProps {
@@ -44,7 +43,7 @@ export function ShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readers
           <div className="mx-2 flex justify-end sm:w-52 md:w-full w-40 flex-1">
             <Image
               loader={cardImageLoader}
-              src={urlInfo.cardImageUrl || DEFAULT_CARD_COVER_IMAGE_URL}
+              src={urlInfo.cardImageUrl}
               alt={`${urlInfo.siteName} Open Graph`}
               width={320}
               height={180}

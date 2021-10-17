@@ -1,5 +1,10 @@
 import { gql } from '@apollo/client';
 import { useAllUrlInfosBySearchOnSearchQuery } from './data-access-search.query.generated';
+import {
+  DEFAULT_CARD_COVER_IMAGE_URL,
+  DEFAULT_FAVICON_IMAGE_URL,
+  DEFAULT_PROFILE_IMAGE_URL,
+} from '@readable/shared/util-common';
 
 const graphql = gql`
   query AllUrlInfosBySearchOnSearch($searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput!) {
@@ -29,16 +34,16 @@ export function useDataAccessSearch(query: string) {
   const entries = edges?.map(edge => {
     const urlInfo = {
       id: edge.id,
-      cardImageUrl: undefined,
+      cardImageUrl: DEFAULT_CARD_COVER_IMAGE_URL,
       description: edge.description ?? 'description',
       siteName: edge.siteName ?? 'siteName',
       title: edge.title ?? 'title',
-      logoImageUrl: undefined,
+      logoImageUrl: DEFAULT_FAVICON_IMAGE_URL,
       url: 'url',
     };
 
     const cardOwner = {
-      profileImageUrl: undefined,
+      profileImageUrl: DEFAULT_PROFILE_IMAGE_URL,
       name: 'name',
     };
 

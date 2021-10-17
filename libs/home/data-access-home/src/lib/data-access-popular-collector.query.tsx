@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { DEFAULT_PROFILE_IMAGE_URL } from '@readable/shared/util-common';
 import { useUsersHavingManyUserBookmarksOnHomeQuery } from './data-access-popular-collector.query.generated';
 
 // TODO(zlrlo): UsersHavingManyFollowersOnHome으로 변경하기
@@ -34,7 +35,7 @@ export function useDataAccessPopularCollector() {
       return {
         id,
         name,
-        profileImageUrl: avatarUrl ?? undefined,
+        profileImageUrl: avatarUrl || DEFAULT_PROFILE_IMAGE_URL,
         isFollowingUser,
       };
     }

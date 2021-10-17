@@ -32,7 +32,7 @@ export const HomeProfile = () => {
 
   return (
     <div className="relative z-50">
-      <DropdownMenu renderMenuButton={() => <AvatarIcon profileImage={avatarUrl ?? undefined} />}>
+      <DropdownMenu renderMenuButton={() => <AvatarIcon profileImage={avatarUrl} />}>
         <div className="px-1 py-1">
           <Menu.Item as="li">
             {({ active }) => (

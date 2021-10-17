@@ -1,6 +1,7 @@
 import { gql, WatchQueryFetchPolicy } from '@apollo/client';
 import { useMeQuery } from './useMe.query.generated';
 import { useRouter } from 'next/router';
+import { DEFAULT_PROFILE_IMAGE_URL } from '@readable/shared/util-common';
 
 const graphql = gql`
   query Me {
@@ -35,7 +36,7 @@ export function useMe({ redirectTo, fetchPolicy }: useMeType) {
   }
 
   return {
-    me: meData?.me,
+    me: { ...meData?.me, avatarUrl: meData?.me.avatarUrl || DEFAULT_PROFILE_IMAGE_URL },
     isMeDataLoading,
   };
 }
