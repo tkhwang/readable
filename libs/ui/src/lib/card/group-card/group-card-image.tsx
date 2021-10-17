@@ -6,7 +6,7 @@ export interface GroupCardImageProps {
 
 export function GroupCardImage({ previewImageUrlList }: GroupCardImageProps) {
   return (
-    <div className="flex space-x-1 sm:flex-basis-380px w-full sm:h-full h-28">
+    <div className="flex space-x-1 sm:flex-basis-380px w-full sm:h-screen-16.25w h-28 max-h-52">
       <div className="w-1/2 relative transition-width duration-500 ease-in-out hover:w-full">
         <Image src={previewImageUrlList[0]} layout="fill" objectFit="cover"></Image>
       </div>

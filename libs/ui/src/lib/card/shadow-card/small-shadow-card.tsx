@@ -19,7 +19,7 @@ export interface ShadowCardProps {
   readersCount: number;
 }
 
-export function ShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readersCount }: ShadowCardProps) {
+export function SmallShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readersCount }: ShadowCardProps) {
   const cardImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -36,22 +36,22 @@ export function ShadowCard({ urlInfo, cardOwner, tags, bookmarkersCount, readers
               title={urlInfo.title}
               logoImageUrl={urlInfo.logoImageUrl}
             />
-            <ShadowCardBottom bookmarkersCount={bookmarkersCount} readersCount={readersCount} />
           </div>
 
           {/* Card Image */}
-          <div className="mx-2 flex justify-end flex-1">
+          <div className="mx-2 flex justify-end flex-1 sm:max-h-24">
             <Image
               loader={cardImageLoader}
               src={urlInfo.cardImageUrl}
               alt={`${urlInfo.siteName} Open Graph`}
-              width={320}
-              height={180}
+              width={120}
+              height={90}
               quality={100}
               objectFit="cover"
             />
           </div>
         </div>
+        <ShadowCardBottom bookmarkersCount={bookmarkersCount} readersCount={readersCount} />
       </div>
     </div>
   );

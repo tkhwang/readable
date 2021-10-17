@@ -8,7 +8,7 @@ export interface GroupCardProps {
 
 export function GroupCard({ previewImageUrlList }: GroupCardProps) {
   return (
-    <div className="p-6 flex sm:flex-row flex-col justify-between sm:h-auto h-full sm:space-y-0 space-y-20 sm:space-x-4 space-x-0">
+    <div className="md:p-6 p-4 flex sm:flex-row flex-col justify-between sm:h-auto h-full sm:space-y-0 space-y-20 sm:space-x- space-x-0">
       <div className="flex-1 flex flex-col justify-between">
         <GroupCardHeader />
         <GroupCardContent />

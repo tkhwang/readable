@@ -20,6 +20,10 @@ module.exports = {
         'screen-30': '30vw',
         'screen-20': '20vw',
       },
+      minWidth: {
+        10: '2.5rem',
+        48: '12rem',
+      },
       height: {
         'screen-16.25w': '16.25vw',
         'screen-10w': '10vw',
