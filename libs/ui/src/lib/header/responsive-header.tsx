@@ -52,7 +52,7 @@ export function ResponsiveHeader({ renderProfileDropdown, children }: Responsive
   };
 
   return (
-    <div className={`sticky top-0 z-10 py-5 transition duration-300 ease-in-out ${!top && 'bg-customGray-darkest'}`}>
+    <div className={`sticky top-0 z-20 py-5 transition duration-300 ease-in-out ${!top && 'bg-customGray-darkest'}`}>
       <header className="box-content sm:px-6 px-3 max-w-7xl ml-auto mr-auto">
         <div className="flex items-center justify-between flex-wrap">
           <button className="flex items-center flex-shrink-0 mr-6">
