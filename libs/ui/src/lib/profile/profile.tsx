@@ -1,5 +1,5 @@
 import Image from 'next/image';
-// import profileSample from '../../../.storybook/assets/card_cover_default.svg';
+
 
 export interface ProfileProps {
   backgroundImageUrl: string;
