@@ -9,7 +9,7 @@ export function SmallGroupCard({ previewImageUrlList }: SmallGroupCardProps) {
   return (
     <div className="md:p-6 sm:p-4 p-6 flex flex-col justify-between sm:h-screen-23w sm:max-h-72 sm:space-y-0 space-y-20">
       <div className="flex items-baseline flex-col sm:space-y-1 space-y-2">
-        <div className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-baseline w-full">
           <div className="md:text-xl sm:text-base text-2xl font-semibold mr-2">UX Design</div>
           <button className="block">
             <ArrowCircleRightIcon className="w-5 h-5" />

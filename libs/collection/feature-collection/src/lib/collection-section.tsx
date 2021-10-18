@@ -1,5 +1,5 @@
 import { CollectionHistory } from './collection-history';
-import { CollectionInterest } from './collection-interest';
+import { CollectionBoard } from './collection-board';
 import { CollectionProfile } from './collection-profile';
 
 export const CollectionSection = () => {
@@ -7,7 +7,7 @@ export const CollectionSection = () => {
     <div className="space-y-14">
       <CollectionProfile />
 
-      <CollectionInterest />
+      <CollectionBoard />
 
       <CollectionHistory />
     </div>
