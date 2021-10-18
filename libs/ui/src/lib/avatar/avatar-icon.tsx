@@ -1,10 +1,9 @@
 import Image, { ImageLoaderProps } from 'next/image';
-import { DEFAULT_PROFILE_IMAGE_URL } from '../../const';
 
 export type AvatarIconSize = 'xs' | 'sm' | 'base' | 'lg';
 
 export interface AvatarIconProps {
-  profileImage?: string;
+  profileImage: string;
   size?: AvatarIconSize;
 }
 
@@ -22,12 +21,7 @@ export function AvatarIcon({ profileImage, size }: AvatarIconProps) {
 
   return (
     <div className={`rounded-full overflow-hidden relative ${avatarIconSize[size ?? 'base']}`}>
-      <Image
-        src={profileImage || DEFAULT_PROFILE_IMAGE_URL}
-        layout="fill"
-        loader={avatarIconImageLoader}
-        alt="Profile"
-      />
+      <Image src={profileImage} layout="fill" loader={avatarIconImageLoader} alt="Profile" />
     </div>
   );
 }

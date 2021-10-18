@@ -1,5 +1,6 @@
-import cardImage from '../../../assets/card_cover_default.svg';
+import cardImage from '../../../.storybook/assets/card_cover_default.svg';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BrutalistCardProps {}
 
 export function BrutalistCard(props: BrutalistCardProps) {

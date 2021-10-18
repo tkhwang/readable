@@ -1,5 +1,4 @@
 import Image, { ImageLoaderProps } from 'next/image';
-import { DEFAULT_PROFILE_IMAGE_URL } from '../../const';
 import { Button } from '../button/button';
 
 export type AvatarSize = 'xs' | 'sm' | 'base' | 'lg';
@@ -12,7 +11,7 @@ type UserInfo = {
 export type Direction = 'row' | 'column';
 
 export interface AvatarProps {
-  profileImage?: string;
+  profileImage: string;
   size?: AvatarSize;
   userInfo?: UserInfo;
   direction?: Direction;
@@ -38,7 +37,7 @@ export function Avatar({ profileImage, size, userInfo, direction, isActive }: Av
       <div className="flex-profile">
         <div className={`rounded-full overflow-hidden`}>
           <Image
-            src={profileImage ?? DEFAULT_PROFILE_IMAGE_URL}
+            src={profileImage}
             loader={avatarImageLoader}
             width={44}
             height={44}

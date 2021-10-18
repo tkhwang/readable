@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { Avatar, AvatarProps } from './avatar';
-import profileImage from '../.././../assets/avatar_default.svg';
+import profileImage from '../.././../.storybook/assets/avatar_default.svg';
 
 export default {
   title: 'Avatar/Avatar',
@@ -15,7 +15,7 @@ Default.args = {
   profileImage,
   userInfo: {
     nickname: '20min',
-    job:
+    description:
       'Defining and informing the complex field of user experience (UX) through frequent publication of high-quality articles for experts and newcomers alike.',
   },
   direction: 'row',

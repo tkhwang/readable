@@ -1,14 +1,14 @@
 import { Meta, Story } from '@storybook/react';
-import { MainHeader, MainHeaderProps } from './main-header';
-import profileImage from '../.././../assets/avatar_default.svg';
+import { ResponsiveHeader, ResponsiveHeaderProps } from './responsive-header';
+import profileImage from '../.././../.storybook/assets/avatar_default.svg';
 import { AvatarIcon } from '../avatar/avatar-icon';
 
 export default {
-  title: 'Header/MainHeader',
-  component: MainHeader,
+  title: 'Header/ResponsiveHeader',
+  component: ResponsiveHeader,
 } as Meta;
 
-const Template: Story<MainHeaderProps> = args => <MainHeader {...args} />;
+const Template: Story<ResponsiveHeaderProps> = args => <ResponsiveHeader {...args} />;
 
 export const Default = Template.bind({});
 

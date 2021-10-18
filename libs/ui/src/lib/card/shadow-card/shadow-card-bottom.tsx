@@ -8,7 +8,7 @@ export interface ShadowCardBottomProps {
 export function ShadowCardBottom({ bookmarkersCount, readersCount }: ShadowCardBottomProps) {
   return (
     <div className="flex text-xs pt-4">
-      <div className="hidden sm:flex mr-1">
+      <div className="hidden sm:flex mr-1 flex-shrink-0">
         <div>Jul 1, 2020</div>
         <div className="ml-1">&#183;</div>
       </div>

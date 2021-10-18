@@ -1,12 +1,22 @@
-import { MainHeader, TwoColumnsLayout } from '@readable/ui';
+import { ResponsiveHeader, TwoColumnsLayout } from '@readable/ui';
+import { CollectionHeaderProfile } from './collection-header-profile';
 import { CollectionSection } from './collection-section';
+import { CollectionSectionSidebar } from './collection-section-sidebar';
 
 export function FeatureCollection() {
   return (
     <TwoColumnsLayout
-      renderHeader={() => <MainHeader renderProfileDropdown={() => <div>profile</div>} />}
-      renderFirstColumn={() => <CollectionSection />}
-      renderSecondColumn={() => <div></div>}
+      renderHeader={() => <ResponsiveHeader renderProfileDropdown={() => <CollectionHeaderProfile />} />}
+      renderFirstColumn={() => (
+        <section className="md:col-span-9 col-span-12">
+          <CollectionSection />
+        </section>
+      )}
+      renderSecondColumn={() => (
+        <section className="md:col-span-3 md:block hidden">
+          <CollectionSectionSidebar />
+        </section>
+      )}
       renderFooter={() => <div></div>}
     />
   );

@@ -8,12 +8,12 @@ export type SearchDropdownMenuProps = {
   onClose: () => void;
 };
 
-export interface MainHeaderProps {
+export interface ResponsiveHeaderProps {
   renderProfileDropdown?: () => JSX.Element;
   children?: (props: SearchDropdownMenuProps) => JSX.Element;
 }
 
-export function MainHeader({ renderProfileDropdown, children }: MainHeaderProps) {
+export function ResponsiveHeader({ renderProfileDropdown, children }: ResponsiveHeaderProps) {
   const [menuDropdown, setMenuDropdown] = useState<boolean>(false);
 
   const [searchDropdown, setSearchDropdown] = useState<boolean>(false);
@@ -52,7 +52,7 @@ export function MainHeader({ renderProfileDropdown, children }: MainHeaderProps)
   };
 
   return (
-    <div className={`sticky top-0 z-10 py-5 transition duration-300 ease-in-out ${!top && 'bg-customGray-darkest'}`}>
+    <div className={`sticky top-0 z-20 py-5 transition duration-300 ease-in-out ${!top && 'bg-customGray-darkest'}`}>
       <header className="box-content sm:px-6 px-3 max-w-7xl ml-auto mr-auto">
         <div className="flex items-center justify-between flex-wrap">
           <button className="flex items-center flex-shrink-0 mr-6">

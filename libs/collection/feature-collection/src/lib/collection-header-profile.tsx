@@ -16,7 +16,9 @@ import {
 import { clearAuthToken } from '@readable/shared/util-auth';
 import router from 'next/router';
 
-export const HomeProfile = () => {
+// TODO(zlrlo): UI 공통으로 분리하는 리팩토링 필요
+
+export const CollectionHeaderProfile = () => {
   const { me, isMeDataLoading } = useMe({ redirectTo: '/login' });
 
   if (!me || isMeDataLoading) {

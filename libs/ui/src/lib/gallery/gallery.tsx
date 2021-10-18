@@ -1,5 +1,6 @@
 import CommentCard from '../card/comment-card';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface GalleryProps {}
 
 export function Gallery(props: GalleryProps) {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import LogoImage from '../../../assets/readable-logo.svg';
+import LogoImage from '../../../.storybook/assets/readable-logo.svg';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface LogoProps {}

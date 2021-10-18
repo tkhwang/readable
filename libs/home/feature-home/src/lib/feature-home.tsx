@@ -8,8 +8,16 @@ export const FeatureHome = () => {
   return (
     <TwoColumnsLayout
       renderHeader={() => <HomeHeader />}
-      renderFirstColumn={() => <HomeFeed />}
-      renderSecondColumn={() => <HomeSectionSidebar />}
+      renderFirstColumn={() => (
+        <section className="sm:col-span-8">
+          <HomeFeed />
+        </section>
+      )}
+      renderSecondColumn={() => (
+        <section className="sm:col-span-4 sm:block hidden">
+          <HomeSectionSidebar />
+        </section>
+      )}
       renderFooter={() => <div></div>}
     />
   );

@@ -12,7 +12,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   renderHeader: () => <div className="border-2 border-dashed">header</div>,
-  renderFirstColumn: () => <div className="border-2 border-dashed">firstColumn</div>,
-  renderSecondColumn: () => <div className="border-2 border-dashed">secondColumn</div>,
+  renderFirstColumn: () => <div className="border-2 border-dashed sm:col-span-8 col-span-12">section1</div>,
+  renderSecondColumn: () => <div className="border-2 border-dashed sm:col-span-4 sm:block hidden">section2</div>,
   renderFooter: () => <div className="border-2 border-dashed">footer</div>,
 };

@@ -1,11 +1,10 @@
 import Image, { ImageLoaderProps } from 'next/image';
-import { DEFAULT_FAVICON_IMAGE_URL } from '../../../const';
 
 export interface ShadowCardSummaryProps {
   description: string;
   siteName: string;
   title: string;
-  logoImageUrl?: string;
+  logoImageUrl: string;
 }
 
 export function ShadowCardSummary({ description, siteName, title, logoImageUrl }: ShadowCardSummaryProps) {
@@ -19,7 +18,7 @@ export function ShadowCardSummary({ description, siteName, title, logoImageUrl }
         <div className="w-5 h-5 mr-3 rounded-sm overflow-hidden flex-shrink-0">
           <Image
             loader={logoImageLoader}
-            src={logoImageUrl || DEFAULT_FAVICON_IMAGE_URL}
+            src={logoImageUrl}
             alt={`${siteName} Favicon`}
             objectFit="cover"
             width={20}

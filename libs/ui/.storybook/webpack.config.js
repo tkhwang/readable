@@ -30,7 +30,7 @@ module.exports = async ({ config, mode }) => {
       loader: require.resolve('url-loader'),
       options: {
         limit: 10000, // 10kB
-        name: '[name].[hash:7].[ext]',
+        name: 'assets/[name].[hash:7].[ext]',
       },
     },
     {
@@ -54,7 +54,7 @@ module.exports = async ({ config, mode }) => {
               loader: require.resolve('url-loader'),
               options: {
                 limit: 10000, // 10kB
-                name: '[name].[hash:7].[ext]',
+                name: 'assets/[name].[hash:7].[ext]',
                 esModule: false,
               },
             },
@@ -67,7 +67,7 @@ module.exports = async ({ config, mode }) => {
               loader: require.resolve('url-loader'),
               options: {
                 limit: 10000, // 10kB
-                name: '[name].[hash:7].[ext]',
+                name: 'assets/[name].[hash:7].[ext]',
               },
             },
           ],

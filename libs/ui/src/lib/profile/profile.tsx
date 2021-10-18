@@ -1,34 +1,45 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+import Image from 'next/image';
+
+
 export interface ProfileProps {
   backgroundImageUrl: string;
+  profileImageUrl: string;
 }
 
-export function Profile({ backgroundImageUrl }: ProfileProps) {
+export function Profile({ backgroundImageUrl, profileImageUrl }: ProfileProps) {
   return (
-    <div className="relative">
-      <div className="bg-green-300 h-72" />
-      <div style={{ backgroundImage: `url(${backgroundImageUrl})` }} className="w-full h-72 absolute top-0" />
-      <div className="absolute top-0 p-5 w-full h-full">
-        <div className="flex bg-white space-x-4 w-3/5 min-w-min p-5">
-          <div className="border-2 w-32 flex-shrink-0">사진</div>
-          <div className="border-2 flex flex-col justify-between w-full">
-            <div className="flex flex-col">
+    <div style={{ backgroundImage: `url(${backgroundImageUrl})` }} className="w-full h-80 bg-green-600 flex px-4 pt-5">
+      <div className="lg:w-2/3 w-full z-10">
+        <div className="bg-white shadow-offset-black p-5 flex space-x-5 text-black">
+          <div className="w-32 h-32 relative flex-shrink-0">
+            <Image src={profileImageUrl} layout="fill" objectFit="cover"></Image>
+          </div>
+          <div className="flex flex-col justify-between w-full">
+            <div>
               <div className="text-2xl font-bold">@20min</div>
               <div className="text-xs">Product designer at @Readable</div>
             </div>
-            <div className="flex">
-              {/* <div>follower</div>
-            <div>following</div>
-            <div>follow</div> */}
+
+            <div className="flex justify-between">
+              <div className="flex space-x-9">
+                <div className="flex flex-col">
+                  <div className="text-xs">follower</div>
+                  <div>999</div>
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-xs">follower</div>
+                  <div>999</div>
+                </div>
+              </div>
+
+              <div className="border-1 border-black text-xs px-4 py-2 rounded-3xl">Follwer</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="absolute right-5 bottom-0 border-t-2 border-l-2 border-r-2 border-black border-dashed p-7 bg-green-700 text-white flex flex-col justify-end h-44 w-64 shadow-offset-black">
-          <p className="text-right">I have 3 Interests</p>
-          <p className="text-right">I got 2,890 bookmarks</p>
-          <p className="text-right">I read 1,598 readable</p>
-        </div>
+      <div className="lg:flex hidden flex-col justify-end pr-3 w-1/3 relative ">
+        <div className="w-72 h-52 absolute right-0 border-2 border-black border-dashed bg-green-700 shadow-offset-black"></div>
       </div>
     </div>
   );

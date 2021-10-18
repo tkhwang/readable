@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SliderProps {}
 
 export function Slider(props: SliderProps) {

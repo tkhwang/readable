@@ -12,4 +12,3 @@ export default {
 const Template: Story<SubscribeProps> = args => <Subscribe {...args} />;
 
 export const Default = Template.bind({});
-// Primary.args = { background: '#ff0', label: 'Button' };
