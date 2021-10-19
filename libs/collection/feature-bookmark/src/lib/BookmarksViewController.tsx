@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUserBookmarks } from '@readable/collection/data-access-bookmark';
+import { useUserBookmarks } from '@readable/collection/data-access-collection';
 import { useSyncUserBookmark } from '@readable/collection/data-access-sync';
 import { SyncGoogleCalendarWithAuthInput } from '@readable/shared/types';
 

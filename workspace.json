@@ -53,22 +53,22 @@
         }
       }
     },
-    "collection-data-access-bookmark": {
-      "root": "libs/collection/data-access-bookmark",
-      "sourceRoot": "libs/collection/data-access-bookmark/src",
+    "collection-data-access-collection": {
+      "root": "libs/collection/data-access-collection",
+      "sourceRoot": "libs/collection/data-access-collection/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/collection/data-access-bookmark/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/collection/data-access-collection/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/collection/data-access-bookmark"],
+          "outputs": ["coverage/libs/collection/data-access-collection"],
           "options": {
-            "jestConfig": "libs/collection/data-access-bookmark/jest.config.js",
+            "jestConfig": "libs/collection/data-access-collection/jest.config.js",
             "passWithNoTests": true
           }
         }
