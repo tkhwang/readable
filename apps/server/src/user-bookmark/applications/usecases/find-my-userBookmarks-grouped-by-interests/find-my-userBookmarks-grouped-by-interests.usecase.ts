@@ -20,7 +20,13 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
     const { userId } = query;
     const result: FindMyUserBookmarksGroupedByInterestsOutput[] = [];
 
-    const myInterests = await this.interestsRepository.find({ where: { userId } });
+    const myInterests = await this.interestsRepository.find({
+      where: { userId },
+      order: {
+        interest: 'ASC',
+        createdAt: 'DESC',
+      },
+    });
 
     if (!myInterests || myInterests.length === 0) {
       return [];
@@ -42,8 +48,12 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
       if (userBookmarksByInterest && userBookmarksByInterest.length > 0) {
         const output = new FindMyUserBookmarksGroupedByInterestsOutput(interest.interest, userBookmarksByInterest);
         result.push(output);
+      } else {
+        const output = new FindMyUserBookmarksGroupedByInterestsOutput(interest.interest, []);
+        result.push(output);
       }
     }
-    return result.sort((a, b) => b.userBookmarks.length - a.userBookmarks.length);
+
+    return result;
   }
 }
