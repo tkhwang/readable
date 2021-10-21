@@ -13,10 +13,18 @@ import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-us
 import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.usecase';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
+import { FindMyUserBookmarksGroupedByInterestsUsecase } from '../user-bookmark/applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
+import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([OAuthUsersRepository, UsersRepository, UserFollowsRepository, UserBookmarkRepository]),
+    TypeOrmModule.forFeature([
+      OAuthUsersRepository,
+      UsersRepository,
+      UserFollowsRepository,
+      UserBookmarkRepository,
+      InterestsRepository,
+    ]),
     PassportModule,
     JwtModule.register({
       secret: process.env.TOKEN_SECRET,
@@ -31,6 +39,7 @@ import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usec
     UnfollowUserWithAuthUsecase,
     FindManyUserBookmarksHavingUsersWithAuthUsecase,
     FindUsersHavingManyFollowersWithAuthUsecase,
+    FindMyUserBookmarksGroupedByInterestsUsecase,
   ],
   exports: [UsersService, JwtModule, SigninUsecase],
 })
