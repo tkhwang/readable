@@ -23,6 +23,11 @@ input DeleteUserBookmarkWithAuthInput {
   userBookmarkId: String!
 }
 
+type FindMyUserBookmarksGroupedByInterestsOutput {
+  interest: String!
+  userBookmarks: [UserBookmark!]!
+}
+
 input FindOrAddInterestWithAuthInput {
   """Interest text"""
   interest: String!
@@ -155,6 +160,7 @@ type Query {
   me: User!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!
+  myUserBookmarksGroupedByInterests: [FindMyUserBookmarksGroupedByInterestsOutput!]!
   paginationTags(after: PaginationCursor, first: Int = 10, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST): PaginationTags
   paginationUserBookmarks(after: PaginationCursor, first: Int = 10, interestId: String, myUserBookmark: Boolean, order: PaginationOrder = DESC, orderBy: PaginationOrderBy = LATEST, tagId: String, userId: String): PaginationUserBookmarks
   popularTags(findPopularTagsWithAuthInput: FindPopularTagsWithAuthInput!): [Tag!]

@@ -13,6 +13,7 @@ import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/re
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { AddUserBookmarkWithAuthUsecase } from './applications/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.usecase';
 import { DeleteUserBookmarkWithAuthUsecase } from './applications/usecases/delete-user-bookmark-with-auth/delete-user-bookmark-with-auth.usecase';
+import { FindMyUserBookmarksGroupedByInterestsUsecase } from './applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
 import { GetMyUserBookmarksWithAuthUsecase } from './applications/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
 import { SyncGoogleCalendaerWithAuthUsecase } from './applications/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.usecase';
 import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
@@ -45,6 +46,7 @@ import { UserBookmarkService } from './user-bookmark.service';
     AddUserBookmarkWithAuthUsecase,
     DeleteUserBookmarkWithAuthUsecase,
     SyncGoogleCalendaerWithAuthUsecase,
+    FindMyUserBookmarksGroupedByInterestsUsecase,
   ],
   exports: [UserBookmarkService, AddUserBookmarkWithAuthUsecase],
 })
