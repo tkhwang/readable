@@ -33,6 +33,7 @@ export class PaginationUserBookmarksResolver {
     @Args('tagId', { type: () => String, nullable: true }) tagId?: string,
     @Args('interestId', { type: () => String, nullable: true }) interestId?: string,
     @Args('myUserBookmark', { type: () => Boolean, nullable: true }) myUserBookmark?: boolean,
+    @Args('myReadUserBookmark', { type: () => Boolean, nullable: true }) myReadUserBookmark?: boolean,
     @Args('userId', { type: () => String, nullable: true }) userId?: string
   ): Promise<PaginationUserBookmarkBRFOs | null> {
     const query = new GetPaginationUserBookmarksInput();
@@ -43,6 +44,7 @@ export class PaginationUserBookmarksResolver {
     if (tagId) query.tagId = tagId;
     if (interestId) query.interestId = interestId;
     if (myUserBookmark) query.myUserBookmark = myUserBookmark;
+    if (myReadUserBookmark) query.myReadUserBookmark = myReadUserBookmark;
     if (userId) query.userId = userId;
 
     return this.getPaginationUserBookmarksUsecase.execute(query, requestUser);
