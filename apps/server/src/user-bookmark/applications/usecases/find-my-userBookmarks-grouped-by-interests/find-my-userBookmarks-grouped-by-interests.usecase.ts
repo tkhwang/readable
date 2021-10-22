@@ -5,7 +5,10 @@ import { InterestsRepository } from '@readable/interests/infrastructures/typeorm
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { FindMyUserBookmarksGroupedByInterestsInput } from './find-my-userBookmarks-grouped-by-interests.input';
-import { FindMyUserBookmarksGroupedByInterestsOutput } from './find-my-userBookmarks-grouped-by-interests.output';
+import {
+  FindMyUserBookmarksGroupedByInterestData,
+  FindMyUserBookmarksGroupedByInterestsOutput,
+} from './find-my-userBookmarks-grouped-by-interests.output';
 
 @Injectable()
 export class FindMyUserBookmarksGroupedByInterestsUsecase
@@ -45,11 +48,13 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
         relations: ['urlInfo'],
       });
 
+      const interestData = new FindMyUserBookmarksGroupedByInterestData(interest.id, interest.interest);
+
       if (userBookmarksByInterest && userBookmarksByInterest.length > 0) {
-        const output = new FindMyUserBookmarksGroupedByInterestsOutput(interest.interest, userBookmarksByInterest);
+        const output = new FindMyUserBookmarksGroupedByInterestsOutput(interestData, userBookmarksByInterest);
         result.push(output);
       } else {
-        const output = new FindMyUserBookmarksGroupedByInterestsOutput(interest.interest, []);
+        const output = new FindMyUserBookmarksGroupedByInterestsOutput(interestData, []);
         result.push(output);
       }
     }
