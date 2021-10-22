@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { FindMyUserBookmarksGroupedByInterestsInput } from './find-my-userBookmarks-grouped-by-interests.input';
 import {
@@ -19,12 +20,12 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository
   ) {}
 
-  async execute(query: FindMyUserBookmarksGroupedByInterestsInput) {
-    const { userId } = query;
+  async execute(query: FindMyUserBookmarksGroupedByInterestsInput, requestUser: User) {
+    const { limit } = query;
     const result: FindMyUserBookmarksGroupedByInterestsOutput[] = [];
 
     const myInterests = await this.interestsRepository.find({
-      where: { userId },
+      where: { userId: requestUser.id },
       order: {
         interest: 'ASC',
         createdAt: 'DESC',
@@ -38,10 +39,10 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
     for (const interest of myInterests) {
       const userBookmarksByInterest = await this.userBookmarkRepository.find({
         where: {
-          userId,
+          userId: requestUser.id,
           interest,
         },
-        take: 3,
+        take: limit,
         order: {
           createdAt: 'DESC',
         },

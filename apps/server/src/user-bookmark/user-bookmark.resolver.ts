@@ -36,10 +36,15 @@ export class UserBookmarkResolver {
 
   @Query(returns => [FindMyUserBookmarksGroupedByInterestsOutput])
   @UseGuards(GqlAuthGuard)
-  async myUserBookmarksGroupedByInterests(@CurrentUser() requestUser: User) {
-    const query = new FindMyUserBookmarksGroupedByInterestsInput(requestUser.id);
-
-    return this.findMyUserBookmarksGroupedByInterestsUsecase.execute(query);
+  async myUserBookmarksGroupedByInterests(
+    @CurrentUser() requestUser: User,
+    @Args('findMyUserBookmarksGroupedByInterestsInput')
+    findMyUserBookmarksGroupedByInterestsInput: FindMyUserBookmarksGroupedByInterestsInput
+  ) {
+    return this.findMyUserBookmarksGroupedByInterestsUsecase.execute(
+      findMyUserBookmarksGroupedByInterestsInput,
+      requestUser
+    );
   }
 
   /*
