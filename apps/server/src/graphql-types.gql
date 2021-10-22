@@ -23,8 +23,13 @@ input DeleteUserBookmarkWithAuthInput {
   userBookmarkId: String!
 }
 
-type FindMyUserBookmarksGroupedByInterestsOutput {
+type FindMyUserBookmarksGroupedByInterestData {
   interest: String!
+  interestId: String!
+}
+
+type FindMyUserBookmarksGroupedByInterestsOutput {
+  interest: FindMyUserBookmarksGroupedByInterestData!
   userBookmarks: [UserBookmark!]!
 }
 
