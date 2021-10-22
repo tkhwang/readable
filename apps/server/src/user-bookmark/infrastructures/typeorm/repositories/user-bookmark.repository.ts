@@ -60,7 +60,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     requestUser: User
   ) {
     const { first, after, order, orderBy } = query;
-    const { normalizedTag, interestId, myUserBookmark, userId } = filter;
+    const { normalizedTag, interestId, myUserBookmark, myReadUserBookmark, userId } = filter;
 
     const criteria = {
       isPrivate: false,
@@ -101,6 +101,12 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
 
     if (myUserBookmark) {
       queryBuilder.andWhere('userBookmark.userId = :userId', { userId: requestUser.id });
+    }
+
+    if (myReadUserBookmark) {
+      queryBuilder
+        .andWhere('userBookmark.userId = :userId', { userId: requestUser.id })
+        .andWhere('userBookmark.donedAt IS NOT NULL');
     }
 
     if (userId) {

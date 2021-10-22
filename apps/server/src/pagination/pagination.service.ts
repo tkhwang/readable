@@ -87,7 +87,7 @@ export class PaginationService {
   }
 
   async generateUserBookmarksFilter(query: GetPaginationUserBookmarksInput) {
-    const { tagId, interestId, myUserBookmark, userId } = query;
+    const { tagId, interestId, myUserBookmark, myReadUserBookmark, userId } = query;
 
     const filter: PaginationUserBookmarksFilter = {};
 
@@ -104,6 +104,10 @@ export class PaginationService {
 
     if (myUserBookmark) {
       filter.myUserBookmark = myUserBookmark;
+    }
+
+    if (myReadUserBookmark) {
+      filter.myReadUserBookmark = myReadUserBookmark;
     }
 
     if (userId) {

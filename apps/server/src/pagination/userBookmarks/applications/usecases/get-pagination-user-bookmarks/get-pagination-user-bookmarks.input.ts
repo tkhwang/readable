@@ -31,6 +31,9 @@ export class GetPaginationUserBookmarksInput extends PaginationCommonInput {
   @Field(type => Boolean, { nullable: true, description: 'Pagination userBookmark filter: myUserBookmark' })
   myUserBookmark?: boolean;
 
+  @Field(type => Boolean, { nullable: true, description: 'Pagination userBookmark filter: myReadUserBookmark' })
+  myReadUserBookmark?: boolean;
+
   @Field(type => String, { nullable: true, description: 'Pagination userBookmark filter: userId' })
   userId?: string;
 }
