@@ -114,7 +114,6 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
     }
 
     queryBuilder
-      .groupBy('userBookmark.id')
       // Use take instead of limit
       // https://github.com/typeorm/typeorm/issues/3967#issuecomment-529489375
       .take(first + 1)
