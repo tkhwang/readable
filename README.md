@@ -17,6 +17,10 @@ Anti-social social bookmark service
 - [ ] Fantastic UI update
 - ...
 
+## [Visualize repo](https://next.github.com/projects/repo-visualization)
+
+![Visualization of this repo](./diagram.svg)
+
 ## Prerequite
 
 ```bash
