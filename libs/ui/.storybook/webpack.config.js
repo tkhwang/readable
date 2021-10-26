@@ -24,57 +24,47 @@ module.exports = async ({ config, mode }) => {
   });
   config.module.rules[svgRuleIndex].test = /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/;
 
-  config.module.rules.push(
-    {
-      test: /\.(png|jpe?g|gif|webp)$/,
-      loader: require.resolve('url-loader'),
-      options: {
-        limit: 10000, // 10kB
-        name: 'assets/[name].[hash:7].[ext]',
-      },
-    },
-    {
-      test: /\.svg$/,
-      oneOf: [
-        // If coming from JS/TS file, then transform into React component using SVGR.
-        {
-          issuer: {
-            test: /\.[jt]sx?$/,
+  config.module.rules.push({
+    test: /\.svg$/,
+    oneOf: [
+      // If coming from JS/TS file, then transform into React component using SVGR.
+      {
+        issuer: {
+          test: /\.[jt]sx?$/,
+        },
+        use: [
+          {
+            loader: require.resolve('@svgr/webpack'),
+            options: {
+              svgo: false,
+              titleProp: true,
+              ref: true,
+            },
           },
-          use: [
-            {
-              loader: require.resolve('@svgr/webpack'),
-              options: {
-                svgo: false,
-                titleProp: true,
-                ref: true,
-              },
+          {
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: 10000, // 10kB
+              name: 'assets/[name].[hash:7].[ext]',
+              esModule: false,
             },
-            {
-              loader: require.resolve('url-loader'),
-              options: {
-                limit: 10000, // 10kB
-                name: 'assets/[name].[hash:7].[ext]',
-                esModule: false,
-              },
+          },
+        ],
+      },
+      // Fallback to plain URL loader.
+      {
+        use: [
+          {
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: 10000, // 10kB
+              name: 'assets/[name].[hash:7].[ext]',
             },
-          ],
-        },
-        // Fallback to plain URL loader.
-        {
-          use: [
-            {
-              loader: require.resolve('url-loader'),
-              options: {
-                limit: 10000, // 10kB
-                name: 'assets/[name].[hash:7].[ext]',
-              },
-            },
-          ],
-        },
-      ],
-    }
-  );
+          },
+        ],
+      },
+    ],
+  });
 
   return config;
 };
