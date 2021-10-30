@@ -1,17 +1,17 @@
 import Image from 'next/image';
 
-export interface ProfileBedgeProps {
-  bedgeImageUrl: string;
+export interface ProfileBadgeProps {
+  badgeImageUrl: string;
 }
 
-export function ProfileBedge({ bedgeImageUrl }: ProfileBedgeProps) {
+export function ProfileBadge({ badgeImageUrl }: ProfileBadgeProps) {
   return (
     <>
       <div>
-        <Image src={bedgeImageUrl} width={64} height={96} objectFit="cover" />
+        <Image src={badgeImageUrl} width={64} height={96} objectFit="cover" />
       </div>
       <div>
-        <Image src={bedgeImageUrl} width={64} height={96} objectFit="cover" />
+        <Image src={badgeImageUrl} width={64} height={96} objectFit="cover" />
       </div>
     </>
   );
