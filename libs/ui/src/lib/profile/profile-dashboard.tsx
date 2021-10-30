@@ -1,10 +1,10 @@
-import { ProfileBadge } from './profile-badge';
+import { Badge, ProfileBadge } from './profile-badge';
 
 export interface ProfileDashboardProps {
-  badgeImageUrl: string;
+  badges: Badge[];
 }
 
-export function ProfileDashboard({ badgeImageUrl }: ProfileDashboardProps) {
+export function ProfileDashboard({ badges }: ProfileDashboardProps) {
   return (
     <>
       <div className="md:hidden block py-4 w-3/5">
@@ -15,7 +15,7 @@ export function ProfileDashboard({ badgeImageUrl }: ProfileDashboardProps) {
         </div>
       </div>
       <div className="md:hidden flex justify-end space-x-1 w-2/5 ml-7">
-        <ProfileBadge badgeImageUrl={badgeImageUrl} />
+        <ProfileBadge badges={badges} />
       </div>
 
       <div className="md:block hidden max-w-xs w-full ml-auto h-4/6 border-2 border-black border-dashed bg-indigo-700 shadow-offset-black"></div>

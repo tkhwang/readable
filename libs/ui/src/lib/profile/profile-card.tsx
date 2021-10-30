@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import { ProfileBadge } from './profile-badge';
-
+import { Badge, ProfileBadge } from './profile-badge';
 export interface ProfileCardProps {
   profileImageUrl: string;
-  badgeImageUrl: string;
+  badges: Badge[];
 }
 
-export function ProfileCard({ profileImageUrl, badgeImageUrl }: ProfileCardProps) {
+export function ProfileCard({ profileImageUrl, badges }: ProfileCardProps) {
   const followRenderer = () => {
     return (
       <div className="flex justify-between">
@@ -44,7 +43,7 @@ export function ProfileCard({ profileImageUrl, badgeImageUrl }: ProfileCardProps
       </div>
 
       <div className="md:flex hidden justify-end pr-5 space-x-1">
-        <ProfileBadge badgeImageUrl={badgeImageUrl} />
+        <ProfileBadge badges={badges} />
       </div>
     </>
   );
