@@ -27,9 +27,21 @@ Default.args = {
   bookmarkCount: 540,
   previewImageUrlList: [cardPreview, cardPreview, cardPreview],
   bookmarkTitles: [
-    'A designer’s guide to user interview',
-    'UX reviews: a template for success',
-    'Sample CSS for Notification Badges',
+    {
+      key: '1',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '2',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '3',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
   ],
 };
 
@@ -40,8 +52,20 @@ Small.args = {
   bookmarkCount: 540,
   previewImageUrlList: [cardPreview, cardPreview, cardPreview],
   bookmarkTitles: [
-    'A designer’s guide to user interview',
-    'UX reviews: a template for success',
-    'Sample CSS for Notification Badges',
+    {
+      key: '1',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '2',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '3',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
   ],
 };
