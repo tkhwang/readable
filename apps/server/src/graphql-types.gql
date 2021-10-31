@@ -81,6 +81,10 @@ type FollowUserWithAuthOutputData {
   followingUser: User!
 }
 
+input GetUserProfileInput {
+  userId: String!
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -167,6 +171,7 @@ type PaginationUserBookmarks {
 type Query {
   allUrlInfosBySearch(searchByTextInAllUrlinfosInput: SearchByTextInAllUrlinfosInput!): [UrlInfo!]
   allUserBookmarksBySearch(searchByTextInAllUserBookmarksInput: SearchByTextInAllUserBookmarksInput!): [UserBookmark!]
+  getUserProfile(getUserProfileInput: GetUserProfileInput!): User!
   me: User!
   myInterests: [Interest!]!
   myUserBookmarks: [UserBookmark!]!

@@ -17,6 +17,8 @@ import { FindUsersHavingManyUserBookmarksWithAuthInput } from './applications/us
 import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.usecase';
 import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
 import { FindUsersHavingManyFollowersWithAuthInput } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.input';
+import { GetUserProfileUsecase } from './applications/usecases/get-user-profile/get-user-profile.usecase';
+import { GetUserProfileInput } from './applications/usecases/get-user-profile/get-user-profile.input';
 
 @Resolver(of => User)
 export class UsersResolver {
@@ -26,6 +28,7 @@ export class UsersResolver {
     private readonly unfollowUserWithAuthUsecase: UnfollowUserWithAuthUsecase,
     private readonly findManyUserBookmarksHavingUsersWithAuthUsecase: FindManyUserBookmarksHavingUsersWithAuthUsecase,
     private readonly findUsersHavingManyFollowersWithAuthUsecase: FindUsersHavingManyFollowersWithAuthUsecase,
+    private readonly getUserProfileUsecase: GetUserProfileUsecase,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
@@ -50,6 +53,11 @@ export class UsersResolver {
       findUsersHavingManyUserBookmarksWithAuthInput,
       requestUser
     );
+  }
+
+  @Query(returns => User)
+  async getUserProfile(@Args('getUserProfileInput') getUserProfileInput: GetUserProfileInput) {
+    return this.getUserProfileUsecase.execute(getUserProfileInput);
   }
 
   @Query(returns => [User])
