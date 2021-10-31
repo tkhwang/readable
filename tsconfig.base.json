@@ -18,7 +18,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@readable/collection/data-access-bookmark": ["libs/collection/data-access-bookmark/src/index.ts"],
+      "@readable/collection/data-access-collection": ["libs/collection/data-access-collection/src/index.ts"],
       "@readable/collection/data-access-sync": ["libs/collection/data-access-sync/src/index.ts"],
       "@readable/collection/feature-bookmark": ["libs/collection/feature-bookmark/src/index.ts"],
       "@readable/collection/feature-collection": ["libs/collection/feature-collection/src/index.ts"],

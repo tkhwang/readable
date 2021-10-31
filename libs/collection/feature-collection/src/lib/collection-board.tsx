@@ -1,6 +1,7 @@
-import { GroupCard, SmallGroupCard, SmallShadowCard } from '@readable/ui';
+import { GroupCard, SmallGroupCard } from '@readable/ui';
 import { DEFAULT_CARD_COVER_IMAGE_URL } from '@readable/shared/util-common';
 import { useState } from 'react';
+import { useDataAccessBookmarksGroupedByInterests } from '@readable/collection/data-access-collection';
 
 enum View {
   List,
@@ -8,7 +9,16 @@ enum View {
 }
 
 export const CollectionBoard = () => {
+  const {
+    bookmarksGroupedByInterests,
+    isBookmarksGroupedByInterestsDataLoading,
+  } = useDataAccessBookmarksGroupedByInterests();
+
   const [viewType, setViewType] = useState(View.List);
+
+  if (!bookmarksGroupedByInterests || isBookmarksGroupedByInterestsDataLoading) {
+    return <div>loading...</div>;
+  }
 
   const onListButtonClick = () => {
     setViewType(View.List);
@@ -31,42 +41,31 @@ export const CollectionBoard = () => {
       </div>
       {viewType === View.List && (
         <div className="space-y-6">
-          <div className="bg-customGray-darkest">
-            <GroupCard
-              previewImageUrlList={[
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-              ]}
-            ></GroupCard>
-          </div>
-          <div className="bg-customGray-darkest">
-            <GroupCard
-              previewImageUrlList={[
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-              ]}
-            ></GroupCard>
-          </div>
-          <div className="bg-customGray-darkest">
-            <GroupCard
-              previewImageUrlList={[
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-              ]}
-            ></GroupCard>
-          </div>
-          <div className="bg-customGray-darkest">
-            <GroupCard
-              previewImageUrlList={[
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-                DEFAULT_CARD_COVER_IMAGE_URL,
-              ]}
-            ></GroupCard>
-          </div>
+          {new Array(Math.min(4)).fill(0).map((_, index) => {
+            const { interest, userBookmarks } = bookmarksGroupedByInterests[index];
+
+            const bookmarkCount = userBookmarks.length;
+
+            const previewImageUrlList =
+              bookmarkCount === 0
+                ? [DEFAULT_CARD_COVER_IMAGE_URL]
+                : userBookmarks.map(({ urlInfo }) => urlInfo.imageUrl ?? DEFAULT_CARD_COVER_IMAGE_URL);
+
+            const bookmarkTitles = userBookmarks.map(({ urlInfo }) => {
+              return { key: urlInfo.id, bookmarkTitle: urlInfo.title ?? '' };
+            });
+
+            return (
+              <div className="bg-customGray-darkest" key={interest.interestId}>
+                <GroupCard
+                  groupCardTitle={interest.interest}
+                  bookmarkCount={bookmarkCount}
+                  previewImageUrlList={previewImageUrlList}
+                  bookmarkTitles={bookmarkTitles}
+                ></GroupCard>
+              </div>
+            );
+          })}
         </div>
       )}
       {viewType === View.Checkerboard && (

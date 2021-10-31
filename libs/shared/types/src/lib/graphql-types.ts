@@ -33,6 +33,22 @@ export type DeleteUserBookmarkWithAuthInput = {
   readonly userBookmarkId: Scalars['String'];
 };
 
+export type FindMyUserBookmarksGroupedByInterestData = {
+  readonly __typename?: 'FindMyUserBookmarksGroupedByInterestData';
+  readonly interest: Scalars['String'];
+  readonly interestId: Scalars['String'];
+};
+
+export type FindMyUserBookmarksGroupedByInterestsInput = {
+  readonly limit: Scalars['Float'];
+};
+
+export type FindMyUserBookmarksGroupedByInterestsOutput = {
+  readonly __typename?: 'FindMyUserBookmarksGroupedByInterestsOutput';
+  readonly interest: FindMyUserBookmarksGroupedByInterestData;
+  readonly userBookmarks: ReadonlyArray<UserBookmark>;
+};
+
 export type FindOrAddInterestWithAuthInput = {
   /** Interest text */
   readonly interest: Scalars['String'];
@@ -206,6 +222,7 @@ export type Query = {
   readonly me: User;
   readonly myInterests: ReadonlyArray<Interest>;
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
+  readonly myUserBookmarksGroupedByInterests: ReadonlyArray<FindMyUserBookmarksGroupedByInterestsOutput>;
   readonly paginationTags?: Maybe<PaginationTags>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
   readonly popularTags?: Maybe<ReadonlyArray<Tag>>;
@@ -226,6 +243,11 @@ export type QueryallUserBookmarksBySearchArgs = {
 };
 
 
+export type QuerymyUserBookmarksGroupedByInterestsArgs = {
+  findMyUserBookmarksGroupedByInterestsInput: FindMyUserBookmarksGroupedByInterestsInput;
+};
+
+
 export type QuerypaginationTagsArgs = {
   after?: Maybe<Scalars['PaginationCursor']>;
   first?: Maybe<Scalars['Int']>;
@@ -238,6 +260,7 @@ export type QuerypaginationUserBookmarksArgs = {
   after?: Maybe<Scalars['PaginationCursor']>;
   first?: Maybe<Scalars['Int']>;
   interestId?: Maybe<Scalars['String']>;
+  myReadUserBookmark?: Maybe<Scalars['Boolean']>;
   myUserBookmark?: Maybe<Scalars['Boolean']>;
   order?: Maybe<PaginationOrder>;
   orderBy?: Maybe<PaginationOrderBy>;
@@ -386,6 +409,7 @@ export type UserBookmark = {
   readonly donedAt?: Maybe<Scalars['DateTime']>;
   readonly id: Scalars['ID'];
   readonly interest: Interest;
+  readonly isPrivate: Scalars['Boolean'];
   /** User who read this url (field resolver) */
   readonly readers: ReadonlyArray<User>;
   /** Number of user who read this url (field resolver) */

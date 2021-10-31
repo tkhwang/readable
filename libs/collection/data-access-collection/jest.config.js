@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'collection-data-access-bookmark',
+  displayName: 'collection-data-access-collection',
   preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/collection/data-access-bookmark',
+  coverageDirectory: '../../../coverage/libs/collection/data-access-collection',
 };

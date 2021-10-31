@@ -23,11 +23,49 @@ const SmTemplate: Story<GroupCardProps> = args => (
 export const Default = Template.bind({});
 
 Default.args = {
+  groupCardTitle: 'UX Design',
+  bookmarkCount: 540,
   previewImageUrlList: [cardPreview, cardPreview, cardPreview],
+  bookmarkTitles: [
+    {
+      key: '1',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '2',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '3',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+  ],
 };
 
 export const Small = SmTemplate.bind({});
 
 Small.args = {
+  groupCardTitle: 'UX Design',
+  bookmarkCount: 540,
   previewImageUrlList: [cardPreview, cardPreview, cardPreview],
+  bookmarkTitles: [
+    {
+      key: '1',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '2',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+    {
+      key: '3',
+      bookmarkTitle:
+        'A designer’s guide to user interview UX reviews: a template for success Sample CSS for Notification Badges',
+    },
+  ],
 };

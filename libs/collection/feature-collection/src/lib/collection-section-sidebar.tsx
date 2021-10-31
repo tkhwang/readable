@@ -1,5 +1,5 @@
 import { CollectionFollowHashtag } from './collection-follow-hashtag';
-import { CollectionRecommendCollector } from './collection-recommend-collector';
+import { CollectionRecommendUsers } from './collection-recommend-users';
 
 export const CollectionSectionSidebar = () => {
   return (
@@ -8,7 +8,7 @@ export const CollectionSectionSidebar = () => {
         <CollectionFollowHashtag />
       </div>
       <div className="mt-3 bg-customGray-dark">
-        <CollectionRecommendCollector />
+        <CollectionRecommendUsers />
       </div>
     </>
   );
