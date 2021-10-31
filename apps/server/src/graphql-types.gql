@@ -29,7 +29,8 @@ type FindMyUserBookmarksGroupedByInterestData {
 }
 
 input FindMyUserBookmarksGroupedByInterestsInput {
-  limit: Float!
+  limitOfInterests: Float = 3
+  limitOfUserBookmarks: Float = 3
 }
 
 type FindMyUserBookmarksGroupedByInterestsOutput {

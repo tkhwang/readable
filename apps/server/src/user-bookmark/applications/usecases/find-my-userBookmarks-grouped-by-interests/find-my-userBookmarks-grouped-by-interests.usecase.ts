@@ -21,7 +21,7 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
   ) {}
 
   async execute(query: FindMyUserBookmarksGroupedByInterestsInput, requestUser: User) {
-    const { limit } = query;
+    const { limitOfInterests, limitOfUserBookmarks } = query;
     const result: FindMyUserBookmarksGroupedByInterestsOutput[] = [];
 
     const myInterests = await this.interestsRepository.find({
@@ -30,6 +30,7 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
         interest: 'ASC',
         createdAt: 'DESC',
       },
+      take: limitOfInterests,
     });
 
     if (!myInterests || myInterests.length === 0) {
@@ -42,7 +43,7 @@ export class FindMyUserBookmarksGroupedByInterestsUsecase
           userId: requestUser.id,
           interest,
         },
-        take: limit,
+        take: limitOfUserBookmarks,
         order: {
           createdAt: 'DESC',
         },
