@@ -27,7 +27,7 @@ export class DeleteUserBookmarkWithAuthUsecase implements Usecase<DeleteUserBook
       await this.userBookmarkRepository.softRemove(userBookmark);
 
       return new CommonOutput(true);
-    } catch (error) {
+    } catch (error: any) {
       throw new DeleteUserBookmarkWithAuthFailException(requestUser.id, userBookmarkId, error.message);
     }
   }

@@ -47,7 +47,7 @@ export const fromCursor = (cursor: string): PaginationCursor => {
 
   try {
     parsed = JSON.parse(Buffer.from(cursor, 'base64').toString());
-  } catch (error) {
+  } catch (error: any) {
     throw new PaginationFromCursorFailException(cursor, error?.message);
   }
 
