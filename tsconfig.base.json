@@ -43,7 +43,13 @@
       "@readable/shared/util-auth": ["libs/shared/util-auth/src/index.ts"],
       "@readable/shared/util-common": ["libs/shared/util-common/src/index.ts"],
       "@readable/ui": ["libs/ui/src/index.ts"]
-    }
+    },
+    "plugins": [
+      {
+        "transform": "ts-auto-mock/transformer",
+        "cacheBetweenTests": false
+      }
+    ]
   },
   "strictPropertyInitialization": false
 }

@@ -4,6 +4,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
+      compiler: 'ttypescript',
     },
   },
   testEnvironment: 'node',
@@ -12,4 +13,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/server',
+  setupFiles: ['<rootDir>config.ts'],
 };
