@@ -14,6 +14,7 @@ Anti-social social bookmark service
 - [x] Suggest bookmarks based on `tag` analysis
 - [x] Search bookmarks
 - [ ] Add event in Google calendar for reading
+- [ ] Use TDD / Testing framework a lot
 - [ ] Fantastic UI update
 - ...
 
