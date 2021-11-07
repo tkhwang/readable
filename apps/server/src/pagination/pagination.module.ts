@@ -8,15 +8,18 @@ import { PaginationUserBookmarksResolver } from './userBookmarks/paginationUserB
 import { PaginationService } from './pagination.service';
 import { GetPaginationTagsUsecase } from './tags/applications/usecases/get-pagination-tags/get-pagination-tags.usecase';
 import { PaginationTagsResolver } from './tags/paginationTags.resolver';
+import { GetPaginationRecommendedUserBookmarksByTagsUsecase } from './userBookmarks/applications/usecases/get-pagination-recommended-user-bookmarks-by-tags/get-pagination-recommended-user-bookmarks-by-tags.usecase';
+import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserBookmarkRepository, TagsRepository]), TagsModule],
+  imports: [TypeOrmModule.forFeature([UserBookmarkRepository, TagsRepository, UsersRepository]), TagsModule],
   providers: [
     PaginationUserBookmarksResolver,
     PaginationTagsResolver,
     PaginationService,
     GetPaginationUserBookmarksUsecase,
     GetPaginationTagsUsecase,
+    GetPaginationRecommendedUserBookmarksByTagsUsecase,
   ],
 })
 export class PaginationModule {}

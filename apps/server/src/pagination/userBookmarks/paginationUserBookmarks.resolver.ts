@@ -6,13 +6,18 @@ import { PaginationCursorInput } from '@readable/common/pagination/paginationCur
 import { PaginationCursorScalar } from '@readable/common/pagination/paginationCursorScalar';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
 import { User } from '@readable/users/domain/models/user.model';
+import { GetPaginationRecommendedUserBookmarksByTagsInput } from './applications/usecases/get-pagination-recommended-user-bookmarks-by-tags/get-pagination-recommended-user-bookmarks-by-tags.input';
+import { GetPaginationRecommendedUserBookmarksByTagsUsecase } from './applications/usecases/get-pagination-recommended-user-bookmarks-by-tags/get-pagination-recommended-user-bookmarks-by-tags.usecase';
 import { GetPaginationUserBookmarksInput } from './applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
 import { GetPaginationUserBookmarksUsecase } from './applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.usecase';
 import { PaginationUserBookmarkBRFOs, PaginationUserBookmarks } from './domain/models/paginationUserBookmarks.model';
 
 @Resolver(of => PaginationUserBookmarks)
 export class PaginationUserBookmarksResolver {
-  constructor(private readonly getPaginationUserBookmarksUsecase: GetPaginationUserBookmarksUsecase) {}
+  constructor(
+    private readonly getPaginationUserBookmarksUsecase: GetPaginationUserBookmarksUsecase,
+    private readonly getPaginationRecommendedUserBookmarksByTagsUsecase: GetPaginationRecommendedUserBookmarksByTagsUsecase
+  ) {}
 
   /*
    * Query (as noun)
@@ -48,5 +53,27 @@ export class PaginationUserBookmarksResolver {
     if (userId) query.userId = userId;
 
     return this.getPaginationUserBookmarksUsecase.execute(query, requestUser);
+  }
+
+  @Query(returns => PaginationUserBookmarks, { nullable: true })
+  @UseGuards(GqlAuthGuard)
+  async paginationRecommendedUserBookmarksByTags(
+    @CurrentUser() requestUser: User,
+    @Args('orderBy', { type: () => PaginationOrderBy, defaultValue: PaginationOrderBy.LATEST })
+    orderBy?: PaginationOrderBy,
+    @Args('order', { type: () => PaginationOrder, defaultValue: PaginationOrder.DESC })
+    order?: PaginationOrder,
+    @Args('first', { type: () => Int, defaultValue: 10 })
+    first?: number,
+    @Args('after', { type: () => PaginationCursorScalar, nullable: true })
+    after?: PaginationCursorInput
+  ) {
+    const query = new GetPaginationRecommendedUserBookmarksByTagsInput();
+    if (orderBy) query.orderBy = orderBy;
+    if (order) query.order = order;
+    if (first) query.first = first;
+    if (after) query.after = after;
+
+    return this.getPaginationRecommendedUserBookmarksByTagsUsecase.execute(query, requestUser);
   }
 }
