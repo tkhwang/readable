@@ -83,7 +83,7 @@ export class UsersResolver {
    */
   @Mutation(returns => User)
   @UseGuards(GqlAuthGuard)
-  async setNickname(@CurrentUser() requestUser: User, @Args('setNickNameInput') setNickNameInput: SetNickNameInput) {
+  async setNickName(@CurrentUser() requestUser: User, @Args('setNickNameInput') setNickNameInput: SetNickNameInput) {
     return this.setNickNameUsecase.execute(setNickNameInput, requestUser);
   }
 

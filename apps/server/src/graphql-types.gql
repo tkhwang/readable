@@ -99,7 +99,7 @@ type Mutation {
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
   followTagWithAuth(followTagWithAuthInput: FollowTagWithAuthInput!): FollowTagWithAuthOutput!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
-  setNickname(setNickNameInput: SetNickNameInput!): User!
+  setNickName(setNickNameInput: SetNickNameInput!): User!
   syncGoogleCalendarWithAuth(syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput!): CommonOutput!
   unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!
 }
