@@ -81,6 +81,10 @@ type FollowUserWithAuthOutputData {
   followingUser: User!
 }
 
+input GetUserProfileInput {
+  userId: String!
+}
+
 type Interest {
   createdAt: DateTime!
   deletedAt: DateTime!
@@ -176,6 +180,7 @@ type Query {
   popularTags(findPopularTagsWithAuthInput: FindPopularTagsWithAuthInput!): [Tag!]
   recommendUsers: [User!]!
   tagSuggestion(suggestTagInput: SuggestTagInput!): [Tag!]
+  userProfile(getUserProfileInput: GetUserProfileInput!): User!
   usersHavingManyFollowers(findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput!): [User!]!
   usersHavingManyUserBookmarks(findUsersHavingManyUserBookmarksWithAuthInput: FindUsersHavingManyUserBookmarksWithAuthInput!): [User!]!
 }
