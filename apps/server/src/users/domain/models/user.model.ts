@@ -17,6 +17,9 @@ export class UserBRFO extends CoreModel {
   name: string;
 
   @Field(type => String, { nullable: true })
+  nickName?: string;
+
+  @Field(type => String, { nullable: true })
   email?: string;
 
   @Field(type => String, { nullable: true })
