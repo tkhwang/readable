@@ -25,7 +25,6 @@ export class GetPaginationRecommendedUserBookmarksByTagsUsecase
       },
       relations: ['tags'],
     });
-    console.log('TCL: execute -> user', user);
 
     if (!user) throw new UserNotFoundException(requestUser.id);
 
