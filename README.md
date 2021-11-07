@@ -16,6 +16,9 @@ Anti-social social bookmark service
 - [ ] Add event in Google calendar for reading
 - [ ] Use TDD / Testing framework a lot
 - [ ] Fantastic UI update
+- Extra plugins:
+  - [CodeSee diagram](https://www.codesee.io/) in PR
+  - [Visualize repo](https://next.github.com/projects/repo-visualization) in README.md
 - ...
 
 ## [Visualize repo](https://next.github.com/projects/repo-visualization)
