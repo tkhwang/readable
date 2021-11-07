@@ -15,6 +15,7 @@ import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/
 import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
 import { FindMyUserBookmarksGroupedByInterestsUsecase } from '../user-bookmark/applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
+import { GetUserProfileUseCase } from './applications/usecases/get-user-profile/get-user-profile.usecase';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { InterestsRepository } from '@readable/interests/infrastructures/typeorm
     FindManyUserBookmarksHavingUsersWithAuthUsecase,
     FindUsersHavingManyFollowersWithAuthUsecase,
     FindMyUserBookmarksGroupedByInterestsUsecase,
+    GetUserProfileUseCase,
   ],
   exports: [UsersService, JwtModule, SigninUsecase],
 })

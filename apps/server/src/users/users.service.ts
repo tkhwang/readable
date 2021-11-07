@@ -11,10 +11,6 @@ export class UsersService {
     @InjectRepository(UserFollowsRepository) private readonly userFollowsRepository: UserFollowsRepository
   ) {}
 
-  findUserWithRelation(user: User) {
-    return this.usersRepository.findOne({ where: { id: user.id }, relations: ['tags'] });
-  }
-
   async findOne(id: string) {
     return this.usersRepository.findOne(id);
   }
