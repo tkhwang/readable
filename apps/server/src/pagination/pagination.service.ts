@@ -7,10 +7,12 @@ import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositor
 import { TagsUtilityService } from '@readable/tags/tags-utility.service';
 import { TagsService } from '@readable/tags/tags.service';
 import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
-import { User } from '@readable/users/domain/models/user.model';
+import { User as UserModel } from '@readable/users/domain/models/user.model';
+import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { PaginationQueryCriteriaType } from './pagination.model';
 import { GetPaginationTagsInput } from './tags/applications/usecases/get-pagination-tags/get-pagination-tags.input';
 import { PaginationTagsFilter } from './tags/domain/models/paginationTags.filter';
+import { GetPaginationRecommendedUserBookmarksByTagsInput } from './userBookmarks/applications/usecases/get-pagination-recommended-user-bookmarks-by-tags/get-pagination-recommended-user-bookmarks-by-tags.input';
 import { GetPaginationUserBookmarksInput } from './userBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.input';
 import { PaginationWrongCursorException } from './userBookmarks/domain/errors/paginationUserBookmarks.errors';
 import { PaginationUserBookmarksFilter } from './userBookmarks/domain/models/paginationUserBookmarks.filter';
@@ -28,11 +30,14 @@ export class PaginationService {
   async generatePaginationFromQuery(
     query: GetPaginationUserBookmarksInput | GetPaginationTagsInput,
     filter: PaginationUserBookmarksFilter | PaginationTagsFilter,
-    requestUser: User,
+    requestUser: UserModel | UserEntity | undefined,
     queryFunction: (
-      query: GetPaginationUserBookmarksInput | GetPaginationTagsInput,
+      query:
+        | GetPaginationUserBookmarksInput
+        | GetPaginationTagsInput
+        | GetPaginationRecommendedUserBookmarksByTagsInput,
       filter: PaginationUserBookmarksFilter | PaginationTagsFilter,
-      requestUser: User
+      requestUser: UserModel | UserEntity | undefined
     ) => Promise<UserBookmark[] | Tag[]>
   ) {
     const { first, after, order, orderBy } = query;

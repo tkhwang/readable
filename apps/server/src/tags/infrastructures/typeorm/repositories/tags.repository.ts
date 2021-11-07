@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { GetPaginationTagsInput } from '@readable/pagination/tags/applications/usecases/get-pagination-tags/get-pagination-tags.input';
 import { PaginationTagsFilter } from '@readable/pagination/tags/domain/models/paginationTags.filter';
 import { PaginationWrongCursorException } from '@readable/pagination/userBookmarks/domain/errors/paginationUserBookmarks.errors';
-import { User } from '@readable/users/domain/models/user.model';
+import { User as UserModel } from '@readable/users/domain/models/user.model';
+import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { EntityRepository, Repository } from 'typeorm';
 import { Tag } from '../entities/tags.entity';
 
@@ -41,7 +42,11 @@ export class TagsRepository extends Repository<Tag> {
   }
 
   // TODO(Teddy)
-  async queryForPagination(query: GetPaginationTagsInput, filter: PaginationTagsFilter, requestUser: User) {
+  async queryForPagination(
+    query: GetPaginationTagsInput,
+    filter: PaginationTagsFilter,
+    requestUser?: UserModel | UserEntity
+  ) {
     const { first, after, order, orderBy } = query;
 
     // MEMO(Teddy): Use count using SubQuery instead of loadRelationCountAndMap
