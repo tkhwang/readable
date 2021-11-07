@@ -99,6 +99,7 @@ type Mutation {
   findOrAddInterestWithAuth(findOrAddInterestWithAuthInput: FindOrAddInterestWithAuthInput!): Interest!
   followTagWithAuth(followTagWithAuthInput: FollowTagWithAuthInput!): FollowTagWithAuthOutput!
   followUserWithAuth(followUserWithAuthInput: FollowUserWithAuthInput!): FollowUserWithAuthOutput!
+  setNickname(setNickNameInput: SetNickNameInput!): User!
   syncGoogleCalendarWithAuth(syncGoogleCalendarWithAuthInput: SyncGoogleCalendarWithAuthInput!): CommonOutput!
   unfollowUserWithAuth(unfollowUserWithAuthInput: UnfollowUserWithAuthInput!): UnfollowUserWithAuthOutput!
 }
@@ -191,6 +192,10 @@ input SearchByTextInAllUrlinfosInput {
 
 input SearchByTextInAllUserBookmarksInput {
   query: String!
+}
+
+input SetNickNameInput {
+  nickName: String!
 }
 
 input SuggestTagInput {
@@ -295,6 +300,7 @@ type User {
   isFollowingUser: Boolean!
   latestInterestId: String
   name: String!
+  nickName: String
   oauthUsers: [OAuthUser!]!
   provider: AuthProviders!
   providerId: String!

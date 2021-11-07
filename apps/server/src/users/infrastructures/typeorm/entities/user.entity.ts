@@ -19,6 +19,9 @@ export class User extends CoreEntity {
   @Column()
   name: string;
 
+  @Column({ nullable: true })
+  nickName?: string;
+
   @Column()
   email?: string;
 

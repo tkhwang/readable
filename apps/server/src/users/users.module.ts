@@ -16,6 +16,7 @@ import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usec
 import { FindMyUserBookmarksGroupedByInterestsUsecase } from '../user-bookmark/applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { GetUserProfileUseCase } from './applications/usecases/get-user-profile/get-user-profile.usecase';
+import { SetNickNameUsecase } from './applications/usecases/set-nickName/set-nickName.usecase';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { GetUserProfileUseCase } from './applications/usecases/get-user-profile/
     FindUsersHavingManyFollowersWithAuthUsecase,
     FindMyUserBookmarksGroupedByInterestsUsecase,
     GetUserProfileUseCase,
+    SetNickNameUsecase,
   ],
   exports: [UsersService, JwtModule, SigninUsecase],
 })
