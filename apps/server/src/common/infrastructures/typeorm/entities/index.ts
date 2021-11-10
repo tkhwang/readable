@@ -14,3 +14,15 @@ export abstract class CoreEntity {
   @DeleteDateColumn()
   public deletedAt: Date;
 }
+
+@Entity()
+export abstract class CoreEntityWithoutCreatedAt {
+  @PrimaryGeneratedColumn('uuid')
+  public id: string;
+
+  @UpdateDateColumn()
+  public updatedAt: Date;
+
+  @DeleteDateColumn()
+  public deletedAt: Date;
+}
