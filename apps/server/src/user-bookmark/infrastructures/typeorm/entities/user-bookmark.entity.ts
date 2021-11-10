@@ -1,11 +1,11 @@
-import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
+import { CoreEntityWithoutCreatedAt } from '@readable/common/infrastructures/typeorm/entities';
 import { Interest } from '@readable/interests/infrastructures/typeorm/entities/interest.entity';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { UrlInfo } from '@readable/url-info/infrastructures/typeorm/entities/url-info.entity';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity('userBookmarks')
-export class UserBookmark extends CoreEntity {
+export class UserBookmark extends CoreEntityWithoutCreatedAt {
   @Column()
   urlHash: string;
 
@@ -30,4 +30,9 @@ export class UserBookmark extends CoreEntity {
 
   @Column({ type: 'datetime', nullable: true })
   donedAt?: Date;
+
+  // TODO(Teddy): Find uuid in sequence, not random for better indexing.
+  @Index()
+  @CreateDateColumn()
+  public createdAt: Date;
 }
