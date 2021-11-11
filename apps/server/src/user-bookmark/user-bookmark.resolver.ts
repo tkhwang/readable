@@ -73,21 +73,29 @@ export class UserBookmarkResolver {
    */
   @ResolveField('bookmarkers', returns => [User])
   async bookmarkers(@Parent() userBookmark: UserBookmarkBRFO) {
-    return this.userBookmarkService.getFieldBookmarkers(userBookmark);
+    //TODO(Teddy)
+    // return this.userBookmarkService.getFieldBookmarkers(userBookmark);
+    return [];
   }
 
   @ResolveField('bookmarkersCount', returns => Number)
   async bookmarkersCount(@Parent() userBookmark: UserBookmarkBRFO) {
-    return this.userBookmarkService.getFieldBookmarkersCount(userBookmark);
+    //TODO(Teddy)
+    // return this.userBookmarkService.getFieldBookmarkersCount(userBookmark);
+    return 0;
   }
 
   @ResolveField('readers', returns => [User])
   async readers(@Parent() userBookmark: UserBookmarkBRFO) {
-    return this.userBookmarkService.getFieldReaders(userBookmark);
+    //TODO(Teddy)
+    // return this.userBookmarkService.getFieldReaders(userBookmark);
+    return [];
   }
 
   @ResolveField('readersCount', returns => Number)
   async readersCount(@Parent() userBookmark: UserBookmarkBRFO) {
-    return this.userBookmarkService.getFieldReadersCount(userBookmark);
+    //TODO(Teddy)
+    // return this.userBookmarkService.getFieldReadersCount(userBookmark);
+    return 0;
   }
 }
