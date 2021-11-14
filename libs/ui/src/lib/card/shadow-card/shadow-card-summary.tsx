@@ -28,8 +28,10 @@ export function ShadowCardSummary({ description, siteName, title, logoImageUrl }
         <div className="text-xs line-clamp-1">{siteName}</div>
       </div>
 
-      <div className="sm:text-xl font-bold mb-2 line-clamp-2 leading-snug">{title}</div>
-      <div className="sm:block hidden line-clamp-2 max-h-10 text-gray-400">{description}</div>
+      <div style={{ overflowWrap: 'anywhere' }}>
+        <div className="sm:text-xl font-bold mb-2 line-clamp-2 leading-snug">{title}</div>
+        <div className="sm:block hidden line-clamp-2 max-h-10 text-gray-400">{description}</div>
+      </div>
     </div>
   );
 }

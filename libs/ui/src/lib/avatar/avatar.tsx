@@ -35,7 +35,7 @@ export function Avatar({ profileImage, size, userInfo, direction, isActive }: Av
   return (
     <div className={`flex ${direction && directionStyle}`}>
       <div className="flex-profile">
-        <div className={`rounded-full overflow-hidden`}>
+        <div className="rounded-full flex justify-center overflow-hidden">
           <Image
             src={profileImage}
             loader={avatarImageLoader}

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { ImageLoaderProps } from 'next/image';
 import { Badge, ProfileBadge } from './profile-badge';
 export interface ProfileCardProps {
   profileImageUrl: string;
@@ -6,10 +6,14 @@ export interface ProfileCardProps {
 }
 
 export function ProfileCard({ profileImageUrl, badges }: ProfileCardProps) {
+  const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
+
   const followRenderer = () => {
     return (
-      <div className="flex justify-between">
-        <div className="flex space-x-9">
+      <div className="flex justify-between space-x-6 mt-4">
+        <div className="flex lg:space-x-9 space-x-3">
           <div className="flex flex-col">
             <div className="text-xs">follower</div>
             <div>999</div>
@@ -20,7 +24,7 @@ export function ProfileCard({ profileImageUrl, badges }: ProfileCardProps) {
           </div>
         </div>
 
-        <div className="border-1 border-black text-xs px-4 py-2 rounded-3xl">Follwer</div>
+        <div className="border-1 border-black text-xs px-4 py-2 rounded-3xl">Follow</div>
       </div>
     );
   };
@@ -29,12 +33,14 @@ export function ProfileCard({ profileImageUrl, badges }: ProfileCardProps) {
     <>
       <div className="bg-white shadow-offset-black p-5 text-black">
         <div className="flex space-x-5">
-          <Image src={profileImageUrl} width={128} height={128} objectFit="cover" />
+          <div className="min-w-10">
+            <Image loader={profileImageLoader} src={profileImageUrl} width={128} height={128} objectFit="cover" />
+          </div>
 
           <div className="flex flex-col justify-between w-full">
             <div>
-              <div className="text-2xl font-bold">@20min</div>
-              <div className="text-xs">Product designer at @Readable</div>
+              <div className="lg:text-2xl text-lg font-bold">@20min</div>
+              <div className="text-xs line-clamp-1">Product designer at @Readable</div>
             </div>
             <div className="md:block hidden">{followRenderer()}</div>
           </div>

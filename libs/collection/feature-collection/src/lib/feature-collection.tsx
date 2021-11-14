@@ -3,7 +3,11 @@ import { CollectionHeaderProfile } from './collection-header-profile';
 import { CollectionSection } from './collection-section';
 import { CollectionSectionSidebar } from './collection-section-sidebar';
 
-export function FeatureCollection() {
+interface FeatureCollectionProps {
+  userId: string;
+}
+
+export function FeatureCollection({ userId }: FeatureCollectionProps) {
   return (
     <TwoColumnsLayout
       renderHeader={() => <ResponsiveHeader renderProfileDropdown={() => <CollectionHeaderProfile />} />}
@@ -17,7 +21,7 @@ export function FeatureCollection() {
           <CollectionSectionSidebar />
         </section>
       )}
-      renderFooter={() => <div></div>}
+      renderFooter={() => <div className="mt-14 h-60"></div>}
     />
   );
 }

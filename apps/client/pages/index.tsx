@@ -8,7 +8,7 @@ function Home() {
 
   if (!me || isMeDataLoading) {
     return (
-      <div className="border-2 h-screen flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <Loading />
       </div>
     );
