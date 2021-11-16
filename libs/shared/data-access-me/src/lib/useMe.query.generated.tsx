@@ -13,7 +13,7 @@ export type MeQuery = (
   { readonly __typename?: 'Query' }
   & { readonly me: (
     { readonly __typename?: 'User' }
-    & Pick<Types.User, 'id' | 'name' | 'provider' | 'providerId' | 'avatarUrl'>
+    & Pick<Types.User, 'id' | 'name' | 'nickName' | 'avatarUrl'>
     & { readonly tags: ReadonlyArray<(
       { readonly __typename?: 'Tag' }
       & Pick<Types.Tag, 'id' | 'tag'>
@@ -27,8 +27,7 @@ export const MeDocument = gql`
   me {
     id
     name
-    provider
-    providerId
+    nickName
     avatarUrl
     tags {
       id
