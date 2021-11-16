@@ -272,27 +272,6 @@
         }
       }
     },
-    "home-feature-coming-soon": {
-      "root": "libs/home/feature-coming-soon",
-      "sourceRoot": "libs/home/feature-coming-soon/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/home/feature-coming-soon/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/home/feature-coming-soon"],
-          "options": {
-            "jestConfig": "libs/home/feature-coming-soon/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "home-feature-home": {
       "root": "libs/home/feature-home",
       "sourceRoot": "libs/home/feature-home/src",
@@ -309,6 +288,27 @@
           "outputs": ["coverage/libs/home/feature-home"],
           "options": {
             "jestConfig": "libs/home/feature-home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "home-feature-onboarding": {
+      "root": "libs/home/feature-onboarding",
+      "sourceRoot": "libs/home/feature-onboarding/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/home/feature-onboarding/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home/feature-onboarding"],
+          "options": {
+            "jestConfig": "libs/home/feature-onboarding/jest.config.js",
             "passWithNoTests": true
           }
         }
