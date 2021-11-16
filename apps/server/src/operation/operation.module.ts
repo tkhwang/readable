@@ -9,6 +9,8 @@ import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositor
 import { AddTestUserBookmarkUsecase } from './applications/usecases/add-test-userBookmark/add-test-userBookmark.usecase';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { UserBookmarkModule } from '@readable/user-bookmark/user-bookmark.module';
+import { InitializeTagsUseCase } from '@readable/tags/applications/usercases/initialize-tags/initialize-tags.usecase';
+import { SearchService } from '@readable/search/search.service';
 
 @Module({
   imports: [
@@ -16,7 +18,13 @@ import { UserBookmarkModule } from '@readable/user-bookmark/user-bookmark.module
     TagsModule,
     UserBookmarkModule,
   ],
-  providers: [OperationService, CreateTestUsersUseCase, AddTestUserBookmarkUsecase],
+  providers: [
+    OperationService,
+    CreateTestUsersUseCase,
+    AddTestUserBookmarkUsecase,
+    InitializeTagsUseCase,
+    SearchService,
+  ],
   controllers: [OperationController],
 })
 export class OperationModule {}

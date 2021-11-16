@@ -10,6 +10,7 @@ import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { FollowTagWithAuthUsecase } from './applications/usercases/follow-tag-with-auth/follow-tag-with-auth.usecase';
 import { FindPopularTagsWithAuthUsecase } from './applications/usercases/find-popular-tags-with-auth/find-popular-tags-with-auth.usecase';
+import { SearchService } from '@readable/search/search.service';
 
 @Module({
   imports: [
