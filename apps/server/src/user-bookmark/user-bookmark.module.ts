@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoriesRepository } from '@readable/categories/infrastructures/typeorm/repositories/category.repository';
 import { ImageModule } from '@readable/image/image.module';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { InterestsModule } from '@readable/interests/interests.module';
@@ -30,6 +31,7 @@ import { UserBookmarkService } from './user-bookmark.service';
       TagsRepository,
       UsersRepository,
       OAuthUsersRepository,
+      CategoriesRepository,
     ]),
     InterestsModule,
     TagsModule,

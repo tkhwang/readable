@@ -1,8 +1,49 @@
 import { TagData } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 
-export const INIT_TAGS_FOR_DESIGNER: TagData[] = [];
+export const INIT_TAGS_FOR_DESIGNER: TagData[] = [
+  {
+    tag: 'design',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'ui',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'ux',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'material',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'figma',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'adobe',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'responsive',
+    imageUrl: '',
+    description: '',
+  },
+];
 
 export const INIT_TAGS_FOR_FRONTEND: TagData[] = [
+  {
+    tag: 'frontend',
+    imageUrl: '',
+    description: '',
+  },
   {
     tag: 'css',
     imageUrl: 'https://readable-2021-dev.s3.ap-northeast-2.amazonaws.com/tags/css.jpg',
@@ -31,6 +72,11 @@ export const INIT_TAGS_FOR_FRONTEND: TagData[] = [
 ];
 
 export const INIT_TAGS_FOR_BACKEND: TagData[] = [
+  {
+    tag: 'backend',
+    imageUrl: '',
+    description: '',
+  },
   {
     tag: 'apollo',
     imageUrl: 'https://readable-2021-dev.s3.ap-northeast-2.amazonaws.com/tags/apollo.jpg',
@@ -87,6 +133,11 @@ export const INIT_TAGS_FOR_BACKEND: TagData[] = [
 
 export const INIT_TAGS_FOR_LANGUAGE: TagData[] = [
   {
+    tag: 'language',
+    imageUrl: '',
+    description: '',
+  },
+  {
     tag: 'java',
     imageUrl: 'https://img.stackshare.io/service/995/K85ZWV2F.png',
     description: '',
@@ -116,7 +167,17 @@ export const INIT_TAGS_FOR_LANGUAGE: TagData[] = [
 export const INIT_TAGS_FOR_TOOL: TagData[] = [
   {
     tag: 'vscode',
+    imageUrl: '',
+    description: '',
+  },
+  {
+    tag: 'vscode',
     imageUrl: 'https://readable-2021-dev.s3.ap-northeast-2.amazonaws.com/tags/vscode.jpg',
+    description: '',
+  },
+  {
+    tag: 'git',
+    imageUrl: '',
     description: '',
   },
 ];

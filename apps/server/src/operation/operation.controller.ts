@@ -16,19 +16,20 @@ export class OperationController {
     private readonly cddCategoryUsecase: AddCategoryUsecase
   ) {}
 
-  @Post('/init-tags')
-  @UseGuards(AuthGuard('api-key'))
-  async initTags() {
-    return this.initializeTagsUseCase.execute();
-  }
-
   @Post('/create-random-data')
   @UseGuards(AuthGuard('api-key'))
   async createRandomData() {
     await this.createTestUsersUseCase.execute();
+    await this.initializeTagsUseCase.execute();
     await this.addTestUserBookmarkUsecase.execute();
 
     return new CommonOutput(true);
+  }
+
+  @Post('/init-tags')
+  @UseGuards(AuthGuard('api-key'))
+  async initTags() {
+    return this.initializeTagsUseCase.execute();
   }
 
   @Post('/add-category')
