@@ -22,6 +22,8 @@ import { TagsModule } from './tags/tags.module';
 import { SearchModule } from './search/search.module';
 import { RecommendModule } from './recommend/recommend.module';
 import { OperationModule } from './operation/operation.module';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/infrastructures/typeorm/entities/category.entity';
 
 @Module({
   imports: [
@@ -64,7 +66,7 @@ import { OperationModule } from './operation/operation.module';
       password: process.env.READABLE_RDS_PASSWORD,
       charset: 'utf8mb4',
       logging: process.env['NODE' + '_ENV'] === 'production' ? false : true,
-      entities: [OAuthUser, User, Tag, Interest, UserFollow, UrlInfo, UserBookmark],
+      entities: [OAuthUser, User, Tag, Interest, UserFollow, UrlInfo, UserBookmark, Category],
       synchronize: true,
     }),
     // MEMO(Teddy): MongoDB
@@ -80,6 +82,7 @@ import { OperationModule } from './operation/operation.module';
     SearchModule,
     RecommendModule,
     OperationModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [],
