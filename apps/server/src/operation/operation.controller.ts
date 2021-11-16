@@ -5,7 +5,7 @@ import { AddCategoryUsecase } from '@readable/categories/applications/usecases/a
 import { CommonOutput } from '@readable/common/models/common.output';
 import { InitializeTagsUseCase } from '@readable/tags/applications/usercases/initialize-tags/initialize-tags.usecase';
 import { AddTestUserBookmarkUsecase } from '../user-bookmark/applications/usecases/add-test-userBookmark/add-test-userBookmark.usecase';
-import { CreateTestUsersUseCase } from './applications/usecases/create-test-users/create-test-users.usecase';
+import { CreateTestUsersUseCase } from '../users/applications/usecases/create-test-users/create-test-users.usecase';
 
 @Controller('operation')
 export class OperationController {

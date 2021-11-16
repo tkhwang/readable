@@ -4,7 +4,7 @@ import { OperationController } from './operation.controller';
 import { TagsModule } from '@readable/tags/tags.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
-import { CreateTestUsersUseCase } from './applications/usecases/create-test-users/create-test-users.usecase';
+import { CreateTestUsersUseCase } from '../users/applications/usecases/create-test-users/create-test-users.usecase';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { AddTestUserBookmarkUsecase } from '../user-bookmark/applications/usecases/add-test-userBookmark/add-test-userBookmark.usecase';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
