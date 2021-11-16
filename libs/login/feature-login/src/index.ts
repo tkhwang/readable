@@ -1,1 +1,1 @@
-export { LoginPage } from './lib/login-page';
+export { FeatureLogin } from './lib/feature-login';

@@ -15,7 +15,7 @@ export const SocialLoginButton = ({ provider }: Props) => {
   if (provider === 'google') {
     return (
       <a href={`${serverHost.restUrl}/auth/google`}>
-        <GoogleLoginButton />
+        <GoogleLoginButton style={{ fontSize: 18, margin: 0 }} />
       </a>
     );
   }
