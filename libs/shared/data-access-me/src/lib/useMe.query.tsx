@@ -8,8 +8,7 @@ const graphql = gql`
     me {
       id
       name
-      provider
-      providerId
+      nickName
       avatarUrl
       tags {
         id

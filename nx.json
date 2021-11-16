@@ -49,10 +49,10 @@
     "home-data-access-home": {
       "tags": ["scope:client"]
     },
-    "home-feature-coming-soon": {
+    "home-feature-home": {
       "tags": ["scope:client"]
     },
-    "home-feature-home": {
+    "home-feature-onboarding": {
       "tags": ["scope:client"]
     },
     "login-feature-login": {

@@ -30,7 +30,7 @@ export function useDataAccessBookmarksGroupedByInterests() {
     data: bookmarksGroupedByInterestsData,
     loading: isBookmarksGroupedByInterestsDataLoading,
   } = useMyUserBookmarksGroupedByInterestsOnCollectionQuery({
-    variables: { findMyUserBookmarksGroupedByInterestsInput: { limit: 3 } },
+    variables: { findMyUserBookmarksGroupedByInterestsInput: { limitOfInterests: 10, limitOfUserBookmarks: 3 } },
   });
   console.log(
     'TCL: useDataAccessBookmarksGroupedByInterests -> bookmarksGroupedByInterestsData',

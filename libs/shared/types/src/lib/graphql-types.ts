@@ -40,7 +40,8 @@ export type FindMyUserBookmarksGroupedByInterestData = {
 };
 
 export type FindMyUserBookmarksGroupedByInterestsInput = {
-  readonly limit: Scalars['Float'];
+  readonly limitOfInterests?: Maybe<Scalars['Float']>;
+  readonly limitOfUserBookmarks?: Maybe<Scalars['Float']>;
 };
 
 export type FindMyUserBookmarksGroupedByInterestsOutput = {
@@ -94,6 +95,10 @@ export type FollowUserWithAuthOutputData = {
   readonly followingUser: User;
 };
 
+export type GetUserProfileInput = {
+  readonly userId: Scalars['String'];
+};
+
 export type Interest = {
   readonly __typename?: 'Interest';
   readonly createdAt: Scalars['DateTime'];
@@ -110,6 +115,7 @@ export type Mutation = {
   readonly findOrAddInterestWithAuth: Interest;
   readonly followTagWithAuth: FollowTagWithAuthOutput;
   readonly followUserWithAuth: FollowUserWithAuthOutput;
+  readonly setNickName: User;
   readonly syncGoogleCalendarWithAuth: CommonOutput;
   readonly unfollowUserWithAuth: UnfollowUserWithAuthOutput;
 };
@@ -132,6 +138,11 @@ export type MutationfollowTagWithAuthArgs = {
 
 export type MutationfollowUserWithAuthArgs = {
   followUserWithAuthInput: FollowUserWithAuthInput;
+};
+
+
+export type MutationsetNickNameArgs = {
+  setNickNameInput: SetNickNameInput;
 };
 
 
@@ -223,11 +234,13 @@ export type Query = {
   readonly myInterests: ReadonlyArray<Interest>;
   readonly myUserBookmarks: ReadonlyArray<UserBookmark>;
   readonly myUserBookmarksGroupedByInterests: ReadonlyArray<FindMyUserBookmarksGroupedByInterestsOutput>;
+  readonly paginationRecommendedUserBookmarksByTags?: Maybe<PaginationUserBookmarks>;
   readonly paginationTags?: Maybe<PaginationTags>;
   readonly paginationUserBookmarks?: Maybe<PaginationUserBookmarks>;
   readonly popularTags?: Maybe<ReadonlyArray<Tag>>;
   readonly recommendUsers: ReadonlyArray<User>;
   readonly tagSuggestion?: Maybe<ReadonlyArray<Tag>>;
+  readonly userProfile: User;
   readonly usersHavingManyFollowers: ReadonlyArray<User>;
   readonly usersHavingManyUserBookmarks: ReadonlyArray<User>;
 };
@@ -245,6 +258,14 @@ export type QueryallUserBookmarksBySearchArgs = {
 
 export type QuerymyUserBookmarksGroupedByInterestsArgs = {
   findMyUserBookmarksGroupedByInterestsInput: FindMyUserBookmarksGroupedByInterestsInput;
+};
+
+
+export type QuerypaginationRecommendedUserBookmarksByTagsArgs = {
+  after?: Maybe<Scalars['PaginationCursor']>;
+  first?: Maybe<Scalars['Int']>;
+  order?: Maybe<PaginationOrder>;
+  orderBy?: Maybe<PaginationOrderBy>;
 };
 
 
@@ -279,6 +300,11 @@ export type QuerytagSuggestionArgs = {
 };
 
 
+export type QueryuserProfileArgs = {
+  getUserProfileInput: GetUserProfileInput;
+};
+
+
 export type QueryusersHavingManyFollowersArgs = {
   findUsersHavingManyFollowersWithAuthInput: FindUsersHavingManyFollowersWithAuthInput;
 };
@@ -294,6 +320,10 @@ export type SearchByTextInAllUrlinfosInput = {
 
 export type SearchByTextInAllUserBookmarksInput = {
   readonly query: Scalars['String'];
+};
+
+export type SetNickNameInput = {
+  readonly nickName: Scalars['String'];
 };
 
 export type SuggestTagInput = {
@@ -314,6 +344,7 @@ export type SyncGoogleCalendarWithAuthUrlInfo = {
 
 export type Tag = {
   readonly __typename?: 'Tag';
+  readonly categoryId?: Maybe<Scalars['String']>;
   readonly createdAt: Scalars['DateTime'];
   readonly deletedAt: Scalars['DateTime'];
   readonly description?: Maybe<Scalars['String']>;
@@ -389,6 +420,7 @@ export type User = {
   readonly isFollowingUser: Scalars['Boolean'];
   readonly latestInterestId?: Maybe<Scalars['String']>;
   readonly name: Scalars['String'];
+  readonly nickName?: Maybe<Scalars['String']>;
   readonly oauthUsers: ReadonlyArray<OAuthUser>;
   readonly provider: AuthProviders;
   readonly providerId: Scalars['String'];
