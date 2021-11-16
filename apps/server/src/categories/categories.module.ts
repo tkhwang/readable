@@ -5,7 +5,6 @@ import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositor
 import { UrlInfoRepository } from '@readable/url-info/infrastructures/typeorm/repositories/url-info.repository';
 import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
 import { AddCategoryUsecase } from './applications/usecases/add-category/add-category.usecase';
-import { CategoryController } from './categories.controller';
 import { CategoriesRepository } from './infrastructures/typeorm/repositories/category.repository';
 
 @Module({
@@ -19,6 +18,5 @@ import { CategoriesRepository } from './infrastructures/typeorm/repositories/cat
     ]),
   ],
   providers: [AddCategoryUsecase],
-  controllers: [CategoryController],
 })
 export class CategoriesModule {}

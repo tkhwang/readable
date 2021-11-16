@@ -1,6 +1,6 @@
 import { TagData } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 
-export const OPERATION_INIT_TAGS: TagData[] = [
+export const INIT_TAGS_FOR_DEVELOPMENT: TagData[] = [
   {
     tag: 'Android Studio',
     imageUrl: 'https://img.stackshare.io/service/1447/AyreX9yf.jpeg',
@@ -125,3 +125,5 @@ export const OPERATION_INIT_TAGS: TagData[] = [
     description: '',
   },
 ];
+
+export const INIT_TAGS_FOR_DESIGNER: TagData[] = [];

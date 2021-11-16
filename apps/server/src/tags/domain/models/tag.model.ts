@@ -1,4 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Category as CategoryModel } from '@readable/categories/domain/category.model';
+import { Category as CategoryEntity } from '@readable/categories/infrastructures/typeorm/entities/category.entity';
 import { CoreModel } from '@readable/common/models/core.model';
 import { UserBookmark as UserBookmarkModel } from '@readable/user-bookmark/domain/model/user-bookmark.model';
 import { UserBookmark as UserBookmarkEntity } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
@@ -10,6 +12,9 @@ export class TagBRFO extends CoreModel {
 
   @Field(type => String)
   normalizedTag: string;
+
+  @Field(type => String, { nullable: true })
+  categoryId?: string;
 
   @Field(type => String, { nullable: true })
   imageUrl?: string;
