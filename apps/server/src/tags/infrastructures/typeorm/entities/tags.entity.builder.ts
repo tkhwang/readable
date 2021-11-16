@@ -1,3 +1,4 @@
+import { Category } from '@readable/categories/infrastructures/typeorm/entities/category.entity';
 import { TagsUtilityService } from '@readable/tags/tags-utility.service';
 import { Tag } from './tags.entity';
 
@@ -22,6 +23,11 @@ export class TagBuilder {
 
   setDescription(description: string) {
     this.tag.description = description;
+    return this;
+  }
+
+  setCategoryId(categoryId: string) {
+    this.tag.categoryId = categoryId;
     return this;
   }
 

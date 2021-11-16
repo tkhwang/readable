@@ -216,6 +216,7 @@ input SyncGoogleCalendarWithAuthUrlInfo {
 }
 
 type Tag {
+  categoryId: String
   createdAt: DateTime!
   deletedAt: DateTime!
   description: String

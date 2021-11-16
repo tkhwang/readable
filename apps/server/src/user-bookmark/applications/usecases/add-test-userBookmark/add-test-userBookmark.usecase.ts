@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CategoriesRepository } from '@readable/categories/infrastructures/typeorm/repositories/category.repository';
 import { Usecase } from '@readable/common/applications/usecase';
 import { CommonOutput } from '@readable/common/models/common.output';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
@@ -15,39 +16,48 @@ import { OPERATION_TEST_URLS } from './add-test-userBookmark.data';
 @Injectable()
 export class AddTestUserBookmarkUsecase implements Usecase<null, CommonOutput> {
   private allUsers: UserEntity[];
-  private allTags: Tag[];
   private allUsersLength: number;
-  private allTagsLength: number;
+  private allCategoryTags: Tag[];
+  private allCategoryTagsLength: number;
 
   constructor(
     private readonly addUserBookmarkWithAuthUsecase: AddUserBookmarkWithAuthUsecase,
     @InjectRepository(TagsRepository) private readonly tagsRepository: TagsRepository,
     @InjectRepository(UsersRepository) private readonly usersRepository: UsersRepository,
-    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository
+    @InjectRepository(UserBookmarkRepository) private readonly userBookmarkRepository: UserBookmarkRepository,
+    @InjectRepository(CategoriesRepository) private readonly categoriesRepository: CategoriesRepository
   ) {}
 
   async execute() {
-    const [allUsers, allTags] = await Promise.all([this.usersRepository.find(), this.tagsRepository.find()]);
+    for (const category in OPERATION_TEST_URLS) {
+      const urls = OPERATION_TEST_URLS[category];
+      const categoryEntity = await this.categoriesRepository.findOne({ category });
 
-    this.allUsers = allUsers;
-    this.allTags = allTags;
-    this.allUsersLength = allUsers.length;
-    this.allTagsLength = allTags.length;
+      const [allUsers, allCategoryTags] = await Promise.all([
+        this.usersRepository.find(),
+        this.tagsRepository.find({ categoryId: categoryEntity?.id }),
+      ]);
 
-    for (const url of OPERATION_TEST_URLS) {
-      const user = this.getRandomUser();
-      const tags = this.getRandomTags(this.getRandomTagsNumber());
+      this.allUsers = allUsers;
+      this.allUsersLength = allUsers.length;
+      this.allCategoryTags = allCategoryTags;
+      this.allCategoryTagsLength = allCategoryTags.length;
 
-      const addUserBookmarkWithAuthInput = new AddUserBookmarkWithAuthInput(
-        url.url,
-        'Readable',
-        tags.map(tag => tag.tag)
-      );
+      for (const url of urls) {
+        const user = this.getRandomUser();
+        const tags = this.getRandomTags(this.getRandomTagsNumber());
 
-      try {
-        await this.addUserBookmark(addUserBookmarkWithAuthInput, user);
-      } catch (error) {
-        console.error(`[-] AddTestUserBookmarkUsecase failed: ${error}`);
+        const addUserBookmarkWithAuthInput = new AddUserBookmarkWithAuthInput(
+          url,
+          'Readable',
+          (tags ?? []).map(tag => tag.tag)
+        );
+
+        try {
+          await this.addUserBookmark(addUserBookmarkWithAuthInput, user);
+        } catch (error) {
+          console.error(`[-] AddTestUserBookmarkUsecase failed: ${error}`);
+        }
       }
     }
 
@@ -66,18 +76,18 @@ export class AddTestUserBookmarkUsecase implements Usecase<null, CommonOutput> {
     const indexes: number[] = [];
 
     while (indexes.length < howMany) {
-      const index = this.getRandomIndex(this.allTagsLength);
+      const index = this.getRandomIndex(this.allCategoryTagsLength);
 
       if (!indexes.includes(index)) {
         indexes.push(index);
       }
     }
 
-    return indexes.map(index => this.allTags[index]);
+    return indexes.map(index => this.allCategoryTags[index]);
   }
 
   private getRandomTag() {
-    return this.allTags[this.getRandomIndex(this.allTagsLength)];
+    return this.allCategoryTags[this.getRandomIndex(this.allCategoryTagsLength)];
   }
 
   private getRandomUser() {
