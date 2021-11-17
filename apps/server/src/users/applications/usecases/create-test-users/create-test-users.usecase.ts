@@ -12,7 +12,7 @@ export class CreateTestUsersUseCase implements Usecase<null, CommonOutput> {
 
   async execute() {
     for (const chunkedUsers of chunk(OPERATION_TEST_USERS, 10)) {
-      await Promise.all(chunkedUsers.map(user => this.usersRepository.save(user)));
+      await Promise.all(chunkedUsers.map(user => this.usersRepository.save({ ...user, nickName: user.name })));
     }
 
     return new CommonOutput(true);

@@ -80,6 +80,7 @@ export class UserBookmarkRepository extends Repository<UserBookmark> {
 
     const queryBuilder = this.createQueryBuilder('userBookmark')
       .leftJoinAndSelect('userBookmark.urlInfo', 'urlInfo')
+      .innerJoinAndMapMany('userBookmark.user', UserEntity, 'user', 'userBookmark.userId = user.id')
       .where('userBookmark.createdAt < :createdAt', { createdAt: criteria['createdAt'] })
       .andWhere('isPrivate = :isPrivate', { isPrivate: criteria['isPrivate'] });
 
