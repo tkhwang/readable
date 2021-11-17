@@ -340,5 +340,8 @@ type UserBookmark {
   """URL hash"""
   urlHash: String!
   urlInfo: UrlInfo!
+
+  """User who bookmarked. Only available for pagination query"""
+  user: User
   userId: String!
 }

@@ -71,6 +71,11 @@ export class UserBookmarkResolver {
   /*
    * Field Resolver
    */
+  @ResolveField('user', returns => User)
+  async user(@Parent() userBookmark: UserBookmarkBRFO) {
+    return userBookmark['user'] && userBookmark['user']?.length > 0 ? userBookmark['user'][0] : null;
+  }
+
   @ResolveField('bookmarkers', returns => [User])
   async bookmarkers(@Parent() userBookmark: UserBookmarkBRFO) {
     //TODO(Teddy)
