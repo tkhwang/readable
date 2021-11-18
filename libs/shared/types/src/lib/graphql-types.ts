@@ -453,7 +453,5 @@ export type UserBookmark = {
   /** URL hash */
   readonly urlHash: Scalars['String'];
   readonly urlInfo: UrlInfo;
-  /** User who bookmarked. Only available for pagination query */
-  readonly user?: Maybe<User>;
   readonly userId: Scalars['String'];
 };
