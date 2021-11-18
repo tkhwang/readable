@@ -81,7 +81,7 @@ export function useDataAccessFeed() {
       // TODO(zlrlo): 수정 필요
       const cardOwner = {
         profileImageUrl: user?.avatarUrl || DEFAULT_PROFILE_IMAGE_URL,
-        name: user?.nickName,
+        name: user?.nickName ?? '',
       };
 
       const tags = serverTags.map(serverTag => {
