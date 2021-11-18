@@ -37,6 +37,9 @@ export type PaginationUserBookmarksOnHomeQuery = (
         )>, readonly bookmarkers: ReadonlyArray<(
           { readonly __typename?: 'User' }
           & Pick<Types.User, 'id' | 'name' | 'email' | 'avatarUrl'>
+        )>, readonly user?: Types.Maybe<(
+          { readonly __typename?: 'User' }
+          & Pick<Types.User, 'id' | 'nickName' | 'avatarUrl'>
         )> }
       ) }
     )> }
@@ -80,6 +83,11 @@ export const PaginationUserBookmarksOnHomeDocument = gql`
           avatarUrl
         }
         readersCount
+        user {
+          id
+          nickName
+          avatarUrl
+        }
       }
     }
   }
