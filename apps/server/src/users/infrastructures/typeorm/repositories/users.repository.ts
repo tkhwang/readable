@@ -33,7 +33,7 @@ export class UsersRepository extends Repository<User> {
   async findManyUserBookmarksHavingUsers(howMany: number) {
     const queryBuilder = this.createQueryBuilder('user')
       .select('user.id', 'id')
-      .addSelect('user.name', 'name')
+      .addSelect('user.nickName', 'name')
       .addSelect('user.email', 'email')
       .addSelect('user.provider', 'provider')
       .addSelect('user.providerId', 'providerId')
