@@ -1,5 +1,6 @@
 import { useDataAccessOnboarding } from '@readable/home/data-access-home';
 import { LegacyRef, useRef } from 'react';
+import { LoginLayout } from './login-layout';
 
 export const FeatureOnboarding = () => {
   const { setNickName } = useDataAccessOnboarding();
@@ -7,7 +8,7 @@ export const FeatureOnboarding = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="h-screen bg-indigo-700">
+    <LoginLayout>
       <div className="flex flex-col justify-center h-full">
         <div className="max-w-6xl m-auto md:p-10 sm:p-7 p-5 bg-white text-black">
           <div>사용자 이름 만들기</div>
@@ -17,6 +18,6 @@ export const FeatureOnboarding = () => {
           <button onClick={() => setNickName(inputRef?.current?.value ?? '')}>입력</button>
         </div>
       </div>
-    </div>
+    </LoginLayout>
   );
 };
