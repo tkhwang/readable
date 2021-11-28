@@ -34,6 +34,10 @@ export function useMe({ redirectTo, fetchPolicy }: useMeType) {
     router.push(redirectTo);
   }
 
+  if (meData && !meData?.me.nickName) {
+    router.push('/login/welcome');
+  }
+
   return {
     me: { ...meData?.me, avatarUrl: meData?.me.avatarUrl || DEFAULT_PROFILE_IMAGE_URL },
     isMeDataLoading,

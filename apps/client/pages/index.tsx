@@ -2,7 +2,6 @@ import React from 'react';
 import { FeatureHome } from '@readable/home/feature-home';
 import { useMe } from '@readable/shared/data-access-me';
 import { Loading } from '@readable/ui';
-import { FeatureOnboarding } from '@readable/home/feature-onboarding';
 import Head from 'next/head';
 
 function Home() {
@@ -16,26 +15,13 @@ function Home() {
     );
   }
 
-  if (me.nickName) {
-    return (
-      <>
-        <Head>
-          <title>Readable</title>
-        </Head>
-
-        <FeatureHome />
-      </>
-    );
-  }
-
   return (
     <>
       <Head>
-        <title>Readable Onboarding</title>
+        <title>Readable</title>
       </Head>
-      <body className="h-screen bg-indigo-700">
-        <FeatureOnboarding />
-      </body>
+
+      <FeatureHome />
     </>
   );
 }

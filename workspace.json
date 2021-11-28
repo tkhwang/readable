@@ -293,27 +293,6 @@
         }
       }
     },
-    "home-feature-onboarding": {
-      "root": "libs/home/feature-onboarding",
-      "sourceRoot": "libs/home/feature-onboarding/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/home/feature-onboarding/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/home/feature-onboarding"],
-          "options": {
-            "jestConfig": "libs/home/feature-onboarding/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "login-feature-login": {
       "root": "libs/login/feature-login",
       "sourceRoot": "libs/login/feature-login/src",

@@ -5,3 +5,5 @@ export const DEFAULT_BADGE_1K_IMAGE_URL = '/images/badge/badge_1k.png';
 export const DEFAULT_BADGE_HEART_IMAGE_URL = '/images/badge/badge_heart.png';
 export const DEFAULT_PROFILE_PATTERN_URL = '/images/pattern/checkered.png';
 export const LOGIN_COVER_URL = '/images/pattern/login_cover.png';
+export const LOGIN_BG_STAR_URL = '/images/pattern/login_bg_star.png';
+export const LOGIN_BG_SPRING_URL = '/images/pattern/login_bg_spring.png';
