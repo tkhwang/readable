@@ -8,7 +8,7 @@ function Login() {
       <Head>
         <title>Readable Sign in</title>
       </Head>
-      <body className="h-screen bg-indigo-700">
+      <body className="h-screen bg-customIndigo">
         <FeatureLogin />
       </body>
     </>
