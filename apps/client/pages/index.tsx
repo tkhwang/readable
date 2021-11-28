@@ -2,8 +2,8 @@ import React from 'react';
 import { FeatureHome } from '@readable/home/feature-home';
 import { useMe } from '@readable/shared/data-access-me';
 import { Loading } from '@readable/ui';
-import { FeatureOnboarding } from '@readable/home/feature-onboarding';
 import Head from 'next/head';
+import router from 'next/router';
 
 function Home() {
   const { me, isMeDataLoading } = useMe({ redirectTo: '/login', fetchPolicy: 'network-only' });
@@ -16,26 +16,17 @@ function Home() {
     );
   }
 
-  if (me.nickName) {
-    return (
-      <>
-        <Head>
-          <title>Readable</title>
-        </Head>
-
-        <FeatureHome />
-      </>
-    );
+  if (!me.nickName) {
+    router.push('/login/welcome');
   }
 
   return (
     <>
       <Head>
-        <title>Readable Onboarding</title>
+        <title>Readable</title>
       </Head>
-      <body className="h-screen bg-indigo-700">
-        <FeatureOnboarding />
-      </body>
+
+      <FeatureHome />
     </>
   );
 }
