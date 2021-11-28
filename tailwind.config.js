@@ -69,6 +69,7 @@ module.exports = {
   variants: {
     extend: {
       width: ['hover'],
+      opacity: ['disabled'],
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
