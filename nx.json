@@ -52,9 +52,6 @@
     "home-feature-home": {
       "tags": ["scope:client"]
     },
-    "home-feature-onboarding": {
-      "tags": ["scope:client"]
-    },
     "login-feature-login": {
       "tags": ["scope:client"]
     },
