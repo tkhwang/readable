@@ -12,6 +12,9 @@ module.exports = {
           dark: 'rgba(0, 0, 0, 0.2)',
           DEFAULT: '#2C2D32',
         },
+        customIndigo: {
+          DEFAULT: '#4F3DFE',
+        },
       },
       borderWidth: {
         1: '1px',
