@@ -1,5 +1,5 @@
 import { CoreEntity } from '@readable/common/infrastructures/typeorm/entities';
-import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
+import { UserBookmark } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('urlInfos')

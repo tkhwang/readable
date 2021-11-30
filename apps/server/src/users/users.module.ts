@@ -11,9 +11,9 @@ import { UserFollowsRepository } from './infrastructures/typeorm/repositories/us
 import { FollowUserWithAuthUsecase } from './applications/usecases/follow-user-with-auth/follow-user-with-auth.usecase';
 import { UnfollowUserWithAuthUsecase } from './applications/usecases/unfollow-user-with-auth/unfollow-user-with-auth.usecase';
 import { FindManyUserBookmarksHavingUsersWithAuthUsecase } from './applications/usecases/find-users-having-many-userBookmarks-with-auth/find-users-having-many-userBookmarks-with-auth.usecase';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { FindUsersHavingManyFollowersWithAuthUsecase } from './applications/usecases/find-users-having-many-followers-with-auth/find-users-having-many-followers-with-auth.usecase';
-import { FindMyUserBookmarksGroupedByInterestsUsecase } from '../user-bookmark/applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
+import { FindMyUserBookmarksGroupedByInterestsUsecase } from '../user-bookmark/applications/port/in/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
 import { InterestsRepository } from '@readable/interests/infrastructures/typeorm/repositories/interest.repository';
 import { GetUserProfileUseCase } from './applications/usecases/get-user-profile/get-user-profile.usecase';
 import { SetNickNameUsecase } from './applications/usecases/set-nickName/set-nickName.usecase';

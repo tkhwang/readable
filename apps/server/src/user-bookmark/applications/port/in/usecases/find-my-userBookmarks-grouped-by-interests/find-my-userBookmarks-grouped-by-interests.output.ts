@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { UserBookmark as UserBookmarkEntity } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.entity';
 import { UserBookmark as UserBookmarkModel } from '@readable/user-bookmark/domain/model/user-bookmark.model';
-import { UserBookmark as UserBookmarkEntity } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 
 @ObjectType()
 export class FindMyUserBookmarksGroupedByInterestData {

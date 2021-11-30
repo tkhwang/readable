@@ -6,7 +6,7 @@ import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsUtilityService } from '@readable/tags/tags-utility.service';
 import { TagsService } from '@readable/tags/tags.service';
-import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
+import { UserBookmark } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.entity';
 import { User as UserModel } from '@readable/users/domain/models/user.model';
 import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { PaginationQueryCriteriaType } from './pagination.model';

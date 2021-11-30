@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { RecommendUserBookmarksByTagsInput } from './recommend-user-bookmarks-by-tags.input';
 import { RecommendUserBookmarksByTagsOutput } from './recommend-user-bookmarks-by-tags.output';

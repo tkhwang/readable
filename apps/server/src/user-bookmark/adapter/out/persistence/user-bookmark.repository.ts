@@ -7,7 +7,7 @@ import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity
 import { User as UserModel } from '@readable/users/domain/models/user.model';
 import { User as UserEntity } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { EntityRepository, Repository } from 'typeorm';
-import { UserBookmark } from '../entities/user-bookmark.entity';
+import { UserBookmark } from './user-bookmark.entity';
 
 @Injectable()
 @EntityRepository(UserBookmark)

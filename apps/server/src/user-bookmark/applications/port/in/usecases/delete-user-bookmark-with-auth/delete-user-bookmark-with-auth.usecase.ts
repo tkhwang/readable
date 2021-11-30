@@ -5,7 +5,7 @@ import {
   DeleteUserBookmarkWithAuthFailException,
   UnauthorizedDeleteUserBookmarkWithAuthException,
 } from '@readable/user-bookmark/domain/errors/user-bookmark.error';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { DeleteUserBookmarkWithAuthInput } from './delete-user-bookmark-with-auth.input';
 

@@ -17,13 +17,13 @@ import { ImageModule } from './image/image.module';
 import { UrlInfoModule } from './url-info/url-info.module';
 import { UserBookmarkModule } from './user-bookmark/user-bookmark.module';
 import { UrlInfo } from './url-info/infrastructures/typeorm/entities/url-info.entity';
-import { UserBookmark } from './user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
 import { TagsModule } from './tags/tags.module';
 import { SearchModule } from './search/search.module';
 import { RecommendModule } from './recommend/recommend.module';
 import { OperationModule } from './operation/operation.module';
 import { CategoriesModule } from './categories/categories.module';
 import { Category } from './categories/infrastructures/typeorm/entities/category.entity';
+import { UserBookmark } from './user-bookmark/adapter/out/persistence/user-bookmark.entity';
 
 @Module({
   imports: [

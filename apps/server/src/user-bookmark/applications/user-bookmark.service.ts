@@ -7,8 +7,8 @@ import { UserNotFoundException } from '@readable/users/domain/errors/users.error
 import { User } from '@readable/users/domain/models/user.model';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { IsNull, Not } from 'typeorm';
-import { UserBookmarkBRFO } from './domain/model/user-bookmark.model';
-import { UserBookmarkRepository } from './infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkBRFO } from '../domain/model/user-bookmark.model';
+import { UserBookmarkRepository } from '../adapter/out/persistence/user-bookmark.repository';
 
 @Injectable()
 export class UserBookmarkService {

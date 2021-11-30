@@ -1,8 +1,8 @@
 import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { RequestWithInjectedUser } from '@readable/auth/domain/auth.type';
 import { JwtAuthGuard } from '@readable/auth/domain/jwt-auth.guard';
-import { AddUserBookmarkWithAuthInput } from './applications/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.input';
-import { AddUserBookmarkWithAuthUsecase } from './applications/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.usecase';
+import { AddUserBookmarkWithAuthInput } from '../../../applications/port/in/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.input';
+import { AddUserBookmarkWithAuthUsecase } from '../../../applications/port/in/usecases/add-user-bookmark-with-auth/add-user-bookmark-with-auth.usecase';
 
 @Controller('user-bookmark')
 export class UserBookmarkController {
