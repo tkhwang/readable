@@ -6,7 +6,7 @@ import { AddUserBookmarkWithAuthInput } from './add-user-bookmark-with-auth.inpu
 import * as sha256 from 'crypto-js/sha256';
 import { UrlInfoService } from '@readable/url-info/url-info.service';
 import { ImageService } from '@readable/image/image.service';
-import { UserBookmarkService } from '@readable/user-bookmark/applications/user-bookmark.service';
+import { UserBookmarkService } from '@readable/user-bookmark/application/user-bookmark.service';
 import { InterestsService } from '@readable/interests/interests.service';
 import { SearchService } from '@readable/search/search.service';
 import { RecommendUserBookmarksByTagsUsecase } from '@readable/recommend/applications/usecases/recommend-user-bookmarks-by-tags/recommend-user-bookmarks-by-tags.usecase';

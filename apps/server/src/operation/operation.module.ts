@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';
 import { CreateTestUsersUseCase } from '../users/applications/usecases/create-test-users/create-test-users.usecase';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
-import { AddTestUserBookmarkUsecase } from '../user-bookmark/applications/port/in/usecases/add-test-userBookmark/add-test-userBookmark.usecase';
+import { AddTestUserBookmarkUsecase } from '../user-bookmark/application/port/in/usecases/add-test-userBookmark/add-test-userBookmark.usecase';
 import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { UserBookmarkModule } from '@readable/user-bookmark/user-bookmark.module';
 import { InitializeTagsUseCase } from '@readable/tags/applications/usercases/initialize-tags/initialize-tags.usecase';
