@@ -1,7 +1,7 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { Tag } from '@readable/tags/domain/models/tag.model';
 import { UrlInfo } from '@readable/url-info/domain/model/url-info.model';
-import { UserBookmark } from '@readable/user-bookmark/domain/model/user-bookmark.model';
+import { UserBookmark } from '@readable/user-bookmark/domain/user-bookmark.model';
 import { SearchByTextInAllUrlinfosInput } from './applications/usecases/search-by-text-in-all-urlinfos/search-by-text-in-all-urlinfos.input';
 import { SearchByTextInAllUrlinfosUsecase } from './applications/usecases/search-by-text-in-all-urlinfos/search-by-text-in-all-urlinfos.usecase';
 import { SearchByTextInAllUserBookmarksInput } from './applications/usecases/search-by-text-in-all-userBookmarks/search-by-text-in-all-userBookmarks.input';

@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { CoreModel } from '@readable/common/models/core.model';
 import { UserBookmark as UserBookmarkEntity } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.entity';
-import { UserBookmark as UserBookmarkModel } from '@readable/user-bookmark/domain/model/user-bookmark.model';
+import { UserBookmark as UserBookmarkModel } from '@readable/user-bookmark/domain/user-bookmark.model';
 
 @ObjectType()
 export class TagBRFO extends CoreModel {

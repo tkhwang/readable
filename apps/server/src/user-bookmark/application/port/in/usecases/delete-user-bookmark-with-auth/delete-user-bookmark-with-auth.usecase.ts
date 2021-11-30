@@ -4,7 +4,7 @@ import { CommonOutput } from '@readable/common/models/common.output';
 import {
   DeleteUserBookmarkWithAuthFailException,
   UnauthorizedDeleteUserBookmarkWithAuthException,
-} from '@readable/user-bookmark/domain/errors/user-bookmark.error';
+} from '@readable/user-bookmark/domain/user-bookmark.error';
 import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { DeleteUserBookmarkWithAuthInput } from './delete-user-bookmark-with-auth.input';

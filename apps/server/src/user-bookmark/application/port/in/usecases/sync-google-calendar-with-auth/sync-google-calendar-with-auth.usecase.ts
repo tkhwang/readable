@@ -2,7 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { oauthGoogleCredentials } from '@readable/common/constants';
 import { CommonOutput } from '@readable/common/models/common.output';
-import { UserAuthTokenRefreshTokenNotFoundException } from '@readable/user-bookmark/domain/errors/user-bookmark.error';
+import { UserAuthTokenRefreshTokenNotFoundException } from '@readable/user-bookmark/domain/user-bookmark.error';
 import { OAuthUserNotFoundException } from '@readable/users/domain/errors/oauthUser.error';
 import { User } from '@readable/users/domain/models/user.model';
 import { OAuthUsersRepository } from '@readable/users/infrastructures/typeorm/repositories/oauthUsers.repository';
