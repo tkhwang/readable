@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { SearchDomain } from '@readable/search/domain/models/search.model';
 import { SearchService } from '@readable/search/search.service';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { SearchByTextInAllUserBookmarksInput } from './search-by-text-in-all-userBookmarks.input';
 
 @Injectable()

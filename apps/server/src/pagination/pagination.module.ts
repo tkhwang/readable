@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
 import { TagsModule } from '@readable/tags/tags.module';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { GetPaginationUserBookmarksUsecase } from './userBookmarks/applications/usecases/get-pagination-user-bookmarks/get-pagination-user-bookmarks.usecase';
 import { PaginationUserBookmarksResolver } from './userBookmarks/paginationUserBookmarks.resolver';
 import { PaginationService } from './pagination.service';

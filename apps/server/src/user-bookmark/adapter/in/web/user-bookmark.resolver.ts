@@ -3,17 +3,17 @@ import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/g
 import { GqlAuthGuard } from '@readable/auth/domain/graphql-auth.guards';
 import { CommonOutput } from '@readable/common/models/common.output';
 import { CurrentUser } from '@readable/middleware/current-user.decorator';
+import { UserBookmark, UserBookmarkBRFO } from '@readable/user-bookmark/domain/user-bookmark.model';
 import { User } from '@readable/users/domain/models/user.model';
-import { DeleteUserBookmarkWithAuthInput } from './applications/usecases/delete-user-bookmark-with-auth/delete-user-bookmark-with-auth.input';
-import { DeleteUserBookmarkWithAuthUsecase } from './applications/usecases/delete-user-bookmark-with-auth/delete-user-bookmark-with-auth.usecase';
-import { FindMyUserBookmarksGroupedByInterestsInput } from './applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.input';
-import { FindMyUserBookmarksGroupedByInterestsOutput } from './applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.output';
-import { FindMyUserBookmarksGroupedByInterestsUsecase } from './applications/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
-import { GetMyUserBookmarksWithAuthUsecase } from './applications/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
-import { SyncGoogleCalendarWithAuthInput } from './applications/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.input';
-import { SyncGoogleCalendaerWithAuthUsecase } from './applications/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.usecase';
-import { UserBookmark, UserBookmarkBRFO } from './domain/model/user-bookmark.model';
-import { UserBookmarkService } from './user-bookmark.service';
+import { DeleteUserBookmarkWithAuthInput } from '../../../application/port/in/usecases/delete-user-bookmark-with-auth/delete-user-bookmark-with-auth.input';
+import { DeleteUserBookmarkWithAuthUsecase } from '../../../application/port/in/usecases/delete-user-bookmark-with-auth/delete-user-bookmark-with-auth.usecase';
+import { FindMyUserBookmarksGroupedByInterestsInput } from '../../../application/port/in/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.input';
+import { FindMyUserBookmarksGroupedByInterestsOutput } from '../../../application/port/in/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.output';
+import { FindMyUserBookmarksGroupedByInterestsUsecase } from '../../../application/port/in/usecases/find-my-userBookmarks-grouped-by-interests/find-my-userBookmarks-grouped-by-interests.usecase';
+import { GetMyUserBookmarksWithAuthUsecase } from '../../../application/port/in/usecases/get-my-user-bookmarks-with-auth/get-my-user-bookmarks-with-auth.usecase';
+import { SyncGoogleCalendarWithAuthInput } from '../../../application/port/in/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.input';
+import { SyncGoogleCalendaerWithAuthUsecase } from '../../../application/port/in/usecases/sync-google-calendar-with-auth/sync-google-calendar-with-auth.usecase';
+import { UserBookmarkService } from '../../../application/user-bookmark.service';
 
 @Resolver(of => UserBookmark)
 export class UserBookmarkResolver {

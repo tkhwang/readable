@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usecase } from '@readable/common/applications/usecase';
 import { Tag } from '@readable/tags/infrastructures/typeorm/entities/tags.entity';
 import { TagsRepository } from '@readable/tags/infrastructures/typeorm/repositories/tags.repository';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { UserNotFoundException } from '@readable/users/domain/errors/users.error';
 import { User } from '@readable/users/infrastructures/typeorm/entities/user.entity';
 import { UsersRepository } from '@readable/users/infrastructures/typeorm/repositories/users.repository';

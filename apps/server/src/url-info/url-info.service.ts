@@ -6,7 +6,7 @@ import axios from 'axios';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UrlInfoRepository } from './infrastructures/typeorm/repositories/url-info.repository';
 import { UrlInfo } from './infrastructures/typeorm/entities/url-info.entity';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { User } from '@readable/users/domain/models/user.model';
 import { get } from 'lodash';
 

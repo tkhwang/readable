@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { UserBookmark } from '@readable/user-bookmark/infrastructures/typeorm/entities/user-bookmark.entity';
+import { UserBookmark } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.entity';
 
 @ObjectType()
 export class RecommendUserBookmarksByTagsOutput {

@@ -2,7 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { PaginationPageInfo } from '@readable/common/pagination/pagination.type';
 import { PaginationCursor } from '@readable/common/pagination/paginationCursor';
 import { PaginationCursorScalar } from '@readable/common/pagination/paginationCursorScalar';
-import { UserBookmark, UserBookmarkBRFO } from '@readable/user-bookmark/domain/model/user-bookmark.model';
+import { UserBookmark, UserBookmarkBRFO } from '@readable/user-bookmark/domain/user-bookmark.model';
 
 @ObjectType()
 export class PaginationUserBookmarkEdge {

@@ -5,7 +5,7 @@ import { SearchByTextInAllUrlinfosUsecase } from './applications/usecases/search
 import { SuggestTagUsecase } from './applications/usecases/suggest-tag/suggest-tag.usecase';
 import { SearchController } from './search.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserBookmarkRepository } from '@readable/user-bookmark/infrastructures/typeorm/repositories/user-bookmark.repository';
+import { UserBookmarkRepository } from '@readable/user-bookmark/adapter/out/persistence/user-bookmark.repository';
 import { SearchByTextInAllUserBookmarksUseCase } from './applications/usecases/search-by-text-in-all-userBookmarks/search-by-text-in-all-userBookmarks.usecase';
 
 @Module({
