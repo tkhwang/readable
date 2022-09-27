@@ -152,10 +152,6 @@ yarn build
 yarn start
 ```
 
-#### 2. AWS
-
-AKS using kubernete.
-
 ## Ref: Server/Port/DB
 
 | Environment | `apps`   | `NODE_ENV`    | DB          | Port     | URL                                         |
